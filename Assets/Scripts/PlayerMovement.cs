@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isTryingToDash && !isDashing && dashingcd >= dashcd)
         {
-            if (dashAttempts <= 500)
+            if (dashAttempts <= 500)  //Dashes maximos
             {
                 OnStartDash();
                 DashParticles.Play();
@@ -147,13 +147,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (playerInput.Equals(Vector3.zero))
                 {
-                    player.Move(transform.forward * 30f * Time.deltaTime);
+                    player.Move(transform.forward * (playerSpeed *3) * Time.deltaTime);  //Velocidad del Dash estando quieto
                 }
                 else
                 {
-                    player.Move(transform.forward * 20f * Time.deltaTime);
+                    player.Move(transform.forward * (playerSpeed * 3) * Time.deltaTime);  //Velocidad del Dash en movimiento
                 }
-                //anim.SetBool("Dash", true);
+                
 
             }
             else
