@@ -49,5 +49,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-
+    void Attacking()
+    {
+        attacking = true;
+    }
+    void AfterAttack()
+    {
+        attacking = false;
+    }
 }
