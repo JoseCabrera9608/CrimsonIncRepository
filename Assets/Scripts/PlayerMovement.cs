@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public bool grounded;
     public float duraciondash;
 
+    public Animator playeranim;
+
     public bool isDashing;
     public float dashcd;
     public float dashingcd;
@@ -66,9 +68,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (isDashing == false)
         {
-
-
             movePlayer = movePlayer * playerSpeed;
+        }
+
+        if (inputVector.x == 0 && inputVector.z == 0)
+        {
+            playeranim.SetBool("Run", false);
+        }
+        else
+        {
+            playeranim.SetBool("Run", true);
         }
 
         //movePlayer = movePlayer * playerSpeed;
