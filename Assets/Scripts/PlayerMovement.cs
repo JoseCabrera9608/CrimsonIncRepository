@@ -88,10 +88,7 @@ public class PlayerMovement : MonoBehaviour
         SetJump();
         HandleDash();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+
 
     }
 
