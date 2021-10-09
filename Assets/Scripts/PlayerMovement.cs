@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     public bool grounded;
     public float duraciondash;
 
+    public SkinnedMeshRenderer playerMesh;
+    public Material matNormal;
+    public Material matHitted;
+
     public Animator playeranim;
 
     public bool isDashing;
@@ -25,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashingcd;
     private int dashAttempts;
     private float dashStartTime;
+    public float timer;
 
     [SerializeField] ParticleSystem DashParticles;
 
@@ -40,12 +45,15 @@ public class PlayerMovement : MonoBehaviour
     public GameObject marcado;
     public bool marcando;
 
+    public EnemyDino enemyDino;
+
     public int playerlife;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
+        enemyDino = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -95,6 +103,23 @@ public class PlayerMovement : MonoBehaviour
         if (playerlife <= 0)
         {
             Destroy(gameObject);
+        }
+
+        timer += Time.deltaTime;
+
+        if (timer >= 0.3)
+        {
+            playerMesh.material = matNormal;
+        }
+
+        if (enemyDino.dmgingPlayer == true)
+        {
+            if (timer >= 0.5)
+            {
+                playerMesh.material = matHitted;
+                timer = 0;
+
+            }
         }
 
     }

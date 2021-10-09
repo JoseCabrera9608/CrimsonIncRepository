@@ -14,7 +14,9 @@ public class EnemyDino : MonoBehaviour
     public float speed;
     public int dmgtoPlayer;
     public bool attacking;
+    public bool dmgingPlayer;
     public float dist;
+    public float timer;
 
     public float vision;
     public float attackRange;
@@ -25,12 +27,21 @@ public class EnemyDino : MonoBehaviour
     public PlayerMovement player;
 
 
+    public SkinnedMeshRenderer nupMesh;
+    public Material matNormal;
+    public Material matHitted;
+
+    public PlayerAttack playerattack;
+
+
 
 
     void Start()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerattack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+
     }
 
     // Update is called once per frame
@@ -39,6 +50,13 @@ public class EnemyDino : MonoBehaviour
         if (attacking == true && dist <= attackRange)
         {
             DamagingPlayer();
+        }
+
+        timer += Time.deltaTime;
+
+        if (timer >= 0.3)
+        {
+            nupMesh.material = matNormal;
         }
     }
 
@@ -56,6 +74,7 @@ public class EnemyDino : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+  
     }
 
     void IdleState()
@@ -90,8 +109,10 @@ public class EnemyDino : MonoBehaviour
 
     void DamagingPlayer()
     {
+        dmgingPlayer = true;
         player.playerlife = player.playerlife - dmgtoPlayer;
         attacking = false;
+        dmgingPlayer = false;
 
     }
 
@@ -126,6 +147,18 @@ public class EnemyDino : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerWeapon"))
         {
             Debug.Log("PlayerContactTrigger");
+
+            if (collision.gameObject.CompareTag("PlayerWeapon") && playerattack.attacking == true)
+            {
+                Debug.Log("PlayerContactTrigger");
+
+                if (timer >= 0.5)
+                {
+                    nupMesh.material = matHitted;
+                    timer = 0;
+
+                }
+            }
         }
     }
 }
