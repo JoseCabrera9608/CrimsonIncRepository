@@ -14,6 +14,7 @@ public class EnemyDino : MonoBehaviour
     public float speed;
     public int dmgtoPlayer;
     public bool attacking;
+    public float dist;
 
     public float vision;
     public float attackRange;
@@ -21,18 +22,24 @@ public class EnemyDino : MonoBehaviour
 
     public Animator dinoAnim;
 
+    public PlayerMovement player;
+
 
 
 
     void Start()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (attacking == true && dist <= attackRange)
+        {
+            DamagingPlayer();
+        }
     }
 
     void FixedUpdate()
@@ -53,7 +60,7 @@ public class EnemyDino : MonoBehaviour
 
     void IdleState()
     {
-        float dist = Vector3.Distance(playerPosition.position, transform.position);
+        dist = Vector3.Distance(playerPosition.position, transform.position);
         if (dist <= vision)
         {
             FollowState();
@@ -62,10 +69,12 @@ public class EnemyDino : MonoBehaviour
         if (dist <= attackRange)
         {
             AttackState();
+            
         }
         else
         {
             dinoAnim.SetBool("Mordida", false);
+            attacking = false;
         }
         //else enemy.destination = transform.position;
     }
@@ -77,6 +86,26 @@ public class EnemyDino : MonoBehaviour
         float dist = Vector3.Distance(playerPosition.position, transform.position);
         //animator.SetBool("isMoving", true);
 
+    }
+
+    void DamagingPlayer()
+    {
+        player.playerlife = player.playerlife - dmgtoPlayer;
+        attacking = false;
+
+    }
+
+
+    void MordiendoPlayer()
+    {
+        dmgtoPlayer = 20;
+        attacking = true;
+    }
+
+    void StopMordiendoPlayer()
+    {
+        dmgtoPlayer = 0;
+        attacking = false;
     }
 
     void AttackState()

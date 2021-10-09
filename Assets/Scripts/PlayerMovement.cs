@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject marcado;
     public bool marcando;
 
+    public int playerlife;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
 
         mainCamera = Camera.main;
+
+        playerlife = 100;
     }
 
     // Update is called once per frame
@@ -88,7 +92,10 @@ public class PlayerMovement : MonoBehaviour
         SetJump();
         HandleDash();
 
-
+        if (playerlife <= 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 
