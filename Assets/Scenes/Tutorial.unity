@@ -1036,7 +1036,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89991859}
-  m_LocalRotation: {x: -0.0030480125, y: 0.023560908, z: 0.00007183424, w: 0.9997178}
+  m_LocalRotation: {x: -0.0030480162, y: 0.02356091, z: 0.000071834336, w: 0.9997178}
   m_LocalPosition: {x: 337.34283, y: 2.221804, z: -12.281137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1806,7 +1806,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a805de42dc155d04595e2885042faaaa, type: 2}
+  - {fileID: 2100000, guid: cdff236fcfd686b4193ad3e6c22203bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13688,7 +13688,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 01b39da34a6707e4da0cef895ed25205, type: 2}
+  - {fileID: 2100000, guid: cdff236fcfd686b4193ad3e6c22203bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17536,10 +17536,14 @@ MonoBehaviour:
   jumpForce: 11
   grounded: 0
   duraciondash: 0.25
+  playerMesh: {fileID: 0}
+  matNormal: {fileID: 0}
+  matHitted: {fileID: 0}
   playeranim: {fileID: 1745292281}
   isDashing: 0
   dashcd: 1
   dashingcd: 0
+  timer: 0
   DashParticles: {fileID: 2067302150}
   mainCamera: {fileID: 89991860}
   camForward: {x: 0, y: 0, z: 0}
@@ -17552,7 +17556,8 @@ MonoBehaviour:
   lockon: 0
   marcado: {fileID: 0}
   marcando: 0
-  playerlife: 0
+  enemyDino: {fileID: 0}
+  playerlife: 100
 --- !u!114 &1745292278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19273,7 +19278,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855877689}
-  m_LocalRotation: {x: -0.0030480165, y: 0.023560911, z: 0.00007183432, w: 0.9997178}
+  m_LocalRotation: {x: -0.003048018, y: 0.023560911, z: 0.00007183436, w: 0.9997178}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
