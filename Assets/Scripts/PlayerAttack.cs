@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         attacktimer = 0.5f;
+        
     }
 
     // Update is called once per frame
@@ -23,28 +24,33 @@ public class PlayerAttack : MonoBehaviour
 
         attacktimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false)
         {
 
+            attacking = true;
             playeranim.SetBool("Attack", true);
+            
 
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && attacktimer >= 0.7)
         {
             
+            attacking = false;
             attacktimer = 0;
         }
 
         if (attacktimer >= 0.5)
         {
             playeranim.SetBool("Attack", false);
+            
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
 
             playeranim.SetBool("Attack", false);
+            attacking = false;
 
         }
     }

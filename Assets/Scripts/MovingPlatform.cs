@@ -31,6 +31,10 @@ public class MovingPlatform : MonoBehaviour
         {
             speedy = 15;
         }
+        if (consola.encendido == false)
+        {
+            abajo = !abajo;
+        }
 
         consola.speedy = speedy;
     }
@@ -49,10 +53,7 @@ public class MovingPlatform : MonoBehaviour
 
 
 
-            if (abajo == false)
-            {
-                abajo = true;
-            }
+
 
 
             speedx = 0;
