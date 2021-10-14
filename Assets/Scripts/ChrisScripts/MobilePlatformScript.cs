@@ -8,6 +8,7 @@ public class MobilePlatformScript : MonoBehaviour
     public Vector3 startPosition;
     public float movingSpeed;
     public bool toPosZ;
+    public CharacterController cc;
     [Header("Ambos En positivo btw")]
     public float negZLimit;
     public float posZLimit;
@@ -43,6 +44,26 @@ public class MobilePlatformScript : MonoBehaviour
                 toPosZ = true;
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            //Debug.Log("player in");
+            //other.transform.SetParent(gameObject.transform);
+            cc = other.GetComponent<CharacterController>();
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            //Debug.Log("player off");
+            //transform.DetachChildren();
+            cc.Move(rb.velocity * Time.deltaTime);
+        }
+        
     }
     public void LimitCheck()
     {
