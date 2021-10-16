@@ -94,6 +94,7 @@ public class ElevatorScript : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             playerOnActivationRange = true;
+            
 
         }
     }
