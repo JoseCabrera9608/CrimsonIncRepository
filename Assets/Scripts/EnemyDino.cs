@@ -18,6 +18,8 @@ public class EnemyDino : MonoBehaviour
     public float dist;
     public float timer;
 
+    public bool hitted;
+
     public float vision;
     public float attackRange;
     public NavMeshAgent enemy;
@@ -150,7 +152,10 @@ public class EnemyDino : MonoBehaviour
 
             if (collision.gameObject.CompareTag("PlayerWeapon") && playerattack.attacking == true)
             {
+
                 Debug.Log("PlayerContactTrigger");
+
+                hitted = true;
 
                 if (timer >= 0.5)
                 {
