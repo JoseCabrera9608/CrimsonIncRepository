@@ -105,6 +105,11 @@ public class PlayerMovement : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (playerlife > 100)
+        {
+            playerlife = 100;
+        }
+
         timer += Time.deltaTime;
 
         if (timer >= 0.3)
