@@ -12,8 +12,9 @@ public class CalamarController : MonoBehaviour
     [SerializeField] private float distance;
     //public CalamarVisuals calamarAnimations;
     GameObject player;
-    private NavMeshAgent agente;
+    public NavMeshAgent agente;
     public bool electrocutado;
+    public bool tentacleStrikeBool = false;
 
 
 
@@ -31,7 +32,7 @@ public class CalamarController : MonoBehaviour
         {
             agente.SetDestination(player.transform.position);
 
-            distance = Vector3.Distance(transform.position, player.transform.position);
+            /*distance = Vector3.Distance(transform.position, player.transform.position);
             timerCooldown += Time.deltaTime;
             if (timerCooldown >= 5f)
             {
@@ -49,8 +50,13 @@ public class CalamarController : MonoBehaviour
             if (distance >= 2 && canCast == true)
             {
                 electrocutado = true;
-            }
+            }*/
 
+        }
+
+        if (tentacleStrikeBool == true)
+        {
+            StartCoroutine(TentacleStrike2());
         }
     }
     private void StartChase()
@@ -58,12 +64,12 @@ public class CalamarController : MonoBehaviour
         onChase = true;
     }
 
-    IEnumerator TentacleStrike()
+    IEnumerator TentacleStrike2()
     {
         agente.speed = 0;
         //calamarAnimations.TentacleStrikeAnimation();
-        yield return new WaitForSeconds(3);
-        agente.speed = 3.5f;
+        yield return new WaitForSeconds(10);
+        agente.speed = 6f;
     }
 
 
