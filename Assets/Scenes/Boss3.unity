@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3159,6 +3159,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 302d1c9e7a5b0bc4cb21a9054dbb5233, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 302d1c9e7a5b0bc4cb21a9054dbb5233, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5568d600ee9f5524ca593c5549408599, type: 2}
     - target: {fileID: 919132149155446097, guid: 302d1c9e7a5b0bc4cb21a9054dbb5233, type: 3}
       propertyPath: m_Name
       value: Blocking Calamar
@@ -3483,7 +3491,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351044785}
-  m_LocalRotation: {x: -0.003047931, y: 0.023560882, z: 0.00007183222, w: 0.9997178}
+  m_LocalRotation: {x: -0.0030479352, y: 0.023560882, z: 0.000071832306, w: 0.9997178}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6121,8 +6129,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623135879}
-  m_LocalRotation: {x: -0.0030479305, y: 0.02356088, z: 0.0000718322, w: 0.9997178}
-  m_LocalPosition: {x: -369.23758, y: 55.841778, z: 162.90929}
+  m_LocalRotation: {x: -0.0030479345, y: 0.02356088, z: 0.000071832386, w: 0.9997178}
+  m_LocalPosition: {x: -369.23758, y: 55.841774, z: 162.90929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9197,6 +9205,7 @@ MonoBehaviour:
   dmgingPlayer: 0
   dist: 0
   timer: 0
+  hitted: 0
   vision: 37.2
   attackRange: 10.59
   enemy: {fileID: 894564083}
@@ -11610,7 +11619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1205310867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11627,7 +11636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -549.6382, y: 413}
+  m_AnchoredPosition: {x: -549.6382, y: 293.00006}
   m_SizeDelta: {x: 616.7237, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1205310868
@@ -11645,6 +11654,10 @@ MonoBehaviour:
   healthBar: {fileID: 1205310869}
   player: {fileID: 1761762411}
   startHealth: 100
+  healingcharges: 0
+  healingBar: {fileID: 0}
+  getDamage: 0
+  bloodImage: {fileID: 0}
 --- !u!114 &1205310869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12648,9 +12661,12 @@ MonoBehaviour:
   timerCooldown: 0
   canCast: 0
   distance: 0
+  animCalamar: {fileID: 0}
   agente: {fileID: 0}
   electrocutado: 0
   tentacleStrikeBool: 0
+  tintaDisparada: 0
+  embistiendo: 0
 --- !u!4 &1324924124
 Transform:
   m_ObjectHideFlags: 0
@@ -13882,6 +13898,7 @@ GameObject:
   - component: {fileID: 1453109275}
   - component: {fileID: 1453109274}
   - component: {fileID: 1453109273}
+  - component: {fileID: 1453109277}
   m_Layer: 0
   m_Name: CalamarPrueba
   m_TagString: Untagged
@@ -13927,9 +13944,12 @@ MonoBehaviour:
   timerCooldown: 0
   canCast: 0
   distance: 0
+  animCalamar: {fileID: 0}
   agente: {fileID: 0}
   electrocutado: 0
   tentacleStrikeBool: 0
+  tintaDisparada: 0
+  embistiendo: 0
 --- !u!114 &1453109275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13945,6 +13965,8 @@ MonoBehaviour:
   ability:
   - {fileID: 11400000, guid: 5c358ba7d74370c4798bcfd33a7c00e9, type: 2}
   - {fileID: 11400000, guid: f8f9eeaf61bb3df44983e7e4a5cd8bfa, type: 2}
+  - {fileID: 11400000, guid: fcde93cff1bcde5458889f81406f7042, type: 2}
+  - {fileID: 11400000, guid: 31dbaf38dbf5dc646b619c300d28733a, type: 2}
   cooldownTime: 0
   activeTime: 0
   distance: 0
@@ -13964,6 +13986,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1453109277
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453109272}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccb29ea409afb7b4da4bda79bb8fe54b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1458897160
 GameObject:
   m_ObjectHideFlags: 0
@@ -18069,7 +18110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1880368633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18086,7 +18127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -549.6382, y: 411}
+  m_AnchoredPosition: {x: -549.6382, y: 291}
   m_SizeDelta: {x: 616.7237, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880368634
@@ -19029,7 +19070,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012817302}
-  m_LocalRotation: {x: 0.033268776, y: 0.02354794, z: -0.00078406296, w: 0.9991687}
+  m_LocalRotation: {x: 0.033268776, y: 0.023547944, z: -0.0007840631, w: 0.9991687}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

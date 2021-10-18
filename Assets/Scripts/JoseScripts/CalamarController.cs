@@ -10,16 +10,19 @@ public class CalamarController : MonoBehaviour
     [SerializeField] private float timerCooldown;
     [SerializeField] private bool canCast;
     [SerializeField] private float distance;
-    //public CalamarVisuals calamarAnimations;
+    public Animator animCalamar;
     GameObject player;
     public NavMeshAgent agente;
     public bool electrocutado;
     public bool tentacleStrikeBool = false;
+    public bool tintaDisparada = false;
+    public bool embistiendo = false;
 
 
 
     void Start()
     {
+        animCalamar = GetComponent<Animator>();
         BossGameEVent.current.combatTriggerExit += StartChase; //El metodo se suscribe al BossGameEvent
         agente = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
@@ -58,6 +61,17 @@ public class CalamarController : MonoBehaviour
         {
             StartCoroutine(TentacleStrike2());
         }
+
+        if (tintaDisparada == true)
+        {
+            
+            StartCoroutine(TintaCambioColor());
+        }
+        if(embistiendo == true)
+        {
+            StartCoroutine(Embestida());
+        }
+
     }
     private void StartChase()
     {
@@ -69,6 +83,23 @@ public class CalamarController : MonoBehaviour
         agente.speed = 0;
         //calamarAnimations.TentacleStrikeAnimation();
         yield return new WaitForSeconds(10);
+        agente.speed = 6f;
+    }
+    IEnumerator TintaCambioColor()
+    {
+        agente.speed = 0;
+        yield return new WaitForSeconds(3);
+        GameObject calamar = GameObject.Find("Blocking Calamar");
+        MeshRenderer calamarColor = calamar.GetComponent<MeshRenderer>();
+        calamarColor.material.color = Color.blue;
+        tintaDisparada = false;
+        agente.speed = 6f;
+        
+    }
+    IEnumerator Embestida()
+    {
+        yield return new WaitForSeconds(5);
+        animCalamar.SetBool("Trompo", false);
         agente.speed = 6f;
     }
 
