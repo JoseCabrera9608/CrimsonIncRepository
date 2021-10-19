@@ -12,5 +12,6 @@ public class HabilidadEmbestida : Habilidad_SO
         Animator anim = parent.GetComponent<Animator>();
         anim.SetBool("Trompo", true);
         _calamarController.embistiendo = true;
+        Debug.Log("5ta Habilidad");
     }
 }

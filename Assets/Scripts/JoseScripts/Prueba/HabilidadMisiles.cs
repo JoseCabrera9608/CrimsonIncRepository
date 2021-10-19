@@ -10,6 +10,8 @@ public class HabilidadMisiles : Habilidad_SO
     {
         spawns = GameObject.FindGameObjectsWithTag("MisilesTarget");
 
+        Debug.Log("4ta Habilidad");
+
         Prueba();
     }
     

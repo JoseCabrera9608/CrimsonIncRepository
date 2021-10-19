@@ -11,6 +11,8 @@ public class HabilidadesEquipadas : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private bool casting = false;
     int index;
+    public bool attacking = false;
+    public float resttime;
 
     private void Start()
     {
@@ -42,15 +44,19 @@ public class HabilidadesEquipadas : MonoBehaviour
                  }
             break;
             case AbilityState.active:
-                if (activeTime > 0)
+                if (activeTime > 0 && attacking == false ) // && restmode == false
                 {
-                    casting = true;
+
+                    casting = true;                   
                     activeTime -= Time.deltaTime;
+                    attacking = true;
+                    
                 }
                 else
                 {
                     state = AbilityState.cooldown;
                     cooldownTime = ability[index].cooldownTime;
+                    //resttime = 0;
                     casting = false;
                 }
             break;
@@ -61,6 +67,9 @@ public class HabilidadesEquipadas : MonoBehaviour
                 }
                 else
                 {
+                    attacking = false;
+                    //restmode = true; que empiece la cuenta de tiempo ga
+                    //resttime += Time.deltaTime;
                     state = AbilityState.ready;
                 }
                 break;
