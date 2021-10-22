@@ -8,13 +8,14 @@ public class ElevatorScript : MonoBehaviour
     bool playerOnActivationRange;
     
     public bool elevatorReady;
-    
+
     public float topYLimit;
     public float bottomYLimit;
     public bool elevatorGoingUp;
     public float elevatorSpeed;
     public GameObject elevator;
     public Rigidbody elevatorRb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,5 +106,6 @@ public class ElevatorScript : MonoBehaviour
         {
             playerOnActivationRange = false;
         }
+
     }
 }
