@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerStats : MonoBehaviour
+{
+    public int playerlife;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerlife = 100;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (playerlife <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if (playerlife > 100)
+        {
+            playerlife = 100;
+        }
+    }
+}

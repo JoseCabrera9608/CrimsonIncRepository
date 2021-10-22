@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     public float timer;
     public float attacktimer;
     public bool attacking;
+    public GameObject Pause;
 
 
     void Start()
@@ -24,7 +25,9 @@ public class PlayerAttack : MonoBehaviour
 
         attacktimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false)
+        PauseController pause = Pause.GetComponent<PauseController>();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false && pause.pause == false)
         {
 
             attacking = true;

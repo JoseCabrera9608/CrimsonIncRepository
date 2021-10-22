@@ -26,7 +26,7 @@ public class EnemyDino : MonoBehaviour
 
     public Animator dinoAnim;
 
-    public PlayerMovement player;
+    public PlayerStats player;
 
 
     public SkinnedMeshRenderer nupMesh;
@@ -34,6 +34,7 @@ public class EnemyDino : MonoBehaviour
     public Material matHitted;
 
     public PlayerAttack playerattack;
+    public GameObject Pause;
 
 
 
@@ -41,7 +42,7 @@ public class EnemyDino : MonoBehaviour
     void Start()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         playerattack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
 
     }
@@ -49,6 +50,7 @@ public class EnemyDino : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (attacking == true && dist <= attackRange)
         {
             DamagingPlayer();
@@ -81,13 +83,15 @@ public class EnemyDino : MonoBehaviour
 
     void IdleState()
     {
+        PauseController pause = Pause.GetComponent<PauseController>();
+
         dist = Vector3.Distance(playerPosition.position, transform.position);
-        if (dist <= vision)
+        if (dist <= vision && pause.pause == false)
         {
             FollowState();
         }
 
-        if (dist <= attackRange)
+        if (dist <= attackRange && pause.pause == false)
         {
             AttackState();
             

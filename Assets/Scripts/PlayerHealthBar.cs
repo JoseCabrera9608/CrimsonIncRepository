@@ -8,7 +8,7 @@ public class PlayerHealthBar : MonoBehaviour
     // Start is called before the first frame update
 
     public Image healthBar;
-    public PlayerMovement player;
+    public PlayerStats player;
     public int startHealth;
     public int healingcharges;
     public Image healingBar;
@@ -18,7 +18,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         startHealth = 100;
         healingcharges = 5;
     }

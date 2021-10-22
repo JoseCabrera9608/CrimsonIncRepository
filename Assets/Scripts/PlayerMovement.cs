@@ -43,31 +43,36 @@ public class PlayerMovement : MonoBehaviour
     public float turnSpeed = 10f;
     public bool lockon;
     public GameObject marcado;
+    public GameObject Pause;
     public bool marcando;
 
-    public EnemyDino enemyDino;
-
-    public int playerlife;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
-        enemyDino = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         mainCamera = Camera.main;
 
-        playerlife = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        player.Move(movePlayer * Time.deltaTime);
+        PauseController pause = Pause.GetComponent<PauseController>();
+
+        if (pause.pause == false)
+        {
+            player.Move(movePlayer * Time.deltaTime);
+
+        }
+
+        
+
         inputVector.x = Input.GetAxis("Horizontal");
         inputVector.z = Input.GetAxis("Vertical");
 
@@ -100,15 +105,7 @@ public class PlayerMovement : MonoBehaviour
         SetJump();
         HandleDash();
 
-        if (playerlife <= 0)
-        {
-            Destroy(gameObject);
-        }
 
-        if (playerlife > 100)
-        {
-            playerlife = 100;
-        }
 
         timer += Time.deltaTime;
 
@@ -117,15 +114,6 @@ public class PlayerMovement : MonoBehaviour
             playerMesh.material = matNormal;
         }
 
-        if (enemyDino.dmgingPlayer == true)
-        {
-            if (timer >= 0.5)
-            {
-                playerMesh.material = matHitted;
-                timer = 0;
-
-            }
-        }
 
     }
 
