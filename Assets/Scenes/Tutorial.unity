@@ -5082,9 +5082,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 617284458}
   player: {fileID: 0}
+  playermov: {fileID: 0}
   startHealth: 100
   healingcharges: 0
   healingBar: {fileID: 914041714}
+  dashCD: {fileID: 0}
+  dashfull: {fileID: 0}
+  dashcharging: {fileID: 0}
   getDamage: 0
   bloodImage: {fileID: 762738484}
 --- !u!114 &617284458
@@ -17619,7 +17623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Offset: {x: 0.5, y: 2.88, z: -6.26}
+  m_Offset: {x: 0.5, y: 3.4, z: -6.26}
   m_ApplyAfter: 1
   m_PreserveComposition: 0
 --- !u!114 &1936078791
@@ -18281,7 +18285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960193180}
   m_LocalRotation: {x: -0.09000685, y: -0.68489015, z: -0.08586228, w: 0.7179498}
-  m_LocalPosition: {x: 349.6899, y: 1.3455709, z: 9.638877}
+  m_LocalPosition: {x: 349.8181, y: 1.8494785, z: 9.63283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

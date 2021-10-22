@@ -3441,7 +3441,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908989166}
-  m_LocalRotation: {x: -0.07488727, y: -0.6865445, z: -0.07143891, w: 0.71968406}
+  m_LocalRotation: {x: -0.07488727, y: -0.6865445, z: -0.07143889, w: 0.71968406}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5287,7 +5287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Offset: {x: 0.5, y: 2.88, z: -6.26}
+  m_Offset: {x: 0.5, y: 3.4, z: -6.26}
   m_ApplyAfter: 1
   m_PreserveComposition: 0
 --- !u!114 &1278105893
@@ -7902,9 +7902,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2081494602}
   player: {fileID: 0}
+  playermov: {fileID: 0}
   startHealth: 100
   healingcharges: 0
   healingBar: {fileID: 1195902938}
+  dashCD: {fileID: 0}
+  dashfull: {fileID: 0}
+  dashcharging: {fileID: 0}
   getDamage: 0
   bloodImage: {fileID: 598513447}
 --- !u!114 &2081494602
@@ -8070,8 +8074,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124416997}
-  m_LocalRotation: {x: -0.090006925, y: -0.68489015, z: -0.08586232, w: 0.71794987}
-  m_LocalPosition: {x: 23.14991, y: 0.08556962, z: 9.638876}
+  m_LocalRotation: {x: -0.090006925, y: -0.68489015, z: -0.08586233, w: 0.71794987}
+  m_LocalPosition: {x: 23.27813, y: 0.5894772, z: 9.632829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

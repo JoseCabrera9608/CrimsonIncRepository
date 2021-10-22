@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isTryingToDash && !isDashing && dashingcd >= dashcd)
         {
-            if (dashAttempts <= 500)  //Dashes maximos
+            if (dashAttempts <= 5000)  //Dashes maximos
             {
                 OnStartDash();
                 DashParticles.Play();
