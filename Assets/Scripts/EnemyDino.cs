@@ -43,7 +43,8 @@ public class EnemyDino : MonoBehaviour
 
     public NavMeshAgent dinoNav;
 
-
+    public GameObject bulletslot;
+    public GameObject spawnslot;
 
 
     void Start()
@@ -167,6 +168,13 @@ public class EnemyDino : MonoBehaviour
     void CallState()
     {
         dinoAnim.SetTrigger("Call");
+
+    }
+
+    void CallSpawn()
+    {
+        GameObject temporalbullet = Instantiate(bulletslot);
+        temporalbullet.transform.position = spawnslot.transform.position;
     }
 
     void JumpState()
