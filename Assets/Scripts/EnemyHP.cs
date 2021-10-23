@@ -11,6 +11,7 @@ public class EnemyHP : MonoBehaviour
     public EnemyDino enemy;
     public int enemyhealth;
     public GameObject Enemy;
+    public ParticleSystem deathParticles;
 
     void Start()
     {
@@ -31,7 +32,9 @@ public class EnemyHP : MonoBehaviour
         }
 
         if (enemyhealth <= 0)
-        {
+        {           
+            ParticleSystem temporalbullet = Instantiate(deathParticles);
+            temporalbullet.transform.position = Enemy.transform.position;
             Destroy(Enemy);
         }
 
