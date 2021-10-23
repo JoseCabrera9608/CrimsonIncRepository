@@ -5,18 +5,12 @@ using UnityEngine;
 
 public class HabilidadMisiles : Habilidad_SO
 {
-    GameObject[] spawns;
+
     public override void Activate(GameObject parent)
     {
-        spawns = GameObject.FindGameObjectsWithTag("MisilesTarget");
-
-        Debug.Log("4ta Habilidad");
-
-        Prueba();
-    }
-    
-    void Prueba()
-    {
-        
+        CalamarController _calamarController = parent.GetComponent<CalamarController>();
+        _calamarController.lanzarMisiles = true;
     }
 }
+
+

@@ -11,12 +11,18 @@ public class CalamarController : MonoBehaviour
     [SerializeField] private bool canCast;
     [SerializeField] private float distance;
     public Animator animCalamar;
+    public GameObject[] spawns;
+    GameObject chosenSpawn;
+    public GameObject misile;
+    int index;
+    
     GameObject player;
     public NavMeshAgent agente;
     public bool electrocutado;
     public bool tentacleStrikeBool = false;
     public bool tintaDisparada = false;
     public bool embistiendo = false;
+    public bool lanzarMisiles = false;
 
 
 
@@ -71,6 +77,11 @@ public class CalamarController : MonoBehaviour
         {
             StartCoroutine(Embestida());
         }
+        if(lanzarMisiles == true)
+        {
+            StartCoroutine(Misiles());
+            lanzarMisiles = false;
+        }
 
     }
     private void StartChase()
@@ -101,6 +112,18 @@ public class CalamarController : MonoBehaviour
         yield return new WaitForSeconds(5);
         animCalamar.SetBool("Trompo", false);
         agente.speed = 6f;
+    }
+
+    IEnumerator Misiles()
+    {
+        agente.speed = 0f;
+        //animacion idk
+        index = 0;
+        chosenSpawn = spawns[index];
+        GameObject temporalMisile = Instantiate(misile);
+        temporalMisile.transform.position = chosenSpawn.transform.position;
+        Debug.Log("Creo misiles");
+        yield return new WaitForSeconds(3);
     }
 
 
