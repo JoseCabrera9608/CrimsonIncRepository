@@ -16,9 +16,14 @@ public class EnemyDino : MonoBehaviour
     public bool attacking;
     public bool dmgingPlayer;
     public float dist;
+
     public float timer;
+    public float jumptimer;
 
     public bool hitted;
+    public bool saltando;
+
+    public int health;
 
     public float vision;
     public float attackRange;
@@ -36,6 +41,8 @@ public class EnemyDino : MonoBehaviour
     public PlayerAttack playerattack;
     public GameObject Pause;
 
+    public NavMeshAgent dinoNav;
+
 
 
 
@@ -44,6 +51,9 @@ public class EnemyDino : MonoBehaviour
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         playerattack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+        dinoNav.speed = speed;
+
+        health = 100;
 
     }
 
@@ -57,11 +67,25 @@ public class EnemyDino : MonoBehaviour
         }
 
         timer += Time.deltaTime;
+        jumptimer += Time.deltaTime;
+        dinoNav.speed = speed;
 
         if (timer >= 0.3)
         {
             nupMesh.material = matNormal;
         }
+
+        if (health <= 50)
+        {
+            CallState();
+        }
+
+        if (health <= 30)
+        {
+            JumpState();
+        }
+
+
     }
 
     void FixedUpdate()
@@ -138,6 +162,34 @@ public class EnemyDino : MonoBehaviour
     void AttackState()
     {
         dinoAnim.SetBool("Mordida", true);
+    }
+
+    void CallState()
+    {
+        dinoAnim.SetTrigger("Call");
+    }
+
+    void JumpState()
+    {
+        
+        if (saltando == false)
+        {
+            
+            if (jumptimer >= 5)
+            {
+                dinoAnim.SetTrigger("Salto");
+                speed = 15;
+                jumptimer = 0;
+            }
+           
+            
+        }
+    }
+
+    void AfterJump()
+    {
+        speed = 5;
+        jumptimer = 0;
     }
 
     private void OnCollisionEnter(Collision collision)

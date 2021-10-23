@@ -15,12 +15,14 @@ public class EnemyHP : MonoBehaviour
     void Start()
     {
          enemy = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
+         enemy.health = enemyhealth;
     }
 
     // Update is called once per frame
     void Update()
     {
         healthBar.fillAmount = enemyhealth / 100f;
+        enemy.health = enemyhealth;
 
         if (enemy.hitted == true)
         {
