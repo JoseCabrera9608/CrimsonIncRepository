@@ -46,6 +46,8 @@ public class EnemyDino : MonoBehaviour
     public GameObject bulletslot;
     public GameObject spawnslot;
 
+    public GameObject LandDmg;
+
 
     void Start()
     {
@@ -53,6 +55,8 @@ public class EnemyDino : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         playerattack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
         dinoNav.speed = speed;
+
+        LandDmg.SetActive(false);
 
         health = 100;
 
@@ -194,10 +198,22 @@ public class EnemyDino : MonoBehaviour
         }
     }
 
+    IEnumerator EndJump()
+    {
+        speed = 5;
+        jumptimer = 0;
+        LandDmg.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        LandDmg.SetActive(false);
+
+    }
+    
+    
     void AfterJump()
     {
         speed = 5;
         jumptimer = 0;
+        LandDmg.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision collision)
