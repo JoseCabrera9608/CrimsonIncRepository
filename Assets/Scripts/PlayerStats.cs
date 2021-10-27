@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int playerlife;
+    public PlayerMovement playermov;
 
     // Start is called before the first frame update
     void Start()
     {
         playerlife = 100;
+        playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,14 @@ public class PlayerStats : MonoBehaviour
         if (playerlife > 100)
         {
             playerlife = 100;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DmgArea") && playermov.fallVelocity <= 0)
+        {
+            playerlife -= 30;
         }
     }
 }
