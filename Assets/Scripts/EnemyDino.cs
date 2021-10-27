@@ -39,6 +39,8 @@ public class EnemyDino : MonoBehaviour
     public Material matHitted;
 
     public PlayerAttack playerattack;
+    public PlayerMovement playermov;
+
     public GameObject Pause;
 
     public NavMeshAgent dinoNav;
@@ -54,6 +56,7 @@ public class EnemyDino : MonoBehaviour
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         playerattack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+        playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         dinoNav.speed = speed;
 
         LandDmg.SetActive(false);
