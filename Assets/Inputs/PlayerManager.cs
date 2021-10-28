@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     {
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
