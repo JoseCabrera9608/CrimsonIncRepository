@@ -95,7 +95,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (isGrounded)
         {
             inputManager.anim.SetBool("isJumping", true);
-            //inputManager.anim.PlayTargetAnimation("Jump", false);
+            playerManager.PlayTargetAnimation("Jump", false);
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
