@@ -6,16 +6,20 @@ public class InputManager : MonoBehaviour
 {
 
     PlayerControls playerControls;
+    PlayerLocomotion playerLocomotion;
 
     public Vector2 movementInput;
     public float verticalInput;
     public float horizontalInput;
 
-    Animator anim;
+    public bool jump_Input;
+
+    public Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        playerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
     private void OnEnable()
@@ -25,6 +29,9 @@ public class InputManager : MonoBehaviour
             playerControls = new PlayerControls();
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+
+            playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
+
         }
 
         playerControls.Enable();
@@ -52,7 +59,7 @@ public class InputManager : MonoBehaviour
     {
 
         HandleMovementInput();
-        //HandleJumpInput();
+        HandleJumpingInput();
 
     }
 
@@ -60,6 +67,15 @@ public class InputManager : MonoBehaviour
     {
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
+    }
+
+    private void HandleJumpingInput()
+    {
+        if (jump_Input == true)
+        {
+            jump_Input = false;
+            playerLocomotion.HandleJumping();
+        }
     }
 
 }

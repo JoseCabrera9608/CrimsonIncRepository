@@ -8,7 +8,10 @@ public class PlayerManager : MonoBehaviour
 
     InputManager inputManager;
     PlayerLocomotion playerLocomotion;
-    
+
+    public bool isInteracting;
+
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
@@ -25,6 +28,20 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         playerLocomotion.HandleAllMovement();
+    }
+
+    private void LateUpdate()
+    {
+        isInteracting = inputManager.anim.GetBool("isInteracting");
+        playerLocomotion.isJumping = inputManager.anim.GetBool("isJumping");
+        inputManager.anim.SetBool("isGrounded", playerLocomotion.isGrounded);
+
+    }
+
+    public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
+    {
+        inputManager.anim.SetBool("isInteracting", isInteracting);
+        inputManager.anim.CrossFade(targetAnimation, 0.2f);
     }
 
 }
