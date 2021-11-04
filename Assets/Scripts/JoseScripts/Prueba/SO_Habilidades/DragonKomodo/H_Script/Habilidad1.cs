@@ -9,8 +9,10 @@ public class Habilidad1 : Habilidad_SO
     public override void Activate(GameObject parent)
     {
         anim = parent.GetComponent<Animator>();
-        //anim.SetTrigger("GolpeBrazo");
+        anim.SetTrigger("GolpeBrazo");
         Debug.Log("Habilidad1 Komodo");
-
     }
+
+    
+
 }
