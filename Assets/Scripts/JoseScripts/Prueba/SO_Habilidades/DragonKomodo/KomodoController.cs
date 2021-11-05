@@ -8,11 +8,15 @@ public class KomodoController : MonoBehaviour
     bool startFight;
     public bool lanzamientoMisiles = false;
     public GameObject nube;
+    public GameObject golpeCollider;
     public bool lanzarNube;
+    public bool golpeando;
     Transform target;
     GameObject player;
+    Collider brazoCollider;
     void Start()
     {
+        brazoCollider = golpeCollider.GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
         BossGameEVent.current.combatTriggerExit += FightStart;
@@ -33,6 +37,11 @@ public class KomodoController : MonoBehaviour
             StartCoroutine(LanzarNube());
             lanzarNube = false;
         }
+        if(golpeando == true)
+        {
+            StartCoroutine(ActivePunchCollider());
+            golpeando = false;
+        }
         
     }
 
@@ -47,6 +56,13 @@ public class KomodoController : MonoBehaviour
         transform.Rotate(new Vector3(0f, -90f, 0f) * Time.deltaTime);
         yield return new WaitForSeconds(3);
         startFight = true;
+    }
+
+    IEnumerator ActivePunchCollider()
+    {
+        brazoCollider.enabled = true;
+        yield return new WaitForSeconds(7.2f);
+        brazoCollider.enabled = false;
     }
 
     void FightStart()

@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GolpesDaño : MonoBehaviour
 {
-    // Start is called before the first frame update
+    PlayerStats player;
+
     void Start()
     {
-        
+        player = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //player.playerlife -= 30;
+            Debug.Log("Recibio daño por el golpe");
+        }
     }
 }
