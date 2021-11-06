@@ -36,7 +36,7 @@ public class NubeDaño : MonoBehaviour
     IEnumerator EscalarCollider()
     {
         nubeCollider.size += new Vector3(5, 1, 0.5f) * Time.deltaTime;
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(8.5f);
         nubeCollider.size = new Vector3(nube_ScaleX, nube_ScaleY, nube_ScaleZ);
     }
     

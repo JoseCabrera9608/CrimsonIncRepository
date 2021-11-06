@@ -12,7 +12,7 @@ public class HabilidadesEquipadas : MonoBehaviour
     [SerializeField] private bool casting = false;
     int index;
     public bool attacking = false;
-    public float resttime;
+   
 
     private void Start()
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Misile : MonoBehaviour
 {
     Transform target;
-    public GameObject player;
+    GameObject player;
     float speed = 10f;
     PlayerStats playerStats;
     void Start()
@@ -21,14 +21,17 @@ public class Misile : MonoBehaviour
     {
         transform.LookAt(target.position);
         transform.Translate(0f, 0f, speed * Time.deltaTime);
+        Destroy(gameObject, 6f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            playerStats.playerlife -= 30;
+            //playerStats.playerlife -= 30;
             Destroy(gameObject);
         }
+        
     }
+
 }

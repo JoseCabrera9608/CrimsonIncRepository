@@ -11,11 +11,16 @@ public class KomodoController : MonoBehaviour
     public GameObject golpeCollider;
     public bool lanzarNube;
     public bool golpeando;
+    public GameObject misile;
     Transform target;
     GameObject player;
     Collider brazoCollider;
+    GameObject misileSpawn;
+    Animator anim;
     void Start()
     {
+        anim = GetComponent<Animator>();
+        misileSpawn = GameObject.FindGameObjectWithTag("MisilesTarget");
         brazoCollider = golpeCollider.GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
@@ -42,6 +47,11 @@ public class KomodoController : MonoBehaviour
             StartCoroutine(ActivePunchCollider());
             golpeando = false;
         }
+        if(lanzamientoMisiles == true)
+        {
+            StartCoroutine(MisileKomodo());
+            lanzamientoMisiles = false;
+        }
         
     }
 
@@ -63,8 +73,27 @@ public class KomodoController : MonoBehaviour
         brazoCollider.enabled = true;
         yield return new WaitForSeconds(7.2f);
         brazoCollider.enabled = false;
+        
     }
 
+    IEnumerator MisileKomodo()
+    {
+        GameObject chosenSpawn = misileSpawn;
+        
+        
+        for (int i = 0; i<3; i++)
+        {
+            anim.SetTrigger("LanzarMisiles");
+            yield return new WaitForSeconds(1.9f);
+            GameObject temporalMisile = Instantiate(misile);
+            temporalMisile.transform.position = chosenSpawn.transform.position;
+            yield return new WaitForSeconds(3);
+
+        }
+        Debug.Log("Creo misiles");
+        
+
+    }
     void FightStart()
     {
         //startFight = true;
