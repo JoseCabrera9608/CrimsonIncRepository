@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public bool grounded;
     public float duraciondash;
 
-    public SkinnedMeshRenderer playerMesh;
+    //public SkinnedMeshRenderer playerMesh;
     public Material matNormal;
     public Material matHitted;
 
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (timer >= 0.3)
         {
-            playerMesh.material = matNormal;
+            //playerMesh.material = matNormal;
         }
 
 

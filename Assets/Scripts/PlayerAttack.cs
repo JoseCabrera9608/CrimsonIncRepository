@@ -11,12 +11,16 @@ public class PlayerAttack : MonoBehaviour
     public float attacktimer;
     public bool attacking;
     public GameObject Pause;
+    public BoxCollider weaponCollider;
 
 
     void Start()
     {
         attacktimer = 0.5f;
-        
+        weaponCollider = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<BoxCollider>();
+
+        weaponCollider.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -36,14 +40,14 @@ public class PlayerAttack : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacktimer >= 0.7)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacktimer >= 0.6)
         {
             
             attacking = false;
             attacktimer = 0;
         }
 
-        if (attacktimer >= 0.5)
+        if (attacktimer >= 0.1)
         {
             playeranim.SetBool("Attack", false);
             
@@ -61,9 +65,11 @@ public class PlayerAttack : MonoBehaviour
     void Attacking()
     {
         attacking = true;
+        weaponCollider.enabled = true;
     }
     void AfterAttack()
     {
         attacking = false;
+        weaponCollider.enabled = false;
     }
 }
