@@ -6,7 +6,7 @@ public class ElevatorScript : MonoBehaviour
 {
     [SerializeField]
     bool playerOnActivationRange;
-    
+
     public bool elevatorReady;
 
     public float topYLimit;
@@ -23,7 +23,7 @@ public class ElevatorScript : MonoBehaviour
         playerOnActivationRange = false;
         elevatorRb = elevator.GetComponent<Rigidbody>();
 
-        if(elevatorGoingUp)
+        if (elevatorGoingUp)
         {
             bottomYLimit = elevator.transform.position.y;
         }
@@ -45,17 +45,17 @@ public class ElevatorScript : MonoBehaviour
     void InputCheck()
     {
         if (playerOnActivationRange && Input.GetKeyDown(KeyCode.E) && elevatorReady)
-        {     
-                elevatorReady = false; 
+        {
+            elevatorReady = false;
         }
     }
 
     void MoveElevator()
     {
-        if(!elevatorReady)
+        if (!elevatorReady)
         {
-            
-            if(elevatorGoingUp)
+
+            if (elevatorGoingUp)
             {
                 elevatorRb.velocity = new Vector3(0, elevatorSpeed, 0);
             }
@@ -64,24 +64,24 @@ public class ElevatorScript : MonoBehaviour
                 elevatorRb.velocity = new Vector3(0, -elevatorSpeed, 0);
                 Debug.Log("Brrr el elevador baja");
             }
-            
+
         }
     }
 
     void LimitCheck()
     {
-        if(elevatorGoingUp)
+        if (elevatorGoingUp)
         {
-            if(elevator.transform.position.y>=topYLimit)
+            if (elevator.transform.position.y >= topYLimit)
             {
-                elevatorReady = true;
+                elevatorReady = false;
                 elevatorGoingUp = false;
                 elevatorRb.velocity = new Vector3(0, 0, 0);
             }
         }
         else
         {
-            if(elevator.transform.position.y<=bottomYLimit)
+            if (elevator.transform.position.y <= bottomYLimit)
             {
                 elevatorReady = true;
                 elevatorGoingUp = true;
@@ -89,13 +89,13 @@ public class ElevatorScript : MonoBehaviour
             }
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             playerOnActivationRange = true;
-            
+
 
         }
     }
