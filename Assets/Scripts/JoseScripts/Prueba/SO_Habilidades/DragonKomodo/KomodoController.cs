@@ -12,11 +12,17 @@ public class KomodoController : MonoBehaviour
     public bool lanzarNube;
     public bool golpeando;
     public GameObject misile;
+    //LookAt variables
     Transform target;
+    public float lookAtSpeed = 1f;
+    private Coroutine LookAtCoroutine;
+    bool peleaIniciada = false;
+    //--------------
     GameObject player;
     Collider brazoCollider;
     GameObject misileSpawn;
     Animator anim;
+    bool atacking = true;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -25,22 +31,43 @@ public class KomodoController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
         BossGameEVent.current.combatTriggerExit += FightStart;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+
         
         if (startFight == true)
         {
-           
+
+            LookAtCoroutine = StartCoroutine(LookAt());
+            startFight = false;
+            peleaIniciada = true;
+        }
+
+        if (startFight == false && peleaIniciada == true)
+        {
             transform.LookAt(target);
+
+        }
+
+        if (atacking == false)
+        {
+            Debug.Log("Mirandonos");
+           
         }
         
-        if(lanzarNube == true)
+        
+
+        if (lanzarNube == true)
         {
+            atacking = true;
             StartCoroutine(LanzarNube());
+            
             lanzarNube = false;
+            
         }
         if(golpeando == true)
         {
@@ -49,8 +76,10 @@ public class KomodoController : MonoBehaviour
         }
         if(lanzamientoMisiles == true)
         {
+            atacking = true;
             StartCoroutine(MisileKomodo());
             lanzamientoMisiles = false;
+            
         }
         
     }
@@ -60,14 +89,9 @@ public class KomodoController : MonoBehaviour
         nube.SetActive(true);
         yield return new WaitForSeconds(8);
         nube.SetActive(false);
+        atacking = false;
     }
-    IEnumerator RotacionInicial()
-    {
-        transform.Rotate(new Vector3(0f, -90f, 0f) * Time.deltaTime);
-        yield return new WaitForSeconds(3);
-        startFight = true;
-    }
-
+   
     IEnumerator ActivePunchCollider()
     {
         brazoCollider.enabled = true;
@@ -87,7 +111,8 @@ public class KomodoController : MonoBehaviour
             yield return new WaitForSeconds(1.9f);
             GameObject temporalMisile = Instantiate(misile);
             temporalMisile.transform.position = chosenSpawn.transform.position;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(6);
+            atacking = false;
 
         }
         Debug.Log("Creo misiles");
@@ -96,8 +121,20 @@ public class KomodoController : MonoBehaviour
     }
     void FightStart()
     {
-        //startFight = true;
-        StartCoroutine(RotacionInicial());
+        startFight = true;
+       
         
+    }
+    private IEnumerator LookAt()
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
+        float time = 0;
+        while (time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+            time += Time.deltaTime * lookAtSpeed;
+            yield return null;
+        }
+       
     }
 }
