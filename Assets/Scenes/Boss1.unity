@@ -1457,12 +1457,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOnActivationRange: 0
   elevatorReady: 0
-  topYLimit: -2
+  topYLimit: -1.5
   bottomYLimit: -14
   elevatorGoingUp: 1
   elevatorSpeed: 5
   elevator: {fileID: 1509262840}
   elevatorRb: {fileID: 0}
+  box: {fileID: 0}
 --- !u!136 &209230993
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6697,6 +6698,7 @@ MonoBehaviour:
   elevatorSpeed: 5
   elevator: {fileID: 1203165500}
   elevatorRb: {fileID: 0}
+  box: {fileID: 0}
 --- !u!136 &1162133917
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6987,6 +6989,8 @@ GameObject:
   - component: {fileID: 1203165503}
   - component: {fileID: 1203165502}
   - component: {fileID: 1203165501}
+  - component: {fileID: 1203165507}
+  - component: {fileID: 1203165506}
   m_Layer: 0
   m_Name: Elevator (1)
   m_TagString: Untagged
@@ -7087,6 +7091,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1203165506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203165500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4bf3c0473ac05469dc8defa6db4afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 0}
+  rb: {fileID: 0}
+--- !u!65 &1203165507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203165500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.88, y: 1, z: 0.97}
+  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!1001 &1203190186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8989,6 +9020,8 @@ GameObject:
   - component: {fileID: 1509262843}
   - component: {fileID: 1509262842}
   - component: {fileID: 1509262841}
+  - component: {fileID: 1509262847}
+  - component: {fileID: 1509262846}
   m_Layer: 0
   m_Name: Elevator
   m_TagString: Untagged
@@ -9089,6 +9122,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1509262846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509262840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4bf3c0473ac05469dc8defa6db4afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 0}
+  rb: {fileID: 0}
+--- !u!65 &1509262847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509262840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.88, y: 1, z: 0.97}
+  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!1 &1517554230
 GameObject:
   m_ObjectHideFlags: 0

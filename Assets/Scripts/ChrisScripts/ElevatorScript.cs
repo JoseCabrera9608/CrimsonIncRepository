@@ -15,6 +15,7 @@ public class ElevatorScript : MonoBehaviour
     public float elevatorSpeed;
     public GameObject elevator;
     public Rigidbody elevatorRb;
+    public BoxCollider box;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class ElevatorScript : MonoBehaviour
         elevatorReady = true;
         playerOnActivationRange = false;
         elevatorRb = elevator.GetComponent<Rigidbody>();
+        box = GetComponent<BoxCollider>();
 
         if (elevatorGoingUp)
         {
@@ -40,6 +42,17 @@ public class ElevatorScript : MonoBehaviour
         InputCheck();
         MoveElevator();
         LimitCheck();
+
+        if (elevatorRb.velocity.y == 0)
+        {
+            box.enabled = true;
+        }
+        else
+        {
+            box.enabled = false;
+        }
+
+
     }
 
     void InputCheck()
