@@ -13,6 +13,7 @@ public class ElevatorScript : MonoBehaviour
     public float bottomYLimit;
     public bool elevatorGoingUp;
     public float elevatorSpeed;
+    public float timer;
     public GameObject elevator;
     public Rigidbody elevatorRb;
     public BoxCollider box;
@@ -87,18 +88,37 @@ public class ElevatorScript : MonoBehaviour
         {
             if (elevator.transform.position.y >= topYLimit)
             {
-                elevatorReady = false;
-                elevatorGoingUp = false;
+                timer += Time.deltaTime;
                 elevatorRb.velocity = new Vector3(0, 0, 0);
+
+                if (timer >= 2)
+                {
+                    elevatorReady = false;
+                    elevatorGoingUp = false;
+
+                    timer = 0;
+                }
+
+
             }
         }
         else
         {
             if (elevator.transform.position.y <= bottomYLimit)
             {
-                elevatorReady = true;
-                elevatorGoingUp = true;
+
+                timer += Time.deltaTime;
                 elevatorRb.velocity = new Vector3(0, 0, 0);
+
+                if (timer >= 2)
+                {
+                    elevatorReady = true;
+                    elevatorGoingUp = true;
+
+                    timer = 0;
+                }
+
+
             }
         }
     }

@@ -24,8 +24,6 @@ public class ElevatorFix : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("player in");
-            //other.transform.SetParent(gameObject.transform);
             cc = other.GetComponent<CharacterController>();
         }
     }
@@ -33,8 +31,6 @@ public class ElevatorFix : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("player off");
-            //transform.DetachChildren();
             cc.Move(rb.velocity * Time.deltaTime);
         }
 
