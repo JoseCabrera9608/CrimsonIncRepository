@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (playerlife <= 0)
         {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Destroy(gameObject);
         }
 
