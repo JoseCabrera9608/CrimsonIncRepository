@@ -60,14 +60,7 @@ public class KomodoController : MonoBehaviour
             transform.LookAt(target);
 
         }
-
-        /*if (atacking == false)
-        {
-            Debug.Log("Mirandonos");
-           
-        }*/
-        
-        
+ 
 
         if (lanzarNube == true)
         {
@@ -85,11 +78,8 @@ public class KomodoController : MonoBehaviour
         if(lanzamientoMisiles == true)
         {
 
-            //atacking = true;
             StartCoroutine(MisileKomodo());
             lanzamientoMisiles = false;
-            
-            
         }
         
     }
@@ -105,16 +95,19 @@ public class KomodoController : MonoBehaviour
         nube.SetActive(true);
         yield return new WaitForSeconds(8);
         nube.SetActive(false);
-        //atacking = false;
         StartCoroutine(LookAt());
         runTimer = true;
     }
    
     IEnumerator ActivePunchCollider()
     {
+        timer = 0;
+        runTimer = false;
         brazoCollider.enabled = true;
         yield return new WaitForSeconds(7.2f);
         brazoCollider.enabled = false;
+        StartCoroutine(LookAt());
+        runTimer = true;
         
     }
 
