@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class KomodoController : MonoBehaviour
 {
-    float timer;
+    bool runTimer = false;
+    public float timer;
     bool startFight;
     public bool lanzamientoMisiles = false;
     public GameObject nube;
@@ -17,6 +18,7 @@ public class KomodoController : MonoBehaviour
     public float lookAtSpeed = 1f;
     private Coroutine LookAtCoroutine;
     bool peleaIniciada = false;
+    
     //--------------
     GameObject player;
     Collider brazoCollider;
@@ -37,27 +39,33 @@ public class KomodoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(runTimer == true)
+        {
+            timer += Time.deltaTime;
+        }
         
         if (startFight == true)
         {
 
-            LookAtCoroutine = StartCoroutine(LookAt());
+            StartCoroutine(LookAt());
+            Debug.Log("Kha");
+            runTimer = true;
             startFight = false;
-            peleaIniciada = true;
+            StopCoroutine(LookAt());
+            
         }
 
-        if (startFight == false && peleaIniciada == true)
+        if (timer >= 1.2)
         {
             transform.LookAt(target);
 
         }
 
-        if (atacking == false)
+        /*if (atacking == false)
         {
             Debug.Log("Mirandonos");
            
-        }
+        }*/
         
         
 
@@ -76,20 +84,30 @@ public class KomodoController : MonoBehaviour
         }
         if(lanzamientoMisiles == true)
         {
-            atacking = true;
+
+            //atacking = true;
             StartCoroutine(MisileKomodo());
             lanzamientoMisiles = false;
+            
             
         }
         
     }
-
+    IEnumerator PreviewLookAt()
+    {
+        yield return new WaitForSeconds(1f);
+        peleaIniciada = true;
+    }
     IEnumerator LanzarNube()
     {
+        timer = 0;
+        runTimer = false;
         nube.SetActive(true);
         yield return new WaitForSeconds(8);
         nube.SetActive(false);
-        atacking = false;
+        //atacking = false;
+        StartCoroutine(LookAt());
+        runTimer = true;
     }
    
     IEnumerator ActivePunchCollider()
@@ -102,6 +120,8 @@ public class KomodoController : MonoBehaviour
 
     IEnumerator MisileKomodo()
     {
+        timer = 0;
+        runTimer = false;
         GameObject chosenSpawn = misileSpawn;
         
         
@@ -111,19 +131,22 @@ public class KomodoController : MonoBehaviour
             yield return new WaitForSeconds(1.9f);
             GameObject temporalMisile = Instantiate(misile);
             temporalMisile.transform.position = chosenSpawn.transform.position;
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(3);
             atacking = false;
 
         }
         Debug.Log("Creo misiles");
-        
+        StartCoroutine(LookAt());
+        runTimer = true;
+
 
     }
     void FightStart()
     {
         startFight = true;
-       
         
+
+
     }
     private IEnumerator LookAt()
     {
