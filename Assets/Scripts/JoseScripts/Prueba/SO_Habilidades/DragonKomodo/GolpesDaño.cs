@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class GolpesDaño : MonoBehaviour
 {
+    public GameObject playerObj;
     PlayerStats player;
 
     void Start()
     {
-        player = GetComponent<PlayerStats>();
+        player = playerObj.gameObject.GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class GolpesDaño : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //player.playerlife -= 30;
+            player.playerlife -= 30;
             Debug.Log("Recibio daño por el golpe");
         }
     }
