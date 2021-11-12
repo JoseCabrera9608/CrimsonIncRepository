@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KomodoController : MonoBehaviour
 {
+    public bool hitted;
+    public int health;
     bool runTimer = false;
     public float timer;
     bool startFight;
@@ -16,9 +18,7 @@ public class KomodoController : MonoBehaviour
     //LookAt variables
     Transform target;
     public float lookAtSpeed = 1f;
-    private Coroutine LookAtCoroutine;
     bool peleaIniciada = false;
-    
     //--------------
     GameObject player;
     Collider brazoCollider;
@@ -46,7 +46,7 @@ public class KomodoController : MonoBehaviour
         
         if (startFight == true)
         {
-
+            
             StartCoroutine(LookAt());
             Debug.Log("Kha");
             runTimer = true;
@@ -83,17 +83,13 @@ public class KomodoController : MonoBehaviour
         }
         
     }
-    IEnumerator PreviewLookAt()
-    {
-        yield return new WaitForSeconds(1f);
-        peleaIniciada = true;
-    }
+    
     IEnumerator LanzarNube()
     {
         timer = 0;
         runTimer = false;
         nube.SetActive(true);
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(10);
         nube.SetActive(false);
         StartCoroutine(LookAt());
         runTimer = true;
@@ -143,6 +139,9 @@ public class KomodoController : MonoBehaviour
     }
     private IEnumerator LookAt()
     {
+
+        //anim.SetTrigger("Giro");
+        yield return new WaitForSeconds(3f);
         Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
         float time = 0;
         while (time < 1)
