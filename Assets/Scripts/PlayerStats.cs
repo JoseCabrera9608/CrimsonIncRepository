@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerlife = 100;
+        //playerlife = 100;
         playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
