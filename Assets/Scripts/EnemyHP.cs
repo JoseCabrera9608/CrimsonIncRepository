@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyHP : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class EnemyHP : MonoBehaviour
     public int enemyhealth;
     public GameObject Enemy;
     public ParticleSystem deathParticles;
+    public ProgressManager progress;
 
     void Start()
     {
-         enemy = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
-         enemy.health = enemyhealth;
+        enemy = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        enemy.health = enemyhealth;
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class EnemyHP : MonoBehaviour
         {           
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
+            progress.level2 = true;
+            SceneManager.LoadScene("Hub");
             Destroy(Enemy);
         }
 

@@ -28,7 +28,7 @@ public class Misile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //playerStats.playerlife -= 30;
+            playerStats.playerlife -= 30;
             Destroy(gameObject);
         }
         

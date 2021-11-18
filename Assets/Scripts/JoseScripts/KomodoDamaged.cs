@@ -7,6 +7,10 @@ public class KomodoDamaged : MonoBehaviour
     public GameObject enemy;
     private KomodoController boss;
     public PlayerAttack playerattack;
+    public SkinnedMeshRenderer nupMesh;
+    public Material matNormal;
+    public Material matHitted;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,11 @@ public class KomodoDamaged : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= 0.3)
+        {
+            nupMesh.material = matNormal;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,12 +42,12 @@ public class KomodoDamaged : MonoBehaviour
 
                 boss.hitted = true;
 
-                /*if (timer >= 0.5)
+                if (timer >= 0.5)
                 {
                     nupMesh.material = matHitted;
                     timer = 0;
 
-                }*/
+                }
             }
         }
     }

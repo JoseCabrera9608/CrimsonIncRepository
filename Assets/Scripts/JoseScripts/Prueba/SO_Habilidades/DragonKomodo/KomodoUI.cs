@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class KomodoUI : MonoBehaviour
@@ -11,10 +12,12 @@ public class KomodoUI : MonoBehaviour
     public int enemyhealth;
     public GameObject Enemy;
     public ParticleSystem deathParticles;
+    public ProgressManager progress;
 
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<KomodoController>();
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         enemy.health = enemyhealth;
     }
 
@@ -34,6 +37,8 @@ public class KomodoUI : MonoBehaviour
         {
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
+            progress.tutorial = true;
+            SceneManager.LoadScene("Hub");
             Destroy(Enemy);
         }
 
