@@ -6,6 +6,7 @@ public class GolpesDaño : MonoBehaviour
 {
     public GameObject playerObj;
     PlayerStats player;
+    public int damage;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class GolpesDaño : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.playerlife -= 30;
+            player.playerlife -= damage;
             Debug.Log("Recibio daño por el golpe");
         }
     }

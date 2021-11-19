@@ -15,11 +15,15 @@ public class CalamarController : MonoBehaviour
     GameObject chosenSpawn;
     public GameObject misile;
     int index;
+    public int health;
+    public bool hitted;
 
+    public GameObject embestidaCollider;
     public GameObject brazoDerechoCollider;
     public GameObject brazoIzquierdoCollider;
     Collider brazoDer;
     Collider brazoIzq;
+    Collider embestida;
     
     GameObject player;
     public NavMeshAgent agente;
@@ -35,6 +39,7 @@ public class CalamarController : MonoBehaviour
     {
         brazoDer = brazoDerechoCollider.GetComponent<Collider>();
         brazoIzq = brazoIzquierdoCollider.GetComponent<Collider>();
+        embestida = embestidaCollider.GetComponent<Collider>();
         animCalamar = GetComponent<Animator>();
         BossGameEVent.current.combatTriggerExit += StartChase; //El metodo se suscribe al BossGameEvent
         agente = GetComponent<NavMeshAgent>();
@@ -103,6 +108,7 @@ public class CalamarController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         agente.speed = 6f;
+       
     }
 
     IEnumerator Misiles()
