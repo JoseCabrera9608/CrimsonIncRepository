@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0c2b3a9ab82370b4bb139020d6f85f11, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: ceea4c25fd6553544a1cae596e129a5f, type: 2}
 --- !u!1 &12753090
 GameObject:
   m_ObjectHideFlags: 0
@@ -4209,6 +4209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637497730}
   - component: {fileID: 637497729}
+  - component: {fileID: 637497731}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -4238,8 +4239,8 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Bias: 1
+    m_NormalBias: 1
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -4292,6 +4293,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &637497731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637497728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UsePipelineSettings: 1
 --- !u!1 &638339524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5169,7 +5183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913905342}
-  m_LocalRotation: {x: -0.09000684, y: -0.68489015, z: -0.08586226, w: 0.71794987}
+  m_LocalRotation: {x: -0.090006836, y: -0.68489015, z: -0.08586227, w: 0.7179498}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5507,7 +5521,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &978490209
 MeshCollider:
@@ -8543,8 +8557,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355933436}
-  m_LocalRotation: {x: -0.09000685, y: -0.6848902, z: -0.08586226, w: 0.7179498}
-  m_LocalPosition: {x: -122.99748, y: 0.67947876, z: 9.732829}
+  m_LocalRotation: {x: -0.090006836, y: -0.6848902, z: -0.08586227, w: 0.7179498}
+  m_LocalPosition: {x: -122.99748, y: 0.67947865, z: 9.732829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
