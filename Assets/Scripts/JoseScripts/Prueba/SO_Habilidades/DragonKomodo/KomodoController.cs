@@ -140,7 +140,7 @@ public class KomodoController : MonoBehaviour
     private IEnumerator LookAt()
     {
 
-        //anim.SetTrigger("Giro");
+        anim.SetTrigger("Giro");
         yield return new WaitForSeconds(3f);
         Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
         float time = 0;
