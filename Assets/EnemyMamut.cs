@@ -37,7 +37,11 @@ public class EnemyMamut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
+        if (timer >= 0.3)
+        {
+            nupMesh.material = matNormal;
+        }
     }
 
     void FixedUpdate()
