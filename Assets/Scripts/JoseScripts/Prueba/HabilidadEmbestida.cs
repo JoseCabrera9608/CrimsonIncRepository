@@ -10,8 +10,9 @@ public class HabilidadEmbestida : Habilidad_SO
         CalamarController _calamarController = parent.GetComponent<CalamarController>();
         _calamarController.agente.speed = 20f;
         Animator anim = parent.GetComponent<Animator>();
-        anim.SetBool("Trompo", true);
+        anim.SetTrigger("MovAFinal");
+        anim.SetTrigger("Embestida");
         _calamarController.embistiendo = true;
-        Debug.Log("5ta Habilidad");
+        Debug.Log("Embestida");
     }
 }

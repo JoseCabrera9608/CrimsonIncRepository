@@ -9,6 +9,9 @@ public class TentacleStrike : Habilidad_SO
     {
         CalamarController _calamarController = parent.GetComponent<CalamarController>();
         _calamarController.tentacleStrikeBool = true;
+        Animator anim = parent.GetComponent<Animator>();
+        anim.SetTrigger("MovAFinal");
+        anim.SetTrigger("Golpe");
         Debug.Log("Gaa");
     }
 }
