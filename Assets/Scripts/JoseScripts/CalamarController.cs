@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class CalamarController : MonoBehaviour
 {
+    public GameObject barraHUDEnemigo;
+    private GameObject calamar;
     [SerializeField] private bool onChase = false;
     [SerializeField] private float timerCooldown;
     [SerializeField] private bool canCast;
@@ -33,10 +35,11 @@ public class CalamarController : MonoBehaviour
     public bool embistiendo = false;
     public bool lanzarMisiles = false;
 
-
+    public GameObject tinta;
 
     void Start()
     {
+        calamar = GameObject.Find("Calamarsito");
         brazoDer = brazoDerechoCollider.GetComponent<Collider>();
         brazoIzq = brazoIzquierdoCollider.GetComponent<Collider>();
         embestida = embestidaCollider.GetComponent<Collider>();
@@ -80,6 +83,7 @@ public class CalamarController : MonoBehaviour
     {
         onChase = true;
         animCalamar.SetTrigger("Inicio");
+        barraHUDEnemigo.SetActive(true);
     }
 
     IEnumerator TentacleStrike2()
@@ -88,7 +92,7 @@ public class CalamarController : MonoBehaviour
         brazoDer.enabled = true;
         brazoIzq.enabled = true;
         //calamarAnimations.TentacleStrikeAnimation();
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(7);
         brazoDer.enabled = false;
         brazoIzq.enabled = false;
         agente.speed = 6f;
@@ -96,17 +100,20 @@ public class CalamarController : MonoBehaviour
     IEnumerator TintaCambioColor()
     {
         agente.speed = 0;
+        tinta.SetActive(true);
         yield return new WaitForSeconds(3);
-        //GameObject calamar = GameObject.Find("Blocking Calamar");
-        //MeshRenderer calamarColor = calamar.GetComponent<MeshRenderer>();
-        //calamarColor.material.color = Color.blue;
+        tinta.SetActive(false);
+        SkinnedMeshRenderer calamarColor = calamar.GetComponent<SkinnedMeshRenderer>();
+        calamarColor.material.color = Color.red;
         tintaDisparada = false;
         agente.speed = 6f;
         
     }
     IEnumerator Embestida()
     {
+        embestida.enabled = true;
         yield return new WaitForSeconds(5);
+        embestida.enabled = false;
         agente.speed = 6f;
        
     }

@@ -25,6 +25,9 @@ public class KomodoController : MonoBehaviour
     GameObject misileSpawn;
     Animator anim;
     bool atacking = true;
+
+
+    public GameObject barraHUDEnemigo;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -133,7 +136,7 @@ public class KomodoController : MonoBehaviour
     void FightStart()
     {
         startFight = true;
-        
+        barraHUDEnemigo.SetActive(true);
 
 
     }
