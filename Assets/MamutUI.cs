@@ -4,20 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class EnemyHP : MonoBehaviour
+public class MamutUI : MonoBehaviour
 {
     // Start is called before the first frame update
-
     public Image healthBar;
-    public EnemyDino enemy;
+    EnemyMamut enemy;
     public int enemyhealth;
     public GameObject Enemy;
     public ParticleSystem deathParticles;
     public ProgressManager progress;
- 
+
     void Start()
     {
-        enemy = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
+        enemy = Enemy.gameObject.GetComponent<EnemyMamut>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         enemy.health = enemyhealth;
     }
@@ -35,10 +34,10 @@ public class EnemyHP : MonoBehaviour
         }
 
         if (enemyhealth <= 0)
-        {           
+        {
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
-            progress.level2 = true;
+            progress.level1 = true;
             SceneManager.LoadScene("Hub");
             Destroy(Enemy);
         }
