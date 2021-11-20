@@ -35,12 +35,19 @@ public class CalamarUI : MonoBehaviour
 
         if (enemyhealth <= 0)
         {
-            ParticleSystem temporalbullet = Instantiate(deathParticles);
-            temporalbullet.transform.position = Enemy.transform.position;
-            progress.level3 = true;
-            SceneManager.LoadScene("Hub");
-            Destroy(Enemy);
+            StartCoroutine(Muerte());
+           
         }
 
     }
+    IEnumerator Muerte()
+    {
+        ParticleSystem temporalbullet = Instantiate(deathParticles);
+        temporalbullet.transform.position = Enemy.transform.position;
+        progress.level3 = true;
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("Hub");
+        Destroy(Enemy);
+    }
 }
+

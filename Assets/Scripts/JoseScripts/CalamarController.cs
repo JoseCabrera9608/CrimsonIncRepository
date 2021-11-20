@@ -40,9 +40,9 @@ public class CalamarController : MonoBehaviour
     void Start()
     {
         calamar = GameObject.Find("Calamarsito");
-        brazoDer = brazoDerechoCollider.GetComponent<Collider>();
+        /*brazoDer = brazoDerechoCollider.GetComponent<Collider>();
         brazoIzq = brazoIzquierdoCollider.GetComponent<Collider>();
-        embestida = embestidaCollider.GetComponent<Collider>();
+        embestida = embestidaCollider.GetComponent<Collider>();*/
         animCalamar = GetComponent<Animator>();
         BossGameEVent.current.combatTriggerExit += StartChase; //El metodo se suscribe al BossGameEvent
         agente = GetComponent<NavMeshAgent>();
@@ -61,6 +61,7 @@ public class CalamarController : MonoBehaviour
         if (tentacleStrikeBool == true)
         {
             StartCoroutine(TentacleStrike2());
+            tentacleStrikeBool = false;
         }
 
         if (tintaDisparada == true)
@@ -71,6 +72,7 @@ public class CalamarController : MonoBehaviour
         if(embistiendo == true)
         {
             StartCoroutine(Embestida());
+            embistiendo = false;
         }
         if(lanzarMisiles == true)
         {
@@ -89,12 +91,16 @@ public class CalamarController : MonoBehaviour
     IEnumerator TentacleStrike2()
     {
         agente.speed = 0;
-        brazoDer.enabled = true;
-        brazoIzq.enabled = true;
+        //brazoDer.enabled = true;
+        brazoDerechoCollider.SetActive(true);
+        brazoIzquierdoCollider.SetActive(true);
+        //brazoIzq.enabled = true;
         //calamarAnimations.TentacleStrikeAnimation();
         yield return new WaitForSeconds(7);
-        brazoDer.enabled = false;
-        brazoIzq.enabled = false;
+        //brazoDer.enabled = false;
+        //brazoIzq.enabled = false;
+        brazoDerechoCollider.SetActive(false);
+        brazoIzquierdoCollider.SetActive(false);
         agente.speed = 6f;
     }
     IEnumerator TintaCambioColor()
@@ -111,9 +117,9 @@ public class CalamarController : MonoBehaviour
     }
     IEnumerator Embestida()
     {
-        embestida.enabled = true;
-        yield return new WaitForSeconds(5);
-        embestida.enabled = false;
+        embestidaCollider.SetActive(true);
+        yield return new WaitForSeconds(4);
+        embestidaCollider.SetActive(false);
         agente.speed = 6f;
        
     }
