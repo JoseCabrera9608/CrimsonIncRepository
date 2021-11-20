@@ -33,7 +33,7 @@ public class KomodoController : MonoBehaviour
         anim = GetComponent<Animator>();
         misileSpawn = GameObject.FindGameObjectWithTag("MisilesTarget");
         brazoCollider = golpeCollider.GetComponent<Collider>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("PlayerCabeza");
         target = player.transform;
         BossGameEVent.current.combatTriggerExit += FightStart;
        
@@ -51,7 +51,6 @@ public class KomodoController : MonoBehaviour
         {
             
             StartCoroutine(LookAt());
-            Debug.Log("Kha");
             runTimer = true;
             startFight = false;
             StopCoroutine(LookAt());
@@ -69,13 +68,14 @@ public class KomodoController : MonoBehaviour
         {
             atacking = true;
             StartCoroutine(LanzarNube());
-            
+            anim.SetTrigger("Giro");
             lanzarNube = false;
             
         }
         if(golpeando == true)
         {
             StartCoroutine(ActivePunchCollider());
+            anim.SetTrigger("Giro");
             golpeando = false;
         }
         if(lanzamientoMisiles == true)
@@ -103,7 +103,7 @@ public class KomodoController : MonoBehaviour
         timer = 0;
         runTimer = false;
         brazoCollider.enabled = true;
-        yield return new WaitForSeconds(7.2f);
+        yield return new WaitForSeconds(6.8f);
         brazoCollider.enabled = false;
         StartCoroutine(LookAt());
         runTimer = true;
@@ -135,16 +135,15 @@ public class KomodoController : MonoBehaviour
     }
     void FightStart()
     {
+        anim.SetTrigger("Giro");
         startFight = true;
         barraHUDEnemigo.SetActive(true);
+        
 
 
     }
     private IEnumerator LookAt()
     {
-
-        anim.SetTrigger("Giro");
-        yield return new WaitForSeconds(3f);
         Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
         float time = 0;
         while (time < 1)
