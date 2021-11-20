@@ -22,10 +22,12 @@ public class EnemyDino : MonoBehaviour
 
     public bool hitted;
     public bool saltando;
+    public bool battlestarted = false;
 
     public int health;
 
     public float vision;
+    public float invokearea;
     public float attackRange;
     public NavMeshAgent enemy;
 
@@ -83,12 +85,11 @@ public class EnemyDino : MonoBehaviour
             nupMesh.material = matNormal;
         }
 
-        if (health <= 50)
-        {
-            CallState();
-        }
 
-        if (health <= 30)
+
+
+
+        if (hitted == true)
         {
             JumpState();
         }
@@ -110,7 +111,10 @@ public class EnemyDino : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-  
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, invokearea);
+
     }
 
     void IdleState()
@@ -121,6 +125,12 @@ public class EnemyDino : MonoBehaviour
         if (dist <= vision && pause.pause == false)
         {
             FollowState();
+            battlestarted = true;
+        }
+
+        if (dist >= invokearea && battlestarted == true && pause.pause == false)
+        {
+            CallState();
         }
 
         if (dist <= attackRange && pause.pause == false)

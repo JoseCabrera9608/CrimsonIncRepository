@@ -28,7 +28,16 @@ public class HubDoor : MonoBehaviour
             mesh.material = greenmaterial;
         }
 
+        if (lvl == 2 && progress.level1 == true)
+        {
+            mesh.material = greenmaterial;
+        }
+
         if (lvl == 3 && progress.level2 == true)
+        {
+            mesh.material = greenmaterial;
+        }
+        if (lvl == 4 && progress.level3 == true)
         {
             mesh.material = greenmaterial;
         }
