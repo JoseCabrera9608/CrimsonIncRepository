@@ -125,6 +125,11 @@ public class EnemyDino : MonoBehaviour
         if (dist <= vision && pause.pause == false)
         {
             FollowState();
+            
+        }
+
+        if (dist <= invokearea)
+        {
             battlestarted = true;
         }
 
