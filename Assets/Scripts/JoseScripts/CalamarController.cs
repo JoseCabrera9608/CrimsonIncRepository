@@ -66,7 +66,8 @@ public class CalamarController : MonoBehaviour
 
         if (tintaDisparada == true)
         {
-            
+            SkinnedMeshRenderer calamarColor = calamar.GetComponent<SkinnedMeshRenderer>();
+            calamarColor.material.color = Color.red;
             StartCoroutine(TintaCambioColor());
         }
         if(embistiendo == true)
@@ -78,6 +79,16 @@ public class CalamarController : MonoBehaviour
         {
             StartCoroutine(Misiles());
             lanzarMisiles = false;
+        }
+
+        if(health <= 20)
+        {
+            agente.speed = 0;
+            animCalamar.SetTrigger("Ruego");
+            if(health <= 0)
+            {
+                StartCoroutine(Muerte());
+            }
         }
 
     }
@@ -109,8 +120,7 @@ public class CalamarController : MonoBehaviour
         tinta.SetActive(true);
         yield return new WaitForSeconds(3);
         tinta.SetActive(false);
-        SkinnedMeshRenderer calamarColor = calamar.GetComponent<SkinnedMeshRenderer>();
-        calamarColor.material.color = Color.red;
+        
         tintaDisparada = false;
         agente.speed = 6f;
         
@@ -134,6 +144,14 @@ public class CalamarController : MonoBehaviour
         temporalMisile.transform.position = chosenSpawn.transform.position;
         Debug.Log("Creo misiles");
         yield return new WaitForSeconds(3);
+    }
+
+    IEnumerator Muerte()
+    {
+        animCalamar.SetTrigger("Muerte");
+        yield return new WaitForSeconds(4f);
+        Destroy(this.gameObject);
+
     }
 
 

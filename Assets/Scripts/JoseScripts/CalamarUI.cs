@@ -42,10 +42,11 @@ public class CalamarUI : MonoBehaviour
     }
     IEnumerator Muerte()
     {
+        yield return new WaitForSeconds(1.8f);
         ParticleSystem temporalbullet = Instantiate(deathParticles);
         temporalbullet.transform.position = Enemy.transform.position;
         progress.level3 = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         SceneManager.LoadScene("Hub");
         Destroy(Enemy);
     }

@@ -9,6 +9,7 @@ public class Habilidad_SO : ScriptableObject
     public float cooldownTime;
     public float activeTime;
     public float distanceToActivate;
+    public float minDistance;
 
 
     public virtual void Activate (GameObject parent)

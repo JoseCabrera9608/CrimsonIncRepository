@@ -37,7 +37,7 @@ public class HabilidadesEquipadas : MonoBehaviour
         switch (state)
         {
             case AbilityState.ready:
-                if (distance <= ability[index].distanceToActivate && casting == false) { 
+                if (distance <= ability[index].distanceToActivate && distance>= ability[index].minDistance && casting == false) { 
                 ability[index].Activate(gameObject);
                 state = AbilityState.active;
                 activeTime = ability[index].activeTime;
