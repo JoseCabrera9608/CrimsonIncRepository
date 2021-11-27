@@ -6,8 +6,7 @@ public class KomodoController : MonoBehaviour
 {
     public bool hitted;
     public int health;
-    bool runTimer = false;
-    public float timer;
+   
     bool startFight;
     public bool lanzamientoMisiles = false;
     public GameObject nube;
@@ -17,14 +16,13 @@ public class KomodoController : MonoBehaviour
     public GameObject misile;
     //LookAt variables
     Transform target;
-    public float lookAtSpeed = 1f;
-    bool peleaIniciada = false;
+    public float lookAtSpeed = 10f;
     //--------------
     GameObject player;
     Collider brazoCollider;
     GameObject misileSpawn;
     Animator anim;
-    bool atacking = true;
+   
 
 
     public GameObject barraHUDEnemigo;
@@ -36,84 +34,77 @@ public class KomodoController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("PlayerCabeza");
         target = player.transform;
         BossGameEVent.current.combatTriggerExit += FightStart;
-       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(runTimer == true)
-        {
-            timer += Time.deltaTime;
-        }
-        
+    
         if (startFight == true)
         {
             
-            StartCoroutine(LookAt());
-            runTimer = true;
-            startFight = false;
-            StopCoroutine(LookAt());
-            
+            StartCoroutine(Rotacion());
         }
-
-        if (timer >= 1.2)
+        else
         {
-            transform.LookAt(target);
-
+            StopCoroutine(Rotacion());
         }
- 
+
 
         if (lanzarNube == true)
         {
-            atacking = true;
-            StartCoroutine(LanzarNube());
+            startFight = false;
             anim.SetTrigger("Giro");
+            StartCoroutine(LanzarNube());
             lanzarNube = false;
+            
             
         }
         if(golpeando == true)
         {
+            startFight = false;
             StartCoroutine(ActivePunchCollider());
             anim.SetTrigger("Giro");
             golpeando = false;
         }
+
         if(lanzamientoMisiles == true)
         {
-
+            startFight = false;
             StartCoroutine(MisileKomodo());
             lanzamientoMisiles = false;
+        }
+        if(health <= 0)
+        {
+            anim.SetTrigger("Muerte");
+            startFight = false;
+            StartCoroutine(Muerte());
         }
         
     }
     
     IEnumerator LanzarNube()
     {
-        timer = 0;
-        runTimer = false;
         nube.SetActive(true);
         yield return new WaitForSeconds(10);
         nube.SetActive(false);
-        StartCoroutine(LookAt());
-        runTimer = true;
+        startFight = true;
     }
    
     IEnumerator ActivePunchCollider()
     {
-        timer = 0;
-        runTimer = false;
+       
         brazoCollider.enabled = true;
         yield return new WaitForSeconds(6.8f);
         brazoCollider.enabled = false;
-        StartCoroutine(LookAt());
-        runTimer = true;
+        startFight = true;
         
     }
 
     IEnumerator MisileKomodo()
     {
-        timer = 0;
-        runTimer = false;
+        
         GameObject chosenSpawn = misileSpawn;
         
         
@@ -124,12 +115,11 @@ public class KomodoController : MonoBehaviour
             GameObject temporalMisile = Instantiate(misile);
             temporalMisile.transform.position = chosenSpawn.transform.position;
             yield return new WaitForSeconds(3);
-            atacking = false;
 
         }
         Debug.Log("Creo misiles");
-        StartCoroutine(LookAt());
-        runTimer = true;
+        startFight = true;
+        
 
 
     }
@@ -142,7 +132,7 @@ public class KomodoController : MonoBehaviour
 
 
     }
-    private IEnumerator LookAt()
+    /*private IEnumerator LookAt()
     {
         Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
         float time = 0;
@@ -153,5 +143,20 @@ public class KomodoController : MonoBehaviour
             yield return null;
         }
        
+    }*/
+
+    IEnumerator Rotacion()
+    {
+       
+        yield return new WaitForSeconds(0.5f);
+        Quaternion rotTarget = Quaternion.LookRotation(target.position - this.transform.position);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, lookAtSpeed * Time.deltaTime);
+        yield return null;
+    }
+
+    IEnumerator Muerte()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
     }
 }

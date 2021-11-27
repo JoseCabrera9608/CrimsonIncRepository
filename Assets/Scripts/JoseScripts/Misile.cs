@@ -6,6 +6,7 @@ public class Misile : MonoBehaviour
 {
     Transform target;
     GameObject player;
+    GameObject cabezaPlayer;
     float speed = 10f;
     PlayerStats playerStats;
     void Start()
@@ -13,7 +14,8 @@ public class Misile : MonoBehaviour
         
         player = GameObject.FindGameObjectWithTag("Player");
         playerStats = player.GetComponent<PlayerStats>();
-        target = player.transform;
+        cabezaPlayer = GameObject.FindGameObjectWithTag("PlayerCabeza");
+        target = cabezaPlayer.transform;
     }
 
     // Update is called once per frame
@@ -26,10 +28,12 @@ public class Misile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Colisiono misil");
             playerStats.playerlife -= 30;
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         
     }

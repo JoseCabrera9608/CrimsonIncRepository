@@ -1755,6 +1755,7 @@ Transform:
   - {fileID: 679970486}
   - {fileID: 370948745}
   - {fileID: 406070606}
+  - {fileID: 1025414192}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -8783,7 +8784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitted: 0
   health: 0
-  timer: 0
   lanzamientoMisiles: 0
   nube: {fileID: 850142753}
   golpeCollider: {fileID: 0}
@@ -10048,8 +10048,10 @@ MonoBehaviour:
   jumptimer: 0
   hitted: 0
   saltando: 0
+  battlestarted: 0
   health: 0
   vision: 37.2
+  invokearea: 0
   attackRange: 10.59
   enemy: {fileID: 722920219}
   dinoAnim: {fileID: 722920221}
@@ -11327,15 +11329,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
-  health: 0
-  timer: 0
+  health: 100
   lanzamientoMisiles: 0
   nube: {fileID: 850142753}
   golpeCollider: {fileID: 963365770}
   lanzarNube: 0
   golpeando: 0
   misile: {fileID: 6364505213671305744, guid: 5b1c6e7ea73e00a43806175f23d4d3c2, type: 3}
-  lookAtSpeed: 0.03
+  lookAtSpeed: 120
   barraHUDEnemigo: {fileID: 2111726885}
 --- !u!114 &834880183
 MonoBehaviour:
@@ -11351,9 +11352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability:
   - {fileID: 11400000, guid: 92110e8097e1a2244b8a523d633cf160, type: 2}
-  - {fileID: 11400000, guid: ee99dc36732fa164a9b5693562da23f0, type: 2}
-  - {fileID: 11400000, guid: ee99dc36732fa164a9b5693562da23f0, type: 2}
-  - {fileID: 11400000, guid: ee99dc36732fa164a9b5693562da23f0, type: 2}
   - {fileID: 11400000, guid: ee99dc36732fa164a9b5693562da23f0, type: 2}
   - {fileID: 11400000, guid: 2f46cd640562f184a9b327143c8fb53e, type: 2}
   cooldownTime: 0
@@ -12483,8 +12481,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.014162877, y: 0.05022684, z: 0.008701908}
-  m_Center: {x: -0.0020158747, y: -0.002723087, z: 0.0018662438}
+  m_Size: {x: 0.019138137, y: 0.05022684, z: 0.020081118}
+  m_Center: {x: -0.0027151632, y: -0.0027235325, z: 0.0033291553}
 --- !u!114 &963365773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12498,7 +12496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 149376631}
-  damage: 0
+  damage: 30
 --- !u!1 &964130674
 GameObject:
   m_ObjectHideFlags: 0
@@ -13288,6 +13286,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017796882}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1025414191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1025414192}
+  - component: {fileID: 1025414193}
+  m_Layer: 0
+  m_Name: TargetCabeza
+  m_TagString: PlayerCabeza
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1025414192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025414191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 149376632}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1025414193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025414191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1026537242
 GameObject:
   m_ObjectHideFlags: 0
