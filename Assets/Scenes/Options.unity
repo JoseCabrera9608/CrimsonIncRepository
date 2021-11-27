@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29702702, g: 0.2462086, b: 0.7169812, a: 1}
+  m_Color: {r: 0.1882353, g: 0.21176471, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29702702, g: 0.2462086, b: 0.7169812, a: 1}
+  m_Color: {r: 0.1882353, g: 0.21176471, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1106,9 +1106,10 @@ GameObject:
   - component: {fileID: 1468870940}
   - component: {fileID: 1468870939}
   - component: {fileID: 1468870938}
+  - component: {fileID: 1468870942}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: SensController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1197,6 +1198,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1468870942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468870937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1b4fdf293dded4b8c1772cb4ffe3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2096386413}
+  sensibilidad: 0
+  cinem: {fileID: 0}
+  progress: {fileID: 0}
 --- !u!1 &1875134032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1482,7 @@ GameObject:
   - component: {fileID: 2096386413}
   m_Layer: 5
   m_Name: Slider (1)
-  m_TagString: Untagged
+  m_TagString: SensController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

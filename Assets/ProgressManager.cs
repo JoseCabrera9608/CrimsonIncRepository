@@ -11,6 +11,14 @@ public class ProgressManager : MonoBehaviour
     public bool level2 = false;
     public bool level3 = false;
 
+    public float sens;
+
+    public Sensibilidad sensi;
+
+    private void Awake()
+    {
+        sens = 0.5f;
+    }
 
     void Start()
     {
@@ -20,6 +28,7 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
+        sens = sensi.slider.value;
     }
 }

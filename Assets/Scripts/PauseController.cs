@@ -9,6 +9,7 @@ public class PauseController : MonoBehaviour
     public GameObject MenuPausa;
     public bool pause;
     
+    
     void Start()
     {
         Deactivate();
