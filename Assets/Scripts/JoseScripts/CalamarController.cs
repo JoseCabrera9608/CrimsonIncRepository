@@ -74,6 +74,8 @@ public class CalamarController : MonoBehaviour
         {
             StartCoroutine(Embestida());
             embistiendo = false;
+            
+
         }
         if(lanzarMisiles == true)
         {
@@ -102,21 +104,22 @@ public class CalamarController : MonoBehaviour
     IEnumerator TentacleStrike2()
     {
         agente.speed = 0;
-        //brazoDer.enabled = true;
+        yield return new WaitForSeconds(1.1f);
+        FindObjectOfType<AudioManager>().Play("Pinchazos");
         brazoDerechoCollider.SetActive(true);
         brazoIzquierdoCollider.SetActive(true);
-        //brazoIzq.enabled = true;
-        //calamarAnimations.TentacleStrikeAnimation();
+     
         yield return new WaitForSeconds(7);
-        //brazoDer.enabled = false;
-        //brazoIzq.enabled = false;
+      
         brazoDerechoCollider.SetActive(false);
         brazoIzquierdoCollider.SetActive(false);
         agente.speed = 6f;
     }
     IEnumerator TintaCambioColor()
     {
+        FindObjectOfType<AudioManager>().Play("Tinta");
         agente.speed = 0;
+        
         tinta.SetActive(true);
         yield return new WaitForSeconds(3);
         tinta.SetActive(false);
@@ -127,6 +130,7 @@ public class CalamarController : MonoBehaviour
     }
     IEnumerator Embestida()
     {
+        FindObjectOfType<AudioManager>().Play("Embestida");
         embestidaCollider.SetActive(true);
         yield return new WaitForSeconds(4);
         embestidaCollider.SetActive(false);
@@ -137,13 +141,15 @@ public class CalamarController : MonoBehaviour
     IEnumerator Misiles()
     {
         agente.speed = 0f;
-        //animacion idk
-        index = 0;
+        animCalamar.SetTrigger("Misile");
+        index = 1;
         chosenSpawn = spawns[index];
+        FindObjectOfType<AudioManager>().Play("Misiles");
         GameObject temporalMisile = Instantiate(misile);
         temporalMisile.transform.position = chosenSpawn.transform.position;
         Debug.Log("Creo misiles");
         yield return new WaitForSeconds(3);
+        agente.speed = 5f;
     }
 
     IEnumerator Muerte()
