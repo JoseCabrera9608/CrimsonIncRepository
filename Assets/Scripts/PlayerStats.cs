@@ -38,4 +38,9 @@ public class PlayerStats : MonoBehaviour
             playerlife -= 30;
         }
     }
+    private void OnParticleTrigger()
+    {
+        Debug.Log("ParticleColl");
+        playerlife -= 10;
+    }
 }

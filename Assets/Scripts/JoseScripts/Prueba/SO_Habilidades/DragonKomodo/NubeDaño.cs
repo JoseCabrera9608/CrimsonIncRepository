@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class NubeDaño : MonoBehaviour
 {
-    public GameObject playerObj;
+    GameObject playerObj;
     PlayerStats player;
     BoxCollider nubeCollider;
     float nube_ScaleX, nube_ScaleY, nube_ScaleZ;
     bool atacando;
     void Start()
     {
-
-        player = playerObj.gameObject.GetComponent<PlayerStats>();
-        nubeCollider = GetComponent<BoxCollider>();
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        player = playerObj.gameObject.GetComponent<PlayerStats>();  
+        /*nubeCollider = GetComponent<BoxCollider>();
         nube_ScaleX = 1f;
         nube_ScaleY = 1f;
         nube_ScaleZ = 1f;
-        nubeCollider.size = new Vector3(nube_ScaleX, nube_ScaleY, nube_ScaleZ);
+        nubeCollider.size = new Vector3(nube_ScaleX, nube_ScaleY, nube_ScaleZ);*/
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class NubeDaño : MonoBehaviour
     {
         
         
-        StartCoroutine(EscalarCollider());
+        //StartCoroutine(EscalarCollider());
        
             
         

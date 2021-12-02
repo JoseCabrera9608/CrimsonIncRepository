@@ -22,24 +22,35 @@ public class KomodoController : MonoBehaviour
     Collider brazoCollider;
     GameObject misileSpawn;
     Animator anim;
-   
-
+    //------- Misile Targets
+    public GameObject[] misileTargets;
+    int index;
+    public Transform targetChosen;
+    public Vector3 ultimaPosicion;
+    //-------Ability Bools
+    public bool inyeccion;
+    //-----Inyeccion
+    GameObject[] inyeccionSpawners;
+    public GameObject acido;
 
     public GameObject barraHUDEnemigo;
     void Start()
     {
         anim = GetComponent<Animator>();
+        inyeccionSpawners = GameObject.FindGameObjectsWithTag("InyeccionTarget");
         misileSpawn = GameObject.FindGameObjectWithTag("MisilesTarget");
         brazoCollider = golpeCollider.GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag("PlayerCabeza");
         target = player.transform;
         BossGameEVent.current.combatTriggerExit += FightStart;
+        misileTargets = GameObject.FindGameObjectsWithTag("Targets");
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     
         if (startFight == true)
         {
@@ -62,8 +73,8 @@ public class KomodoController : MonoBehaviour
             
         }
         if(golpeando == true)
-        {
-            startFight = false;
+        { 
+            startFight = true;
             StartCoroutine(ActivePunchCollider());
             anim.SetTrigger("Giro");
             golpeando = false;
@@ -74,7 +85,17 @@ public class KomodoController : MonoBehaviour
             startFight = false;
             StartCoroutine(MisileKomodo());
             lanzamientoMisiles = false;
+            index = 0;
         }
+
+        if (inyeccion == true)
+        {
+            startFight = true;
+            StartCoroutine(Inyeccion());
+            inyeccion = false;
+            index = 0;
+        }
+
         if(health <= 0)
         {
             anim.SetTrigger("Muerte");
@@ -101,15 +122,18 @@ public class KomodoController : MonoBehaviour
         startFight = true;
         
     }
-
+    
     IEnumerator MisileKomodo()
     {
         
         GameObject chosenSpawn = misileSpawn;
         
-        
         for (int i = 0; i<3; i++)
         {
+            index = Random.Range(0, misileTargets.Length);
+            GameObject temportalTargetChosen = misileTargets[index];
+            targetChosen = temportalTargetChosen.transform;
+            ultimaPosicion = new Vector3(targetChosen.transform.position.x,targetChosen.transform.position.y,targetChosen.transform.position.z);
             anim.SetTrigger("LanzarMisiles");
             yield return new WaitForSeconds(1.9f);
             GameObject temporalMisile = Instantiate(misile);
@@ -119,31 +143,14 @@ public class KomodoController : MonoBehaviour
         }
         Debug.Log("Creo misiles");
         startFight = true;
-        
-
-
+      
     }
     void FightStart()
     {
         anim.SetTrigger("Giro");
         startFight = true;
         barraHUDEnemigo.SetActive(true);
-        
-
-
     }
-    /*private IEnumerator LookAt()
-    {
-        Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
-        float time = 0;
-        while (time < 1)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-            time += Time.deltaTime * lookAtSpeed;
-            yield return null;
-        }
-       
-    }*/
 
     IEnumerator Rotacion()
     {
@@ -158,5 +165,21 @@ public class KomodoController : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         Destroy(this.gameObject);
+    }
+
+    IEnumerator Inyeccion()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            index = Random.Range(0, inyeccionSpawners.Length);
+            GameObject temportalTargetChosenAcido = inyeccionSpawners[index];
+            //anim.SetTrigger("Inyeccion");
+            GameObject temporalAcido = Instantiate(acido);
+            temporalAcido.transform.position = temportalTargetChosenAcido.transform.position;
+            yield return new WaitForSeconds(3);
+            Destroy(temporalAcido,4f);
+        }
+        
+
     }
 }
