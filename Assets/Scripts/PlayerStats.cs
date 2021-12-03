@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int playerlife;
+    public float playerlife;
     public PlayerMovement playermov;
     
 
