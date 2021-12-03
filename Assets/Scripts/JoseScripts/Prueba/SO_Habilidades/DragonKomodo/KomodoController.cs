@@ -98,7 +98,7 @@ public class KomodoController : MonoBehaviour
 
         if(health <= 0)
         {
-            startFight = false;
+            //startFight = false;
             //anim.SetTrigger("Muerte");
             StartCoroutine(Muerte());
         }
@@ -107,6 +107,7 @@ public class KomodoController : MonoBehaviour
     
     IEnumerator LanzarNube()
     {
+        yield return new WaitForSeconds(2.5f);
         nube.SetActive(true);
         yield return new WaitForSeconds(10);
         nube.SetActive(false);
@@ -170,11 +171,13 @@ public class KomodoController : MonoBehaviour
 
     IEnumerator Inyeccion()
     {
+       
         for (int i = 0; i < 4; i++)
         {
+            anim.SetTrigger("Inyeccion");
             index = Random.Range(0, inyeccionSpawners.Length);
             GameObject temportalTargetChosenAcido = inyeccionSpawners[index];
-            //anim.SetTrigger("Inyeccion");
+            yield return new WaitForSeconds(2.58f);
             GameObject temporalAcido = Instantiate(acido);
             temporalAcido.transform.position = temportalTargetChosenAcido.transform.position;
             yield return new WaitForSeconds(3);

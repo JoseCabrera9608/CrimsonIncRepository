@@ -36,7 +36,7 @@ public class NubeDaño : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            player.playerlife -= 1;
+            player.playerlife -= 2;
             Debug.Log("Daño por Nube");
         }
     }

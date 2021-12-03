@@ -6,11 +6,12 @@ using UnityEngine;
 public class Inyeccion : Habilidad_SO
 {
     KomodoController _komodoController;
-
+   
     public override void Activate(GameObject parent)
     {
-        //La animación anim ...
+        
         _komodoController = parent.GetComponent<KomodoController>();
+       
         _komodoController.inyeccion = true;
     }
 }
