@@ -6,9 +6,12 @@ using UnityEngine;
 public class NubeCorrosiva : Habilidad_SO
 {
     KomodoController _komodoController;
+    Animator anim;
     public override void Activate(GameObject parent)
     {
+        anim = parent.GetComponent<Animator>();
         _komodoController = parent.GetComponent<KomodoController>();
+        anim.SetTrigger("Nube");
         _komodoController.lanzarNube = true;
     }
 

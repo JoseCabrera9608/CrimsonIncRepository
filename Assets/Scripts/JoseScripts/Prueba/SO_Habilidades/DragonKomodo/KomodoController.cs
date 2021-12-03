@@ -98,8 +98,8 @@ public class KomodoController : MonoBehaviour
 
         if(health <= 0)
         {
-            anim.SetTrigger("Muerte");
             startFight = false;
+            //anim.SetTrigger("Muerte");
             StartCoroutine(Muerte());
         }
         
@@ -163,7 +163,8 @@ public class KomodoController : MonoBehaviour
 
     IEnumerator Muerte()
     {
-        yield return new WaitForSeconds(3f);
+        anim.SetTrigger("Muerte");
+        yield return new WaitForSeconds(4f);
         Destroy(this.gameObject);
     }
 
@@ -179,7 +180,8 @@ public class KomodoController : MonoBehaviour
             yield return new WaitForSeconds(3);
             Destroy(temporalAcido,4f);
         }
-        
 
     }
+
+
 }
