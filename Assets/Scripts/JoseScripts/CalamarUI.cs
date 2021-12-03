@@ -46,7 +46,7 @@ public class CalamarUI : MonoBehaviour
         ParticleSystem temporalbullet = Instantiate(deathParticles);
         temporalbullet.transform.position = Enemy.transform.position;
         progress.level3 = true;
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4.8f);
         SceneManager.LoadScene("Hub");
         Destroy(Enemy);
     }

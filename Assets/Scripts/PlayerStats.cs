@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DmgArea") && playermov.fallVelocity <= 0)
         {
-            playerlife -= 30;
+            playerlife -= 60;
         }
     }
     private void OnParticleTrigger()

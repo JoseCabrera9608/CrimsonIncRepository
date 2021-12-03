@@ -7,6 +7,7 @@ public class PauseController : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject MenuPausa;
+    public GameObject MenuSettings;
     public bool pause;
     
     
@@ -39,5 +40,17 @@ public class PauseController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         MenuPausa.SetActive(false);
+    }
+
+    public void YesSettings()
+    {
+        MenuPausa.SetActive(false);
+        MenuSettings.SetActive(true);
+    }
+
+    public void NoSettings()
+    {
+        MenuPausa.SetActive(true);
+        MenuSettings.SetActive(false);
     }
 }

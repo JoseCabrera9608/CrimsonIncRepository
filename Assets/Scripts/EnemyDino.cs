@@ -29,6 +29,7 @@ public class EnemyDino : MonoBehaviour
     public float vision;
     public float invokearea;
     public float attackRange;
+    public float under;
     public NavMeshAgent enemy;
 
     public Animator dinoAnim;
@@ -115,6 +116,9 @@ public class EnemyDino : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, invokearea);
 
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, under);
+
     }
 
     void IdleState()
@@ -136,6 +140,12 @@ public class EnemyDino : MonoBehaviour
         if (dist >= invokearea && battlestarted == true && pause.pause == false)
         {
             CallState();
+        }
+
+        if (dist <= under && pause.pause == false)
+        {
+            JumpState();
+
         }
 
         if (dist <= attackRange && pause.pause == false)
@@ -205,7 +215,7 @@ public class EnemyDino : MonoBehaviour
         if (saltando == false)
         {
             
-            if (jumptimer >= 5)
+            if (jumptimer >= 1)
             {
                 dinoAnim.SetTrigger("Salto");
                 speed = 15;

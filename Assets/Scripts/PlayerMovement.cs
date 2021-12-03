@@ -75,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
 
         
 
-        inputVector.x = Input.GetAxis("Horizontal");
-        inputVector.z = Input.GetAxis("Vertical");
+        inputVector.x = Input.GetAxisRaw("Horizontal");
+        inputVector.z = Input.GetAxisRaw("Vertical");
 
         playerInput = new Vector3(inputVector.x, 0, inputVector.z);
         playerInput = Vector3.ClampMagnitude(playerInput, 1);
