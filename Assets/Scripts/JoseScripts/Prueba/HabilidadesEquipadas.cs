@@ -61,7 +61,7 @@ public class HabilidadesEquipadas : MonoBehaviour
                 }
             break;
             case AbilityState.cooldown:
-                if (cooldownTime > 0)
+                if (cooldownTime > 0 )
                 {
                   cooldownTime -= Time.deltaTime;
                 }
