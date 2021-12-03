@@ -13,11 +13,13 @@ public class CalamarUI : MonoBehaviour
     public GameObject Enemy;
     public ParticleSystem deathParticles;
     public ProgressManager progress;
+    public Fade fade;
 
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<CalamarController>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
         enemy.health = enemyhealth;
     }
 
@@ -47,8 +49,14 @@ public class CalamarUI : MonoBehaviour
         temporalbullet.transform.position = Enemy.transform.position;
         progress.level3 = true;
         yield return new WaitForSeconds(4.8f);
-        SceneManager.LoadScene("Hub");
-        Destroy(Enemy);
+        fade.Fadein();
+        if (fade.fadeinend == true)
+        {
+            SceneManager.LoadScene("Hub");
+            Destroy(Enemy);
+        }
+
+
     }
 }
 

@@ -13,11 +13,13 @@ public class KomodoUI : MonoBehaviour
     public GameObject Enemy;
     public ParticleSystem deathParticles;
     public ProgressManager progress;
+    public Fade fade;
 
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<KomodoController>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
         enemy.health = enemyhealth;
     }
 
@@ -38,8 +40,15 @@ public class KomodoUI : MonoBehaviour
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
             progress.tutorial = true;
-            SceneManager.LoadScene("Hub");
-            Destroy(Enemy);
+            fade.Fadein();
+
+            if (fade.fadeinend == true)
+            {
+                SceneManager.LoadScene("Hub");
+                Destroy(Enemy);
+            }
+
+
         }
 
     }

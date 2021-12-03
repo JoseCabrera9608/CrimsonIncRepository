@@ -1118,8 +1118,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168341663}
-  m_LocalRotation: {x: -0.090006836, y: -0.6848902, z: -0.08586227, w: 0.7179498}
-  m_LocalPosition: {x: -325.9975, y: 89.84593, z: -6.803566}
+  m_LocalRotation: {x: -0.09000685, y: -0.68489015, z: -0.08586226, w: 0.71794987}
+  m_LocalPosition: {x: -325.9975, y: 89.84593, z: -6.803567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4436,7 +4436,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543807312}
-  m_LocalRotation: {x: -0.090006836, y: -0.6848902, z: -0.08586228, w: 0.71794975}
+  m_LocalRotation: {x: -0.09000685, y: -0.68489015, z: -0.085862264, w: 0.71794987}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5807,6 +5807,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1533660289}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &882394507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 882394510}
+  - component: {fileID: 882394509}
+  - component: {fileID: 882394508}
+  m_Layer: 0
+  m_Name: ProgressManager
+  m_TagString: Progress
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &882394508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882394507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc7259e9d0327649b277e3e541eb743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &882394509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882394507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c58bff035810114587b2362fec5cb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorial: 0
+  level1: 0
+  level2: 0
+  level3: 0
+  sens: 0
+  sensi: {fileID: 0}
+--- !u!4 &882394510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882394507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -413.5027, y: 55.35694, z: 34.520187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949317583
 GameObject:
@@ -12461,6 +12523,7 @@ MonoBehaviour:
   Enemy: {fileID: 919132148822336480}
   deathParticles: {fileID: 3392973645414333700, guid: cfcfab05a0c1ca2409b427b4c489d555, type: 3}
   progress: {fileID: 0}
+  fade: {fileID: 0}
 --- !u!1 &2099397443
 GameObject:
   m_ObjectHideFlags: 0

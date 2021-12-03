@@ -14,11 +14,13 @@ public class EnemyHP : MonoBehaviour
     public GameObject Enemy;
     public ParticleSystem deathParticles;
     public ProgressManager progress;
- 
+    public Fade fade;
+
     void Start()
     {
         enemy = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
         enemy.health = enemyhealth;
     }
 
@@ -39,8 +41,15 @@ public class EnemyHP : MonoBehaviour
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
             progress.level2 = true;
-            SceneManager.LoadScene("Hub");
-            Destroy(Enemy);
+            fade.Fadein();
+
+            if (fade.fadeinend == true)
+            {
+                SceneManager.LoadScene("Hub");
+                Destroy(Enemy);
+            }
+
+
         }
 
     }
