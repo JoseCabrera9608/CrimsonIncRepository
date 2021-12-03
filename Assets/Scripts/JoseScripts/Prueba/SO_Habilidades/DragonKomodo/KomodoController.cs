@@ -107,9 +107,9 @@ public class KomodoController : MonoBehaviour
     
     IEnumerator LanzarNube()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.1f);
         nube.SetActive(true);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(13);
         nube.SetActive(false);
         startFight = true;
     }
