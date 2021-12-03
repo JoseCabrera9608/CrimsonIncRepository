@@ -11,10 +11,15 @@ public class HubDoor : MonoBehaviour
     public MeshRenderer mesh;
     public Material greenmaterial;
     public Material normalmaterial;
+    public SceneController scene;
+    public Fade fade;
+    public bool lvlgo;
+
 
     void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
         mesh = GetComponent<MeshRenderer>();
         mesh.material = normalmaterial;
     }
@@ -22,7 +27,9 @@ public class HubDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+
+
         if (lvl == 1 && progress.tutorial == true)
         {
             mesh.material = greenmaterial;
@@ -41,28 +48,49 @@ public class HubDoor : MonoBehaviour
         {
             mesh.material = greenmaterial;
         }
+
+        if (fade.fadeinend == true && lvlgo == true)
+        {
+            scene.ChangeScene();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
-        SceneController scene = GetComponent<SceneController>();
+
 
         if (other.gameObject.CompareTag("Player"))
         {
+            
+
+            
             if (lvl == 1 && progress.tutorial == false)
             {
-                scene.ChangeScene();
+
+                fade.Fadein();
+                lvlgo = true;
+
+
+
             }
             if (lvl == 2 && progress.level1 == false)
             {
-                scene.ChangeScene();
+                fade.Fadein();
+                lvlgo = true;
+
+
             }
             if (lvl == 3 && progress.level2 == false)
             {
-                scene.ChangeScene();
+                fade.Fadein();
+                lvlgo = true;
+
+
             }
             if (lvl == 4 && progress.level3 == false)
             {
-                scene.ChangeScene();
+                fade.Fadein();
+                lvlgo = true;
+
             }
 
         }
