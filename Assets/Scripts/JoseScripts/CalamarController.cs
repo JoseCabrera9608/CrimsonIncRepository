@@ -125,11 +125,11 @@ public class CalamarController : MonoBehaviour
         agente.speed = 0;
         
         tinta.SetActive(true);
-        tinta.transform.localScale += new Vector3(5, 5, 5)*22f * Time.deltaTime;
+        tinta.transform.localScale += new Vector3(1.6f, 1.6f, 1.6f)*22f * Time.deltaTime;
         yield return new WaitForSeconds(3);
         tinta.transform.localScale -= new Vector3(12, 12, 12) * 21f * Time.deltaTime;
         tinta.transform.localScale = new Vector3(1, 1, 1);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.4f);
         tinta.SetActive(false);
         tintaDisparada = false;
         agente.speed = 6f;
