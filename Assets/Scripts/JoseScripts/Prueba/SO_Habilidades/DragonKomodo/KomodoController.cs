@@ -34,9 +34,11 @@ public class KomodoController : MonoBehaviour
     public GameObject acido;
 
     public GameObject barraHUDEnemigo;
+    NubeDaño dañoNube;
     void Start()
     {
         anim = GetComponent<Animator>();
+        dañoNube = nube.GetComponent<NubeDaño>();
         inyeccionSpawners = GameObject.FindGameObjectsWithTag("InyeccionTarget");
         misileSpawn = GameObject.FindGameObjectWithTag("MisilesTarget");
         brazoCollider = golpeCollider.GetComponent<Collider>();
@@ -65,6 +67,7 @@ public class KomodoController : MonoBehaviour
 
         if (lanzarNube == true)
         {
+            dañoNube.activado = true;
             startFight = false;
             anim.SetTrigger("Giro");
             StartCoroutine(LanzarNube());
@@ -99,7 +102,7 @@ public class KomodoController : MonoBehaviour
         if(health <= 0)
         {
             //startFight = false;
-            //anim.SetTrigger("Muerte");
+            anim.SetTrigger("Muerte");
             StartCoroutine(Muerte());
         }
         
@@ -107,9 +110,9 @@ public class KomodoController : MonoBehaviour
     
     IEnumerator LanzarNube()
     {
-        yield return new WaitForSeconds(3.1f);
+        yield return new WaitForSeconds(4.4f);
         nube.SetActive(true);
-        yield return new WaitForSeconds(13);
+        yield return new WaitForSeconds(10);
         nube.SetActive(false);
         startFight = true;
     }
@@ -172,7 +175,7 @@ public class KomodoController : MonoBehaviour
     IEnumerator Inyeccion()
     {
        
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             anim.SetTrigger("Inyeccion");
             index = Random.Range(0, inyeccionSpawners.Length);

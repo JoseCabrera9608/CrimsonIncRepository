@@ -26,7 +26,7 @@ public class KomodoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = enemyhealth / 100f;
+        healthBar.fillAmount = enemyhealth / 150f;
         enemy.health = enemyhealth;
 
         if (enemy.hitted == true)
@@ -40,7 +40,8 @@ public class KomodoUI : MonoBehaviour
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
             progress.tutorial = true;
-            fade.Fadein();
+            //fade.Fadein();
+            StartCoroutine(FadeEffect());
 
             if (fade.fadeinend == true)
             {
@@ -50,6 +51,10 @@ public class KomodoUI : MonoBehaviour
 
 
         }
-
+        IEnumerator FadeEffect()
+        {
+            yield return new WaitForSeconds(2f);
+            fade.Fadein();
+        }
     }
 }

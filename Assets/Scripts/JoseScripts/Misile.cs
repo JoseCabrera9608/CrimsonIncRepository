@@ -22,8 +22,8 @@ public class Misile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerStats = player.GetComponent<PlayerStats>();
-        //cabezaPlayer = GameObject.FindGameObjectWithTag("PlayerCabeza");
-        //target = cabezaPlayer.transform;
+        cabezaPlayer = GameObject.FindGameObjectWithTag("PlayerCabeza");
+        target = cabezaPlayer.transform;
         //target = _komodoController.targetChosen;
         StartCoroutine(Despegue());
         
@@ -37,9 +37,10 @@ public class Misile : MonoBehaviour
 
         if (perseguir)
         {
-            transform.LookAt(_komodoController.ultimaPosicion);
+            //transform.LookAt(_komodoController.ultimaPosicion);
+            transform.LookAt(target);
             transform.Translate(0f, 0f, speed * Time.deltaTime);
-            Destroy(gameObject, 10f);
+            Destroy(gameObject, 4f);
         }
         
     }

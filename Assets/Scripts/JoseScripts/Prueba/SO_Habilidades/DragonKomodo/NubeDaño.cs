@@ -7,26 +7,33 @@ public class NubeDaño : MonoBehaviour
     GameObject playerObj;
     PlayerStats player;
     BoxCollider nubeCollider;
+    public CapsuleCollider capsuleCollider;
     float nube_ScaleX, nube_ScaleY, nube_ScaleZ;
     bool atacando;
+    public bool activado = false;
     void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
-        player = playerObj.gameObject.GetComponent<PlayerStats>();  
-        /*nubeCollider = GetComponent<BoxCollider>();
-        nube_ScaleX = 1f;
+        player = playerObj.gameObject.GetComponent<PlayerStats>();
+        //nubeCollider = GetComponent<BoxCollider>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        /*nube_ScaleX = 1f;
         nube_ScaleY = 1f;
         nube_ScaleZ = 1f;
         nubeCollider.size = new Vector3(nube_ScaleX, nube_ScaleY, nube_ScaleZ);*/
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        
-        //StartCoroutine(EscalarCollider());
+        if(activado == true)
+        {
+            StartCoroutine(EscalarCollider());
        
+        }
+      
             
         
         
@@ -43,12 +50,16 @@ public class NubeDaño : MonoBehaviour
 
     IEnumerator EscalarCollider()
     {
-        nubeCollider.size += new Vector3(2.8f, 1, 0.5f) * Time.deltaTime;
-        yield return new WaitForSeconds(5f);
-        nubeCollider.size -= new Vector3(5f, 2, 1f) * Time.deltaTime;
-        yield return new WaitForSeconds(3.5f);
-        atacando = false;
-        
+
+        capsuleCollider.height += 5.3f * Time.deltaTime;
+        if (capsuleCollider.height >= 25.92f)
+        {
+            capsuleCollider.height = 26;
+            yield return new WaitForSeconds(7f);
+            capsuleCollider.height = 1;
+        }
+       
     }
     
+
 }
