@@ -5,17 +5,17 @@ using UnityEngine;
 public class CombatTrigger : MonoBehaviour
 {
 
-    public ProgressManager progress;
+    //public ProgressManager progress;
 
     private void Start()
     {
-        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        //progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     private void OnTriggerExit(Collider other)
     {
 
-        progress.lastCheckpointPos = transform.position;
+        //progress.lastCheckpointPos = transform.position;
         BossGameEVent.current.StartCombatTriggerExit();
         Destroy(this.gameObject);
 
