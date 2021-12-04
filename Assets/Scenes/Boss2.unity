@@ -11331,6 +11331,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dinosaurio_Idle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe1f5bf6a92f89849b927a2b22ae4edb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe1f5bf6a92f89849b927a2b22ae4edb, type: 3}
+      propertyPath: m_TagString
+      value: EnemyDino
+      objectReference: {fileID: 0}
     - target: {fileID: 6085906746282748343, guid: fe1f5bf6a92f89849b927a2b22ae4edb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.000003
@@ -11361,7 +11369,7 @@ Animator:
   m_GameObject: {fileID: 1964711499}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c2214e88f9f38a44f8813d40b7286108, type: 2}
+  m_Controller: {fileID: 9100000, guid: 78d0868fd2091114987529a9727c4e0f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11385,6 +11393,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1333277066021380323, guid: fe1f5bf6a92f89849b927a2b22ae4edb, type: 3}
   m_PrefabInstance: {fileID: 1964711498}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &1964711505 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7851650493853470488, guid: fe1f5bf6a92f89849b927a2b22ae4edb, type: 3}
+  m_PrefabInstance: {fileID: 1964711498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1964711506
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964711499}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 11
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1964711507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964711499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b37465c1317784bb0dd57d0466c726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {fileID: 0}
+  speed: 5
+  dmgtoPlayer: 0
+  attacking: 0
+  dmgingPlayer: 0
+  dist: 0
+  timer: 0
+  jumptimer: 0
+  hitted: 0
+  saltando: 0
+  battlestarted: 0
+  health: 0
+  vision: 44.01
+  invokearea: 27.55
+  attackRange: 19.1
+  under: 4.52
+  enemy: {fileID: 1964711506}
+  dinoAnim: {fileID: 1964711501}
+  player: {fileID: 0}
+  nupMesh: {fileID: 1964711505}
+  matNormal: {fileID: 2100000, guid: a805de42dc155d04595e2885042faaaa, type: 2}
+  matHitted: {fileID: 2100000, guid: 4537d041ebe836c4daec5fd5809137cb, type: 2}
+  playerattack: {fileID: 0}
+  playermov: {fileID: 0}
+  Pause: {fileID: 15446405}
+  dinoNav: {fileID: 95026855097811222}
+  bulletslot: {fileID: 4039302868794527856, guid: ca0181c155bbf28408937d8ec7921d0e, type: 3}
+  spawnslot: {fileID: 265807452}
+  LandDmg: {fileID: 558403751}
+--- !u!65 &1964711508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964711499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: -1.07, y: 7.96, z: 4.49}
 --- !u!1 &2002530043
 GameObject:
   m_ObjectHideFlags: 0
@@ -12518,9 +12607,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2107614750}
-  enemy: {fileID: 1350891591}
+  enemy: {fileID: 0}
   enemyhealth: 100
-  Enemy: {fileID: 919132148822336480}
+  Enemy: {fileID: 1964711499}
   deathParticles: {fileID: 3392973645414333700, guid: cfcfab05a0c1ca2409b427b4c489d555, type: 3}
   progress: {fileID: 0}
   fade: {fileID: 0}
