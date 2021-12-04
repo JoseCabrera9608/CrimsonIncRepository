@@ -48,6 +48,7 @@ public class CalamarMisile : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             FindObjectOfType<AudioManager>().Play("Explosion");
+            playerStats.playerlife -= 20;
             Destroy(gameObject);
         }
     }

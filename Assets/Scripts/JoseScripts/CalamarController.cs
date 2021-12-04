@@ -37,6 +37,8 @@ public class CalamarController : MonoBehaviour
 
     public GameObject tinta;
 
+    public GameObject audioManager;
+
     void Start()
     {
         calamar = GameObject.Find("Calamarsito");
@@ -85,6 +87,8 @@ public class CalamarController : MonoBehaviour
 
         if(health <= 20)
         {
+            Destroy(embestidaCollider);
+            Destroy(audioManager);
             agente.speed = 0;
             animCalamar.SetTrigger("Ruego");
             if(health <= 0)
@@ -117,24 +121,27 @@ public class CalamarController : MonoBehaviour
     }
     IEnumerator TintaCambioColor()
     {
-        FindObjectOfType<AudioManager>().Play("Tinta");
+        
         agente.speed = 0;
         
         tinta.SetActive(true);
+        tinta.transform.localScale += new Vector3(5, 5, 5)*22f * Time.deltaTime;
         yield return new WaitForSeconds(3);
+        tinta.transform.localScale -= new Vector3(12, 12, 12) * 21f * Time.deltaTime;
+        yield return new WaitForSeconds(1.5f);
         tinta.SetActive(false);
-        
         tintaDisparada = false;
         agente.speed = 6f;
         
     }
     IEnumerator Embestida()
     {
+        agente.speed = 0f;
         FindObjectOfType<AudioManager>().Play("Embestida");
         embestidaCollider.SetActive(true);
         yield return new WaitForSeconds(4);
         embestidaCollider.SetActive(false);
-        agente.speed = 6f;
+        agente.speed = 5f;
        
     }
 
