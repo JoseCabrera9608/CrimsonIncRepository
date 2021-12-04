@@ -32,7 +32,7 @@ public class EnemyHP : MonoBehaviour
 
         if (enemy.hitted == true)
         {
-            enemyhealth -= 10;
+            enemyhealth -= 5;
             enemy.hitted = false;
         }
 
