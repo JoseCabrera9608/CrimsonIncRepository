@@ -46,10 +46,16 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Pause;
     public bool marcando;
 
+    public ProgressManager progress;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        transform.position = progress.lastCheckpointPos;
+
+
         player = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;

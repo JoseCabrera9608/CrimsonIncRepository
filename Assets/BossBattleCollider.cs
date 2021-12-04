@@ -8,6 +8,7 @@ public class BossBattleCollider : MonoBehaviour
 
     public GameObject BattleCollider;
     public bool startbattle = false;
+    public ProgressManager progress;
     
     
     private void Awake()
@@ -17,7 +18,7 @@ public class BossBattleCollider : MonoBehaviour
 
     void Start()
     {
-        
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class BossBattleCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && startbattle == false)
         {
+            progress.lastCheckpointPos = transform.position;
             BattleCollider.SetActive(true);
             startbattle = true;
         }

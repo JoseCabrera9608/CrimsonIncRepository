@@ -163,6 +163,7 @@ public class EnemyDino : MonoBehaviour
 
     void FollowState()
     {
+        dinoAnim.SetTrigger("Run");
         transform.LookAt(playerPosition);
         enemy.destination = playerPosition.position;
         float dist = Vector3.Distance(playerPosition.position, transform.position);
