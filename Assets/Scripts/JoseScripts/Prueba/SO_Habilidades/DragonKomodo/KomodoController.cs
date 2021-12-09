@@ -110,6 +110,7 @@ public class KomodoController : MonoBehaviour
     
     IEnumerator LanzarNube()
     {
+        FindObjectOfType<AudioManager>().Play("Nube");
         yield return new WaitForSeconds(4.4f);
         nube.SetActive(true);
         yield return new WaitForSeconds(10);
@@ -134,6 +135,7 @@ public class KomodoController : MonoBehaviour
         
         for (int i = 0; i<3; i++)
         {
+            FindObjectOfType<AudioManager>().Play("KomodoMisiles");
             index = Random.Range(0, misileTargets.Length);
             GameObject temportalTargetChosen = misileTargets[index];
             targetChosen = temportalTargetChosen.transform;
@@ -151,6 +153,7 @@ public class KomodoController : MonoBehaviour
     }
     void FightStart()
     {
+        FindObjectOfType<AudioManager>().Play("Rugido");
         anim.SetTrigger("Giro");
         startFight = true;
         barraHUDEnemigo.SetActive(true);
@@ -177,6 +180,8 @@ public class KomodoController : MonoBehaviour
        
         for (int i = 0; i < 2; i++)
         {
+            yield return new WaitForSeconds(1.7f);
+            FindObjectOfType<AudioManager>().Play("Inyeccion");
             anim.SetTrigger("Inyeccion");
             index = Random.Range(0, inyeccionSpawners.Length);
             GameObject temportalTargetChosenAcido = inyeccionSpawners[index];
