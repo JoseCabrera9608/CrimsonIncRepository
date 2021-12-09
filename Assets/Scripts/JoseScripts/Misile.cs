@@ -50,6 +50,7 @@ public class Misile : MonoBehaviour
        
         if (other.gameObject.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Explosion");
             Debug.Log("Colisiono misil");
             playerStats.playerlife -= 30;
             Destroy(this.gameObject);

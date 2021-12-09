@@ -174,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (dashAttempts <= 5000)  //Dashes maximos
             {
+                FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
                 DashParticles.Play();
                 dashingcd = 0;

@@ -1489,7 +1489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149114653}
   m_LocalRotation: {x: -0.09000685, y: -0.6848902, z: -0.085862264, w: 0.7179498}
-  m_LocalPosition: {x: 98.91814, y: 1.7894785, z: 0.032829925}
+  m_LocalPosition: {x: 446.8181, y: 1.7894785, z: 0.032829925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1570,7 +1570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149376631}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 89, y: 0.54, z: -0}
+  m_LocalPosition: {x: 436.9, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 750037787}
@@ -2685,6 +2685,7 @@ MonoBehaviour:
   elevatorGoingUp: 0
   elevatorSpeed: 5
   timer: 0
+  soundtimer: 0
   elevator: {fileID: 1335281220}
   elevatorRb: {fileID: 0}
   box: {fileID: 0}
@@ -6002,6 +6003,7 @@ MonoBehaviour:
   elevatorGoingUp: 1
   elevatorSpeed: 5
   timer: 0
+  soundtimer: 0
   elevator: {fileID: 1748901811}
   elevatorRb: {fileID: 0}
   box: {fileID: 0}
@@ -14766,6 +14768,21 @@ MonoBehaviour:
     volume: 0.15
     pitch: 0.53
     source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 5b516729558e75241a1dd1a1ba641b4f, type: 3}
+    volume: 0.13
+    pitch: 0.53
+    source: {fileID: 0}
+  - name: Misil
+    clip: {fileID: 8300000, guid: 64256d5c1ed718941b21a7f897d90123, type: 3}
+    volume: 0.12
+    pitch: 0.53
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: 9f25d3f4add3c8d4fb75ef857c78ccab, type: 3}
+    volume: 0.12
+    pitch: 0.53
+    source: {fileID: 0}
 --- !u!4 &1123060106
 Transform:
   m_ObjectHideFlags: 0
@@ -15565,7 +15582,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215051621}
-  m_LocalRotation: {x: -0.074887194, y: -0.6865445, z: -0.071438834, w: 0.7196841}
+  m_LocalRotation: {x: -0.074887194, y: -0.6865445, z: -0.071438834, w: 0.71968406}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -23549,7 +23566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755900410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91.99667, y: 0.04000002, z: -0.14131898}
+  m_LocalPosition: {x: 439.89667, y: 0.04000002, z: -0.14131898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775451785}
