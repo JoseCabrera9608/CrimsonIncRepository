@@ -14,6 +14,7 @@ public class ElevatorScript : MonoBehaviour
     public bool elevatorGoingUp;
     public float elevatorSpeed;
     public float timer;
+    public float soundtimer;
     public GameObject elevator;
     public Rigidbody elevatorRb;
     public BoxCollider box;
@@ -47,10 +48,20 @@ public class ElevatorScript : MonoBehaviour
         if (elevatorRb.velocity.y == 0)
         {
             box.enabled = true;
+            //FindObjectOfType<AudioManager>().Stop("Ascensor");
         }
         else
         {
             box.enabled = false;
+
+        }
+
+        soundtimer += Time.deltaTime;
+
+        if (soundtimer >= 15)
+        {
+            FindObjectOfType<AudioManager>().Stop("Ascensor");
+            soundtimer = 0;
         }
 
 
@@ -61,6 +72,8 @@ public class ElevatorScript : MonoBehaviour
         if (playerOnActivationRange && Input.GetKeyDown(KeyCode.E) && elevatorReady)
         {
             elevatorReady = false;
+            soundtimer = 0;
+            FindObjectOfType<AudioManager>().Play("Ascensor");
         }
     }
 
@@ -86,6 +99,10 @@ public class ElevatorScript : MonoBehaviour
     {
         if (elevatorGoingUp)
         {
+
+
+
+
             if (elevator.transform.position.y >= topYLimit)
             {
                 timer += Time.deltaTime;

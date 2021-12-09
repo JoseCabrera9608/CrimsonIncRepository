@@ -34,5 +34,14 @@ public class ElevatorFix : MonoBehaviour
             cc.Move(rb.velocity * Time.deltaTime);
         }
 
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //FindObjectOfType<AudioManager>().Stop("Ascensor");
+        }
     }
 }

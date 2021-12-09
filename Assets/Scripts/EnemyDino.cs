@@ -156,6 +156,7 @@ public class EnemyDino : MonoBehaviour
         else
         {
             dinoAnim.SetBool("Mordida", false);
+            //FindObjectOfType<AudioManager>().Stop("Mordida");
             attacking = false;
         }
         //else enemy.destination = transform.position;
@@ -183,12 +184,14 @@ public class EnemyDino : MonoBehaviour
 
     void MordiendoPlayer()
     {
+        FindObjectOfType<AudioManager>().Play("Mordida");
         dmgtoPlayer = 20;
         attacking = true;
     }
 
     void StopMordiendoPlayer()
     {
+        //FindObjectOfType<AudioManager>().Stop("Mordida");
         dmgtoPlayer = 0;
         attacking = false;
     }
@@ -196,6 +199,7 @@ public class EnemyDino : MonoBehaviour
     void AttackState()
     {
         dinoAnim.SetBool("Mordida", true);
+
     }
 
     void CallState()
