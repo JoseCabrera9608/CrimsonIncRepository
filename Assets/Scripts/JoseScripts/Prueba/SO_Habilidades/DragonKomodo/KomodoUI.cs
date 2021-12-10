@@ -14,6 +14,7 @@ public class KomodoUI : MonoBehaviour
     public ParticleSystem deathParticles;
     public ProgressManager progress;
     public Fade fade;
+    public GameObject Player;
 
     void Start()
     {
@@ -45,6 +46,8 @@ public class KomodoUI : MonoBehaviour
 
             if (fade.fadeinend == true)
             {
+                Destroy(Player);
+                progress.lastposition = progress.hubpos;
                 SceneManager.LoadScene("Hub");
                 Destroy(Enemy);
             }
