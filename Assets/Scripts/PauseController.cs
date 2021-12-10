@@ -23,6 +23,11 @@ public class PauseController : MonoBehaviour
         {
             Activate();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Activate();
+        }
     }
 
     public void Activate()

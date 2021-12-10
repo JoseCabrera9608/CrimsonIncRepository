@@ -31,8 +31,18 @@ public class Sensibilidad : MonoBehaviour
     void Update()
     {
         //sensibilidad = slider.value;
-        cinem.m_YAxis.m_MaxSpeed = slider.value * 7;
-        cinem.m_XAxis.m_MaxSpeed = slider.value * 700;
+
+        if (slider.value <= 0)
+        {
+            cinem.m_YAxis.m_MaxSpeed = 0.7f;
+            cinem.m_XAxis.m_MaxSpeed = 70;
+        }
+        else
+        {
+            cinem.m_YAxis.m_MaxSpeed = slider.value * 7;
+            cinem.m_XAxis.m_MaxSpeed = slider.value * 700;
+        }
+
     }
 
 
