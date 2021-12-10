@@ -736,6 +736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23c32a391d1b064cb2f2d7bde6bdb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
+  contact: 0
 --- !u!65 &87717844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4659,6 +4661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23c32a391d1b064cb2f2d7bde6bdb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
+  contact: 0
 --- !u!65 &351492480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17531,6 +17535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerlife: 100
   playermov: {fileID: 1266308179}
+  incheck: 0
 --- !u!114 &1266308179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17574,6 +17579,7 @@ MonoBehaviour:
   marcado: {fileID: 0}
   Pause: {fileID: 385860216}
   marcando: 0
+  incheck: 0
   progress: {fileID: 0}
 --- !u!114 &1266308180
 MonoBehaviour:
@@ -21624,7 +21630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1604849609
 MonoBehaviour:
   m_ObjectHideFlags: 0
