@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Pause;
     public bool marcando;
     public bool incheck;
-
+    public bool isMoving;
     public ProgressManager progress;
 
 
@@ -111,12 +111,20 @@ public class PlayerMovement : MonoBehaviour
         if (inputVector.x == 0 && inputVector.z == 0)
         {
             playeranim.SetBool("Run", false);
-            //FindObjectOfType<AudioManager>().Stop("Movimiento");
+           
         }
         else
         {
             playeranim.SetBool("Run", true);
+            
+        }
+        if (isMoving == true)
+        {
             FindObjectOfType<AudioManager>().Play("Movimiento");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Stop("Movimiento");
         }
 
         //movePlayer = movePlayer * playerSpeed;
