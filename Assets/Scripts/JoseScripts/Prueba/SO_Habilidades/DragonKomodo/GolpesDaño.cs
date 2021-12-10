@@ -23,6 +23,7 @@ public class GolpesDaño : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("DamagedPlayer");
             player.playerlife -= damage;
             Debug.Log("Recibio daño por el golpe");
         }
