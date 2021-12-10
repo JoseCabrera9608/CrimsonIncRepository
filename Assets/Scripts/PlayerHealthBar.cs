@@ -48,6 +48,7 @@ public class PlayerHealthBar : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && healingcharges >=1 && player.playerlife <100)
         {
+            FindObjectOfType<AudioManager>().Play("Curacion");
             healingcharges -= 1;
             
             player.playerlife += 50;
