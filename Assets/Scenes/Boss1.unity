@@ -8731,6 +8731,8 @@ MonoBehaviour:
   Pause: {fileID: 1351403643}
   marcando: 0
   incheck: 0
+  isMoving: 0
+  startSound: 0
   progress: {fileID: 0}
 --- !u!114 &1227042594
 MonoBehaviour:
@@ -11609,21 +11611,31 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8d45385c32671124b91e3bae0bbf83bc, type: 3}
     volume: 0.14
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9f25d3f4add3c8d4fb75ef857c78ccab, type: 3}
     volume: 0.14
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Ataque
     clip: {fileID: 8300000, guid: 34a85d5ddfe975e42b893555012a49f0, type: 3}
     volume: 0.14
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Curacion
     clip: {fileID: 8300000, guid: 789c2dc56acb2664d961320220a38d69, type: 3}
     volume: 0.14
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Movimiento
+    clip: {fileID: 8300000, guid: b8e39ff3dbc7ee944b5e7bfec08d03a2, type: 3}
+    volume: 0.12
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &1648642675
 Transform:

@@ -3637,26 +3637,37 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c07f66fa1beeb504a89d1fc6e8f1eeb8, type: 3}
     volume: 0.25
     pitch: 0.53
+    loop: 0
     source: {fileID: 0}
   - name: Ascensor
     clip: {fileID: 8300000, guid: 8d45385c32671124b91e3bae0bbf83bc, type: 3}
     volume: 0.14
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9f25d3f4add3c8d4fb75ef857c78ccab, type: 3}
     volume: 0.14
     pitch: 0.53
+    loop: 0
     source: {fileID: 0}
   - name: Ataque
     clip: {fileID: 8300000, guid: 34a85d5ddfe975e42b893555012a49f0, type: 3}
     volume: 0.14
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Curacion
     clip: {fileID: 8300000, guid: 789c2dc56acb2664d961320220a38d69, type: 3}
     volume: 0.07
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Movimiento
+    clip: {fileID: 8300000, guid: b8e39ff3dbc7ee944b5e7bfec08d03a2, type: 3}
+    volume: 0.12
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &480587606
 Transform:
@@ -4433,7 +4444,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523621905}
-  m_LocalRotation: {x: -0.059680417, y: -0.6878994, z: -0.056932293, w: 0.72110426}
+  m_LocalRotation: {x: -0.059680413, y: -0.68789935, z: -0.05693229, w: 0.7211043}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15297,6 +15308,8 @@ MonoBehaviour:
   Pause: {fileID: 0}
   marcando: 0
   incheck: 0
+  isMoving: 0
+  startSound: 0
   progress: {fileID: 0}
 --- !u!114 &919132147896668872
 MonoBehaviour:
@@ -27642,6 +27655,8 @@ MonoBehaviour:
   Pause: {fileID: 15446405}
   marcando: 0
   incheck: 0
+  isMoving: 0
+  startSound: 0
   progress: {fileID: 0}
 --- !u!114 &8746421497969068901
 MonoBehaviour:

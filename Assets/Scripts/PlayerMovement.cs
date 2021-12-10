@@ -176,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
             fallVelocity -= gravity * Time.deltaTime;
             movePlayer.y = fallVelocity;
+            FindObjectOfType<AudioManager>().Stop("Movimiento");
         }
     }
 

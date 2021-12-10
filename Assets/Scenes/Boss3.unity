@@ -12097,41 +12097,55 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b7df2ad242ae8ad4281a94e11df60920, type: 3}
     volume: 0.15
     pitch: 0.66
+    loop: 0
     source: {fileID: 0}
   - name: Embestida
     clip: {fileID: 8300000, guid: 4d98b43db3bc1c44ab729c1bbbe532e2, type: 3}
     volume: 0.09
     pitch: 0.91
+    loop: 0
     source: {fileID: 0}
   - name: Misiles
     clip: {fileID: 8300000, guid: 64256d5c1ed718941b21a7f897d90123, type: 3}
     volume: 0.2
     pitch: 0.66
+    loop: 0
     source: {fileID: 0}
   - name: Explosion
     clip: {fileID: 8300000, guid: 5b516729558e75241a1dd1a1ba641b4f, type: 3}
     volume: 0.13
     pitch: 0.66
+    loop: 0
     source: {fileID: 0}
   - name: Tinta
     clip: {fileID: 8300000, guid: 82219d02b93cfc742b0672f5a0db8f1b, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9f25d3f4add3c8d4fb75ef857c78ccab, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
   - name: Ataque
     clip: {fileID: 8300000, guid: 34a85d5ddfe975e42b893555012a49f0, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Movimiento
+    clip: {fileID: 8300000, guid: b8e39ff3dbc7ee944b5e7bfec08d03a2, type: 3}
+    volume: 0.12
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: Curacion
     clip: {fileID: 8300000, guid: 789c2dc56acb2664d961320220a38d69, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &866938153
 Transform:
@@ -17590,6 +17604,8 @@ MonoBehaviour:
   Pause: {fileID: 385860216}
   marcando: 0
   incheck: 0
+  isMoving: 0
+  startSound: 0
   progress: {fileID: 0}
 --- !u!114 &1266308180
 MonoBehaviour:
