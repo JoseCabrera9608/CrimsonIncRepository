@@ -33,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false && pause.pause == false)
         {
-
+            FindObjectOfType<AudioManager>().Play("Ataque");
             attacking = true;
             playeranim.SetBool("Attack", true);
             
