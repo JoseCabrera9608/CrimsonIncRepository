@@ -48,6 +48,7 @@ public class EnemyHP : MonoBehaviour
             if (fade.fadeinend == true)
             {
                 Destroy(Player);
+                progress.lastposition = progress.hubpos;
                 SceneManager.LoadScene("Hub");
                 Destroy(Enemy);
             }

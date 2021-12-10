@@ -12,11 +12,14 @@ public class ProgressManager : MonoBehaviour
     public bool level3 = false;
 
     public float sens;
+    public int lvl;
+    public bool changing;
 
     public Sensibilidad sensi;
 
     private static ProgressManager instance;
     public Vector3 lastposition;
+    public Vector3 hubpos;
 
     private void Awake()
     {
@@ -33,5 +36,7 @@ public class ProgressManager : MonoBehaviour
     {
         sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
         sens = sensi.slider.value;
+
+
     }
 }

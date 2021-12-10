@@ -15,6 +15,8 @@ public class HubDoor : MonoBehaviour
     public Fade fade;
     public bool lvlgo;
 
+    public Vector3 initialpos;
+
 
     void Start()
     {
@@ -51,6 +53,7 @@ public class HubDoor : MonoBehaviour
 
         if (fade.fadeinend == true && lvlgo == true)
         {
+            progress.lastposition = initialpos;
             scene.ChangeScene();
         }
     }
