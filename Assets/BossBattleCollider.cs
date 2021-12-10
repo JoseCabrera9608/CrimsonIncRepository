@@ -31,7 +31,7 @@ public class BossBattleCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && startbattle == false)
         {
-            progress.lastCheckpointPos = transform.position;
+            //progress.lastCheckpointPos = transform.position;
             BattleCollider.SetActive(true);
             startbattle = true;
         }

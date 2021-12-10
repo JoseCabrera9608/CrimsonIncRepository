@@ -15,12 +15,14 @@ public class EnemyHP : MonoBehaviour
     public ParticleSystem deathParticles;
     public ProgressManager progress;
     public Fade fade;
+    public GameObject Player;
 
     void Start()
     {
         enemy = GameObject.FindGameObjectWithTag("EnemyDino").GetComponent<EnemyDino>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
+        Player = GameObject.FindGameObjectWithTag("Player");
         enemy.health = enemyhealth;
     }
 
@@ -32,7 +34,7 @@ public class EnemyHP : MonoBehaviour
 
         if (enemy.hitted == true)
         {
-            enemyhealth -= 5;
+            enemyhealth -= 100;
             enemy.hitted = false;
         }
 
@@ -45,6 +47,7 @@ public class EnemyHP : MonoBehaviour
 
             if (fade.fadeinend == true)
             {
+                Destroy(Player);
                 SceneManager.LoadScene("Hub");
                 Destroy(Enemy);
             }

@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DmgArea") && playermov.fallVelocity <= 0)
         {
-            playerlife -= 60;
+            playerlife -= 40;
         }
 
         if (other.gameObject.CompareTag("Checkpoint"))
