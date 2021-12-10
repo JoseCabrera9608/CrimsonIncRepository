@@ -215,4 +215,12 @@ public class KomodoController : MonoBehaviour
         temporalAcido.transform.position = temportalTargetChosenAcido.transform.position;
         Destroy(temporalAcido, 3f);
     }
+    void GolpesVerticalesSonido()
+    {
+        FindObjectOfType<AudioManager>().Play("GolpesVerticales");
+    }
+    void GolpesLateralesSonido()
+    {
+        FindObjectOfType<AudioManager>().Play("GolpesLaterales");
+    }
 }
