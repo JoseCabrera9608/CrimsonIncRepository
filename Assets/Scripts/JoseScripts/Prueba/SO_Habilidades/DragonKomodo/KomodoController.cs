@@ -35,6 +35,7 @@ public class KomodoController : MonoBehaviour
 
     public GameObject barraHUDEnemigo;
     NubeDaño dañoNube;
+    GameObject chosenSpawn;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -110,14 +111,25 @@ public class KomodoController : MonoBehaviour
     
     IEnumerator LanzarNube()
     {
-        FindObjectOfType<AudioManager>().Play("Nube");
-        yield return new WaitForSeconds(4.4f);
+        
+        /*yield return new WaitForSeconds(4.4f);
         nube.SetActive(true);
         yield return new WaitForSeconds(10);
-        nube.SetActive(false);
+        nube.SetActive(false);*/
+        yield return new WaitForSeconds(20f);
         startFight = true;
+        
     }
-   
+    
+    void StartNube()
+    {
+        FindObjectOfType<AudioManager>().Play("Nube");
+        nube.SetActive(true);
+    }
+    void StopNube()
+    {
+        nube.SetActive(false);
+    }
     IEnumerator ActivePunchCollider()
     {
        
@@ -131,25 +143,27 @@ public class KomodoController : MonoBehaviour
     IEnumerator MisileKomodo()
     {
         
-        GameObject chosenSpawn = misileSpawn;
+       chosenSpawn = misileSpawn;
         
         for (int i = 0; i<3; i++)
         {
-            FindObjectOfType<AudioManager>().Play("KomodoMisiles");
+           
             index = Random.Range(0, misileTargets.Length);
             GameObject temportalTargetChosen = misileTargets[index];
             targetChosen = temportalTargetChosen.transform;
             ultimaPosicion = new Vector3(targetChosen.transform.position.x,targetChosen.transform.position.y,targetChosen.transform.position.z);
             anim.SetTrigger("LanzarMisiles");
-            yield return new WaitForSeconds(1.9f);
-            GameObject temporalMisile = Instantiate(misile);
-            temporalMisile.transform.position = chosenSpawn.transform.position;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
 
         }
-        Debug.Log("Creo misiles");
         startFight = true;
-      
+    }
+    
+    void InstanciarMisil()
+    {
+        FindObjectOfType<AudioManager>().Play("KomodoMisiles");
+        GameObject temporalMisile = Instantiate(misile);
+        temporalMisile.transform.position = chosenSpawn.transform.position;
     }
     void FightStart()
     {
@@ -177,22 +191,28 @@ public class KomodoController : MonoBehaviour
 
     IEnumerator Inyeccion()
     {
-       
+
         for (int i = 0; i < 2; i++)
         {
             yield return new WaitForSeconds(1.7f);
-            FindObjectOfType<AudioManager>().Play("Inyeccion");
             anim.SetTrigger("Inyeccion");
-            index = Random.Range(0, inyeccionSpawners.Length);
-            GameObject temportalTargetChosenAcido = inyeccionSpawners[index];
-            yield return new WaitForSeconds(2.58f);
-            GameObject temporalAcido = Instantiate(acido);
-            temporalAcido.transform.position = temportalTargetChosenAcido.transform.position;
-            yield return new WaitForSeconds(3);
-            Destroy(temporalAcido,4f);
+          
         }
 
     }
 
-
+    void PreInyeccion()
+    {
+        FindObjectOfType<AudioManager>().Play("Inyeccion");
+        index = Random.Range(0, inyeccionSpawners.Length);
+    }
+    void InstanciarInyeccion()
+    {
+        GameObject temportalTargetChosenAcido = inyeccionSpawners[index];
+        //yield return new WaitForSeconds(2.58f);
+        GameObject temporalAcido = Instantiate(acido);
+        FindObjectOfType<AudioManager>().Play("Acido");
+        temporalAcido.transform.position = temportalTargetChosenAcido.transform.position;
+        Destroy(temporalAcido, 3f);
+    }
 }
