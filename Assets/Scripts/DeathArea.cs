@@ -20,6 +20,7 @@ public class DeathArea : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Destroy(other.gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

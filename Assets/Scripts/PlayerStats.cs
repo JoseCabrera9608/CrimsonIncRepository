@@ -7,12 +7,19 @@ public class PlayerStats : MonoBehaviour
 {
     public float playerlife;
     public PlayerMovement playermov;
-    
+    public static Vector3 lastPosition;
+    public bool incheck;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //playerlife = 100;
+        if (lastPosition != Vector3.zero)
+        {
+            transform.position = lastPosition;
+        }
+
         playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
@@ -21,6 +28,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (playerlife <= 0)
         {
+            Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Destroy(gameObject);
         }
@@ -37,6 +45,13 @@ public class PlayerStats : MonoBehaviour
         {
             playerlife -= 60;
         }
+
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            incheck = true;
+            lastPosition = other.transform.position;
+        }
+
     }
     private void OnParticleTrigger()
     {
