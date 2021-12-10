@@ -16,7 +16,7 @@ public class ProgressManager : MonoBehaviour
     public Sensibilidad sensi;
 
     private static ProgressManager instance;
-    public Vector3 lastCheckpointPos;
+    public Vector3 lastposition;
 
     private void Awake()
     {

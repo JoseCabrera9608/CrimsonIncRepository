@@ -15,10 +15,6 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         //playerlife = 100;
-        if (lastPosition != Vector3.zero)
-        {
-            transform.position = lastPosition;
-        }
 
         playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
@@ -46,11 +42,6 @@ public class PlayerStats : MonoBehaviour
             playerlife -= 40;
         }
 
-        if (other.gameObject.CompareTag("Checkpoint"))
-        {
-            incheck = true;
-            lastPosition = other.transform.position;
-        }
 
     }
     private void OnParticleTrigger()

@@ -45,15 +45,27 @@ public class PlayerMovement : MonoBehaviour
     public GameObject marcado;
     public GameObject Pause;
     public bool marcando;
+    public bool incheck;
 
     public ProgressManager progress;
 
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        
+    }
+
     void Start()
     {
-        //progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         //transform.position = progress.lastCheckpointPos;
+
+        if (progress.lastposition != Vector3.zero)
+        {
+            transform.position = progress.lastposition;
+        }
 
 
         player = GetComponent<CharacterController>();
@@ -216,6 +228,17 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         dashStartTime = 0;
         //anim.SetBool("Dash", false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            incheck = true;
+            progress.lastposition = other.transform.position;
+        }
+
     }
 
 
