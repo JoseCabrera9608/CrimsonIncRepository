@@ -111,10 +111,12 @@ public class PlayerMovement : MonoBehaviour
         if (inputVector.x == 0 && inputVector.z == 0)
         {
             playeranim.SetBool("Run", false);
+            //FindObjectOfType<AudioManager>().Stop("Movimiento");
         }
         else
         {
             playeranim.SetBool("Run", true);
+            FindObjectOfType<AudioManager>().Play("Movimiento");
         }
 
         //movePlayer = movePlayer * playerSpeed;
