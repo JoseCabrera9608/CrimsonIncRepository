@@ -961,6 +961,80 @@ Transform:
   m_Father: {fileID: 596923679}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &176355697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176355699}
+  - component: {fileID: 176355698}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &176355698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176355697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19a06d6baef3d44ebc3edcf7070be0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Ascensor
+    clip: {fileID: 8300000, guid: 8d45385c32671124b91e3bae0bbf83bc, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: 9f25d3f4add3c8d4fb75ef857c78ccab, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ataque
+    clip: {fileID: 8300000, guid: 34a85d5ddfe975e42b893555012a49f0, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Curacion
+    clip: {fileID: 8300000, guid: 789c2dc56acb2664d961320220a38d69, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Movimiento
+    clip: {fileID: 8300000, guid: b8e39ff3dbc7ee944b5e7bfec08d03a2, type: 3}
+    volume: 0.12
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+--- !u!4 &176355699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176355697}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -369.4284, y: 51.79645, z: 177.15666}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190243183
 GameObject:
   m_ObjectHideFlags: 0
@@ -7855,6 +7929,8 @@ MonoBehaviour:
   Pause: {fileID: 0}
   marcando: 0
   incheck: 0
+  isMoving: 0
+  startSound: 0
   progress: {fileID: 0}
 --- !u!114 &1164701301
 MonoBehaviour:
@@ -9838,6 +9914,8 @@ MonoBehaviour:
   Pause: {fileID: 288329603}
   marcando: 0
   incheck: 0
+  isMoving: 0
+  startSound: 0
   progress: {fileID: 0}
 --- !u!114 &1514090279
 MonoBehaviour:
