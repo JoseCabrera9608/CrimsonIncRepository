@@ -13,11 +13,15 @@ public class MamutUI : MonoBehaviour
     public GameObject Enemy;
     public ParticleSystem deathParticles;
     public ProgressManager progress;
+    public Fade fade;
+    public GameObject Player;
 
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<EnemyMamut>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
+        Player = GameObject.FindGameObjectWithTag("Player");
         enemy.health = enemyhealth;
     }
 
@@ -37,9 +41,17 @@ public class MamutUI : MonoBehaviour
         {
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
-            progress.level1 = true;
-            SceneManager.LoadScene("Hub");
-            Destroy(Enemy);
+            progress.level2 = true;
+            fade.Fadein();
+
+            if (fade.fadeinend == true)
+            {
+                Destroy(Player);
+                progress.lastposition = progress.hubpos;
+                SceneManager.LoadScene("Hub");
+            }
+
+
         }
 
     }
