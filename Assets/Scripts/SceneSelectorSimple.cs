@@ -7,10 +7,12 @@ public class SceneSelectorSimple : MonoBehaviour
 {
     // Start is called before the first frame update
     public string sceneName;
+    public Vector3 hubpos;
+    public ProgressManager progress;
 
     void Start()
     {
-        
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     // Update is called once per frame
@@ -25,42 +27,13 @@ public class SceneSelectorSimple : MonoBehaviour
             ChangeScene();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-
-            sceneName = "Tutorial";
-            
-            ChangeScene();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-
-            sceneName = "Boss1";
-
-            ChangeScene();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-
-            sceneName = "Boss2";
-
-            ChangeScene();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-
-            sceneName = "Boss3";
-
-            ChangeScene();
-        }
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
 
-            sceneName = "SantiWhiteBlocking";
+            sceneName = "Hub";
+            progress.lastposition = progress.hubpos;
+
 
             ChangeScene();
         }
