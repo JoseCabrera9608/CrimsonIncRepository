@@ -14,7 +14,7 @@ public class CalamarUI : MonoBehaviour
     public ParticleSystem deathParticles;
     public ProgressManager progress;
     public Fade fade;
-
+    public GameObject Player;
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<CalamarController>();
@@ -52,6 +52,8 @@ public class CalamarUI : MonoBehaviour
         fade.Fadein();
         if (fade.fadeinend == true)
         {
+            Destroy(Player);
+            progress.lastposition = progress.hubpos;
             SceneManager.LoadScene("Hub");
             Destroy(Enemy);
         }

@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 1266308176}
-  damage: 1.2
+  damage: 0.5
 --- !u!114 &85029904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11003,6 +11003,10 @@ GameObject:
   - component: {fileID: 806452553}
   - component: {fileID: 806452554}
   - component: {fileID: 806452555}
+  - component: {fileID: 806452557}
+  - component: {fileID: 806452556}
+  - component: {fileID: 806452559}
+  - component: {fileID: 806452558}
   m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
@@ -11019,7 +11023,7 @@ Transform:
   m_GameObject: {fileID: 806452552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1786515, y: 1.1786515, z: 1.1786515}
   m_Children: []
   m_Father: {fileID: 1453109276}
   m_RootOrder: 3
@@ -11056,6 +11060,62 @@ MonoBehaviour:
   matNormal: {fileID: 2100000, guid: d9796600d88b6aa4a86b483645485f8d, type: 2}
   matHitted: {fileID: 2100000, guid: 4537d041ebe836c4daec5fd5809137cb, type: 2}
   timer: 0
+--- !u!136 &806452556
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806452552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.3
+  m_Height: 7.7057242
+  m_Direction: 0
+  m_Center: {x: 8.75, y: -8.95, z: -1.14}
+--- !u!136 &806452557
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806452552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.3
+  m_Height: 7.7057242
+  m_Direction: 0
+  m_Center: {x: -7.38, y: -8.98, z: -0.89}
+--- !u!136 &806452558
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806452552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.3
+  m_Height: 7.7057242
+  m_Direction: 2
+  m_Center: {x: -4.44, y: -8.95, z: 5.69}
+--- !u!136 &806452559
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806452552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.3
+  m_Height: 7.7057242
+  m_Direction: 2
+  m_Center: {x: 4.77, y: -8.95, z: 5.69}
 --- !u!1 &813896067
 GameObject:
   m_ObjectHideFlags: 0
@@ -11414,6 +11474,7 @@ MonoBehaviour:
   deathParticles: {fileID: 3392973645414333700, guid: cfcfab05a0c1ca2409b427b4c489d555, type: 3}
   progress: {fileID: 0}
   fade: {fileID: 0}
+  Player: {fileID: 1266308176}
 --- !u!1 &828575172
 GameObject:
   m_ObjectHideFlags: 0
@@ -12107,43 +12168,43 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Misiles
     clip: {fileID: 8300000, guid: 64256d5c1ed718941b21a7f897d90123, type: 3}
-    volume: 0.2
-    pitch: 0.66
+    volume: 0.12
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Explosion
     clip: {fileID: 8300000, guid: 5b516729558e75241a1dd1a1ba641b4f, type: 3}
-    volume: 0.13
-    pitch: 0.66
+    volume: 0.08
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Tinta
     clip: {fileID: 8300000, guid: 82219d02b93cfc742b0672f5a0db8f1b, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9f25d3f4add3c8d4fb75ef857c78ccab, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Ataque
     clip: {fileID: 8300000, guid: 34a85d5ddfe975e42b893555012a49f0, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Movimiento
     clip: {fileID: 8300000, guid: b8e39ff3dbc7ee944b5e7bfec08d03a2, type: 3}
-    volume: 0.12
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Curacion
     clip: {fileID: 8300000, guid: 789c2dc56acb2664d961320220a38d69, type: 3}
-    volume: 1
+    volume: 0.12
     pitch: 1
     loop: 0
     source: {fileID: 0}
