@@ -26,7 +26,7 @@ public class CalamarUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = enemyhealth / 100f;
+        healthBar.fillAmount = enemyhealth / 170f;
         enemy.health = enemyhealth;
 
         if (enemy.hitted == true)
