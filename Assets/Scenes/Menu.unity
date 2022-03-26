@@ -236,7 +236,11 @@ MonoBehaviour:
   level2: 0
   level3: 0
   sens: 0
+  lvl: 0
+  changing: 0
   sensi: {fileID: 0}
+  lastposition: {x: 0, y: 0, z: 0}
+  hubpos: {x: 0, y: 0, z: 0}
 --- !u!4 &303235360
 Transform:
   m_ObjectHideFlags: 0
@@ -661,6 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Credits
+  progress: {fileID: 0}
 --- !u!1 &1409828023
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +932,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1535613467}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: ChangeTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -988,6 +993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Tutorial
+  progress: {fileID: 0}
 --- !u!1 &1734663746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Ranking
+  progress: {fileID: 0}
 --- !u!1 &2007213513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Options
+  progress: {fileID: 0}
 --- !u!1 &2010298086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,3 +1434,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  progress: {fileID: 0}

@@ -23,6 +23,7 @@ public class SceneSelectorSimple : MonoBehaviour
         {
 
             sceneName = "Menu";
+            progress.lastposition = new Vector3(430, 1, 0);
 
             ChangeScene();
         }

@@ -41,7 +41,7 @@ public class MamutUI : MonoBehaviour
         {
             ParticleSystem temporalbullet = Instantiate(deathParticles);
             temporalbullet.transform.position = Enemy.transform.position;
-            progress.level2 = true;
+            progress.level1 = true;
             fade.Fadein();
 
             if (fade.fadeinend == true)
