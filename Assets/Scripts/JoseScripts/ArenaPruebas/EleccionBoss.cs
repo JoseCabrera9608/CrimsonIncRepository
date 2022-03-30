@@ -11,7 +11,26 @@ public class EleccionBoss : MonoBehaviour
     public GameObject calamarUI;
     public GameObject calamarObject;
     public GameObject spawnPoint;
- 
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            EleccionKomodo();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EleccionRaptor();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EleccionCalamar();
+        }
+    }
+
     public void EleccionKomodo()
     {
         komodoObject.SetActive(true);
@@ -21,8 +40,7 @@ public class EleccionBoss : MonoBehaviour
 
     public void EleccionRaptor()
     {
-        GameObject temporalBoss = Instantiate(raptorObject);
-        temporalBoss.transform.position = spawnPoint.transform.position;
+        raptorObject.SetActive(true);
         raptorUI.SetActive(true);
         this.gameObject.SetActive(false);
     }

@@ -5,8 +5,14 @@ using UnityEngine;
 public class Inicio : MonoBehaviour
 {
     public GameObject menuSeleccion;
-    
-   
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ActivarSeleccion();
+        }
+    }
 
     public void ActivarSeleccion()
     {
