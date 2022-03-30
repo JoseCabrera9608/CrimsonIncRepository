@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isDashing;
     public float dashcd;
     public float dashingcd;
+    public float dashspeed;
     private int dashAttempts;
     private float dashStartTime;
     public float timer;
@@ -212,11 +213,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (playerInput.Equals(Vector3.zero))
                 {
-                    player.Move(transform.forward * (playerSpeed *3) * Time.deltaTime);  //Velocidad del Dash estando quieto
+                    player.Move(transform.forward * (dashspeed) * Time.deltaTime);  //Velocidad del Dash estando quieto
                 }
                 else
                 {
-                    player.Move(transform.forward * (playerSpeed * 3) * Time.deltaTime);  //Velocidad del Dash en movimiento
+                    player.Move(transform.forward * (dashspeed) * Time.deltaTime);  //Velocidad del Dash en movimiento
                 }
                 
 
