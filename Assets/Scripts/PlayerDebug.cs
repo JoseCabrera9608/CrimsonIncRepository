@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDebug : MonoBehaviour
 {
@@ -20,10 +22,16 @@ public class PlayerDebug : MonoBehaviour
     public InputField dashspeedInput;
     public InputField dashlenghtInput;
     public GameObject Player;
+    public PlayerMovement player;
+    public PlayerAttack playerAttack;
+
+    public CinemachineCameraOffset cineoff;
+    public CinemachineFreeLook cinefree;
 
     private void Awake()
     {
-        PlayerMovement player = Player.GetComponent<PlayerMovement>();
+        player = Player.GetComponent<PlayerMovement>();
+        playerAttack = Player.GetComponent<PlayerAttack>();
 
         speed = player.playerSpeed;
         jump = player.jumpForce;
@@ -36,26 +44,29 @@ public class PlayerDebug : MonoBehaviour
 
     void Start()
     {
-        PlayerMovement player = Player.GetComponent<PlayerMovement>();
-        speedInput.text = player.playerSpeed.ToString();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
-    public void ReadStringInput (string s)
+    public void PlayerAttack(string s)
     {
+
         input = s;
-        prueba = float.Parse(input);
-        Debug.Log(input);
+        playerAttack.damage = float.Parse(input);
+
     }
 
     public void PlayerSpeed(string s)
     {
-        PlayerMovement player = Player.GetComponent<PlayerMovement>();
+
         input = s;
         player.playerSpeed = float.Parse(input);
         
@@ -63,7 +74,6 @@ public class PlayerDebug : MonoBehaviour
 
     public void PlayerJump(string s)
     {
-        PlayerMovement player = Player.GetComponent<PlayerMovement>();
         input = s;
         player.jumpForce = float.Parse(input);
 
@@ -71,16 +81,70 @@ public class PlayerDebug : MonoBehaviour
 
     public void DashSpeed(string s)
     {
-        PlayerMovement player = Player.GetComponent<PlayerMovement>();
         input = s;
         player.dashspeed = float.Parse(input);
 
     }
     public void DashLenght(string s)
     {
-        PlayerMovement player = Player.GetComponent<PlayerMovement>();
         input = s;
         player.duraciondash = float.Parse(input);
+
+    }
+
+    public void DashCD(string s)
+    {
+        input = s;
+        player.dashcd = float.Parse(input);
+
+    }
+
+    //CAMARA
+
+    public void CameraXoffset(string s)
+    {
+        input = s;
+        cineoff.m_Offset.x = float.Parse(input);
+
+    }
+    public void CameraYoffset(string s)
+    {
+        input = s;
+        cineoff.m_Offset.y = float.Parse(input);
+
+    }
+    public void CameraZoffset(string s)
+    {
+        input = s;
+        cineoff.m_Offset.z = float.Parse(input);
+
+    }
+
+
+    public void CameraXDamping(string s)
+    {
+        input = s;
+        cinefree.GetRig(0).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XDamping = float.Parse(input);
+        cinefree.GetRig(1).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XDamping = float.Parse(input);
+        cinefree.GetRig(2).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XDamping = float.Parse(input);
+
+    }
+
+    public void CameraYDamping(string s)
+    {
+        input = s;
+        cinefree.GetRig(0).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_YDamping = float.Parse(input);
+        cinefree.GetRig(1).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_YDamping = float.Parse(input);
+        cinefree.GetRig(2).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_YDamping = float.Parse(input);
+
+    }
+
+    public void CameraZDamping(string s)
+    {
+        input = s;
+        cinefree.GetRig(0).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_ZDamping = float.Parse(input);
+        cinefree.GetRig(1).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_ZDamping = float.Parse(input);
+        cinefree.GetRig(2).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_ZDamping = float.Parse(input);
 
     }
 }

@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public bool attacking;
     public GameObject Pause;
     public BoxCollider weaponCollider;
+    public float damage;
 
 
     void Start()
@@ -20,6 +21,8 @@ public class PlayerAttack : MonoBehaviour
         weaponCollider = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<BoxCollider>();
 
         weaponCollider.enabled = false;
+
+        damage = 5;
 
     }
 
