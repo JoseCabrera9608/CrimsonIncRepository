@@ -8,10 +8,14 @@ public class Boss1Arena : MonoBehaviour
     Collider brazoCollider;
     public Animator anim;
     public GameObject nube;
+    NubeDaño nubeBool;
+    
     private void Start()
     {
         anim = GetComponent<Animator>();
         brazoCollider = golpeCollider.GetComponent<Collider>();
+        nubeBool = nube.GetComponent<NubeDaño>();
+        
     }
 
     private void Update()
@@ -24,6 +28,8 @@ public class Boss1Arena : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Poder2Komodo();
+            
+
         }
 
     }
@@ -34,7 +40,10 @@ public class Boss1Arena : MonoBehaviour
 
     public void Poder2Komodo()
     {
+        nubeBool.activado = true;
+        anim.SetBool("NubeBool",true);
         StartCoroutine(NubeCorrosiva());
+        
     }
 
     public void Poder3Komodo()
@@ -53,11 +62,12 @@ public class Boss1Arena : MonoBehaviour
 
     IEnumerator NubeCorrosiva()
     {
-        anim.SetTrigger("Nube");
+        
         nube.SetActive(true);
         yield return new WaitForSeconds(6);
         nube.SetActive(false);
-        
+        anim.SetBool("NubeBool", false);
+
 
     }
 }

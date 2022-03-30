@@ -87,11 +87,11 @@ public class Boss2Arena : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+       /* if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             AttackState();
         }
-
+       */
         if (hitted == true)
         {
             JumpState();
@@ -139,18 +139,18 @@ public class Boss2Arena : MonoBehaviour
             battlestarted = true;
         }
 
-        if (dist >= invokearea && battlestarted == true && pause.pause == false)
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             CallState();
         }
 
-        if (dist <= under && pause.pause == false)
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             JumpState();
 
         }
 
-        if (dist <= attackRange && pause.pause == false)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             AttackState();
 

@@ -11,6 +11,7 @@ public class EleccionBoss : MonoBehaviour
     public GameObject calamarUI;
     public GameObject calamarObject;
     public GameObject spawnPoint;
+    public GameObject seleccionUI;
 
 
     private void Update()
@@ -18,16 +19,19 @@ public class EleccionBoss : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             EleccionKomodo();
+            seleccionUI.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             EleccionRaptor();
+            seleccionUI.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             EleccionCalamar();
+            seleccionUI.SetActive(false);
         }
     }
 

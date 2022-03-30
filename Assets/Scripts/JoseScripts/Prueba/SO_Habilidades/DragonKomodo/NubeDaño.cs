@@ -11,6 +11,8 @@ public class NubeDaño : MonoBehaviour
     float nube_ScaleX, nube_ScaleY, nube_ScaleZ;
     bool atacando;
     public bool activado = false;
+    public GameObject colliderNube;
+    public float fuerza;
     void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -21,6 +23,7 @@ public class NubeDaño : MonoBehaviour
         nube_ScaleY = 1f;
         nube_ScaleZ = 1f;
         nubeCollider.size = new Vector3(nube_ScaleX, nube_ScaleY, nube_ScaleZ);*/
+
         
     }
 
@@ -30,7 +33,9 @@ public class NubeDaño : MonoBehaviour
         
         if(activado == true)
         {
-            StartCoroutine(EscalarCollider());
+            //StartCoroutine(EscalarCollider());
+            StartCoroutine(MoverCollider());
+            
        
         }
       
@@ -61,5 +66,15 @@ public class NubeDaño : MonoBehaviour
        
     }
     
-
+    IEnumerator MoverCollider()
+    {
+        fuerza = 3;
+        colliderNube.transform.position += Vector3.forward * Time.deltaTime * fuerza;
+        yield return new WaitForSeconds(5);
+        fuerza = -12;
+        colliderNube.transform.position += Vector3.forward * Time.deltaTime * fuerza;
+        yield return new WaitForSeconds(10);
+        fuerza = 0;
+        activado = false;
+    }
 }

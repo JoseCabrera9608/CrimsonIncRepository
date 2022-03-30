@@ -32,7 +32,7 @@ public class DañoEmbestida : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.playerlife -= damage;
-            Debug.Log("Recibio daño por el golpe");
+            Debug.Log("Recibio daño embestida");
         }
     }
 }
