@@ -68,4 +68,19 @@ public class PlayerDebug : MonoBehaviour
         player.jumpForce = float.Parse(input);
 
     }
+
+    public void DashSpeed(string s)
+    {
+        PlayerMovement player = Player.GetComponent<PlayerMovement>();
+        input = s;
+        player.dashspeed = float.Parse(input);
+
+    }
+    public void DashLenght(string s)
+    {
+        PlayerMovement player = Player.GetComponent<PlayerMovement>();
+        input = s;
+        player.duraciondash = float.Parse(input);
+
+    }
 }
