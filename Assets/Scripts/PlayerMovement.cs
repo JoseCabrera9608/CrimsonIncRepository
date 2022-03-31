@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         dashingcd = dashcd;
 
         mainCamera = Camera.main;
-
+        
     }
 
     // Update is called once per frame
@@ -92,9 +92,6 @@ public class PlayerMovement : MonoBehaviour
             player.Move(movePlayer * Time.deltaTime);
 
         }
-
-        
-
         inputVector.x = Input.GetAxisRaw("Horizontal");
         inputVector.z = Input.GetAxisRaw("Vertical");
 
@@ -117,13 +114,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            
             playeranim.SetBool("Run", true);
-           
-            
         }
-       
-
         //movePlayer = movePlayer * playerSpeed;
 
         player.transform.LookAt(player.transform.position + movePlayer);
