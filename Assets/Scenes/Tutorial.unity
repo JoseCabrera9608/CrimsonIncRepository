@@ -1491,7 +1491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149114653}
   m_LocalRotation: {x: -0.09000685, y: -0.6848902, z: -0.085862264, w: 0.7179498}
-  m_LocalPosition: {x: 439.91812, y: 2.2494783, z: 0.032829925}
+  m_LocalPosition: {x: 113.41814, y: 2.2494783, z: 0.032829925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1574,7 +1574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149376631}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 430, y: 1, z: 0}
+  m_LocalPosition: {x: 103.5, y: 1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 750037787}
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   isDashing: 0
   dashcd: 2
   dashingcd: 0
+  dashspeed: 0
   timer: 0
   DashParticles: {fileID: 406070608}
   mainCamera: {fileID: 149114656}
@@ -1666,6 +1667,7 @@ MonoBehaviour:
   attacking: 0
   Pause: {fileID: 1234128025}
   weaponCollider: {fileID: 1034817612}
+  damage: 0
 --- !u!143 &149376636
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8343,6 +8345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  progress: {fileID: 0}
 --- !u!1 &595389236
 GameObject:
   m_ObjectHideFlags: 0
@@ -11733,7 +11736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability:
-  - {fileID: 11400000, guid: 92110e8097e1a2244b8a523d633cf160, type: 2}
   - {fileID: 11400000, guid: ee99dc36732fa164a9b5693562da23f0, type: 2}
   - {fileID: 11400000, guid: 2f46cd640562f184a9b327143c8fb53e, type: 2}
   - {fileID: 11400000, guid: 715414fa1cf75f34c8915bed5a2bb0c5, type: 2}
@@ -15221,6 +15223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  progress: {fileID: 0}
 --- !u!1 &1157242270
 GameObject:
   m_ObjectHideFlags: 0
@@ -15765,7 +15768,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215051621}
-  m_LocalRotation: {x: -0.0748872, y: -0.6865445, z: -0.07143884, w: 0.7196841}
+  m_LocalRotation: {x: -0.07488719, y: -0.68654454, z: -0.07143884, w: 0.71968406}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17355,6 +17358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  progress: {fileID: 0}
 --- !u!1 &1285620519
 GameObject:
   m_ObjectHideFlags: 0
@@ -23752,7 +23756,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755900410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 432.99667, y: 0.5, z: -0.14131898}
+  m_LocalPosition: {x: 106.49667, y: 0.5, z: -0.14131898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775451785}
@@ -25301,6 +25305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  progress: {fileID: 0}
 --- !u!1 &1867696248
 GameObject:
   m_ObjectHideFlags: 0

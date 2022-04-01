@@ -126,7 +126,7 @@ public class BossCangrejo : MonoBehaviour
         //anim.SetBool("Embestir", false);
         agente.speed = 1000000;
         agente.acceleration = 100;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         agente.speed = 0;
         yield return new WaitForSeconds(2);
         cuboColor.material.color = Color.grey;
