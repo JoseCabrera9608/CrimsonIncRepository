@@ -39,6 +39,16 @@ public class SceneSelectorSimple : MonoBehaviour
             ChangeScene();
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+
+            sceneName = "JoseTesteos";
+            progress.lastposition = progress.hubpos;
+
+
+            ChangeScene();
+        }
+
     }
 
     public void ChangeScene()
