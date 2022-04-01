@@ -99,7 +99,7 @@ public class BossCangrejo : MonoBehaviour
         GolpeTenazaCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
         GolpeTenazaCollider.SetActive(false);
-        agente.speed = 6;
+        agente.speed = 5;
         cuboColor.material.color = Color.grey;
     }
 
@@ -111,7 +111,7 @@ public class BossCangrejo : MonoBehaviour
         brazoDerechoCollider.SetActive(true);
         brazoIzquierdoCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
-        agente.speed = 6;
+        agente.speed = 5;
         brazoDerechoCollider.SetActive(false);
         brazoIzquierdoCollider.SetActive(false);
         cuboColor.material.color = Color.grey;
@@ -130,6 +130,6 @@ public class BossCangrejo : MonoBehaviour
         agente.speed = 0;
         yield return new WaitForSeconds(2);
         cuboColor.material.color = Color.grey;
-        agente.speed = 6;
+        agente.speed = 5;
     }
 }
