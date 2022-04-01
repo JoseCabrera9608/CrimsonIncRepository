@@ -12,27 +12,38 @@ public class EleccionBoss : MonoBehaviour
     public GameObject calamarObject;
     public GameObject spawnPoint;
     public GameObject seleccionUI;
+    public GameObject gameManager;
+    Inicio inicioBool;
+
+    private void Start()
+    {
+        inicioBool = gameManager.GetComponent<Inicio>();
+    }
+
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1)&&inicioBool.seInicio == true)
         {
             EleccionKomodo();
             seleccionUI.SetActive(false);
         }
+  
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && inicioBool.seInicio == true)
         {
             EleccionRaptor();
             seleccionUI.SetActive(false);
         }
+ 
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && inicioBool.seInicio == true)
         {
             EleccionCalamar();
             seleccionUI.SetActive(false);
         }
+       
     }
 
     public void EleccionKomodo()
