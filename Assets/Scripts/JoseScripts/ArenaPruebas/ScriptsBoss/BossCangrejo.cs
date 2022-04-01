@@ -14,6 +14,7 @@ public class BossCangrejo : MonoBehaviour
     public HabilidadesEquipadas ability;
     public bool activarGolpeTenazas = false;
     public bool activarGolpeSecuencia = false;
+    public bool activarEmbestida = false;
 
     //Animator
     Animator anim;
@@ -57,8 +58,15 @@ public class BossCangrejo : MonoBehaviour
         if (activarGolpeSecuencia == true)
         {
             Debug.Log("Activo Secuencia de golpes");
-            activarGolpeSecuencia = false;
             StartCoroutine(HabilidadSecuenciaGolpes());
+            activarGolpeSecuencia = false;
+        }
+
+        if (activarEmbestida == true)
+        {
+            Debug.Log("Activo Embestida");
+            StartCoroutine(Embestida());
+            activarEmbestida = false;
         }
 
 
@@ -107,5 +115,21 @@ public class BossCangrejo : MonoBehaviour
         brazoDerechoCollider.SetActive(false);
         brazoIzquierdoCollider.SetActive(false);
         cuboColor.material.color = Color.grey;
+    }
+
+    IEnumerator Embestida()
+    {
+        SkinnedMeshRenderer cuboColor = this.gameObject.GetComponent<SkinnedMeshRenderer>();
+        cuboColor.material.color = Color.black;
+        agente.speed = 0;
+        yield return new WaitForSeconds(4);
+        //anim.SetBool("Embestir", false);
+        agente.speed = 1000000;
+        agente.acceleration = 100;
+        yield return new WaitForSeconds(3);
+        agente.speed = 0;
+        yield return new WaitForSeconds(2);
+        cuboColor.material.color = Color.grey;
+        agente.speed = 6;
     }
 }
