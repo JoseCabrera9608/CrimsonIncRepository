@@ -817,6 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSeleccion: {fileID: 732001265}
+  seInicio: 0
 --- !u!114 &82740359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3620,7 +3621,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461328967}
-  m_LocalRotation: {x: -0.059680413, y: -0.6878995, z: -0.05693229, w: 0.7211043}
+  m_LocalRotation: {x: -0.059680413, y: -0.68789935, z: -0.056932285, w: 0.7211044}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5774,7 +5775,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Boss2
+  m_Text: Raptor (Presionar 2)
 --- !u!222 &599089441
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5884,7 +5885,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Probar Bosses
+  m_Text: Enter para iniciar boss
 --- !u!222 &604761027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6721,7 +6722,7 @@ RectTransform:
   m_GameObject: {fileID: 732001265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3097, y: 1.3097, z: 1.3097}
   m_Children:
   - {fileID: 1873924349}
   - {fileID: 32334}
@@ -6731,7 +6732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 8.5, y: 1.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &737076050
@@ -7635,7 +7636,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Boss1 (Komodo)
+  m_Text: Komodo (Presionar 1)
 --- !u!222 &816359532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12131,7 +12132,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Boss3 (Calamar)
+  m_Text: Calamar (Presionar 3)
 --- !u!222 &1246257859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13784,6 +13785,7 @@ MonoBehaviour:
   calamarObject: {fileID: 1324968097}
   spawnPoint: {fileID: 1682216507}
   seleccionUI: {fileID: 732001265}
+  gameManager: {fileID: 82740356}
 --- !u!4 &1346578355
 Transform:
   m_ObjectHideFlags: 0
