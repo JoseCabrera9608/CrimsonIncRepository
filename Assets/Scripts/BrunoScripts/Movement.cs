@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float movSpeed;
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
 
-    [SerializeField] private bool isGrounded;
+    [SerializeField] public bool isGrounded;
     private float airTime;
     [SerializeField] private float leapingVelocity;
     [SerializeField] private float fallSpeed;
@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
 
     private void Falling()
     {
-        RaycastHit hit;
+
         Vector3 rayCastOrigin = transform.position;
         Vector3 targetPosition;
         targetPosition = transform.position;
@@ -79,19 +79,7 @@ public class Movement : MonoBehaviour
             rb.AddForce(-Vector3.up * fallSpeed * airTime);
         }
 
-        if (Physics.SphereCast(rayCastOrigin, .2f, -transform.up, out hit, rayCastOffset))
-        {
-            // if(!isGrounded) asignar animacion de aterrizar
-            Vector3 rayCastHitPoint = hit.point;
-            targetPosition.y = rayCastHitPoint.y+rayCastOffset;
-            airTime = 0;
-            isGrounded = true;
-            
-        }
-        else
-        {
-            isGrounded = false;
-        }
+
 
         if (isGrounded)
         {
