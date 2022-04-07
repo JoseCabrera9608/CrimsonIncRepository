@@ -96,9 +96,9 @@ public class BossCangrejo : MonoBehaviour
         SkinnedMeshRenderer cuboColor = this.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.red;
         agente.speed = 0;
-        GolpeTenazaCollider.SetActive(true);
+        //GolpeTenazaCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
-        GolpeTenazaCollider.SetActive(false);
+        //GolpeTenazaCollider.SetActive(false);
         agente.speed = 5;
         cuboColor.material.color = Color.grey;
     }
@@ -108,12 +108,12 @@ public class BossCangrejo : MonoBehaviour
         SkinnedMeshRenderer cuboColor = this.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.blue;
         agente.speed = 0;
-        brazoDerechoCollider.SetActive(true);
-        brazoIzquierdoCollider.SetActive(true);
+        //brazoDerechoCollider.SetActive(true);
+        //brazoIzquierdoCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
         agente.speed = 5;
-        brazoDerechoCollider.SetActive(false);
-        brazoIzquierdoCollider.SetActive(false);
+        //brazoDerechoCollider.SetActive(false);
+        //brazoIzquierdoCollider.SetActive(false);
         cuboColor.material.color = Color.grey;
     }
 

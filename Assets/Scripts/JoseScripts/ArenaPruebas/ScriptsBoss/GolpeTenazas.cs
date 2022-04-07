@@ -8,8 +8,8 @@ public class GolpeTenazas : Habilidad_SO
     public override void Activate(GameObject parent)
     {
         BossCangrejo _bossCangrejo = parent.GetComponent<BossCangrejo>();
-        Animator anim = parent.GetComponent<Animator>();
-        anim.SetTrigger("GolpeTenazas");
+        //Animator anim = parent.GetComponent<Animator>();
+        //anim.SetTrigger("GolpeTenazas");
         _bossCangrejo.activarGolpeTenazas = true;
     }
 }
