@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public float playerlife;
-    public PlayerMovement playermov;
+    //public PlayerMovement playermov;
     public static Vector3 lastPosition;
     public bool incheck;
 
@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     {
         //playerlife = 100;
 
-        playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        //playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -37,10 +37,10 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("DmgArea") && playermov.fallVelocity <= 0)
+        /*if (other.gameObject.CompareTag("DmgArea") && playermov.fallVelocity <= 0)
         {
             playerlife -= 40;
-        }
+        }*/
 
 
     }

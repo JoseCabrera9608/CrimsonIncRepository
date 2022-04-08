@@ -9,7 +9,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     public Image healthBar;
     public PlayerStats player;
-    public PlayerMovement playermov;
+    //public PlayerMovement playermov;
     public int startHealth;
     public int healingcharges;
     public Image healingBar;
@@ -24,7 +24,7 @@ public class PlayerHealthBar : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        //playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         startHealth = 100;
         healingcharges = 5;
         dashCD.sprite = dashfull;
@@ -35,16 +35,16 @@ public class PlayerHealthBar : MonoBehaviour
     {
         healthBar.fillAmount = player.playerlife / 100f;
         healingBar.fillAmount = healingcharges / 5f;
-        dashCD.fillAmount = playermov.dashingcd / 2f;
+        //dashCD.fillAmount = playermov.dashingcd / 2f;
 
-        if (playermov.dashingcd >= 2f)
+        /*if (playermov.dashingcd >= 2f)
         {
             dashCD.sprite = dashfull;
         }
         else
         {
             dashCD.sprite = dashcharging;
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Q) && healingcharges >=1 && player.playerlife <100)
         {
