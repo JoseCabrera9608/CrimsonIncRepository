@@ -7,6 +7,9 @@ public class Movement : MonoBehaviour
     private Vector2 playerInput;
     private Vector3 moveDirection;
     private Rigidbody rb;
+
+    public Animator playeranim;
+
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float movSpeed;
@@ -31,7 +34,7 @@ public class Movement : MonoBehaviour
     {
         PlayerMovement();
         PlayerRotation();
-        Falling();
+        //Falling();
     }
     private void PlayerMovement()
     {
@@ -44,6 +47,16 @@ public class Movement : MonoBehaviour
 
         moveDirection.y = 0;
         moveDirection *= movSpeed;
+
+        if (playerInput.x == 0 && playerInput.y == 0)
+        {
+            playeranim.SetBool("Run", false);
+            //FindObjectOfType<AudioManager>().Stop("Movimiento");
+        }
+        else
+        {
+            playeranim.SetBool("Run", true);
+        }
 
         Vector3 movementVelocity = moveDirection;
         rb.velocity = movementVelocity;
@@ -66,12 +79,28 @@ public class Movement : MonoBehaviour
         transform.rotation = playerRotation;
     }
 
-    private void Falling()
+    /*private void Falling()
     {
+        RaycastHit hit;
 
         Vector3 rayCastOrigin = transform.position;
         Vector3 targetPosition;
         targetPosition = transform.position;
+
+        if (Physics.SphereCast(rayCastOrigin, .2f, -transform.up, out hit, rayCastOffset))
+        {
+            // if(!isGrounded) asignar animacion de aterrizar
+            Vector3 rayCastHitPoint = hit.point;
+            targetPosition.y = rayCastHitPoint.y + rayCastOffset;
+            airTime = 0;
+            isGrounded = true;
+
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
         if (!isGrounded)
         {
             airTime += Time.deltaTime;
@@ -85,6 +114,6 @@ public class Movement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
         }
-    }
+    }*/
 
 }
