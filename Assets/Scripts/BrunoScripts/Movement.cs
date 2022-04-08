@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     public float dashspeed;
     public float duraciondash;
     private int dashAttempts;
-    private float dashStartTime;
+    public float dashStartTime;
     public float timer;
 
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
@@ -47,8 +47,8 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMovement();
-        HandleDash();
         PlayerRotation();
+        HandleDash();
         //Falling();
     }
     private void PlayerMovement()
@@ -106,7 +106,7 @@ public class Movement : MonoBehaviour
 
         dashingcd += Time.deltaTime;
 
-        if (isTryingToDash && !isDashing && dashingcd >= dashcd)
+        if (Input.GetKey(KeyCode.Space) && !isDashing && dashingcd >= dashcd)
         {
             if (dashAttempts <= 5000)  //Dashes maximos
             {
