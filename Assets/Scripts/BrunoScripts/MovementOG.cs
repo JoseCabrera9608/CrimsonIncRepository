@@ -70,20 +70,22 @@ public class MovementOG : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 rayCastOrigin = transform.position;
-        Vector3 targetPosition;
-        targetPosition = transform.position;
+        //Vector3 targetPosition;
+        //targetPosition = transform.position;
         if (!isGrounded)
         {
             airTime += Time.deltaTime;
-            rb.AddForce(transform.forward * leapingVelocity);
+            //rb.AddForce(transform.forward * leapingVelocity);
             rb.AddForce(-Vector3.up * fallSpeed * airTime);
         }
 
-        if (Physics.SphereCast(rayCastOrigin, .2f, -transform.up, out hit, rayCastOffset))
+        if (Physics.Raycast(rayCastOrigin,-Vector3.up,out hit, rayCastOffset,groundLayer))
         {
             // if(!isGrounded) asignar animacion de aterrizar
+
             Vector3 rayCastHitPoint = hit.point;
-            targetPosition.y = rayCastHitPoint.y+rayCastOffset;
+            //targetPosition.y = rayCastHitPoint.y + rayCastOffset;
+
             airTime = 0;
             isGrounded = true;
             
@@ -93,10 +95,16 @@ public class MovementOG : MonoBehaviour
             isGrounded = false;
         }
 
-        if (isGrounded)
-        {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
-        }
+        //if (isGrounded)
+        //{
+        //    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
+        //}
     }
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position,-Vector3.up*rayCastOffset,Color.red);
+        
+    }
+    
 
 }
