@@ -101,7 +101,7 @@ public class Movement : MonoBehaviour
 
     void HandleDash()
     {
-        bool isTryingToDash = Input.GetKeyDown(KeyCode.LeftShift);
+        bool isTryingToDash = Input.GetKeyDown(KeyCode.Space);
 
         dashingcd += Time.deltaTime;
 
@@ -120,6 +120,9 @@ public class Movement : MonoBehaviour
         {
             if (Time.time - dashStartTime <= duraciondash)
             {
+
+                playeranim.SetBool("Dash", true);
+
                 if (playerInput.Equals(Vector3.zero))
                 {
                     rb.AddForce(moveDirection * dashspeed, ForceMode.Impulse);  //Velocidad del Dash estando quieto
@@ -133,6 +136,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                playeranim.SetBool("Dash", false);
                 OnEndDash();
             }
 
