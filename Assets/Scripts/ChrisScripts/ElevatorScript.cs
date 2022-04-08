@@ -106,7 +106,7 @@ public class ElevatorScript : MonoBehaviour
             if (elevator.transform.position.y >= topYLimit)
             {
                 timer += Time.deltaTime;
-                elevator.transform.position = elevator.transform.position;
+                elevator.transform.position = new Vector3(transform.position.x, topYLimit, transform.position.z);
 
                 if (timer >= 2)
                 {
@@ -126,7 +126,7 @@ public class ElevatorScript : MonoBehaviour
             {
 
                 timer += Time.deltaTime;
-                elevator.transform.position = elevator.transform.position;
+                elevator.transform.position = new Vector3(transform.position.x, bottomYLimit, transform.position.z);
 
                 if (timer >= 2)
                 {
