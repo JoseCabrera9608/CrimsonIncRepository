@@ -84,11 +84,11 @@ public class ElevatorScript : MonoBehaviour
 
             if (elevatorGoingUp)
             {
-                elevator.transform.position += new Vector3(0,20,0) * Time.deltaTime;
+                elevator.transform.position += new Vector3(0,5,0) * Time.deltaTime;
             }
             else
             {
-                elevator.transform.position += new Vector3(0, 20, 0) * Time.deltaTime;
+                elevator.transform.position += new Vector3(0, 5, 0) * Time.deltaTime;
                 Debug.Log("Brrr el elevador baja");
             }
 
@@ -106,7 +106,7 @@ public class ElevatorScript : MonoBehaviour
             if (elevator.transform.position.y >= topYLimit)
             {
                 timer += Time.deltaTime;
-                elevatorRb.velocity = new Vector3(0, 0, 0);
+                elevator.transform.position = elevator.transform.position;
 
                 if (timer >= 2)
                 {
@@ -126,7 +126,7 @@ public class ElevatorScript : MonoBehaviour
             {
 
                 timer += Time.deltaTime;
-                elevatorRb.velocity = new Vector3(0, 0, 0);
+                elevator.transform.position = elevator.transform.position;
 
                 if (timer >= 2)
                 {

@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
         PlayerMovement();
         PlayerRotation();
         HandleDash();
-        //Falling();
+        Falling();
     }
     private void PlayerMovement()
     {
@@ -161,16 +161,23 @@ public class Movement : MonoBehaviour
     private void Falling()
     {
         RaycastHit hit;
-
         Vector3 rayCastOrigin = transform.position;
-        Vector3 targetPosition;
-        targetPosition = transform.position;
+        //Vector3 targetPosition;
+        //targetPosition = transform.position;
+        if (!isGrounded)
+        {
+            airTime += Time.deltaTime;
+            //rb.AddForce(transform.forward * leapingVelocity);
+            rb.AddForce(-Vector3.up * fallSpeed * airTime);
+        }
 
-        if (Physics.SphereCast(rayCastOrigin, .2f, -transform.up, out hit, rayCastOffset))
+        if (Physics.Raycast(rayCastOrigin, -Vector3.up, out hit, rayCastOffset, groundLayer))
         {
             // if(!isGrounded) asignar animacion de aterrizar
+
             Vector3 rayCastHitPoint = hit.point;
-            targetPosition.y = rayCastHitPoint.y + rayCastOffset;
+            //targetPosition.y = rayCastHitPoint.y + rayCastOffset;
+
             airTime = 0;
             isGrounded = true;
 
@@ -180,19 +187,10 @@ public class Movement : MonoBehaviour
             isGrounded = false;
         }
 
-        if (!isGrounded)
-        {
-            airTime += Time.deltaTime;
-            rb.AddForce(transform.forward * leapingVelocity);
-            rb.AddForce(-Vector3.up * fallSpeed * airTime);
-        }
-
-
-
-        if (isGrounded)
-        {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
-        }
+        //if (isGrounded)
+        //{
+        //    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
+        //}
     }
 
 }
