@@ -41,12 +41,13 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        HandleDash();
+        
     }
 
     private void FixedUpdate()
     {
         PlayerMovement();
+        HandleDash();
         PlayerRotation();
         //Falling();
     }
