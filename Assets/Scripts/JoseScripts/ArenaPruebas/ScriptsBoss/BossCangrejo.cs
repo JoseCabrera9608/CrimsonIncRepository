@@ -17,7 +17,7 @@ public class BossCangrejo : MonoBehaviour
     public bool activarEmbestida = false;
 
     //Animator
-    Animator anim;
+    Animator animCangrejo;
 
 
     //Cambio de color
@@ -34,7 +34,7 @@ public class BossCangrejo : MonoBehaviour
     void Start()
     {
         cangrejo = GameObject.Find("Crabby");
-        anim = GetComponent<Animator>();
+        animCangrejo = GetComponent<Animator>();
         mesh = GetComponent<MeshRenderer>();
         BossGameEVent.current.combatTriggerExit += StartChase;
         agente = GetComponent<NavMeshAgent>();
@@ -92,16 +92,17 @@ public class BossCangrejo : MonoBehaviour
     private void StartChase()
     {
         onChase = true;
-        //animCangrejo.SetTrigger("Inicio");
+        animCangrejo.SetTrigger("Comienzo");
     }
     IEnumerator HabilidadGolpeTenaza()
     {
+        animCangrejo.SetTrigger("GolpeTenaza");
         SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.red;
         agente.speed = 0;
-        //GolpeTenazaCollider.SetActive(true);
+        GolpeTenazaCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
-        //GolpeTenazaCollider.SetActive(false);
+        GolpeTenazaCollider.SetActive(false);
         agente.speed = 5;
         cuboColor.material.color = Color.grey;
     }
