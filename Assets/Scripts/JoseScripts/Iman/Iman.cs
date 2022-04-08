@@ -16,13 +16,18 @@ public class Iman : MonoBehaviour
     public GameObject player;
     Collider colliderPlayer;
     Transform magnetPoint;
+    int index;
+     Animator anim;
+    public GameObject imanesObjetos;
 
     void Start()
     {
         
-        imanObjeto = GameObject.Find("Iman");
+      //imanObjeto = GameObject.Find("Iman");
         magnetPoint = GetComponent<Transform>();
         colliderMag = GetComponent<SphereCollider>();
+        anim = imanesObjetos.GetComponent<Animator>();
+
 
     }
 
@@ -70,13 +75,15 @@ public class Iman : MonoBehaviour
 
     IEnumerator Prender()
     {
-        
-        SkinnedMeshRenderer imanColor = imanObjeto.gameObject.GetComponent<SkinnedMeshRenderer>();
-        imanColor.material.color = Color.yellow;
-        yield return new WaitForSeconds(1.5f);
+
+        //SkinnedMeshRenderer imanColor = imanesObjetos[index].GetComponent<SkinnedMeshRenderer>();
+        //SkinnedMeshRenderer imanColor = imanObjeto.gameObject.GetComponent<SkinnedMeshRenderer>();
+        //manColor.material.color = Color.yellow;
+        anim.SetTrigger("Giro");
+        yield return new WaitForSeconds(4.1f);
         colliderMag.enabled = true;
         yield return new WaitForSeconds(2);
-        imanColor.material.color = Color.white;
+        //anColor.material.color = Color.white;
         colliderMag.enabled = false;
         rigPlayer.Remove(player.GetComponent<Rigidbody>());
         timer = 0;
