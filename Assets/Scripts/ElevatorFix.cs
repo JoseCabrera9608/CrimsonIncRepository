@@ -24,16 +24,22 @@ public class ElevatorFix : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            cc = other.GetComponent<CharacterController>();
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.transform.parent = transform;
+            }
         }
     }
     private void OnTriggerStay(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
-            cc.Move(rb.velocity * Time.deltaTime);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.transform.parent = transform;
+            }
         }
-
 
     }
 
@@ -41,7 +47,7 @@ public class ElevatorFix : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //FindObjectOfType<AudioManager>().Stop("Ascensor");
+            other.transform.parent = null;
         }
     }
 }

@@ -32,9 +32,9 @@ public class PlayerAttack : MonoBehaviour
 
         attacktimer += Time.deltaTime;
 
-        PauseController pause = Pause.GetComponent<PauseController>();
+        //PauseController pause = Pause.GetComponent<PauseController>();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false && pause.pause == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  /* && pause.pause == false*/)
         {
             attacking = true;
             playeranim.SetBool("Attack", true);
