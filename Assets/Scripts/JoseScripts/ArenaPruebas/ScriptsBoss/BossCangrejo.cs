@@ -16,6 +16,7 @@ public class BossCangrejo : MonoBehaviour
     public bool activarGolpeSecuencia = false;
     public bool activarEmbestida = false;
 
+    public float health;
     //Animator
     Animator animCangrejo;
 
@@ -32,8 +33,11 @@ public class BossCangrejo : MonoBehaviour
     //
     private GameObject cangrejo;
 
+    public bool hitted;
+
     void Start()
     {
+        health = 150;
         cangrejo = GameObject.Find("Crabby");
         animCangrejo = GetComponent<Animator>();
         mesh = GetComponent<MeshRenderer>();
@@ -140,4 +144,14 @@ public class BossCangrejo : MonoBehaviour
         cuboColor.material.color = Color.grey;
         agente.speed = 5;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PlayerWeapon"))
+        {
+            hitted = true;
+        }
+    }
+
+  
 }
