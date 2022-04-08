@@ -27,6 +27,7 @@ public class BossCangrejo : MonoBehaviour
     public GameObject GolpeTenazaCollider;
     public GameObject brazoDerechoCollider;
     public GameObject brazoIzquierdoCollider;
+    public GameObject embestidaCollider;
 
     //
     private GameObject cangrejo;
@@ -109,15 +110,16 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator HabilidadSecuenciaGolpes()
     {
+        animCangrejo.SetTrigger("GolpeSecuencia");
         SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.blue;
         agente.speed = 0;
-        //brazoDerechoCollider.SetActive(true);
-        //brazoIzquierdoCollider.SetActive(true);
+        brazoDerechoCollider.SetActive(true);
+        brazoIzquierdoCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
         agente.speed = 5;
-        //brazoDerechoCollider.SetActive(false);
-        //brazoIzquierdoCollider.SetActive(false);
+        brazoDerechoCollider.SetActive(false);
+        brazoIzquierdoCollider.SetActive(false);
         cuboColor.material.color = Color.grey;
     }
 
@@ -127,10 +129,12 @@ public class BossCangrejo : MonoBehaviour
         cuboColor.material.color = Color.black;
         agente.speed = 0;
         yield return new WaitForSeconds(4);
-        //anim.SetBool("Embestir", false);
-        agente.speed = 1000000;
-        agente.acceleration = 100;
+        embestidaCollider.SetActive(true);
+        agente.speed = 1000;
+        agente.acceleration = 70;
         yield return new WaitForSeconds(2);
+        animCangrejo.SetTrigger("Comienzo");
+        embestidaCollider.SetActive(false);
         agente.speed = 0;
         yield return new WaitForSeconds(2);
         cuboColor.material.color = Color.grey;

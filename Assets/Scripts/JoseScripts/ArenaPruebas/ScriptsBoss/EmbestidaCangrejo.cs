@@ -9,7 +9,8 @@ public class EmbestidaCangrejo : Habilidad_SO
     {
         BossCangrejo _bossCangrejo = parent.GetComponent<BossCangrejo>();
         Animator anim = parent.GetComponent<Animator>();
-        //anim.SetBool("Embestir", true);
+        anim.SetTrigger("VaAtacar");
+        anim.SetTrigger("Embestida");
         _bossCangrejo.activarEmbestida = true;
     }
 }
