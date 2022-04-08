@@ -10,6 +10,15 @@ public class Movement : MonoBehaviour
 
     public Animator playeranim;
 
+    public bool isDashing;
+    public float dashcd;
+    public float dashingcd;
+    public float dashspeed;
+    public float duraciondash;
+    private int dashAttempts;
+    private float dashStartTime;
+    public float timer;
+
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float movSpeed;
@@ -29,7 +38,12 @@ public class Movement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-   
+
+    private void Update()
+    {
+        HandleDash();
+    }
+
     private void FixedUpdate()
     {
         PlayerMovement();
@@ -46,7 +60,13 @@ public class Movement : MonoBehaviour
         moveDirection.Normalize();
 
         moveDirection.y = 0;
-        moveDirection *= movSpeed;
+
+        if (isDashing == false)
+        {
+            moveDirection *= movSpeed;
+        }
+        
+
 
         if (playerInput.x == 0 && playerInput.y == 0)
         {
@@ -77,6 +97,64 @@ public class Movement : MonoBehaviour
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         transform.rotation = playerRotation;
+    }
+
+    void HandleDash()
+    {
+        bool isTryingToDash = Input.GetKeyDown(KeyCode.Space);
+
+        dashingcd += Time.deltaTime;
+
+        if (isTryingToDash && !isDashing && dashingcd >= dashcd)
+        {
+            if (dashAttempts <= 5000)  //Dashes maximos
+            {
+                FindObjectOfType<AudioManager>().Play("Dash");
+                OnStartDash();
+                //DashParticles.Play();
+                dashingcd = 0;
+            }
+        }
+
+        if (isDashing)
+        {
+            if (Time.time - dashStartTime <= duraciondash)
+            {
+
+                playeranim.SetBool("Dash", true);
+
+                if (playerInput.Equals(Vector3.zero))
+                {
+                    rb.AddForce(moveDirection * dashspeed, ForceMode.Impulse);  //Velocidad del Dash estando quieto
+                }
+                else
+                {
+                    rb.AddForce(moveDirection * dashspeed, ForceMode.Impulse);  //Velocidad del Dash en movimiento
+                }
+
+
+            }
+            else
+            {
+                playeranim.SetBool("Dash", false);
+                OnEndDash();
+            }
+
+        }
+    }
+
+    void OnStartDash()
+    {
+        isDashing = true;
+        dashStartTime = Time.time;
+        //dashAttempts += 1;
+    }
+
+    void OnEndDash()
+    {
+        isDashing = false;
+        dashStartTime = 0;
+        //anim.SetBool("Dash", false);
     }
 
     /*private void Falling()
