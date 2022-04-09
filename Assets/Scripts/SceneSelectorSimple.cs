@@ -12,42 +12,54 @@ public class SceneSelectorSimple : MonoBehaviour
 
     void Start()
     {
-        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        //progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.M))
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
 
-            sceneName = "Menu";
-            progress.lastposition = new Vector3(430, 1, 0);
+            sceneName = "VientreRudra";
+            //progress.lastposition = progress.hubpos;
+
+
+            ChangeScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+            sceneName = "Almacenamiento";
+            //progress.lastposition = progress.hubpos;
+
+
+            ChangeScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+
+            sceneName = "Fabrica";
+            //progress.lastposition = progress.hubpos;
+
+
+            ChangeScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+
+            sceneName = "Dulscene";
+            //progress.lastposition = progress.hubpos;
+
 
             ChangeScene();
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-
-            sceneName = "Hub";
-            progress.lastposition = progress.hubpos;
 
 
-            ChangeScene();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-
-            sceneName = "JoseTesteos";
-            progress.lastposition = progress.hubpos;
-
-
-            ChangeScene();
-        }
 
     }
 
