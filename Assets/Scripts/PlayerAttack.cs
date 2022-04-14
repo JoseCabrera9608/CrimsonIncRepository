@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && attacktimer >= 0.6)
         {
 
-            FindObjectOfType<AudioManager>().Play("Ataque");
+          //FindObjectOfType<AudioManager>().Play("Ataque");
             attacking = false;
             attacktimer = 0;
         }

@@ -22,7 +22,7 @@ public class PlayerDebug : MonoBehaviour
     public InputField dashspeedInput;
     public InputField dashlenghtInput;
     public GameObject Player;
-    public PlayerMovement player;
+    public Movement player;
     public PlayerAttack playerAttack;
 
     public CinemachineCameraOffset cineoff;
@@ -30,11 +30,11 @@ public class PlayerDebug : MonoBehaviour
 
     private void Awake()
     {
-        player = Player.GetComponent<PlayerMovement>();
+        player = Player.GetComponent<Movement>();
         playerAttack = Player.GetComponent<PlayerAttack>();
 
-        speed = player.playerSpeed;
-        jump = player.jumpForce;
+        speed = player.movSpeed;
+        //jump = player.jumpForce;
         dashspeed = player.dashspeed;
         dashlenght = player.duraciondash;
 
@@ -68,14 +68,14 @@ public class PlayerDebug : MonoBehaviour
     {
 
         input = s;
-        player.playerSpeed = float.Parse(input);
+        player.movSpeed = float.Parse(input);
         
     }
 
     public void PlayerJump(string s)
     {
         input = s;
-        player.jumpForce = float.Parse(input);
+        //player.jumpForce = float.Parse(input);
 
     }
 
