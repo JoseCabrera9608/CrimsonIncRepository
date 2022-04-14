@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
 
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float movSpeed;
+    [SerializeField] public float movSpeed;
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
 
     [SerializeField] public bool isGrounded;
