@@ -20,6 +20,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public BoxCollider GolpeLargoBoxCollider;
     //Variables Boss
     public float healthEnemigo;
+    bool hitted;
+   //ublic SkinnedMeshRenderer meshDelEnemigo;
     
 
     void Start()
@@ -27,6 +29,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         anim = GetComponent<Animator>();
         BossGameEVent.current.combatTriggerExit += StartChase;
         player = GameObject.FindWithTag("Player");
+      //meshDelEnemigo = GetComponent<SkinnedMeshRenderer>();
     }
 
     // Update is called once per frame
@@ -54,6 +57,16 @@ public class EnemiPequeñoControlador : MonoBehaviour
         {
             StartCoroutine(GolpeMeleeActivate());
         }
+
+       /*f(hitted == true)
+        {
+            meshDelEnemigo.material.color = Color.red;
+            hitted = false;
+        }
+        if(hitted == false)
+        {
+            meshDelEnemigo.material.color = Color.white;
+        }*/
     }
 
     private void StartChase()
@@ -79,6 +92,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerWeapon"))
         {
             healthEnemigo -= 10;
+            hitted = true;
         }
     }
 
