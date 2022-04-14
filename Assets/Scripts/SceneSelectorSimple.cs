@@ -27,7 +27,7 @@ public class SceneSelectorSimple : MonoBehaviour
             //progress.lastposition = progress.hubpos;
 
 
-            ChangeScene();
+            //ChangeScene();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -36,7 +36,7 @@ public class SceneSelectorSimple : MonoBehaviour
             //progress.lastposition = progress.hubpos;
 
 
-            ChangeScene();
+            //ChangeScene();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -45,7 +45,7 @@ public class SceneSelectorSimple : MonoBehaviour
             //progress.lastposition = progress.hubpos;
 
 
-            ChangeScene();
+            //ChangeScene();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -54,7 +54,7 @@ public class SceneSelectorSimple : MonoBehaviour
             //progress.lastposition = progress.hubpos;
 
 
-            ChangeScene();
+            //ChangeScene();
         }
 
 
