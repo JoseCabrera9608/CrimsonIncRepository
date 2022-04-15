@@ -6,7 +6,8 @@ public class CollisionArma : MonoBehaviour
 {
     public GameObject cangrejo;
     CangrejoArena cangrejoVida;
-    public float dañoDeArma;
+public int dañoDeArma;
+    public int dañoDeArmaPasiva;
     void Start()
     {
         cangrejoVida = cangrejo.GetComponent<CangrejoArena>();
@@ -22,7 +23,14 @@ public class CollisionArma : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Caparazon"))
         {
-            cangrejoVida.health -= dañoDeArma;
+            Debug.Log("Colisionando con caparazon");
+
+            cangrejoVida.vidaActual -= dañoDeArmaPasiva;
+        }
+
+        if (other.gameObject.CompareTag("CuerpoBoss"))
+        {
+            cangrejoVida.vidaActual -= dañoDeArma;
         }
     }
 }

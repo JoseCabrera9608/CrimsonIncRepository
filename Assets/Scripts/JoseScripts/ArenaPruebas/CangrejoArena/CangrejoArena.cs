@@ -14,7 +14,8 @@ public class CangrejoArena : MonoBehaviour
     public bool activarGolpeSecuencia = false;
     public bool activarEmbestida = false;
 
-    public float health;
+  //public int health;
+    public int vidaActual;
     //Animator
     Animator animCangrejo;
 
@@ -39,7 +40,7 @@ public class CangrejoArena : MonoBehaviour
     void Start()
     {
         
-        health = 150;
+       //ealth = 150;
         cangrejo = GameObject.Find("Crabby");
         animCangrejo = GetComponent<Animator>();
         

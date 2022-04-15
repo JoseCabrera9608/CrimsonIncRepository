@@ -31,7 +31,7 @@ public class CangrejoUI : MonoBehaviour
 
         if (enemy.hitted == true)
         {
-            enemyhealth -= 10;
+            enemyhealth -= 15;
             enemy.hitted = false;
         }
 

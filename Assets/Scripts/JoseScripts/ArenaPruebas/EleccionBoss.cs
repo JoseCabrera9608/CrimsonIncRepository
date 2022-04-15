@@ -13,6 +13,7 @@ public class EleccionBoss : MonoBehaviour
     public GameObject spawnPoint;
     public GameObject seleccionUI;
     public GameObject gameManager;
+    public GameObject EnemyHealthBar;
     Inicio inicioBool;
 
     private void Start()
@@ -28,6 +29,8 @@ public class EleccionBoss : MonoBehaviour
         {
             EleccionKomodo();
             seleccionUI.SetActive(false);
+            EnemyHealthBar.SetActive(true);
+
         }
   
 
