@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemiPequeñoControlador : MonoBehaviour
 {
+    public int id;
     GameObject player;
     public NavMeshAgent agente;
     public Animator anim;
@@ -69,10 +70,12 @@ public class EnemiPequeñoControlador : MonoBehaviour
         }*/
     }
 
-    private void StartChase()
+    private void StartChase(int id)
     {
-        onChase = true;
-
+        if (id == this.id)
+        {
+            onChase = true;
+        }
     }
 
 

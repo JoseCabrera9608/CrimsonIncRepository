@@ -12,13 +12,13 @@ public class BossGameEVent : MonoBehaviour
         current = this;
     }
 
-    public event Action combatTriggerExit;
+    public event Action<int> combatTriggerExit;
 
-    public void StartCombatTriggerExit()
+    public void StartCombatTriggerExit(int id)
     {
         if (combatTriggerExit != null)
         {
-            combatTriggerExit();
+            combatTriggerExit(id);
         }
     }
 

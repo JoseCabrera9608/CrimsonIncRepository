@@ -45,7 +45,7 @@ public class KomodoController : MonoBehaviour
         brazoCollider = golpeCollider.GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag("PlayerCabeza");
         target = player.transform;
-        BossGameEVent.current.combatTriggerExit += FightStart;
+      //  BossGameEVent.current.combatTriggerExit += FightStart;
         misileTargets = GameObject.FindGameObjectsWithTag("Targets");
         
     }

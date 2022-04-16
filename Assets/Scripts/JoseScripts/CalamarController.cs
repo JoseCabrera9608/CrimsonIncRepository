@@ -46,7 +46,7 @@ public class CalamarController : MonoBehaviour
         brazoIzq = brazoIzquierdoCollider.GetComponent<Collider>();
         embestida = embestidaCollider.GetComponent<Collider>();*/
         animCalamar = GetComponent<Animator>();
-        BossGameEVent.current.combatTriggerExit += StartChase; //El metodo se suscribe al BossGameEvent
+       // BossGameEVent.current.combatTriggerExit += StartChase; //El metodo se suscribe al BossGameEvent
         agente = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
     }
@@ -171,6 +171,6 @@ public class CalamarController : MonoBehaviour
 
     private void OnDestroy() //Metodo por si se destruye el objeto se desuscriba del BossGameEvent para evitar errores
     {
-        BossGameEVent.current.combatTriggerExit -= StartChase;
+        //BossGameEVent.current.combatTriggerExit -= StartChase;
     }
 }

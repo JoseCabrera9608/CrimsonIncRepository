@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BossCangrejo : MonoBehaviour
 {
+    public int id;
     //Variables NavMesh
     GameObject player;
     public NavMeshAgent agente;
@@ -109,11 +110,15 @@ public class BossCangrejo : MonoBehaviour
         }*/
     }
 
-    private void StartChase()
+    private void StartChase(int id)
     {
+        if(id == this.id)
+        { 
+        
         onChase = true;
         animCangrejo.SetTrigger("Comienzo");
         BarraDeVida.SetActive(true);
+        }
     }
     IEnumerator HabilidadGolpeTenaza()
     {

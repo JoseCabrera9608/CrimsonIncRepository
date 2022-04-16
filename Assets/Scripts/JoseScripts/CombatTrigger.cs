@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatTrigger : MonoBehaviour
 {
-
+    public int id;
     //public ProgressManager progress;
 
     private void Start()
@@ -16,7 +16,7 @@ public class CombatTrigger : MonoBehaviour
     {
 
         //progress.lastCheckpointPos = transform.position;
-        BossGameEVent.current.StartCombatTriggerExit();
+        BossGameEVent.current.StartCombatTriggerExit(id);
         Destroy(this.gameObject);
 
     }
