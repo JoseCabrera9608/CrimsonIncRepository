@@ -83,10 +83,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
     {
         anim.SetTrigger("GolpeLargo");
         agente.speed = 0;
-        GolpeLargoBoxCollider.enabled = true;
+        //GolpeLargoBoxCollider.enabled = true;
         yield return new WaitForSeconds(2);
         agente.speed = 2;
-        GolpeLargoBoxCollider.enabled = false;
+        //GolpeLargoBoxCollider.enabled = false;
         golpeLargo = false;
     }
 
@@ -102,14 +102,32 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator GolpeMeleeActivate()
     {
         anim.SetTrigger("GolpeMelee");
-        GolpeLargoBoxCollider.enabled = true;
+      /*  GolpeLargoBoxCollider.enabled = true;
         BrazoDerechoCollider.enabled = true;
-        agente.speed = 1.7f;
+        agente.speed = 1.7f;*/
         yield return new WaitForSeconds(3);
-        GolpeLargoBoxCollider.enabled = false;
-        BrazoDerechoCollider.enabled = false;
+      /*  GolpeLargoBoxCollider.enabled = false;
+        BrazoDerechoCollider.enabled = false;*/
         golpeMelee = false;
 
+    }
+
+    public void ActivarColliderDerecho()
+    {
+        BrazoDerechoCollider.enabled = true;
+    }
+
+    public void DesactivarColliderDerecho()
+    {
+        BrazoDerechoCollider.enabled = false;
+    }
+    public void ActivarColliderIzquierdo()
+    {
+        GolpeLargoBoxCollider.enabled = true;
+    }
+    public void DesactivarColliderIzquierdo()
+    {
+        GolpeLargoBoxCollider.enabled = false;
     }
 }
 
