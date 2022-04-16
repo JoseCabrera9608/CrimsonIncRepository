@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BossCangrejo : MonoBehaviour
 {
+    public HabilidadesEquipadas habilidades;
     public int id;
     //Variables NavMesh
     GameObject player;
@@ -43,17 +44,20 @@ public class BossCangrejo : MonoBehaviour
     void Start()
     {
         
+        vidaActual = 150;
         cangrejo = GameObject.Find("Crabby");
         animCangrejo = GetComponent<Animator>();
         mesh = GetComponent<MeshRenderer>();
         BossGameEVent.current.combatTriggerExit += StartChase;
         agente = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
+
     }
 
     
     void Update()
     {
+        
         if (onChase == true)
         {
             agente.SetDestination(player.transform.position);
@@ -93,21 +97,11 @@ public class BossCangrejo : MonoBehaviour
             activarPasiva = false;
         }
 
-
-        /*if (activarGolpeSecuencia == true)
+        if(vidaActual <= 0)
         {
-            if(ability.activeTime > 0)
-            {
-                Debug.Log("La habilidad sigue activada");
-            }
-            if (ability.activeTime <= 0)
-            {
-                Debug.Log("Se termino la habilidad");
-                activarGolpeSecuencia = false;
-            }
-            
-            
-        }*/
+            StartCoroutine(MuerteCangrejo());
+        }
+     
     }
 
     private void StartChase(int id)
@@ -185,6 +179,14 @@ public class BossCangrejo : MonoBehaviour
         caparazon.SetActive(true);
         yield return new WaitForSeconds(5f);
         caparazon.SetActive(false);
+    }
+
+    IEnumerator MuerteCangrejo()
+    {
+        animCangrejo.SetTrigger("Muerte");
+        yield return new WaitForSeconds(1);
+        habilidades.enabled = false;
+        Destroy(this);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -34,7 +34,7 @@ public class CangrejoUI : MonoBehaviour
         if (enemyhealth <= 0)
         {
 
-            Destroy(Enemy);
+            
             EnemyHealthBar.SetActive(false);
 
         }
