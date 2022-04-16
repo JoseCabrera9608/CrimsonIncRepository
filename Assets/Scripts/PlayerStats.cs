@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public float playerlife;
-    //public PlayerMovement playermov;
+    public PlayerMovement playermov;
     public static Vector3 lastPosition;
     public bool incheck;
 
@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //PlayerSingleton.Instance.playerCurrentHP -= 50;
+        //playermov.enabled = false;
+
         //playerlife = 100;
 
         //playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -22,16 +25,16 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerlife <= 0)
+        if (PlayerSingleton.Instance.playerCurrentHP <= 0)
         {
             Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Destroy(gameObject);
         }
 
-        if (playerlife > 100)
+        if (PlayerSingleton.Instance.playerCurrentHP > 100)
         {
-            playerlife = 100;
+            PlayerSingleton.Instance.playerCurrentHP = 100;
         }
     }
 

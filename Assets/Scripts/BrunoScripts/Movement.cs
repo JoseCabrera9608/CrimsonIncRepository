@@ -19,6 +19,9 @@ public class Movement : MonoBehaviour
     public float dashStartTime;
     public float timer;
 
+    public bool incheck;
+    public ProgressManager progress;
+
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
     [SerializeField] public float movSpeed;
@@ -32,6 +35,13 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     private void Start()
     {
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+
+        if (progress.lastposition != Vector3.zero)
+        {
+            transform.position = progress.lastposition;
+        }
+
         rb = GetComponent<Rigidbody>();
 
         //=====QUITAR LUEGO==========
@@ -191,6 +201,17 @@ public class Movement : MonoBehaviour
         //{
         //    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
         //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            incheck = true;
+            progress.lastposition = other.transform.position;
+        }
+
     }
 
 }
