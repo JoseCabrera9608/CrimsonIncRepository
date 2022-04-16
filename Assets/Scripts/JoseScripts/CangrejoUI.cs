@@ -10,54 +10,34 @@ public class CangrejoUI : MonoBehaviour
     BossCangrejo enemy;
     public int enemyhealth;
     public GameObject Enemy;
-    public ParticleSystem deathParticles;
-    public ProgressManager progress;
-    public Fade fade;
-    public GameObject Player;
+    public GameObject EnemyHealthBar;
 
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<BossCangrejo>();
-        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
-        fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<Fade>();
-        enemy.health = enemyhealth;
+        enemy.vidaActual = 150;
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = enemyhealth / 100f;
-        enemy.health = enemyhealth;
+        enemyhealth = enemy.vidaActual;
+        healthBar.fillAmount = enemyhealth / 150f;
 
-        if (enemy.hitted == true)
-        {
-            enemyhealth -= 15;
-            enemy.hitted = false;
-        }
 
+        /* if (enemy.hitted == true)
+           {
+               enemyhealth -= 15;
+               enemy.hitted = false;
+           }
+        */
         if (enemyhealth <= 0)
         {
-            //ParticleSystem temporalbullet = Instantiate(deathParticles);
-            //  temporalbullet.transform.position = Enemy.transform.position;
-            // progress.tutorial = true;
-            //fade.Fadein();
+
             Destroy(Enemy);
-            StartCoroutine(FadeEffect());
-
-            if (fade.fadeinend == true)
-            {
-                Destroy(Player);
-                progress.lastposition = progress.hubpos;
-                SceneManager.LoadScene("Hub");
-                Destroy(Enemy);
-            }
-
+            EnemyHealthBar.SetActive(false);
 
         }
-        IEnumerator FadeEffect()
-        {
-            yield return new WaitForSeconds(2f);
-            fade.Fadein();
-        }
+
     }
 }
