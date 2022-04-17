@@ -22,7 +22,7 @@ public class Iman : MonoBehaviour
 
     void Start()
     {
-        
+        //timer = 5;
       //imanObjeto = GameObject.Find("Iman");
         magnetPoint = GetComponent<Transform>();
         colliderMag = GetComponent<SphereCollider>();
