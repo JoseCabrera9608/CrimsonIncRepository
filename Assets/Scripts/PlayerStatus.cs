@@ -12,6 +12,9 @@ public class PlayerStatus : MonoBehaviour
     public Material matNormal;
     public Material matHitted;
     public Animator anim;
+    public SkinnedMeshRenderer mesh;
+    public bool hiteado;
+    public bool pruebasingle;
 
 
     // Start is called before the first frame update
@@ -37,11 +40,25 @@ public class PlayerStatus : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (hiteado == true)
+        {
+            StartCoroutine(HittedCoroutine());
+        }
+
+
         if (PlayerSingleton.Instance.playerCurrentHP > 100)
         {
             PlayerSingleton.Instance.playerCurrentHP = 100;
         }
+
+        pruebasingle = PlayerSingleton.Instance.playerHitted;
+
         AnimationStatus();
+        //StartCoroutine(HittedCoroutine());
+        if (PlayerSingleton.Instance.playerHitted == true)
+        {
+            StartCoroutine(HittedCoroutine());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,6 +86,18 @@ public class PlayerStatus : MonoBehaviour
         {
             playerAttack.attackStatus = false;
         }
+    }
+    
+    IEnumerator HittedCoroutine()
+    {
+
+        mesh.material = matHitted;
+
+        yield return new WaitForSeconds(0.5f);
+
+        PlayerSingleton.Instance.playerHitted = false;
+        hiteado = false;
+        mesh.material = matNormal;
     }
 }
 
