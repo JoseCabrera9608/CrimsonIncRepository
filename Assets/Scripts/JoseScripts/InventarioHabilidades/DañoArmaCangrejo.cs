@@ -9,9 +9,16 @@ public class DañoArmaCangrejo : MonoBehaviour
     BossCangrejo cangrejoVida;
     public int dañoDeArma;
     public int dañoDeArmaPasiva;
+    SkinnedMeshRenderer mesh;
+    GameObject cangrejoMesh;
+    
+
     void Start()
     {
+        cangrejoMesh = GameObject.Find("Patas");
         cangrejoVida = cangrejo.GetComponent<BossCangrejo>();
+        mesh = cangrejoMesh.GetComponent<SkinnedMeshRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -32,6 +39,16 @@ public class DañoArmaCangrejo : MonoBehaviour
         if (other.gameObject.CompareTag("CuerpoBoss"))
         {
             cangrejoVida.vidaActual -= dañoDeArma;
+            StartCoroutine(CambioColor());
+            
         }
+    }
+
+    IEnumerator CambioColor()
+    {
+        mesh.material.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        mesh.material.color = Color.grey;
+
     }
 }

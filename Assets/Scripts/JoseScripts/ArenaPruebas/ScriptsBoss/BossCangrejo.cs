@@ -85,14 +85,19 @@ public class BossCangrejo : MonoBehaviour
             activarGolpeSecuencia = false;
         }
 
-        if (activarEmbestida == true)
+
+            if (activarEmbestida == true)
         {
             Debug.Log("Activo Embestida");
             StartCoroutine(Embestida());
             activarEmbestida = false;
         }
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("Embestida"))
+        {
+            transform.LookAt(player.transform);
+        }
 
-        if(activarPasiva == true)
+        if (activarPasiva == true)
         {
             StartCoroutine(PasivaCaparazon());
             activarPasiva = false;
@@ -218,8 +223,4 @@ public class BossCangrejo : MonoBehaviour
         brazoIzquierdoCollider.SetActive(false);
     }
 
-    public void MirarAlPlayer()
-    {
-        transform.LookAt(player.transform);
-    }
 }
