@@ -26,6 +26,7 @@ public class PlayerSingleton : MonoBehaviour
         playerCurrentHP = 100;
         playerCurrentHealingCharges = 5;
         playerMaxHealingCharges = 5;
+        playerHitted = false;
         #endregion
     }
 

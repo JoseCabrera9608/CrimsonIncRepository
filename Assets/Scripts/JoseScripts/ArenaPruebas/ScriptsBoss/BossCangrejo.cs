@@ -85,14 +85,19 @@ public class BossCangrejo : MonoBehaviour
             activarGolpeSecuencia = false;
         }
 
-        if (activarEmbestida == true)
+
+            if (activarEmbestida == true)
         {
             Debug.Log("Activo Embestida");
             StartCoroutine(Embestida());
             activarEmbestida = false;
         }
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("Crabby_Baked_Embestida_Accion"))
+        {
+            transform.LookAt(player.transform);
+        }
 
-        if(activarPasiva == true)
+        if (activarPasiva == true)
         {
             StartCoroutine(PasivaCaparazon());
             activarPasiva = false;
@@ -133,7 +138,7 @@ public class BossCangrejo : MonoBehaviour
         animCangrejo.SetTrigger("GolpeSecuencia");
         SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.blue;
-        agente.speed = 0;
+        agente.speed = 2.8f;
        // brazoDerechoCollider.SetActive(true);
         //brazoIzquierdoCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
@@ -145,19 +150,21 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator Embestida()
     {
-        SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
-        cuboColor.material.color = Color.black;
+       // SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
+       // cuboColor.material.color = Color.black;
         agente.speed = 0;
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2f);
         embestidaCollider.SetActive(true);
         agente.speed = 1000;
         agente.acceleration = 70;
+        
         yield return new WaitForSeconds(2);
-        animCangrejo.SetTrigger("Comienzo");
+        animCangrejo.SetTrigger("TerminarEmbestida");
         embestidaCollider.SetActive(false);
         agente.speed = 0;
         yield return new WaitForSeconds(2);
-        cuboColor.material.color = Color.grey;
+        animCangrejo.SetTrigger("Comienzo");
+        //cuboColor.material.color = Color.grey;
         agente.speed = 5;
     }
 
@@ -218,8 +225,4 @@ public class BossCangrejo : MonoBehaviour
         brazoIzquierdoCollider.SetActive(false);
     }
 
-    public void MirarAlPlayer()
-    {
-        transform.LookAt(player.transform);
-    }
 }
