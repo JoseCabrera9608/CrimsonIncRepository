@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStatus : MonoBehaviour
 {
     public float playerlife;
-    public PlayerMovement playermov;
+    public PlayerAttack playerAttack;
     public static Vector3 lastPosition;
     public bool incheck;
     public Material matNormal;
     public Material matHitted;
+    public Animator anim;
 
 
     // Start is called before the first frame update
@@ -54,4 +55,17 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("ParticleColl");
         playerlife -= 10;
     }
+
+    void AnimationStatus()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            playerAttack.attackStatus = true;
+        }
+        else
+        {
+            playerAttack.attackStatus = false;
+        }
+    }
 }
+

@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject Pause;
     public BoxCollider weaponCollider;
     public float damage;
+    public bool attackStatus;
 
 
     void Start()
@@ -37,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  /* && pause.pause == false*/)
         {
             attacking = true;
+            //attackStatus = true;
             playeranim.SetBool("Attack", true);
             
 

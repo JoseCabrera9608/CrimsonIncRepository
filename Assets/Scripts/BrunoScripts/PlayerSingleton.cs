@@ -33,4 +33,5 @@ public class PlayerSingleton : MonoBehaviour
     public float playerCurrentHP { set; get; }
     public float playerCurrentHealingCharges { set; get; }
     public float playerMaxHealingCharges { set; get; }
+    public bool playerHitted { set; get; }
 }

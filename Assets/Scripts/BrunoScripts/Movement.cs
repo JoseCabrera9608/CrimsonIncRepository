@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
 
     public bool incheck;
     public ProgressManager progress;
+    public PlayerAttack playerAttack;
 
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        playerAttack = this.GetComponent<PlayerAttack>();
 
         if (progress.lastposition != Vector3.zero)
         {
@@ -72,7 +74,7 @@ public class Movement : MonoBehaviour
 
         moveDirection.y = 0;
 
-        if (isDashing == false)
+        if (isDashing == false && playerAttack.attacking == false)
         {
             moveDirection *= movSpeed;
         }
