@@ -24,8 +24,10 @@ public class GolpesDaño : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerSingleton.Instance.playerHitted = true;
             //player.playerlife -= damage;
             Debug.Log("Recibio daño " + damage);
+
         }
     }
 }
