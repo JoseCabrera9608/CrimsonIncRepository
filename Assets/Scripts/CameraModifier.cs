@@ -39,7 +39,7 @@ public class CameraModifier : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Target.position - transform.position, out hit, 7f))
         {
-            if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "Enemy" && hit.collider.gameObject.tag != "Checkpoint") //Aqui ponemos todo los tags de lo que no queremos que desaparezca owo, by Santi
+            if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "Enemy" && hit.collider.gameObject.tag != "Checkpoint" && hit.collider.gameObject.tag != "GaPared") //Aqui ponemos todo los tags de lo que no queremos que desaparezca owo, by Santi
             {
                 Obstruction = hit.transform;
                 Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
