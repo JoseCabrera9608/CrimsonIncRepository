@@ -58,6 +58,7 @@ public class BossCangrejo : MonoBehaviour
     void Update()
     {
         
+
         if (onChase == true)
         {
             agente.SetDestination(player.transform.position);
@@ -215,5 +216,10 @@ public class BossCangrejo : MonoBehaviour
     public void DesactivarColliderBrazoIzquierdo()
     {
         brazoIzquierdoCollider.SetActive(false);
+    }
+
+    public void MirarAlPlayer()
+    {
+        transform.LookAt(player.transform);
     }
 }
