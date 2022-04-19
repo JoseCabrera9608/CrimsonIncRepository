@@ -20,6 +20,8 @@ public class PlayerStatus : MonoBehaviour
         //PlayerSingleton.Instance.playerCurrentHP -= 50;
         //playermov.enabled = false;
 
+        playerAttack = this.GetComponent<PlayerAttack>();
+
         //playerlife = 100;
 
         //playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -59,7 +61,7 @@ public class PlayerStatus : MonoBehaviour
 
     void AnimationStatus()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             playerAttack.attackStatus = true;
         }
