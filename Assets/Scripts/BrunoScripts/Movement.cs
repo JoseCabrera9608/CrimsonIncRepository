@@ -74,7 +74,7 @@ public class Movement : MonoBehaviour
 
         moveDirection.y = 0;
 
-        if (isDashing == false && playerAttack.attacking == false)
+        if (isDashing == false && playerAttack.attackStatus == false)
         {
             moveDirection *= movSpeed;
         }

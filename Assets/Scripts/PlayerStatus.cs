@@ -39,6 +39,7 @@ public class PlayerStatus : MonoBehaviour
         {
             PlayerSingleton.Instance.playerCurrentHP = 100;
         }
+        AnimationStatus();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,7 +59,7 @@ public class PlayerStatus : MonoBehaviour
 
     void AnimationStatus()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
             playerAttack.attackStatus = true;
         }
