@@ -92,7 +92,7 @@ public class BossCangrejo : MonoBehaviour
             StartCoroutine(Embestida());
             activarEmbestida = false;
         }
-        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("Crabby_Baked_Embestida_Accion"))
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
         {
             transform.LookAt(player.transform);
         }
@@ -153,7 +153,8 @@ public class BossCangrejo : MonoBehaviour
        // SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
        // cuboColor.material.color = Color.black;
         agente.speed = 0;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3);
+        animCangrejo.SetTrigger("EmpezarEmbestida");
         embestidaCollider.SetActive(true);
         agente.speed = 1000;
         agente.acceleration = 70;
