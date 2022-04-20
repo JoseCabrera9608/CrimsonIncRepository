@@ -18,6 +18,8 @@ public class PasivePatrol : MonoBehaviour
     [SerializeField] private GameObject scanLight;
     private Vector3 initialLightRotation;
     private float lightT;
+
+    [SerializeField] private AudioSource scanSource;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -59,6 +61,7 @@ public class PasivePatrol : MonoBehaviour
         if (scanning)
         {
             scanLight.SetActive(true);
+            scanSource.enabled = true;
             lightT += Time.deltaTime;
             float lightRotationDuration = lightT/scanTime;
             scanLight.transform.localEulerAngles = Vector3.Lerp(initialLightRotation,
@@ -66,6 +69,7 @@ public class PasivePatrol : MonoBehaviour
         }
         else
         {
+            scanSource.enabled = false;
             scanLight.SetActive(false);
             lightT = 0;
         }
