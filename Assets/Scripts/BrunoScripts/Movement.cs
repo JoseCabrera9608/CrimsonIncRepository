@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     public float dashStartTime;
     public float timer;
 
+    public bool recovery;
+
     public bool incheck;
     public ProgressManager progress;
     public PlayerAttack playerAttack;
@@ -116,17 +118,27 @@ public class Movement : MonoBehaviour
     {
         bool isTryingToDash = Input.GetKeyDown(KeyCode.Space);
 
-        dashingcd += Time.deltaTime;
+        if (recovery == false)
+        {
+            dashingcd += Time.deltaTime;
+        }
+        
 
-        if (Input.GetKey(KeyCode.Space) && !isDashing && dashingcd >= dashcd)
+        if (Input.GetKey(KeyCode.Space) && !isDashing && dashingcd >= 0.3f * dashcd)
         {
             if (dashAttempts <= 5000)  //Dashes maximos
             {
                 //FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
                 //DashParticles.Play();
-                dashingcd = 0;
+                dashingcd -= (0.3f*dashcd);
+                StartCoroutine(RecoveryCoroutine());
             }
+        }
+
+        if (dashingcd >= dashcd)
+        {
+            dashingcd = dashcd;
         }
 
         if (isDashing)
@@ -154,6 +166,15 @@ public class Movement : MonoBehaviour
             }
 
         }
+    }
+
+    IEnumerator RecoveryCoroutine()
+    {
+        recovery = true;
+
+        yield return new WaitForSeconds(2f);
+
+        recovery = false;
     }
 
     void OnStartDash()
