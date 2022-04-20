@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
         else
         {
             movSpeed = walkSpeed;
-            playeranim.SetFloat("AnimSpeed", 0.5f);
+            playeranim.SetFloat("AnimSpeed", 0.7f);
         }
 
         if (playerInput.x == 0 && playerInput.y == 0)
