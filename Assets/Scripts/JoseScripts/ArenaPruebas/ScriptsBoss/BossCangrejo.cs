@@ -40,10 +40,12 @@ public class BossCangrejo : MonoBehaviour
     public bool hitted;
     //CanvaUI
     public GameObject BarraDeVida;
+    //
+    public bool segundaFase;
 
     void Start()
     {
-        
+        segundaFase = false;
         vidaActual = 150;
         cangrejo = GameObject.Find("Crabby");
         animCangrejo = GetComponent<Animator>();
@@ -57,8 +59,15 @@ public class BossCangrejo : MonoBehaviour
     
     void Update()
     {
-        
 
+        switch (segundaFase)
+        {
+            case true:
+                break;
+
+            case false:
+                break;
+        }
         if (onChase == true)
         {
             agente.SetDestination(player.transform.position);
@@ -120,6 +129,7 @@ public class BossCangrejo : MonoBehaviour
         BarraDeVida.SetActive(true);
         }
     }
+    #region CouroutinesHabilidades
     IEnumerator HabilidadGolpeTenaza()
     {
         animCangrejo.SetTrigger("GolpeTenaza");
@@ -197,6 +207,7 @@ public class BossCangrejo : MonoBehaviour
         habilidades.enabled = false;
         Destroy(this);
     }
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
