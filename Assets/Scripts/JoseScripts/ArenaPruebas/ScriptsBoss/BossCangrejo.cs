@@ -62,19 +62,27 @@ public class BossCangrejo : MonoBehaviour
 
         switch (segundaFase)
         {
-            case true:
+            case false:
+                PoderesPrimeraFase();
                 break;
 
-            case false:
+            case true:
+                Debug.Log("Segunda FASE GAAAAAA");
                 break;
         }
+
+       
+    }
+    #region PoderesPrimeraFase
+    void PoderesPrimeraFase()
+    {
         if (onChase == true)
         {
             agente.SetDestination(player.transform.position);
 
         }
 
-        if(activarMagneto == true)
+        if (activarMagneto == true)
         {
             StartCoroutine(HabilidadMagneto());
             activarMagneto = false;
@@ -95,7 +103,7 @@ public class BossCangrejo : MonoBehaviour
         }
 
 
-            if (activarEmbestida == true)
+        if (activarEmbestida == true)
         {
             Debug.Log("Activo Embestida");
             StartCoroutine(Embestida());
@@ -112,12 +120,12 @@ public class BossCangrejo : MonoBehaviour
             activarPasiva = false;
         }
 
-        if(vidaActual <= 0)
+        if (vidaActual <= 0)
         {
             StartCoroutine(MuerteCangrejo());
         }
-     
     }
+    #endregion
 
     private void StartChase(int id)
     {
