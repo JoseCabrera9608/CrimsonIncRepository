@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour
     public Animator playeranim;
 
     public bool isDashing;
-    public float dashcd;
-    public float dashingcd;
+    public float staminaMax;
+    public float stamina;
     public float dashspeed;
     public float duraciondash;
     private int dashAttempts;
@@ -120,25 +120,25 @@ public class Movement : MonoBehaviour
 
         if (recovery == false)
         {
-            dashingcd += Time.deltaTime;
+            stamina += Time.deltaTime;
         }
         
 
-        if (Input.GetKey(KeyCode.Space) && !isDashing && dashingcd >= 0.3f * dashcd)
+        if (Input.GetKey(KeyCode.Space) && !isDashing && stamina >= 0.3f * staminaMax)
         {
             if (dashAttempts <= 5000)  //Dashes maximos
             {
                 //FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
                 //DashParticles.Play();
-                dashingcd -= (0.3f*dashcd);
-                StartCoroutine(RecoveryCoroutine());
+                stamina -= (0.3f*staminaMax);
+                Recovery();
             }
         }
 
-        if (dashingcd >= dashcd)
+        if (stamina >= staminaMax)
         {
-            dashingcd = dashcd;
+            stamina = staminaMax;
         }
 
         if (isDashing)
@@ -168,7 +168,12 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator RecoveryCoroutine()
+    public void Recovery()
+    {
+        StartCoroutine(RecoveryCoroutine());
+    }
+
+    public IEnumerator RecoveryCoroutine()
     {
         recovery = true;
 

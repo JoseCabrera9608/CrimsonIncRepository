@@ -95,7 +95,7 @@ public class PlayerDebug : MonoBehaviour
     public void DashCD(string s)
     {
         input = s;
-        player.dashcd = float.Parse(input);
+        player.staminaMax = float.Parse(input);
 
     }
 

@@ -15,9 +15,13 @@ public class PlayerAttack : MonoBehaviour
     public float damage;
     public bool attackStatus;
 
+    public Movement playermov;
+
 
     void Start()
     {
+        playermov = this.GetComponent<Movement>();
+        
         attacktimer = 0.5f;
         weaponCollider = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<BoxCollider>();
 
@@ -35,11 +39,14 @@ public class PlayerAttack : MonoBehaviour
 
         //PauseController pause = Pause.GetComponent<PauseController>();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  /* && pause.pause == false*/)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  && playermov.stamina >= 0.25f * playermov.staminaMax)
         {
             attacking = true;
             //attackStatus = true;
+            playermov.Recovery();
             playeranim.SetBool("Attack", true);
+            playermov.stamina -= 0.25f * playermov.staminaMax;
+
             
 
         }

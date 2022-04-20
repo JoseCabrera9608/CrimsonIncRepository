@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
 
 
     //======DASH===================
-    private void UpdateDash()=> dashFill.fillAmount = movement.dashingcd / movement.dashcd;
+    private void UpdateDash()=> dashFill.fillAmount = movement.stamina / movement.staminaMax;
 
     //======DASH===================
     #endregion
