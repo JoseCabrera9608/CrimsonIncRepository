@@ -23,7 +23,8 @@ public class BossCangrejo : MonoBehaviour
     public GameObject caparazon;
     //Animator
     Animator animCangrejo;
-
+    DañoArmaCangrejo dañoPlayer;
+    public GameObject armaPlayer;
 
     //Cambio de color
     MeshRenderer mesh;
@@ -42,6 +43,7 @@ public class BossCangrejo : MonoBehaviour
     public GameObject BarraDeVida;
     //
     public bool segundaFase;
+    public GameObject EfectoSegundaFase;
 
     void Start()
     {
@@ -53,13 +55,17 @@ public class BossCangrejo : MonoBehaviour
         BossGameEVent.current.combatTriggerExit += StartChase;
         agente = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
+        dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
 
     }
 
     
     void Update()
     {
-
+        if(vidaActual <= 50)
+        {
+            segundaFase = true;
+        }
         switch (segundaFase)
         {
             case false:
@@ -67,7 +73,7 @@ public class BossCangrejo : MonoBehaviour
                 break;
 
             case true:
-                Debug.Log("Segunda FASE GAAAAAA");
+                PoderesSegundaFase();
                 break;
         }
 
@@ -119,6 +125,55 @@ public class BossCangrejo : MonoBehaviour
             StartCoroutine(PasivaCaparazon());
             activarPasiva = false;
         }
+    }
+    #endregion
+
+    #region PoderesSegundaFase
+    void PoderesSegundaFase()
+    {
+        if (onChase == true)
+        {
+            agente.SetDestination(player.transform.position);
+
+        }
+
+        if (activarMagneto == true)
+        {
+            StartCoroutine(HabilidadMagneto());
+            activarMagneto = false;
+        }
+
+        if (activarGolpeTenazas == true)
+        {
+            Debug.Log("Activo GolpeTenaza");
+            StartCoroutine(HabilidadGolpeTenaza());
+            activarGolpeTenazas = false;
+        }
+
+        if (activarGolpeSecuencia == true)
+        {
+            Debug.Log("Activo Secuencia de golpes");
+            StartCoroutine(HabilidadSecuenciaGolpes());
+            activarGolpeSecuencia = false;
+        }
+
+
+        if (activarEmbestida == true)
+        {
+            Debug.Log("Activo Embestida");
+            StartCoroutine(Embestida());
+            activarEmbestida = false;
+        }
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
+        {
+            transform.LookAt(player.transform);
+        }
+
+        if (activarPasiva == true)
+        {
+            StartCoroutine(PasivaCaparazon());
+            activarPasiva = false;
+        }
 
         if (vidaActual <= 0)
         {
@@ -126,7 +181,6 @@ public class BossCangrejo : MonoBehaviour
         }
     }
     #endregion
-
     private void StartChase(int id)
     {
         if(id == this.id)
@@ -144,9 +198,7 @@ public class BossCangrejo : MonoBehaviour
         SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.red;
         agente.speed = 0;
-       // GolpeTenazaCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
-      //  GolpeTenazaCollider.SetActive(false);
         agente.speed = 5;
         cuboColor.material.color = Color.grey;
     }
@@ -154,22 +206,13 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator HabilidadSecuenciaGolpes()
     {
         animCangrejo.SetTrigger("GolpeSecuencia");
-        SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
-        cuboColor.material.color = Color.blue;
         agente.speed = 2.8f;
-       // brazoDerechoCollider.SetActive(true);
-        //brazoIzquierdoCollider.SetActive(true);
         yield return new WaitForSeconds(ability.activeTime);
         agente.speed = 5;
-        //brazoDerechoCollider.SetActive(false);
-        //brazoIzquierdoCollider.SetActive(false);
-        cuboColor.material.color = Color.grey;
     }
 
     IEnumerator Embestida()
     {
-       // SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
-       // cuboColor.material.color = Color.black;
         agente.speed = 0;
         yield return new WaitForSeconds(3);
         animCangrejo.SetTrigger("EmpezarEmbestida");
@@ -183,7 +226,6 @@ public class BossCangrejo : MonoBehaviour
         agente.speed = 0;
         yield return new WaitForSeconds(2);
         animCangrejo.SetTrigger("Comienzo");
-        //cuboColor.material.color = Color.grey;
         agente.speed = 5;
     }
 
@@ -211,11 +253,20 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator MuerteCangrejo()
     {
         animCangrejo.SetTrigger("Muerte");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         habilidades.enabled = false;
         Destroy(this);
     }
     #endregion
+    IEnumerator buffSegundaFase()
+    {
+        animCangrejo.SetTrigger("Buffearse");
+        dañoPlayer.dañoDeArma = 4;
+        yield return new WaitForSeconds(4f);
+        
+
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
