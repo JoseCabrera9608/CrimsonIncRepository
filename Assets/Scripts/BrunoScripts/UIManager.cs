@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image healthBarFill;
     [SerializeField] private Image dashFill;
     [SerializeField] private Image healing;
+
+    [SerializeField] private Image staminaBarFill;
+
     private float prevHealthAmmount;
     private float prevHealingCharges;
     //=========TEMPORAL==========
@@ -78,6 +81,8 @@ public class UIManager : MonoBehaviour
         prevHealingCharges = PlayerSingleton.Instance.playerCurrentHealingCharges;
     }
     //======HEALTH=================
+
+
 
 
 

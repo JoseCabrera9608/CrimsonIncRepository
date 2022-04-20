@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isTryingToDash = Input.GetKeyDown(KeyCode.LeftShift);
 
-        dashingcd += Time.deltaTime;
+        //dashingcd += Time.deltaTime;
 
         if (isTryingToDash && !isDashing && dashingcd >= dashcd)
         {
@@ -195,8 +195,16 @@ public class PlayerMovement : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
                 DashParticles.Play();
-                dashingcd = 0;
+                dashingcd -= 0.5f; ;
             }
+        }
+        if (dashingcd >= dashcd)
+        {
+            dashingcd = 2;
+        }
+        else
+        {
+            dashingcd += Time.deltaTime;
         }
 
         if (isDashing)
