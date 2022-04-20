@@ -28,6 +28,8 @@ public class Movement : MonoBehaviour
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
     [SerializeField] public float movSpeed;
+    public float runSpeed;
+    public float walkSpeed;
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
 
     [SerializeField] public bool isGrounded;
@@ -81,7 +83,16 @@ public class Movement : MonoBehaviour
             moveDirection *= movSpeed;
         }
         
-
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movSpeed = runSpeed;
+            playeranim.SetFloat("AnimSpeed", 1);
+        }
+        else
+        {
+            movSpeed = walkSpeed;
+            playeranim.SetFloat("AnimSpeed", 0.5f);
+        }
 
         if (playerInput.x == 0 && playerInput.y == 0)
         {
