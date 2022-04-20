@@ -83,10 +83,13 @@ public class Movement : MonoBehaviour
             moveDirection *= movSpeed;
         }
         
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
         {
             movSpeed = runSpeed;
             playeranim.SetFloat("AnimSpeed", 1);
+            Recovery();
+
+            stamina -= Time.deltaTime;
         }
         else
         {
@@ -102,6 +105,7 @@ public class Movement : MonoBehaviour
         else
         {
             playeranim.SetBool("Run", true);
+
         }
 
         Vector3 movementVelocity = moveDirection;
@@ -134,6 +138,11 @@ public class Movement : MonoBehaviour
             stamina += Time.deltaTime;
         }
         
+        if (stamina <= 0)
+        {
+            movSpeed = walkSpeed;
+            stamina = 0;
+        }
 
         if (Input.GetKey(KeyCode.Space) && !isDashing && stamina >= 0.3f * staminaMax)
         {
