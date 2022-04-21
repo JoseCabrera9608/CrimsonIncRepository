@@ -159,13 +159,13 @@ public class BossCangrejo : MonoBehaviour
             StartCoroutine(HabilidadGolpeTenaza());
             activarGolpeTenazas = false;
         }
-        /*
+        
         if (activarGolpeSecuencia == true)
         {
             StartCoroutine(HabilidadSecuenciaGolpes());
             activarGolpeSecuencia = false;
         }
-
+        /*
         if (activarEmbestida == true)
         {
             StartCoroutine(Embestida());
@@ -366,6 +366,21 @@ public class BossCangrejo : MonoBehaviour
             cuboAtraccionIzquierdo.SetActive(false);
         }
         
+    }
+
+    public void ActivarEsferaMagnetica()
+    {
+        if (segundaFase == true)
+        {
+            EsferaMagnetica.SetActive(true);
+        }
+    }
+    public void DesactviarEsferaMagnetica()
+    {
+        if(segundaFase == true)
+        {
+            EsferaMagnetica.SetActive(false);
+        }
     }
     
 }
