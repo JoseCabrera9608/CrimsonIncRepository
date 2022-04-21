@@ -8,7 +8,7 @@ public class AtraccionCubo : MonoBehaviour
     List<Rigidbody> rigPlayer = new List<Rigidbody>();
     public BoxCollider colliderMag;
     Transform magnetPoint;
-    
+    float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,16 @@ public class AtraccionCubo : MonoBehaviour
         magnetPoint = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if(timer >= 3.1f)
+        {
+            this.gameObject.SetActive(false);
+            timer = 0;
+        }
+        
+    }
 
     private void FixedUpdate()
     {
@@ -54,4 +63,6 @@ public class AtraccionCubo : MonoBehaviour
     {
         colliderMag.enabled = false;
     }
+
+    
 }

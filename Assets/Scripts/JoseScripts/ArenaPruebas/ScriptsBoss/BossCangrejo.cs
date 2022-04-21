@@ -181,12 +181,12 @@ public class BossCangrejo : MonoBehaviour
         {
             StartCoroutine(PasivaCaparazon());
             activarPasiva = false;
-        }
+        }*/
 
         if (vidaActual <= 0)
         {
             StartCoroutine(MuerteCangrejo());
-        }*/
+        }
     }
     #endregion
     private void StartChase(int id)
