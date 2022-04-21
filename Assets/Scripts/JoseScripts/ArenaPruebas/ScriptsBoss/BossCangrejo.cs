@@ -80,6 +80,7 @@ public class BossCangrejo : MonoBehaviour
 
             case true:
                 PoderesSegundaFase();
+                habilidades.ability[2] = null;
                 break;
         }
 
@@ -135,6 +136,8 @@ public class BossCangrejo : MonoBehaviour
     #endregion
 
     #region PoderesSegundaFase
+
+    #region
     void PoderesSegundaFase()
     {
         TimerDeBuff();
@@ -147,14 +150,14 @@ public class BossCangrejo : MonoBehaviour
         {
             agente.SetDestination(player.transform.position);
         }
-        /*
+        
         if (activarMagneto == true)
         {
             StartCoroutine(HabilidadMagneto());
             activarMagneto = false;
         }
 
-        */if (activarGolpeTenazas == true)
+        if (activarGolpeTenazas == true)
         {
             StartCoroutine(HabilidadGolpeTenaza());
             activarGolpeTenazas = false;
@@ -165,8 +168,8 @@ public class BossCangrejo : MonoBehaviour
             StartCoroutine(HabilidadSecuenciaGolpes());
             activarGolpeSecuencia = false;
         }
-        /*
-        if (activarEmbestida == true)
+        
+       /* if (activarEmbestida == true)
         {
             StartCoroutine(Embestida());
             activarEmbestida = false;
@@ -176,18 +179,20 @@ public class BossCangrejo : MonoBehaviour
         {
             transform.LookAt(player.transform);
         }
-
-        if (activarPasiva == true)
+       */
+       /* if (activarPasiva == true)
         {
             StartCoroutine(PasivaCaparazon());
             activarPasiva = false;
-        }*/
-
+        }
+       */
         if (vidaActual <= 0)
         {
             StartCoroutine(MuerteCangrejo());
+            EfectoSegundaFase.SetActive(false);
         }
     }
+    #endregion
     #endregion
     private void StartChase(int id)
     {
@@ -221,6 +226,7 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator Embestida()
     {
+        animCangrejo.SetTrigger("Embestida");
         agente.speed = 0;
         yield return new WaitForSeconds(3);
         animCangrejo.SetTrigger("EmpezarEmbestida");
