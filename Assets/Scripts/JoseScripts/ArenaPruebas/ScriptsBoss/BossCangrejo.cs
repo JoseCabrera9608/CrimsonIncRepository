@@ -34,6 +34,8 @@ public class BossCangrejo : MonoBehaviour
     public GameObject brazoDerechoCollider;
     public GameObject brazoIzquierdoCollider;
     public GameObject embestidaCollider;
+    public GameObject cuboAtraccionDerecho;
+    public GameObject cuboAtraccionIzquierdo;
 
     //Variables Boss
     private GameObject cangrejo;
@@ -44,6 +46,10 @@ public class BossCangrejo : MonoBehaviour
     //
     public bool segundaFase;
     public GameObject EfectoSegundaFase;
+    [SerializeField] float timerDeBuff;
+    [SerializeField] bool activarBuff;
+    float timerDescanso;
+    bool activarDescanso;
 
     void Start()
     {
@@ -131,39 +137,41 @@ public class BossCangrejo : MonoBehaviour
     #region PoderesSegundaFase
     void PoderesSegundaFase()
     {
+        TimerDeBuff();
+        if(activarBuff == true)
+        {
+            StartCoroutine(buffSegundaFase());
+            activarBuff = false;
+        }
         if (onChase == true)
         {
             agente.SetDestination(player.transform.position);
-
         }
-
+        /*
         if (activarMagneto == true)
         {
             StartCoroutine(HabilidadMagneto());
             activarMagneto = false;
         }
 
-        if (activarGolpeTenazas == true)
+        */if (activarGolpeTenazas == true)
         {
-            Debug.Log("Activo GolpeTenaza");
             StartCoroutine(HabilidadGolpeTenaza());
             activarGolpeTenazas = false;
         }
-
+        /*
         if (activarGolpeSecuencia == true)
         {
-            Debug.Log("Activo Secuencia de golpes");
             StartCoroutine(HabilidadSecuenciaGolpes());
             activarGolpeSecuencia = false;
         }
 
-
         if (activarEmbestida == true)
         {
-            Debug.Log("Activo Embestida");
             StartCoroutine(Embestida());
             activarEmbestida = false;
         }
+
         if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
         {
             transform.LookAt(player.transform);
@@ -178,7 +186,7 @@ public class BossCangrejo : MonoBehaviour
         if (vidaActual <= 0)
         {
             StartCoroutine(MuerteCangrejo());
-        }
+        }*/
     }
     #endregion
     private void StartChase(int id)
@@ -260,14 +268,37 @@ public class BossCangrejo : MonoBehaviour
     #endregion
     IEnumerator buffSegundaFase()
     {
-        animCangrejo.SetTrigger("Buffearse");
-        dañoPlayer.dañoDeArma = 4;
-        yield return new WaitForSeconds(4f);
-        
+        //animCangrejo.SetTrigger("Buffearse");
+        dañoPlayer.dañoDeArma = 3;
+        yield return new WaitForSeconds(14f); 
+        dañoPlayer.dañoDeArma = 7; 
 
 
     }
+    private void TimerDeBuff()
+    {
+        timerDeBuff += Time.deltaTime;
 
+        if (timerDeBuff <= 14)
+        {
+            activarBuff = true;
+            EfectoSegundaFase.SetActive(true);
+        }
+        else
+        {
+            EfectoSegundaFase.SetActive(false);
+            StartCoroutine(DescansoDespuesdeBuff());
+            
+        }
+
+    }
+
+    IEnumerator DescansoDespuesdeBuff()
+    {
+        activarBuff = false;
+        yield return new WaitForSeconds(4);
+        timerDeBuff = 0;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerWeapon"))
@@ -296,4 +327,45 @@ public class BossCangrejo : MonoBehaviour
         brazoIzquierdoCollider.SetActive(false);
     }
 
+    public void ActivarMagnetoEnGolpe()
+    {
+        if(segundaFase == true)
+        {
+            ActivarAtraccionDerecho();
+        }
+    }
+
+    public void ActivarAtraccionDerecho()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionDerecho.SetActive(true);
+        }
+    }
+
+    public void DesactivarAtraccionDerecho()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionDerecho.SetActive(false);
+        }
+        
+    }
+    public void ActivarAtraccionIzquierdo()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionIzquierdo.SetActive(true);
+        }
+        
+    }
+    public void DesactivarAtraccionIzquierdo()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionIzquierdo.SetActive(false);
+        }
+        
+    }
+    
 }
