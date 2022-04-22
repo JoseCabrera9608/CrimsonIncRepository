@@ -29,6 +29,7 @@ public class PlayerStatus : MonoBehaviour
         //playermov.enabled = false;
 
         playerAttack = this.GetComponent<PlayerAttack>();
+        timer = 3;
 
         //playerlife = 100;
 
