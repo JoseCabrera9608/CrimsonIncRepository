@@ -13,6 +13,11 @@ public class PlayerStatus : MonoBehaviour
     public Material matHitted;
     public Animator anim;
     public SkinnedMeshRenderer mesh;
+
+    public float timer;
+    public float healingtime;
+    public float healingAmount;
+    
     public bool hiteado;
     public bool pruebasingle;
 
@@ -20,7 +25,7 @@ public class PlayerStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerSingleton.Instance.playerCurrentHP -= 50;
+        PlayerSingleton.Instance.playerCurrentHP -= 50;
         //playermov.enabled = false;
 
         playerAttack = this.GetComponent<PlayerAttack>();
@@ -51,14 +56,22 @@ public class PlayerStatus : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentHP = 100;
         }
 
+        playerlife = PlayerSingleton.Instance.playerCurrentHP;
         pruebasingle = PlayerSingleton.Instance.playerHitted;
 
         AnimationStatus();
+        Healing();
+
         //StartCoroutine(HittedCoroutine());
         if (PlayerSingleton.Instance.playerHitted == true)
         {
             StartCoroutine(HittedCoroutine());
         }
+    }
+
+    private void FixedUpdate()
+    {
+        //Healing();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,6 +87,24 @@ public class PlayerStatus : MonoBehaviour
     {
         Debug.Log("ParticleColl");
         playerlife -= 10;
+    }
+
+    public void Healing()
+    {
+        timer += Time.deltaTime;
+
+        if (timer <= healingtime)
+        {
+            PlayerSingleton.Instance.playerCurrentHP += (healingAmount/healingtime)*Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && timer > healingtime)
+        {
+            timer = 0;
+            healingtime = (0.01f * 6)* healingAmount;
+            //PlayerSingleton.Instance.playerCurrentHP += 10;
+            PlayerSingleton.Instance.playerCurrentHealingCharges -= 1;
+        }
     }
 
     void AnimationStatus()
@@ -92,6 +123,7 @@ public class PlayerStatus : MonoBehaviour
     {
 
         mesh.material = matHitted;
+        healingtime = 0;
 
         yield return new WaitForSeconds(0.5f);
 
