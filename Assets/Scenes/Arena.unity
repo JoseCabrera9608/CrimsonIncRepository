@@ -1543,6 +1543,73 @@ Transform:
   m_Father: {fileID: 1622803172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 68.05948, y: -87.68992, z: -8.866244}
+--- !u!1 &205877184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205877187}
+  - component: {fileID: 205877186}
+  - component: {fileID: 205877185}
+  m_Layer: 0
+  m_Name: ProgressManager
+  m_TagString: Progress
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &205877185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc7259e9d0327649b277e3e541eb743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &205877186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c58bff035810114587b2362fec5cb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorial: 0
+  level1: 0
+  level2: 0
+  level3: 0
+  checkpointIndex: 0
+  sens: 0
+  lvl: 0
+  changing: 0
+  sensi: {fileID: 0}
+  lastposition: {x: 0, y: 0, z: 0}
+  hubpos: {x: 0, y: 0, z: 0}
+--- !u!4 &205877187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205877184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -413.5027, y: 55.35694, z: 34.520187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &215491849
 GameObject:
   m_ObjectHideFlags: 0
@@ -8484,7 +8551,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &496147200
 GameObject:
@@ -8552,7 +8619,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496147200}
-  m_LocalRotation: {x: 0.073254265, y: -0.7033021, z: 0.07325427, w: 0.7033021}
+  m_LocalRotation: {x: 0.07325428, y: -0.703302, z: 0.073254265, w: 0.70330215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9293,7 +9360,7 @@ Transform:
   - {fileID: 1397049883}
   - {fileID: 1499482849}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &562163319
 GameObject:
@@ -14218,7 +14285,6 @@ GameObject:
   - component: {fileID: 603231384}
   - component: {fileID: 603231383}
   - component: {fileID: 603231388}
-  - component: {fileID: 603231389}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -14326,7 +14392,7 @@ RectTransform:
   - {fileID: 1414344374}
   - {fileID: 1780820611}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14363,22 +14429,6 @@ MonoBehaviour:
   playerAttack: {fileID: 561981327}
   cineoff: {fileID: 1173381394}
   cinefree: {fileID: 1173381392}
---- !u!114 &603231389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603231382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1b4fdf293dded4b8c1772cb4ffe3e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 654601079}
-  sensibilidad: 0.5
-  cinem: {fileID: 1173381392}
-  progress: {fileID: 489991779}
 --- !u!1 &604761024
 GameObject:
   m_ObjectHideFlags: 0
@@ -16360,7 +16410,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860427271
 GameObject:
@@ -16436,7 +16486,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &863512137
 GameObject:
@@ -18891,7 +18941,7 @@ Transform:
   - {fileID: 2058803622}
   - {fileID: 1165729714}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1173381394
 MonoBehaviour:
@@ -20608,7 +20658,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1347555819
 GameObject:
@@ -23599,7 +23649,7 @@ Transform:
   m_Children:
   - {fileID: 1347555820}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1697437223
 GameObject:
@@ -23741,7 +23791,7 @@ Transform:
   m_Children:
   - {fileID: 1487443798}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697553752
 GameObject:
@@ -24411,7 +24461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780820608
 GameObject:
@@ -30803,7 +30853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019550601
 GameObject:
@@ -36118,7 +36168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2072016612 stripped
 Transform:
