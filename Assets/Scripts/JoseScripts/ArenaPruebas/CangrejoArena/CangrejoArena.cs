@@ -18,10 +18,15 @@ public class CangrejoArena : MonoBehaviour
     public int vidaActual;
     //Animator
     Animator animCangrejo;
+    public bool segundaFase;
+    public GameObject cuboAtraccionDerecho;
+    public GameObject cuboAtraccionIzquierdo;
+    public GameObject caparazonLuz;
+    public GameObject EfectoSegundaFase;
 
-
-    //Cambio de color
- 
+   
+    DañoArmaCangrejo dañoPlayer;
+    public GameObject armaPlayer;
 
     //Colliders
     public GameObject GolpeTenazaCollider;
@@ -29,6 +34,7 @@ public class CangrejoArena : MonoBehaviour
     public GameObject brazoIzquierdoCollider;
     public GameObject embestidaCollider;
     public GameObject EsferaMagnetica;
+    //public GameObject EnemyHealthBar;
 
     //
     public NavMeshAgent agente;
@@ -39,13 +45,14 @@ public class CangrejoArena : MonoBehaviour
 
     void Start()
     {
-        
+        //EnemyHealthBar.SetActive(true);
+        segundaFase = false;
        //ealth = 150;
         cangrejo = GameObject.Find("Crabby");
         animCangrejo = GetComponent<Animator>();
-        
         player = GameObject.FindWithTag("Player");
         agente = GetComponent<NavMeshAgent>();
+        dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
     }
 
 
@@ -59,7 +66,7 @@ public class CangrejoArena : MonoBehaviour
             animCangrejo.SetTrigger("Caminar");
 
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             PararPersecucion();
             perseguir = false;
@@ -94,7 +101,15 @@ public class CangrejoArena : MonoBehaviour
                 ActivarMagneto();
 
         }
-        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            segundaFase = true;
+            EfectoSegundaFase.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ActivarPasiva();
+        }
     }
 
     void EmpezarPersecucion()
@@ -109,7 +124,10 @@ public class CangrejoArena : MonoBehaviour
         animCangrejo.SetTrigger("PararCaminata");
         agente.speed = 0;
     }
-
+    void ActivarPasiva()
+    {
+        StartCoroutine(Pasiva());
+    }
     void ActivarGolpeTenaza()
     {
         StartCoroutine(HabilidadGolpeTenaza());
@@ -130,6 +148,14 @@ public class CangrejoArena : MonoBehaviour
         StartCoroutine(Magnetizar());
     }
 
+    IEnumerator Pasiva()
+    {
+        caparazonLuz.SetActive(true);
+        dañoPlayer.dañoDeArma = 3;
+        yield return new WaitForSeconds(14f);
+        dañoPlayer.dañoDeArma = 7;
+        caparazonLuz.SetActive(false);
+    }
     IEnumerator HabilidadGolpeTenaza()
     {
         animCangrejo.SetTrigger("GolpeTenaza");
@@ -180,6 +206,82 @@ public class CangrejoArena : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerWeapon"))
         {
             hitted = true;
+        }
+    }
+
+    public void ActivarColliderBrazoDerecho()
+    {
+        brazoDerechoCollider.SetActive(true);
+    }
+
+    public void ActivarColliderBrazoIzquierdo()
+    {
+        brazoIzquierdoCollider.SetActive(true);
+    }
+
+    public void DesactivarColliderBrazoDercho()
+    {
+        brazoDerechoCollider.SetActive(false);
+    }
+
+    public void DesactivarColliderBrazoIzquierdo()
+    {
+        brazoIzquierdoCollider.SetActive(false);
+    }
+
+    public void ActivarMagnetoEnGolpe()
+    {
+        if (segundaFase == true)
+        {
+            ActivarAtraccionDerecho();
+        }
+    }
+
+    public void ActivarAtraccionDerecho()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionDerecho.SetActive(true);
+        }
+    }
+
+    public void DesactivarAtraccionDerecho()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionDerecho.SetActive(false);
+        }
+
+    }
+    public void ActivarAtraccionIzquierdo()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionIzquierdo.SetActive(true);
+        }
+
+    }
+    public void DesactivarAtraccionIzquierdo()
+    {
+        if (segundaFase == true)
+        {
+            cuboAtraccionIzquierdo.SetActive(false);
+        }
+
+    }
+
+    public void ActivarEsferaMagnetica()
+    {
+        if (segundaFase == true)
+        {
+            EsferaMagnetica.SetActive(true);
+        }
+    }
+    public void DesactviarEsferaMagnetica()
+    {
+        if (segundaFase == true)
+        {
+            EsferaMagnetica.SetActive(false);
         }
     }
 }
