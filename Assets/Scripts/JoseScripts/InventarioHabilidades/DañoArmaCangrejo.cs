@@ -12,6 +12,7 @@ public class DañoArmaCangrejo : MonoBehaviour
     SkinnedMeshRenderer mesh;
     GameObject cangrejoMesh;
     
+    
 
     void Start()
     {

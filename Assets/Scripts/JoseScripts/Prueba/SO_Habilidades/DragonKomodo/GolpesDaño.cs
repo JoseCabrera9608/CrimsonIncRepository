@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GolpesDaño : MonoBehaviour
 {
-    public GameObject playerObj;
-    PlayerStats player;
+    //public GameObject playerObj;
+    //PlayerStats player;
     public int damage;
 
     void Start()
     {
-        player = playerObj.gameObject.GetComponent<PlayerStats>();
+       /* player = playerObj.gameObject.GetComponent<PlayerStats>();
+        playerObj = GameObject.FindGameObjectWithTag("Player");*/
     }
 
     // Update is called once per frame

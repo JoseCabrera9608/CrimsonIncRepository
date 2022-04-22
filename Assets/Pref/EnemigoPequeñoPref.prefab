@@ -52,7 +52,7 @@ SphereCollider:
   m_GameObject: {fileID: 1464145660440474912}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -413,6 +413,7 @@ MonoBehaviour:
   BrazoDerechoCollider: {fileID: 1464145661922740478}
   GolpeLargoBoxCollider: {fileID: 1464145660503825639}
   healthEnemigo: 50
+  meshDelEnemigo: {fileID: 5691662625420827122}
 --- !u!114 &1464145662467031146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,7 +428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability:
   - {fileID: 11400000, guid: 4234803dfa68d8640ba895d65ce42308, type: 2}
-  - {fileID: 11400000, guid: 5f90be039ef1ad944aa2ebfc2f102947, type: 2}
   cooldownTime: 0
   activeTime: 0
   distance: 0
@@ -485,5 +485,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.95
   m_Center: {x: 0, y: 0, z: 0}
