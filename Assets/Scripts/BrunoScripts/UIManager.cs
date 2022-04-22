@@ -43,18 +43,7 @@ public class UIManager : MonoBehaviour
         CheckPlayerHealing();
 
         PlayerInput();
-        #region TEMPORAL
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PlayerSingleton.Instance.playerCurrentHP -= 10;
-            PlayerSingleton.Instance.playerCurrentHealingCharges -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            PlayerSingleton.Instance.playerCurrentHP += 10;
-            PlayerSingleton.Instance.playerCurrentHealingCharges += 1;
-        }
-        #endregion
+
     }
 
     #region HUD
