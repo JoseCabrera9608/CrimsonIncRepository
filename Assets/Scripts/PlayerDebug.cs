@@ -16,7 +16,8 @@ public class PlayerDebug : MonoBehaviour
     public float attackdmg;
     public float dashspeed;
     public float dashlenght;
-    public InputField speedInput;
+    public InputField WalkspeedInput;
+    public InputField RunspeedInput;
     public InputField jumpInput;
     public InputField attackdmgInput;
     public InputField dashspeedInput;
@@ -64,12 +65,19 @@ public class PlayerDebug : MonoBehaviour
 
     }
 
-    public void PlayerSpeed(string s)
+    public void WalkSpeed(string s)
     {
 
         input = s;
-        player.movSpeed = float.Parse(input);
+        player.walkSpeed = float.Parse(input);
         
+    }
+    public void RunSpeed(string s)
+    {
+
+        input = s;
+        player.runSpeed = float.Parse(input);
+
     }
 
     public void PlayerJump(string s)
