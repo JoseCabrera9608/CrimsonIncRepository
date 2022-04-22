@@ -36,8 +36,8 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
-        //sens = sensi.slider.value;
+        sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
+        sens = sensi.slider.value;
 
 
     }
