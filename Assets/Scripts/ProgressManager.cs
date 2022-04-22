@@ -11,6 +11,8 @@ public class ProgressManager : MonoBehaviour
     public bool level2 = false;
     public bool level3 = false;
 
+    public int checkpointIndex;
+
     public float sens;
     public int lvl;
     public bool changing;
