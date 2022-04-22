@@ -14,8 +14,12 @@ public class trdml : MonoBehaviour
 
     // Update is called once per frame
 
-    void OnTriggerStay(Collider o)
+   /* void OnTriggerStay(Collider o)
     {
         if (o.gameObject.tag == "Player" && on == true) { o.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.right*force,ForceMode.VelocityChange); }
+    }*/
+    private void OnCollisionStay(Collision o)
+    {
+        if (o.gameObject.tag == "Player" && on == true) { o.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.right * force, ForceMode.VelocityChange); }
     }
 }
