@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour
         moveDirection += Camera.main.transform.right * playerInput.x;
         moveDirection.Normalize();
 
-        moveDirection.y = 0;
+        //moveDirection.y = 0;
 
         if (isDashing == false && playerAttack.attackStatus == false)
         {
