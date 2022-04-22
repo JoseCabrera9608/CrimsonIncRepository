@@ -9046,6 +9046,8 @@ MonoBehaviour:
   Pause: {fileID: 0}
   weaponCollider: {fileID: 0}
   damage: 0
+  attackStatus: 0
+  playermov: {fileID: 0}
 --- !u!114 &511319897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9061,6 +9063,8 @@ MonoBehaviour:
   playerlife: 100
   playermov: {fileID: 0}
   incheck: 0
+  matNormal: {fileID: 0}
+  matHitted: {fileID: 0}
 --- !u!114 &511319898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9075,16 +9079,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playeranim: {fileID: 511319901}
   isDashing: 0
-  dashcd: 2
-  dashingcd: 0
+  staminaMax: 0
+  stamina: 0
   dashspeed: 15
   duraciondash: 0.5
   dashStartTime: 0
   timer: 0
+  recovery: 0
   incheck: 0
   progress: {fileID: 0}
+  playerAttack: {fileID: 0}
   rotationSpeed: 10
   movSpeed: 10
+  runSpeed: 0
+  walkSpeed: 0
   isGrounded: 1
   leapingVelocity: 50
   fallSpeed: 400
@@ -10656,7 +10664,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671431029}
-  m_LocalRotation: {x: 0.0029306682, y: 0.99195766, z: 0.12435834, w: -0.023376787}
+  m_LocalRotation: {x: 0.0029306684, y: 0.99195766, z: 0.12435834, w: -0.02337679}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11181,7 +11189,7 @@ RectTransform:
   m_Children:
   - {fileID: 1873924349}
   m_Father: {fileID: 6945472807382395858}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -13056,118 +13064,6 @@ Transform:
   m_Father: {fileID: 954971951}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &924944268
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 924944269}
-  - component: {fileID: 924944273}
-  - component: {fileID: 924944272}
-  - component: {fileID: 924944271}
-  - component: {fileID: 924944270}
-  m_Layer: 5
-  m_Name: Fade
-  m_TagString: Fade
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &924944269
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924944268}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6945472807382395858}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &924944270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924944268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69fb0ce793f7a094fbc8fc2e38489606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  fadeinend: 0
-  fadeoutend: 0
-  timer: 0
---- !u!95 &924944271
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924944268}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fca8eb7b44923f046bc65b8444243dae, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &924944272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924944268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23d5c4a8f17da7b45856f6548ffc798f, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &924944273
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924944268}
-  m_CullTransparentMesh: 1
 --- !u!1 &926654864
 GameObject:
   m_ObjectHideFlags: 3
@@ -17123,7 +17019,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300714184}
-  m_LocalRotation: {x: 0.0029306684, y: 0.99195766, z: 0.12435835, w: -0.023376783}
+  m_LocalRotation: {x: 0.0029306684, y: 0.99195766, z: 0.12435835, w: -0.023376787}
   m_LocalPosition: {x: 44.427925, y: 1.4220667, z: -34.3184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -18670,7 +18566,7 @@ RectTransform:
   - {fileID: 657788634}
   - {fileID: 1230302217}
   m_Father: {fileID: 6945472807382395858}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -26801,6 +26697,8 @@ MonoBehaviour:
   playerlife: 100
   playermov: {fileID: 0}
   incheck: 0
+  matNormal: {fileID: 0}
+  matHitted: {fileID: 0}
 --- !u!114 &1843023614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26868,6 +26766,8 @@ MonoBehaviour:
   Pause: {fileID: 880141116}
   weaponCollider: {fileID: 1890054277}
   damage: 0
+  attackStatus: 0
+  playermov: {fileID: 0}
 --- !u!143 &1843023616
 CharacterController:
   m_ObjectHideFlags: 0
@@ -33610,7 +33510,7 @@ RectTransform:
   - {fileID: 1504429090}
   - {fileID: 1133948229}
   m_Father: {fileID: 6945472807382395858}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -35610,7 +35510,6 @@ RectTransform:
   - {fileID: 6945472807605826869}
   - {fileID: 6945472806456906411}
   - {fileID: 82740357}
-  - {fileID: 924944269}
   - {fileID: 2009300362}
   - {fileID: 732001266}
   - {fileID: 1442519361}
@@ -35637,6 +35536,7 @@ MonoBehaviour:
   healthBarFill: {fileID: 6945472808383197114}
   dashFill: {fileID: 6945472808497549828}
   healing: {fileID: 6945472808366629665}
+  staminaBarFill: {fileID: 0}
   movement: {fileID: 0}
   gameIsPaused: 0
   pausePanel: {fileID: 2009300359}
