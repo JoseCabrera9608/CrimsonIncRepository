@@ -12,12 +12,19 @@ public class Checkpoint : MonoBehaviour
     public Material activeMat;
 
     public ProgressManager progress;
+    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         mesh = this.GetComponent<MeshRenderer>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+
+        if (progress.lastposition != Vector3.zero)
+        {
+            Player.transform.position = progress.lastposition;
+        }
 
     }
 
@@ -31,6 +38,23 @@ public class Checkpoint : MonoBehaviour
         else
         {
             mesh.material = normalMat;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                progress.checkpointIndex = checkpointIndex;
+                progress.lastposition = transform.position;
+            }
         }
     }
 }

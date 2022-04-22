@@ -43,10 +43,7 @@ public class Movement : MonoBehaviour
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         playerAttack = this.GetComponent<PlayerAttack>();
 
-        if (progress.lastposition != Vector3.zero)
-        {
-            transform.position = progress.lastposition;
-        }
+
 
         rb = GetComponent<Rigidbody>();
 
@@ -254,11 +251,7 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Checkpoint"))
-        {
-            incheck = true;
-            progress.lastposition = other.transform.position;
-        }
+
 
     }
 
