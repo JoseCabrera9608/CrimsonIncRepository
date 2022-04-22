@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -43,6 +44,21 @@ public class Checkpoint : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            //progress.lastposition = progress.hubpos;
+            SceneManager.LoadScene("EnriqueTest");
+
+            //ChangeScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            //progress.lastposition = progress.hubpos;
+            SceneManager.LoadScene("EnriqueTest2");
+
+            //ChangeScene();
         }
     }
 
