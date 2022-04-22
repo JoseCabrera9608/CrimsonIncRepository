@@ -20,7 +20,7 @@ public class BossCangrejo : MonoBehaviour
     public bool activarMagneto = false;
     public bool activarPasiva = false;
     public GameObject EsferaMagnetica;
-    public GameObject caparazon;
+    public GameObject caparazonLuz;
     //Animator
     Animator animCangrejo;
     DañoArmaCangrejo dañoPlayer;
@@ -50,9 +50,11 @@ public class BossCangrejo : MonoBehaviour
     [SerializeField] bool activarBuff;
     float timerDescanso;
     bool activarDescanso;
+    GameObject CabezaPlayer;
 
     void Start()
     {
+        CabezaPlayer = GameObject.Find("PlayerHead");
         segundaFase = false;
         vidaActual = 150;
         cangrejo = GameObject.Find("Crabby");
@@ -62,6 +64,7 @@ public class BossCangrejo : MonoBehaviour
         agente = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
+
 
     }
 
@@ -91,7 +94,7 @@ public class BossCangrejo : MonoBehaviour
     {
         if (onChase == true)
         {
-            agente.SetDestination(player.transform.position);
+            agente.SetDestination(CabezaPlayer.transform.position);
 
         }
 
@@ -124,12 +127,12 @@ public class BossCangrejo : MonoBehaviour
         }
         if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
         {
-            transform.LookAt(player.transform);
+            transform.LookAt(CabezaPlayer.transform);
         }
 
         if (activarPasiva == true)
         {
-            StartCoroutine(PasivaCaparazon());
+            StartCoroutine(buffSegundaFase());
             activarPasiva = false;
         }
     }
@@ -148,7 +151,7 @@ public class BossCangrejo : MonoBehaviour
         }
         if (onChase == true)
         {
-            agente.SetDestination(player.transform.position);
+            agente.SetDestination(CabezaPlayer.transform.position);
         }
         
         if (activarMagneto == true)
@@ -257,12 +260,12 @@ public class BossCangrejo : MonoBehaviour
 
     }
 
-    IEnumerator PasivaCaparazon()
+    /*IEnumerator PasivaCaparazon()
     {
         caparazon.SetActive(true);
         yield return new WaitForSeconds(5f);
         caparazon.SetActive(false);
-    }
+    }*/
 
     IEnumerator MuerteCangrejo()
     {
@@ -274,10 +277,11 @@ public class BossCangrejo : MonoBehaviour
     #endregion
     IEnumerator buffSegundaFase()
     {
-        //animCangrejo.SetTrigger("Buffearse");
+        caparazonLuz.SetActive(true);
         dañoPlayer.dañoDeArma = 3;
         yield return new WaitForSeconds(14f); 
-        dañoPlayer.dañoDeArma = 7; 
+        dañoPlayer.dañoDeArma = 7;
+        caparazonLuz.SetActive(false);
 
 
     }
@@ -289,12 +293,13 @@ public class BossCangrejo : MonoBehaviour
         {
             activarBuff = true;
             EfectoSegundaFase.SetActive(true);
+            caparazonLuz.SetActive(true);
         }
         else
         {
             EfectoSegundaFase.SetActive(false);
             StartCoroutine(DescansoDespuesdeBuff());
-            
+            caparazonLuz.SetActive(false);
         }
 
     }
