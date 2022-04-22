@@ -17,6 +17,7 @@ public class PlayerStatus : MonoBehaviour
     public float timer;
     public float healingtime;
     public float healingAmount;
+    public float maxtimehealing;
     
     public bool hiteado;
     public bool pruebasingle;
@@ -29,7 +30,7 @@ public class PlayerStatus : MonoBehaviour
         //playermov.enabled = false;
 
         playerAttack = this.GetComponent<PlayerAttack>();
-        timer = 3;
+        timer = maxtimehealing;
 
         //playerlife = 100;
 
@@ -102,7 +103,7 @@ public class PlayerStatus : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && timer > healingtime)
         {
             timer = 0;
-            healingtime = (0.01f * 6)* healingAmount;
+            healingtime = (0.01f * maxtimehealing)* healingAmount;
             //PlayerSingleton.Instance.playerCurrentHP += 10;
             PlayerSingleton.Instance.playerCurrentHealingCharges -= 1;
         }
