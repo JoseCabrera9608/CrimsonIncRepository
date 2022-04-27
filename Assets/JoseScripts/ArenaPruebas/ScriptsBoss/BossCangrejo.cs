@@ -256,10 +256,10 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator HabilidadMagneto()
     {
-        agente.speed = 0;
         EsferaMagnetica.SetActive(true);
+        agente.speed = 0;
         animCangrejo.SetTrigger("CanalizarMag");
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2.9f);
         EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(2);
         agente.speed = 5.5f;
