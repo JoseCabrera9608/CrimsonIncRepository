@@ -234,7 +234,7 @@ public class BossCangrejo : MonoBehaviour
     {
         animCangrejo.SetTrigger("Embestida");
         agente.speed = 0;
-        agente.stoppingDistance = 0;
+       // agente.stoppingDistance = 0;
         abdomenCollider.isTrigger = true;
         yield return new WaitForSeconds(3);
         animCangrejo.SetTrigger("EmpezarEmbestida");
@@ -242,14 +242,14 @@ public class BossCangrejo : MonoBehaviour
         agente.speed = 1000;
         agente.acceleration = 70;
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         animCangrejo.SetTrigger("TerminarEmbestida");
         embestidaCollider.SetActive(false);
         
         agente.speed = 0;
         yield return new WaitForSeconds(2);
         animCangrejo.SetTrigger("Comienzo");
-        agente.stoppingDistance = 5;
+       // agente.stoppingDistance = 5;
         abdomenCollider.isTrigger = false;
         agente.speed = 5;
     }
@@ -259,7 +259,7 @@ public class BossCangrejo : MonoBehaviour
         agente.speed = 0;
         EsferaMagnetica.SetActive(true);
         animCangrejo.SetTrigger("CanalizarMag");
-        yield return new WaitForSeconds(3.30f);
+        yield return new WaitForSeconds(4f);
         EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(2);
         agente.speed = 5.5f;
