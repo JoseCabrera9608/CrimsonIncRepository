@@ -95,7 +95,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerWeapon"))
         {
-            healthEnemigo -= 10;
+            healthEnemigo -= 40;
             hitted = true;
             StartCoroutine(CambioDeColor());
             
