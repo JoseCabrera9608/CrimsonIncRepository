@@ -242,7 +242,7 @@ public class BossCangrejo : MonoBehaviour
         agente.speed = 1000;
         agente.acceleration = 70;
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         animCangrejo.SetTrigger("TerminarEmbestida");
         embestidaCollider.SetActive(false);
         
