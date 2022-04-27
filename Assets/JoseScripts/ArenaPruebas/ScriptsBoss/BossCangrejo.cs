@@ -36,6 +36,8 @@ public class BossCangrejo : MonoBehaviour
     public GameObject embestidaCollider;
     public GameObject cuboAtraccionDerecho;
     public GameObject cuboAtraccionIzquierdo;
+    public GameObject abdomen;
+    SphereCollider abdomenCollider;
 
     //Variables Boss
     private GameObject cangrejo;
@@ -54,6 +56,7 @@ public class BossCangrejo : MonoBehaviour
 
     void Start()
     {
+        abdomenCollider = abdomen.GetComponent<SphereCollider>();
         CabezaPlayer = GameObject.Find("PlayerHead");
         segundaFase = false;
         vidaActual = 150;
@@ -71,7 +74,7 @@ public class BossCangrejo : MonoBehaviour
     
     void Update()
     {
-        if(vidaActual <= 50)
+        if(vidaActual <= 75)
         {
             segundaFase = true;
         }
@@ -222,7 +225,7 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator HabilidadSecuenciaGolpes()
     {
         animCangrejo.SetTrigger("GolpeSecuencia");
-        agente.speed = 2.8f;
+        agente.speed = 0;
         yield return new WaitForSeconds(ability.activeTime);
         agente.speed = 5;
     }
@@ -231,6 +234,7 @@ public class BossCangrejo : MonoBehaviour
     {
         animCangrejo.SetTrigger("Embestida");
         agente.speed = 0;
+        abdomenCollider.isTrigger = true;
         yield return new WaitForSeconds(3);
         animCangrejo.SetTrigger("EmpezarEmbestida");
         embestidaCollider.SetActive(true);
@@ -240,6 +244,7 @@ public class BossCangrejo : MonoBehaviour
         yield return new WaitForSeconds(2);
         animCangrejo.SetTrigger("TerminarEmbestida");
         embestidaCollider.SetActive(false);
+        abdomenCollider.isTrigger = false;
         agente.speed = 0;
         yield return new WaitForSeconds(2);
         animCangrejo.SetTrigger("Comienzo");
