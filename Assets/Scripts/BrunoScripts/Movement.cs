@@ -19,6 +19,9 @@ public class Movement : MonoBehaviour
     public float dashStartTime;
     public float timer;
 
+    public float staminaDash;
+    public float staminaRun;
+
     public bool recovery;
 
     public bool incheck;
@@ -86,7 +89,7 @@ public class Movement : MonoBehaviour
             playeranim.SetFloat("AnimSpeed", 1);
             Recovery();
 
-            stamina -= Time.deltaTime;
+            stamina -= (0.01f* staminaRun) * Time.deltaTime;
         }
         else
         {
@@ -148,7 +151,7 @@ public class Movement : MonoBehaviour
                 //FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
                 //DashParticles.Play();
-                stamina -= (0.3f*staminaMax);
+                stamina -= (0.01f* staminaDash)*staminaMax;
                 Recovery();
             }
         }
