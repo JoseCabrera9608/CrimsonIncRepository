@@ -111,7 +111,7 @@ public class PlayerStatus : MonoBehaviour
 
     void AnimationStatus()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") || anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
         {
             playerAttack.attackStatus = true;
         }
@@ -119,6 +119,7 @@ public class PlayerStatus : MonoBehaviour
         {
             playerAttack.attackStatus = false;
         }
+
     }
     
     IEnumerator HittedCoroutine()

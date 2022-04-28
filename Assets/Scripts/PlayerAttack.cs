@@ -43,9 +43,10 @@ public class PlayerAttack : MonoBehaviour
         {
             attacking = true;
             //attackStatus = true;
-            playermov.Recovery();
+            //playermov.Recovery();
             playeranim.SetBool("Attack", true);
-            playermov.stamina -= 0.25f * playermov.staminaMax;
+            //playermov.stamina -= 0.25f * playermov.staminaMax;
+
 
             
 
@@ -78,6 +79,8 @@ public class PlayerAttack : MonoBehaviour
     {
         attacking = true;
         weaponCollider.enabled = true;
+        playermov.Recovery();
+        playermov.stamina -= 0.25f * playermov.staminaMax;
     }
     void AfterAttack()
     {
