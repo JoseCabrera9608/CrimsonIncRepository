@@ -2018,6 +2018,7 @@ MonoBehaviour:
   weaponCollider: {fileID: 893735945}
   damage: 0
   attackStatus: 0
+  staminaAttack: 10
   playermov: {fileID: 0}
 --- !u!114 &445986324
 MonoBehaviour:
@@ -2039,10 +2040,12 @@ MonoBehaviour:
   duraciondash: 0.5
   dashStartTime: 0
   timer: 0
+  staminaDash: 30
+  staminaRun: 100
   recovery: 0
   incheck: 0
-  progress: {fileID: 0}
-  playerAttack: {fileID: 0}
+  progress: {fileID: 949559223}
+  playerAttack: {fileID: 445986323}
   rotationSpeed: 10
   movSpeed: 10
   runSpeed: 15
@@ -16345,7 +16348,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033760667}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -25928,6 +25931,7 @@ MonoBehaviour:
   accionar: 0
   barrera: {fileID: 2075403248}
   chocoLimite: 0
+  chocoLimiteAbajo: 0
 --- !u!64 &2078215739
 MeshCollider:
   m_ObjectHideFlags: 0
