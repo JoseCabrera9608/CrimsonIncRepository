@@ -7,6 +7,7 @@ public class ElevadorManyado : MonoBehaviour
     public GameObject plataforma;
     public float velocidad;
     public bool subir;
+    bool iddle;
     void Start()
     {
        
@@ -15,14 +16,18 @@ public class ElevadorManyado : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (subir == true)
+        if(iddle == false)
         {
-            StartCoroutine(SubirElevador());
+            if (subir == true)
+            {
+                StartCoroutine(SubirElevador());
+            }
+            else
+            {
+                StopCoroutine(SubirElevador());
+            }
         }
-        else 
-        {
-            StopCoroutine(SubirElevador());
-        }
+        
            
        
     }
@@ -33,5 +38,22 @@ public class ElevadorManyado : MonoBehaviour
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
         yield return new WaitForSeconds(5);
     }
-   
+
+    IEnumerator BajarElevador()
+    {
+        transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
+        yield return new WaitForSeconds(5);
+    }
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+
+            }
+        }
+    }
 }
