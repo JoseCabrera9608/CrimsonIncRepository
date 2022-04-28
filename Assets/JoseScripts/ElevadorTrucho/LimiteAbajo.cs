@@ -22,7 +22,7 @@ public class LimiteAbajo : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             _elevadorManyado.puedeSubir = true;
-            _elevadorManyado.chocoLimite = true;
+            _elevadorManyado.chocoLimiteAbajo = true;
         
         }
     }

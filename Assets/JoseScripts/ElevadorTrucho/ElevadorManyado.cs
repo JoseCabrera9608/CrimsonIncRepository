@@ -10,6 +10,7 @@ public class ElevadorManyado : MonoBehaviour
     public bool accionar;
     public GameObject barrera;
     public bool chocoLimite;
+    public bool chocoLimiteAbajo;
     
  
     void Update()
@@ -19,6 +20,7 @@ public class ElevadorManyado : MonoBehaviour
          {
              barrera.SetActive(true);
              SubirElevadorMetodo();
+            
              
 
          }
@@ -26,14 +28,11 @@ public class ElevadorManyado : MonoBehaviour
          {
             barrera.SetActive(false);
             DetenerElevador();
-            puedeSubir = false;
-             
-             
-
          }
          if(accionar == true && puedeSubir == false && puedeSubir == false)
          {
              BajarElevadorMetodo();
+            
          }
 
 
@@ -60,8 +59,7 @@ public class ElevadorManyado : MonoBehaviour
     }
     public void DetenerElevador()
     {
-        puedeSubir = false;
-        puedeBajar = false;
+
         StopAllCoroutines();
     }
     public void BajarElevadorMetodo()

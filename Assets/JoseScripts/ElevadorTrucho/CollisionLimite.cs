@@ -17,12 +17,13 @@ public class CollisionLimite : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
+            Debug.Log("Diosito");
             _elevadorManyado.chocoLimite = true;
+           // _elevadorManyado.DetenerElevador();
         }
     }
 
