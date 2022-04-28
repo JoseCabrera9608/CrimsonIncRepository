@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     public BoxCollider weaponCollider;
     public float damage;
     public bool attackStatus;
+    public float staminaAttack;
 
     public Movement playermov;
 
@@ -80,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         weaponCollider.enabled = true;
         playermov.Recovery();
-        playermov.stamina -= 0.25f * playermov.staminaMax;
+        playermov.stamina -= (0.01f * staminaAttack) * playermov.staminaMax;
     }
     void AfterAttack()
     {
