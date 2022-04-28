@@ -24,16 +24,21 @@ public class ElevadorManyado : MonoBehaviour
              
 
          }
-         if(chocoLimite == true)
+
+        if (accionar == true && puedeSubir == false)
+        {
+            barrera.SetActive(true);
+            BajarElevadorMetodo();
+
+
+
+        }
+        if (chocoLimite == true)
          {
             barrera.SetActive(false);
             DetenerElevador();
          }
-         if(accionar == true && puedeSubir == false && puedeSubir == false)
-         {
-             BajarElevadorMetodo();
-            
-         }
+
 
 
 
@@ -43,14 +48,14 @@ public class ElevadorManyado : MonoBehaviour
     {
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
         yield return new WaitForSeconds(1);
-        puedeSubir = true;
+        
     }
 
     IEnumerator BajarElevador()
     {
         transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
         yield return new WaitForSeconds(1);
-        puedeBajar = true;
+        
     }
 
    public void SubirElevadorMetodo()
@@ -72,6 +77,27 @@ public class ElevadorManyado : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.parent = this.transform;
+        }
+
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Limite"))
+        {
+            Debug.Log("GAAA");
+            accionar = false;
+            puedeSubir = false;
+
+            Debug.Log("GAAA");
+        }
+        if (other.gameObject.CompareTag("Nube"))
+        {
+            Debug.Log("GAAA");
+            accionar = false;
+            puedeSubir = true;
+            Debug.Log("GAAA");
         }
     }
 

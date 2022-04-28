@@ -6,6 +6,7 @@ public class Interruptor : MonoBehaviour
 {
     ElevadorManyado _elevadorManyado;
     public GameObject elevador;
+    public bool colliding;
     void Start()
     {
         _elevadorManyado = elevador.GetComponent<ElevadorManyado>();
@@ -14,17 +15,28 @@ public class Interruptor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E ) && colliding == true)
+        {
+            _elevadorManyado.accionar = true;
+        }
     }
-    private void OnTriggerStay(Collider other)
+
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                _elevadorManyado.accionar = true;
-            }
+
+            colliding = true;
+        }
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            colliding = false;
         }
     }
 }
