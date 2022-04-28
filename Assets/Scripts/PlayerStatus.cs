@@ -26,7 +26,7 @@ public class PlayerStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerSingleton.Instance.playerCurrentHP -= 50;
+        //PlayerSingleton.Instance.playerCurrentHP -= 50;
         //playermov.enabled = false;
 
         playerAttack = this.GetComponent<PlayerAttack>();
