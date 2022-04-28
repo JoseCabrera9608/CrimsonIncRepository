@@ -6,25 +6,32 @@ public class ElevadorManyado : MonoBehaviour
 {
     public GameObject plataforma;
     public float velocidad;
+    public bool subir;
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (subir == true)
+        {
+            StartCoroutine(SubirElevador());
+        }
+        else 
+        {
+            StopCoroutine(SubirElevador());
+        }
+           
+       
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        plataforma.transform.position += plataforma.transform.up * velocidad * Time.deltaTime;
 
+    IEnumerator SubirElevador()
+    {
+        transform.Translate(Vector3.up * velocidad * Time.deltaTime);
+        yield return new WaitForSeconds(5);
     }
-
-    /*private void OnCollisionExit(Collision collision)
-    {
-        plataforma.transform.position -= plataforma.transform.up * velocidad * Time.deltaTime;
-    }*/
+   
 }
