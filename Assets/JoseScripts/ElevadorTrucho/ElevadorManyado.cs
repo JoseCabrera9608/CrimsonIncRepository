@@ -4,56 +4,84 @@ using UnityEngine;
 
 public class ElevadorManyado : MonoBehaviour
 {
-    public GameObject plataforma;
     public float velocidad;
-    public bool subir;
-    bool iddle;
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
+    public bool puedeSubir;
+    public bool puedeBajar;
+    public bool accionar;
+    public GameObject barrera;
+    public bool chocoLimite;
+    
+ 
     void Update()
     {
-        if(iddle == false)
-        {
-            if (subir == true)
-            {
-                StartCoroutine(SubirElevador());
-            }
-            else
-            {
-                StopCoroutine(SubirElevador());
-            }
-        }
-        
-           
-       
-    }
 
+        if (accionar == true && puedeSubir == true)
+         {
+             barrera.SetActive(true);
+             SubirElevadorMetodo();
+             
+
+         }
+         if(chocoLimite == true)
+         {
+            barrera.SetActive(false);
+            DetenerElevador();
+            puedeSubir = false;
+             
+             
+
+         }
+         if(accionar == true && puedeSubir == false && puedeSubir == false)
+         {
+             BajarElevadorMetodo();
+         }
+
+
+
+    }
 
     IEnumerator SubirElevador()
     {
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+        puedeSubir = true;
     }
 
     IEnumerator BajarElevador()
     {
         transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+        puedeBajar = true;
     }
 
-
-    private void OnTriggerStay(Collider other)
+   public void SubirElevadorMetodo()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
+        StartCoroutine(SubirElevador());
+    }
+    public void DetenerElevador()
+    {
+        puedeSubir = false;
+        puedeBajar = false;
+        StopAllCoroutines();
+    }
+    public void BajarElevadorMetodo()
+    {
+        StartCoroutine(BajarElevador());
+    }
 
-            }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.parent = this.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.parent = null;
         }
     }
 }
