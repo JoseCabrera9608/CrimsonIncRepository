@@ -15287,7 +15287,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844819550}
-  m_LocalRotation: {x: 0.07325424, y: -0.7033021, z: 0.07325424, w: 0.7033021}
+  m_LocalRotation: {x: 0.07325423, y: -0.7033021, z: 0.07325423, w: 0.7033021}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -25936,37 +25936,11 @@ MonoBehaviour:
   barrera: {fileID: 2075403248}
   chocoLimite: 0
   chocoLimiteAbajo: 0
---- !u!65 &2078215739
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078215735}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 698.39825, y: 43.90153, z: 540.6731}
-  m_Center: {x: 0, y: -73.081635, z: 0}
 --- !u!4 &2078215740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2c2e9ec77d288b4db3ffd0af1950ada, type: 3}
   m_PrefabInstance: {fileID: 929197088}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2078215741
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078215735}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 698.39825, y: 190.06488, z: 540.6731}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2078215742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25983,6 +25957,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!64 &2078215743
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078215735}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4406822824854963583, guid: c2c2e9ec77d288b4db3ffd0af1950ada, type: 3}
 --- !u!1 &2081275317
 GameObject:
   m_ObjectHideFlags: 0
@@ -26115,6 +26103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevador: {fileID: 2078215735}
+  colliding: 0
 --- !u!65 &2105209491
 BoxCollider:
   m_ObjectHideFlags: 0
