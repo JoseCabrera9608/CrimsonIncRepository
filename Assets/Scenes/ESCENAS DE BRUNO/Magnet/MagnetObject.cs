@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
+using DG.Tweening;
 public class MagnetObject : MonoBehaviour
 {
     public List<Rigidbody> objectsToAtract;
     [SerializeField] private Transform pullPoint;
     [SerializeField] private GameObject player;
-    [SerializeField] private ParticleSystem particles;
+    [SerializeField] private GameObject pullSphere;
 
     [Header("Settings")]
     [SerializeField] private bool showAtractionRadius;
@@ -22,7 +22,7 @@ public class MagnetObject : MonoBehaviour
     {
         objectsToAtract = new List<Rigidbody>();
         t = 0;
-        
+
     }
 
     // Update is called once per frame
@@ -37,8 +37,8 @@ public class MagnetObject : MonoBehaviour
         yield return new WaitForSeconds(atractionDuration);
         isActive = false;
         t = 0;
-        particles.Stop();
-        ExplotionAtEndUwu();
+        
+        //ExplotionAtEndUwu();
     }
     private void StartAtraction()
     {
@@ -46,12 +46,15 @@ public class MagnetObject : MonoBehaviour
         if (!isActive)
         {
             t += Time.deltaTime;
-            if (t >= atractionDelay / 2) particles.Play();
+            if (t >= atractionDelay / 2 && pullSphere.transform.localScale == Vector3.zero)
+            {
+                pullSphere.transform.DOScale(atractionRadius * 2, 1).SetEase(Ease.OutBack);
+            }
             if (t >= atractionDelay)
             {
                 Debug.Log("Iniciando");
                 isActive = true;
-                //particles.Play();
+                pullSphere.transform.DOScale(0, atractionDuration).SetEase(Ease.InCubic);
                 StartCoroutine(RestartAtraction());
             }
         }
@@ -102,8 +105,7 @@ public class MagnetObject : MonoBehaviour
         if(showAtractionRadius) Gizmos.DrawWireSphere(pullPoint.position,
             GetComponent<SphereCollider>().radius);
 
-        atractionRadius = particles.shape.radius;
-        atractionDuration = particles.main.duration * 20;
+       
     }
 
 }
