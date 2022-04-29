@@ -51,15 +51,15 @@ public class Checkpoint : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            progress.lastposition = new Vector3(0, 0, 0);
-            SceneManager.LoadScene("EnriqueTest");
+            //progress.lastposition = new Vector3(0, 0, 0);
+            SceneManager.LoadScene("WB_Diego");
 
             //ChangeScene();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            progress.lastposition = new Vector3 (7,0,-6);
-            SceneManager.LoadScene("EnriqueTest2");
+            //progress.lastposition = new Vector3 (7,0,-6);
+            //SceneManager.LoadScene("EnriqueTest2");
 
             //ChangeScene();
         }

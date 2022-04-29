@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour
 
     public string sceneName;
     public ProgressManager progress;
+    public Vector3 initialPosition;
 
     void Start()
     {
