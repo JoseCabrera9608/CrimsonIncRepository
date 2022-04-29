@@ -15,6 +15,7 @@ public class Checkpoint : MonoBehaviour
 
     public ProgressManager progress;
     public GameObject Player;
+    public GameObject SpawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class Checkpoint : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && colliding ==true)
         {
             progress.checkpointIndex = checkpointIndex;
-            progress.lastposition = transform.position;
+            progress.lastposition = SpawnPoint.transform.position;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
