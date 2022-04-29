@@ -89,6 +89,7 @@ public class ElevadorManyado : MonoBehaviour
             Debug.Log("GAAA");
             accionar = false;
             puedeSubir = false;
+            barrera.SetActive(false);
 
             Debug.Log("GAAA");
         }
@@ -98,6 +99,7 @@ public class ElevadorManyado : MonoBehaviour
             accionar = false;
             puedeSubir = true;
             Debug.Log("GAAA");
+            barrera.SetActive(false);
         }
     }
 
