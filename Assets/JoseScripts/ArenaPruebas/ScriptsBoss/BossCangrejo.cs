@@ -130,7 +130,7 @@ public class BossCangrejo : MonoBehaviour
         }
         if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
         {
-            transform.LookAt(CabezaPlayer.transform);
+            //transform.LookAt(CabezaPlayer.transform);
         }
 
         if (activarPasiva == true)
@@ -256,9 +256,10 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator HabilidadMagneto()
     {
+        animCangrejo.SetTrigger("CanalizarMag");
+        //yield return new WaitForSeconds(1.5f);
         EsferaMagnetica.SetActive(true);
         agente.speed = 0;
-        animCangrejo.SetTrigger("CanalizarMag");
         yield return new WaitForSeconds(2.9f);
         EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(2);
@@ -278,6 +279,7 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator MuerteCangrejo()
     {
         animCangrejo.SetTrigger("Muerte");
+        EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         habilidades.enabled = false;
         Destroy(this);
