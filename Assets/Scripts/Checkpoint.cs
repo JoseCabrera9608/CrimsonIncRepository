@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
 {
 
     public int checkpointIndex;
+    public bool colliding;
 
     public MeshRenderer mesh;
     public Material normalMat;
@@ -41,9 +42,10 @@ public class Checkpoint : MonoBehaviour
             mesh.material = normalMat;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && colliding ==true)
         {
-
+            progress.checkpointIndex = checkpointIndex;
+            progress.lastposition = transform.position;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -62,15 +64,22 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                progress.checkpointIndex = checkpointIndex;
-                progress.lastposition = transform.position;
-            }
+
+            colliding = true;
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            colliding = false;
         }
     }
 }
