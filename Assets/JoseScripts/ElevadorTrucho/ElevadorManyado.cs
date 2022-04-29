@@ -86,19 +86,19 @@ public class ElevadorManyado : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Limite"))
         {
-            Debug.Log("GAAA");
+            //Debug.Log("GAAA");
             accionar = false;
             puedeSubir = false;
             barrera.SetActive(false);
 
-            Debug.Log("GAAA");
+            //Debug.Log("GAAA");
         }
         if (other.gameObject.CompareTag("Nube"))
         {
-            Debug.Log("GAAA");
+            //Debug.Log("GAAA");
             accionar = false;
             puedeSubir = true;
-            Debug.Log("GAAA");
+            //Debug.Log("GAAA");
             barrera.SetActive(false);
         }
     }

@@ -12,6 +12,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     //Habilidades
     public bool golpeLargo;
     public bool golpeMelee;
+    public bool magnetizar;
 
     //Comienzo
     public bool onChase;
@@ -24,6 +25,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     bool hitted;
     SkinnedMeshRenderer meshDelEnemigo;
     public GameObject meshObject;
+    public GameObject magneto;
     
 
     void Start()
@@ -44,27 +46,22 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
         }
 
-        if(healthEnemigo <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-
-     /*   if(golpeLargo == true)
-        {
-            StartCoroutine(GolpeLargoActivate());
-
-        }*/
-
         if (golpeMelee == true)
         {
             StartCoroutine(GolpeMeleeActivate());
+            golpeMelee = false;
         }
 
         if(healthEnemigo <= 0)
         {
             StartCoroutine(Muerte());
         }
-        
+
+        if(magnetizar == true)
+        {
+            StartCoroutine(Magnetizar());
+            magnetizar = false;
+        }
     }
 
     private void StartChase(int id)
@@ -78,20 +75,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator Muerte()
     {
         anim.SetTrigger("Muerte");
-        yield return new WaitForSeconds(0.5f);
-        Destroy(this);
+        yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
     }
 
-    /* IEnumerator GolpeLargoActivate()
-     {
-         anim.SetTrigger("GolpeLargo");
-         agente.speed = 0;
-         //GolpeLargoBoxCollider.enabled = true;
-         yield return new WaitForSeconds(2);
-         agente.speed = 2;
-         //GolpeLargoBoxCollider.enabled = false;
-         golpeLargo = false;
-     }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -112,12 +99,18 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator GolpeMeleeActivate()
     {
         anim.SetTrigger("Golpe");
-       // BrazoDerechoCollider.enabled = true;
         agente.speed = 1.7f;
         yield return new WaitForSeconds(3);
-       // BrazoDerechoCollider.enabled = false;
-        golpeMelee = false;
+    }
 
+    IEnumerator Magnetizar()
+    {
+        anim.SetTrigger("Magneto");
+        magneto.SetActive(true);
+        yield return new WaitForSeconds(2.95f);
+        anim.SetTrigger("TerminarMag");
+        magneto.SetActive(false);
+       
     }
 
     public void ActivarColliderDerecho()
@@ -137,5 +130,16 @@ public class EnemiPequeñoControlador : MonoBehaviour
     {
         //GolpeLargoBoxCollider.enabled = false;
     }
+
+    public void ActivarMagneto()
+    {
+       // magneto.SetActive(true);
+    }
+
+    public void DesactivarMagneto()
+    {
+      //  magneto.SetActive(false);
+    }
+
 }
 

@@ -52,7 +52,7 @@ public class MagnetObject : MonoBehaviour
             }
             if (t >= atractionDelay)
             {
-                Debug.Log("Iniciando");
+                //Debug.Log("Iniciando");
                 isActive = true;
                 pullSphere.transform.DOScale(0, atractionDuration).SetEase(Ease.InCubic);
                 StartCoroutine(RestartAtraction());

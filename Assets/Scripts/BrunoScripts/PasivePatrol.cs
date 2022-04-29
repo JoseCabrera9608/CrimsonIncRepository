@@ -49,7 +49,7 @@ public class PasivePatrol : MonoBehaviour
         {
             if (!scanning) StartCoroutine(ScanTerrain());
             scanning = true;
-            Debug.Log("Scanning");
+           // Debug.Log("Scanning");
             
         }
     }
