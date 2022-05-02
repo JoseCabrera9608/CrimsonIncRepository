@@ -4,79 +4,41 @@ using UnityEngine;
 
 public class HabilidadesEquipadas2 : MonoBehaviour
 {
-    public Habilidad_SO[] ability;
-    [SerializeField] float cooldownTime;
-    public float activeTime;
-    GameObject player;
-    [SerializeField] private float distance;
-    [SerializeField] private bool casting = false;
-    int index;
-    public bool attacking = false;
-    public Habilidad_SO[] habilidadSegundaFase;
+    public Animator anim;
+    public int attackIndex;
+    public bool activarPoder;
+    public int indexDos;
+    public GameObject esferaMagnetica;
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        anim = GetComponent<Animator>();
 
     }
-
-    enum AbilityState
+    private void Update()
     {
-        ready,
-        active,
-        cooldown
-
-
+       /* index = Random.Range(1, 3);
+        attackIndex = index;*/
+         if(activarPoder == true)
+         {
+             StartCoroutine(EmpezarPoder());
+             activarPoder = false;
+         }
     }
-    AbilityState state = AbilityState.ready;
 
-
-    void Update()
+   IEnumerator EmpezarPoder()
     {
+        //esferaMagnetica.SetActive(true);
+        anim.SetTrigger("Magnetizar");
+        indexDos = Random.Range(1, 4);
+        attackIndex = indexDos;
+        yield return new WaitForSeconds(1);
+        anim.SetInteger("AttackIndex", attackIndex);
         
-        index = Random.Range(0, ability.Length);
-        distance = Vector3.Distance(transform.position, player.transform.position);
-        switch (state)
-        {
-            case AbilityState.ready:
-                if (distance <= ability[index].distanceToActivate && distance >= ability[index].minDistance && casting == false)
-                {
-                    ability[index].Activate(gameObject);
-                    state = AbilityState.active;
-                    activeTime = ability[index].activeTime;
-                }
-                break;
-            case AbilityState.active:
-                if (activeTime > 0 /* && attacking == false */) // && restmode == false
-                {
+    }
 
-                    casting = true;
-                    activeTime -= Time.deltaTime;
-                    //attacking = true;
-
-                }
-                else
-                {
-                    state = AbilityState.cooldown;
-                    cooldownTime = ability[index].cooldownTime;
-                    //resttime = 0;
-                    //casting = false;
-                }
-                break;
-            case AbilityState.cooldown:
-                if (cooldownTime > 0)
-                {
-                    cooldownTime -= Time.deltaTime;
-                }
-                else
-                {
-                    //attacking = false;
-                    //restmode = true; que empiece la cuenta de tiempo ga
-                    //resttime += Time.deltaTime;
-                    casting = false;
-                    state = AbilityState.ready;
-                }
-                break;
-        }
+    public void ActivarSphera()
+    {
+        esferaMagnetica.SetActive(true);
     }
 }
