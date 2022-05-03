@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8570063e2373c704eb555e92f7fe46bc, type: 3}
-  m_Name: BuffTest
+  m_Name: Stamina
   m_EditorClassIdentifier: 
   buffType: 0
-  buffName: Aumento de salud
-  description: aumenta en un 100% la salud maxima
+  buffName: Aumento de stamina
+  description: 'aumenta la stamina maxima en un '
   picked: 0
-  playerVars: 0
-  instantMultiplier: 2
-  displayed: 1
+  oppositeMultiplier: 1
+  playerVars: 1
+  instantMultiplier: 0.15
+  displayed: 0
+  doubleVar1: 0
+  doubleMultiplier1: 0
+  doubleVar2: 0
+  doubleMultiplier2: 0

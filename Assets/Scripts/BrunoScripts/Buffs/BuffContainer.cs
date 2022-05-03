@@ -21,13 +21,6 @@ public class BuffContainer : MonoBehaviour
         assignedBuff.picked = true;
         BuffManager.Instance.ResetBuffDisplay();
         BuffManager.Instance.LoadSelectedBuffs(true, assignedBuff);
-        switch (assignedBuff.buffType)
-        {
-            case BuffType.instant:
-                BuffManager.Instance.HandleInstantBuff(assignedBuff.playerVars, assignedBuff.instantMultiplier);
-                break;
-        }
-        
-    }
-    
+        assignedBuff.ApplyBuff();      
+    }  
 }

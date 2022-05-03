@@ -9,10 +9,12 @@ public class BuffManager : MonoBehaviour
     [SerializeField] private GameObject[] buffContainer;
     [SerializeField] private Buff[] buff;
     [SerializeField] private List<Buff> equipedBuffs;
+
     public static BuffManager Instance;
+    [SerializeField] private static bool buffOnGround;
     private void Awake()
     {
-        Instance = this;
+        Instance = this;       
     }
     private void Start()
     {
@@ -20,7 +22,13 @@ public class BuffManager : MonoBehaviour
         ResetBuffDisplay();
         SetBuffInformation();
         buffPanel.SetActive(false);
-        ShowPanel();       
+        ShowPanel();
+        
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) HandleDeath();
+        if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
     }
     public void ShowPanel()
     {
@@ -61,7 +69,6 @@ public class BuffManager : MonoBehaviour
             for(int i = 0; i < maxTries; i++)
             {
                 int randomIndex = (int)Random.Range(0, buff.Length);
-                Debug.Log(randomIndex);
                 if (buff[randomIndex].displayed == false)
                 {
                     i = maxTries;
@@ -71,6 +78,48 @@ public class BuffManager : MonoBehaviour
                 }
             }          
         }
+    }
+
+    public void HandleDeath()
+    {
+        if (equipedBuffs.Count > 0)
+        {
+            if (buffOnGround==false)
+            {
+                Debug.Log("Tus buffs estan en el lugar de tu muerte UwU");
+                foreach (Buff buff in equipedBuffs)
+                {
+                    buff.oppositeMultiplier =-1;
+                    buff.ApplyBuff();
+                    buff.oppositeMultiplier = 1;
+                }
+                buffOnGround = true;
+                SpawnBuffRecoveryObject();
+            }else if (buffOnGround == true)
+            {
+                Debug.Log("Oh no, perdiste tus buffs para siempre :(");
+                foreach (Buff buff in equipedBuffs)
+                {
+                    buff.picked = false;
+                    equipedBuffs = null;
+                }
+                buffOnGround = false;
+            }
+            
+        }
+    }
+    public void SpawnBuffRecoveryObject()
+    {
+        //AQUI DEBERIA IR LA LOGICA PARA QUE EL OBJETO APAREZCA EN EL LUGAR DE LA MUERTE
+    }
+    public void RecoverBuffs()
+    {
+        Debug.Log("Recuperaste tus buffs :)");
+        foreach (Buff buff in equipedBuffs)
+        {
+            buff.ApplyBuff();
+        }
+        buffOnGround = false;
     }
     public void ResetBuffDisplay()
     {
@@ -87,7 +136,12 @@ public class BuffManager : MonoBehaviour
         {
             foreach (Buff _buff in buff)
             {
-                if (_buff.picked) equipedBuffs.Add(_buff);
+                if (_buff.picked)
+                {
+                    equipedBuffs.Add(_buff);
+                    _buff.ApplyBuff();
+                }
+
             }
         }
         else
@@ -96,38 +150,4 @@ public class BuffManager : MonoBehaviour
         }
         
     }
-    public void HandleInstantBuff(PlayerVars var,float multiplier)
-    {
-        switch (var)
-        {
-            case PlayerVars.maxHealth:
-                PlayerSingleton.Instance.playerMaxHP *= multiplier;
-                break;
-            case PlayerVars.maxStamina:
-                PlayerSingleton.Instance.playerMaxStamina*= multiplier;
-                break;
-            case PlayerVars.healingAmount:
-                PlayerSingleton.Instance.playerHealAmount *= multiplier;
-                break;
-            case PlayerVars.damage:
-                PlayerSingleton.Instance.playerDamage *= multiplier;
-                break;
-            case PlayerVars.defense:
-                PlayerSingleton.Instance.playerDefense *= multiplier;
-                break;
-            case PlayerVars.runStaminaCost:
-                PlayerSingleton.Instance.playerRunStaminaCost *= multiplier;
-                break;
-            case PlayerVars.staminaRegenValue:
-                PlayerSingleton.Instance.playerStaminaRegen *= multiplier;
-                break;
-            case PlayerVars.statusResistance:
-                PlayerSingleton.Instance.playerStatusResistance *= multiplier;
-                break;
-            case PlayerVars.healingCharges:
-                PlayerSingleton.Instance.playerMaxHealingCharges *= multiplier;
-                break;
-        }
-    }
-
 }

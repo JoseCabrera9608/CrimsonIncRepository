@@ -22,16 +22,28 @@ public class PlayerSingleton : MonoBehaviour
         _instance = this;
 
         #region defaultVars
-        playerMaxHP = 100;
-        playerCurrentHP = 100;
-        playerCurrentHealingCharges = 5;
-        playerMaxHealingCharges = 5;
+        //HP
+        playerMaxHP = DefaultPlayerVars.defaultMaxHP;
+        playerCurrentHP = DefaultPlayerVars.defaultMaxHP; ;
+        //Healing
+        playerCurrentHealingCharges = DefaultPlayerVars.defaultMaxHealingCharges;
+        playerMaxHealingCharges = DefaultPlayerVars.defaultMaxHealingCharges;
+        playerHealAmount = DefaultPlayerVars.defaultHealAmount;
+        //Stamina
+        playerMaxStamina = DefaultPlayerVars.defaultMaxStamina;
+        playerCurrentStamina = DefaultPlayerVars.defaultMaxStamina;
+        playerStaminaRegen = DefaultPlayerVars.defaultStaminaRegen;
+        playerRunStaminaCost = DefaultPlayerVars.defaultRunStaminaCost;
+        //Damage and Defense
+        playerDamage = DefaultPlayerVars.defaultDamage;
+        playerDefense = DefaultPlayerVars.defaultDefense;
+        playerStatusResistance = DefaultPlayerVars.defaultStatusResistance;
         playerHitted = false;
         #endregion
     }
 
     //======HP values==================
-    [SerializeField]public float playerMaxHP { set; get; }
+    public float playerMaxHP { set; get; }
     public float playerCurrentHP { set; get; }
 
 
