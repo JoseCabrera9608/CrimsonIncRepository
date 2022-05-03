@@ -787,6 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 1658995029}
   descriptionText: {fileID: 1221913939}
+  assignedBuff: {fileID: 0}
 --- !u!114 &451392506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,7 +831,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 451392507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 451392505}
+        m_TargetAssemblyTypeName: BuffContainer, Assembly-CSharp
+        m_MethodName: PickBuff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &451392507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,6 +1265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 370219314}
   descriptionText: {fileID: 739083089}
+  assignedBuff: {fileID: 0}
 --- !u!114 &1043037419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,7 +1309,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1043037420}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1043037418}
+        m_TargetAssemblyTypeName: BuffContainer, Assembly-CSharp
+        m_MethodName: PickBuff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1043037420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,7 +1871,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1546410748}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1546410751}
+        m_TargetAssemblyTypeName: BuffContainer, Assembly-CSharp
+        m_MethodName: PickBuff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1546410751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,6 +1898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 650421368}
   descriptionText: {fileID: 83260932}
+  assignedBuff: {fileID: 0}
 --- !u!1 &1616524658
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class PlayerSingleton : MonoBehaviour
             return _instance;
         }
     }
-    private void Awake()
+    private void OnEnable()
     {
         _instance = this;
 
@@ -30,9 +30,27 @@ public class PlayerSingleton : MonoBehaviour
         #endregion
     }
 
-    public float playerMaxHP { set; get; }
+    //======HP values==================
+    [SerializeField]public float playerMaxHP { set; get; }
     public float playerCurrentHP { set; get; }
+
+
+    //======Stamina values==================
+    public float playerMaxStamina { set; get; }
+    public float playerCurrentStamina { set; get; }
+    public float playerStaminaRegen { set; get; }
+    public float playerRunStaminaCost { set; get; }
+
+    //======Healing values==================
     public float playerCurrentHealingCharges { set; get; }
+    public float playerHealAmount { set; get; }
     public float playerMaxHealingCharges { set; get; }
+
+    //======Damage and Defense==================
+    public float playerDamage { set; get; }
+    public float playerDefense { set; get; }
+    public float playerStatusResistance { set; get; }
+
+    //======Others==================
     public bool playerHitted { set; get; }
 }

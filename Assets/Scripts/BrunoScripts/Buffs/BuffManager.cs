@@ -8,15 +8,24 @@ public class BuffManager : MonoBehaviour
     [SerializeField] private GameObject buffPanel;
     [SerializeField] private GameObject[] buffContainer;
     [SerializeField] private Buff[] buff;
-
+    [SerializeField] private List<Buff> equipedBuffs;
+    public static BuffManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
+        LoadSelectedBuffs(false, null);
+        ResetBuffDisplay();
         SetBuffInformation();
-        ShowPanel();
-        buffPanel.GetComponent<CanvasGroup>().alpha = 0;
+        buffPanel.SetActive(false);
+        ShowPanel();       
     }
     public void ShowPanel()
     {
+        buffPanel.SetActive(true);
+        buffPanel.GetComponent<CanvasGroup>().alpha = 0;
         Sequence showPanel = DOTween.Sequence();
         showPanel.Append(buffPanel.GetComponent<CanvasGroup>().DOFade(1, 3));
         showPanel.AppendInterval(-1.5f);
@@ -39,7 +48,8 @@ public class BuffManager : MonoBehaviour
     {
         foreach(Buff _buff in buff)
         {
-            _buff.used = false;
+            _buff.picked = false;
+            _buff.displayed = false;
         }
     }
     public void SetBuffInformation()
@@ -52,15 +62,72 @@ public class BuffManager : MonoBehaviour
             {
                 int randomIndex = (int)Random.Range(0, buff.Length);
                 Debug.Log(randomIndex);
-                if (buff[randomIndex].used == false)
+                if (buff[randomIndex].displayed == false)
                 {
                     i = maxTries;
-                    buff[randomIndex].used = true;
+                    buff[randomIndex].displayed = true;
                     container.GetComponent<BuffContainer>().assignedBuff=buff[randomIndex];
                     container.GetComponent<BuffContainer>().ChangeText();
                 }
-            }
-
+            }          
         }
     }
+    public void ResetBuffDisplay()
+    {
+        Debug.Log("Reseting display");
+        foreach(Buff _buff in buff)
+        {
+            if(_buff.picked==false) _buff.displayed = false;
+        }
+    }
+    
+    public void LoadSelectedBuffs(bool specific,Buff buffToLoad)
+    {
+        if (specific == false)
+        {
+            foreach (Buff _buff in buff)
+            {
+                if (_buff.picked) equipedBuffs.Add(_buff);
+            }
+        }
+        else
+        {
+            equipedBuffs.Add(buffToLoad);
+        }
+        
+    }
+    public void HandleInstantBuff(PlayerVars var,float multiplier)
+    {
+        switch (var)
+        {
+            case PlayerVars.maxHealth:
+                PlayerSingleton.Instance.playerMaxHP *= multiplier;
+                break;
+            case PlayerVars.maxStamina:
+                PlayerSingleton.Instance.playerMaxStamina*= multiplier;
+                break;
+            case PlayerVars.healingAmount:
+                PlayerSingleton.Instance.playerHealAmount *= multiplier;
+                break;
+            case PlayerVars.damage:
+                PlayerSingleton.Instance.playerDamage *= multiplier;
+                break;
+            case PlayerVars.defense:
+                PlayerSingleton.Instance.playerDefense *= multiplier;
+                break;
+            case PlayerVars.runStaminaCost:
+                PlayerSingleton.Instance.playerRunStaminaCost *= multiplier;
+                break;
+            case PlayerVars.staminaRegenValue:
+                PlayerSingleton.Instance.playerStaminaRegen *= multiplier;
+                break;
+            case PlayerVars.statusResistance:
+                PlayerSingleton.Instance.playerStatusResistance *= multiplier;
+                break;
+            case PlayerVars.healingCharges:
+                PlayerSingleton.Instance.playerMaxHealingCharges *= multiplier;
+                break;
+        }
+    }
+
 }
