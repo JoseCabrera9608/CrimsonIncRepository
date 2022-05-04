@@ -15,9 +15,14 @@ public class BuffManager : MonoBehaviour
 
     public static BuffManager Instance;
     [SerializeField] private static bool buffOnGround;
-
+    
     //Unique Buffs Vars====================================
     public bool hasExtraCardBuff=false;
+    public bool redTearstone=false;
+    private float extraDamage;
+    private float prevDamage;
+    public bool sacrificeRing = false;
+    //public float sacrificeRingCharges;
     private void Awake()
     {
         Instance = this;       
@@ -27,8 +32,7 @@ public class BuffManager : MonoBehaviour
         LoadSelectedBuffs(false, null);
         buffPanel.SetActive(false);
         //temp
-        //ShowPanel();
-        
+        //ShowPanel();       
     }
     private void Update()
     {
@@ -36,6 +40,8 @@ public class BuffManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P)) HandleDeath();
         if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
         if (Input.GetKeyDown(KeyCode.I)) ShowPanel();
+
+        LowHealthDamageBuff();
         
     }
     public void SpawnContainers()
@@ -114,31 +120,42 @@ public class BuffManager : MonoBehaviour
     }
     public void HandleDeath()
     {
-        if (equipedBuffs.Count > 0)
+        CheckSacrificeRing();
+        if (sacrificeRing == true&&PlayerPrefs.GetFloat("sacrificeCharges")>0)
         {
-            if (buffOnGround==false)
-            {
-                Debug.Log("Tus buffs estan en el lugar de tu muerte UwU");
-                foreach (Buff buff in equipedBuffs)
-                {
-                    buff.oppositeMultiplier =-1;
-                    buff.ApplyBuff();
-                    buff.oppositeMultiplier = 1;
-                }
-                buffOnGround = true;
-                SpawnBuffRecoveryObject();
-            }else if (buffOnGround == true)
-            {
-                Debug.Log("Oh no, perdiste tus buffs para siempre :(");
-                foreach (Buff buff in equipedBuffs)
-                {
-                    buff.picked = false;
-                    equipedBuffs = null;
-                }
-                buffOnGround = false;
-            }
-            
+            PlayerPrefs.SetFloat("sacrificeCharges", PlayerPrefs.GetFloat("sacrificeCharges")-1);
+            Debug.Log("Sacrifice charges= " + PlayerPrefs.GetFloat("sacrificeCharges"));
         }
+        else
+        {
+            if (equipedBuffs.Count > 0)
+            {
+                if (buffOnGround == false)
+                {
+                    Debug.Log("Tus buffs estan en el lugar de tu muerte UwU");
+                    foreach (Buff buff in equipedBuffs)
+                    {
+                        buff.oppositeMultiplier = -1;
+                        buff.ApplyBuff();
+                        buff.oppositeMultiplier = 1;
+                    }
+                    buffOnGround = true;
+                    SpawnBuffRecoveryObject();
+                }
+                else if (buffOnGround == true)
+                {
+                    Debug.Log("Oh no, perdiste tus buffs para siempre :(");
+                    foreach (Buff buff in equipedBuffs)
+                    {
+                        buff.picked = false;
+                        equipedBuffs = null;
+                    }
+                    buffOnGround = false;
+                }
+
+            }
+        }
+        
     }
     public void SpawnBuffRecoveryObject()
     {
@@ -181,7 +198,22 @@ public class BuffManager : MonoBehaviour
         }
         
     }
-
+    public void CheckSacrificeRing()
+    {
+        for(int i = 0; i < equipedBuffs.Count; i++)
+        {
+            if (equipedBuffs[i].uniqueID == UniqueID.sacrificeRing)
+            {
+                if(sacrificeRing&& PlayerPrefs.GetFloat("sacrificeCharges") == 0)
+                {
+                    equipedBuffs[i].picked = false;
+                    sacrificeRing = false;
+                    equipedBuffs.RemoveAt(i);
+                }
+            }
+        }
+       
+    }
     public void UniqueBuffs(UniqueID id)
     {
         switch (id)
@@ -191,9 +223,37 @@ public class BuffManager : MonoBehaviour
                 if (hasExtraCardBuff) containersToDisplay = 4;
                 else containersToDisplay = 3;
                 break;
+
+            case UniqueID.lowHealthMoreDamage:
+                redTearstone = !redTearstone;
+                prevDamage = PlayerSingleton.Instance.playerDamage;
+              break;
+
+            case UniqueID.sacrificeRing:
+                sacrificeRing =true;
+                if (PlayerPrefs.GetFloat("sacrificeCharges") == 0) PlayerPrefs.SetFloat("sacrificeCharges", 3);
+                break;
         }
     }
+    public void LowHealthDamageBuff()
+    {
+        if (redTearstone)
+        {
+            if (PlayerSingleton.Instance.playerCurrentHP <= PlayerSingleton.Instance.playerMaxHP * 0.2f)
+            {
+                extraDamage = DefaultPlayerVars.defaultDamage * 1.6f;
+            }
+            else extraDamage = 0;
 
+        }
+        else extraDamage = 0;
+     
+        PlayerSingleton.Instance.playerDamage = extraDamage+prevDamage;
+
+        if (Input.GetMouseButtonDown(0)) PlayerSingleton.Instance.playerCurrentHP -= 80f;
+        if (Input.GetMouseButtonDown(1)) PlayerSingleton.Instance.playerCurrentHP += 30f;
+
+    }
     [ContextMenu("ResetAll uses")]
     public void ResetBuffUses()
     {

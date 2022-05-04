@@ -25,7 +25,7 @@ public class Buff : ScriptableObject
 
     [Header("Unique Buff Settings")]
     [SerializeField] public UniqueID uniqueID;
-
+    [HideInInspector] public float sacrificeCharges = 3;
     public void ApplyBuff()
     {
         switch (buffType)
