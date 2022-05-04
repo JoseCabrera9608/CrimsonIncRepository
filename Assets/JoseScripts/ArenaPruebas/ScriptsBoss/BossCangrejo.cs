@@ -261,7 +261,7 @@ public class BossCangrejo : MonoBehaviour
         EsferaMagnetica.SetActive(true);
         agente.speed = 0;
         yield return new WaitForSeconds(2.9f);
-        EsferaMagnetica.SetActive(false);
+        //EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(2);
         agente.speed = 5.5f;
         
