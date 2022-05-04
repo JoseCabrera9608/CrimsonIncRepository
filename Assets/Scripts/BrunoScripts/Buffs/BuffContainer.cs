@@ -21,6 +21,7 @@ public class BuffContainer : MonoBehaviour
         assignedBuff.picked = true;
         BuffManager.Instance.ResetBuffDisplay();
         BuffManager.Instance.LoadSelectedBuffs(true, assignedBuff);
-        assignedBuff.ApplyBuff();      
+        assignedBuff.ApplyBuff();
+        BuffManager.Instance.HideCards(this.gameObject);
     }  
 }

@@ -5,13 +5,19 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class BuffManager : MonoBehaviour
 {
+    public float containersToDisplay;
     [SerializeField] private GameObject buffPanel;
     [SerializeField] private GameObject[] buffContainer;
+    [SerializeField] private GameObject containerParent;
+    [SerializeField] private GameObject containerPrefab;
     [SerializeField] private Buff[] buff;
     [SerializeField] private List<Buff> equipedBuffs;
 
     public static BuffManager Instance;
     [SerializeField] private static bool buffOnGround;
+
+    //Unique Buffs Vars====================================
+    public bool hasExtraCardBuff=false;
     private void Awake()
     {
         Instance = this;       
@@ -19,45 +25,72 @@ public class BuffManager : MonoBehaviour
     private void Start()
     {
         LoadSelectedBuffs(false, null);
-        ResetBuffDisplay();
-        SetBuffInformation();
         buffPanel.SetActive(false);
-        ShowPanel();
+        //temp
+        //ShowPanel();
         
     }
     private void Update()
     {
+        //Testing
         if (Input.GetKeyDown(KeyCode.P)) HandleDeath();
         if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
+        if (Input.GetKeyDown(KeyCode.I)) ShowPanel();
+        
+    }
+    public void SpawnContainers()
+    {
+        buffContainer = new GameObject[(int)containersToDisplay];
+        for(int i = 0; i < buffContainer.Length; i++)
+        {
+            GameObject spawn = Instantiate(containerPrefab);
+            spawn.transform.parent = containerParent.transform;
+            buffContainer[i] = spawn;
+        }
     }
     public void ShowPanel()
     {
+        if (containerParent == null) Debug.LogError("Falta asignar el objeto padre de los contenedores");
+
+        SpawnContainers();
+        ResetBuffDisplay();
+        SetBuffInformation();
+
         buffPanel.SetActive(true);
         buffPanel.GetComponent<CanvasGroup>().alpha = 0;
+        buffPanel.GetComponent<CanvasGroup>().interactable = true;
         Sequence showPanel = DOTween.Sequence();
         showPanel.Append(buffPanel.GetComponent<CanvasGroup>().DOFade(1, 3));
         showPanel.AppendInterval(-1.5f);
 
-        showPanel.Append(buffContainer[0].GetComponent<RectTransform>().DORotate(Vector3.zero, 1, RotateMode.Fast));
-        showPanel.Join(buffContainer[0].GetComponent<RectTransform>().DOScale(1, 1).SetEase(Ease.OutBack));
-        showPanel.AppendInterval(-0.5f);
-
-        showPanel.Append(buffContainer[1].GetComponent<RectTransform>().DORotate(Vector3.zero, 1, RotateMode.Fast));
-        showPanel.Join(buffContainer[1].GetComponent<RectTransform>().DOScale(1, 1).SetEase(Ease.OutBack));
-        showPanel.AppendInterval(-0.5f);
-
-        showPanel.Append(buffContainer[2].GetComponent<RectTransform>().DORotate(Vector3.zero, 1, RotateMode.Fast));
-        showPanel.Join(buffContainer[2].GetComponent<RectTransform>().DOScale(1, 1).SetEase(Ease.OutBack));
-
-    }
-
-    [ContextMenu("ResetAll uses")]
-    public void ResetBuffUses()
-    {
-        foreach(Buff _buff in buff)
+        foreach(GameObject container in buffContainer)
         {
-            _buff.picked = false;
-            _buff.displayed = false;
+            showPanel.AppendInterval(-0.5f);
+            showPanel.Append(container.GetComponent<RectTransform>().DORotate(Vector3.zero, 1, RotateMode.Fast));
+            showPanel.Join(container.GetComponent<RectTransform>().DOScale(1, 1).SetEase(Ease.OutBack));           
+        }
+    }    
+    public void HideCards(GameObject selectedCard)
+    {
+        buffPanel.GetComponent<CanvasGroup>().interactable = false;
+        Sequence hidePanel = DOTween.Sequence();
+        foreach(GameObject container in buffContainer)
+        {
+            if (container != selectedCard)
+            {
+                hidePanel.Join(container.GetComponent<RectTransform>().DORotate(new Vector3(0, 90, 0), 1, RotateMode.Fast));
+                hidePanel.Join(container.GetComponent<RectTransform>().DOScale(0, 1).SetEase(Ease.InBack));
+            }
+        }
+        hidePanel.Append(buffPanel.GetComponent<CanvasGroup>().DOFade(0, 1));
+        hidePanel.OnComplete(HidePanel);
+    }
+    public void HidePanel()
+    {
+        buffPanel.SetActive(false);
+        foreach(GameObject container in buffContainer)
+        {
+            Destroy(container);
         }
     }
     public void SetBuffInformation()
@@ -79,7 +112,6 @@ public class BuffManager : MonoBehaviour
             }          
         }
     }
-
     public void HandleDeath()
     {
         if (equipedBuffs.Count > 0)
@@ -129,7 +161,6 @@ public class BuffManager : MonoBehaviour
             if(_buff.picked==false) _buff.displayed = false;
         }
     }
-    
     public void LoadSelectedBuffs(bool specific,Buff buffToLoad)
     {
         if (specific == false)
@@ -149,5 +180,27 @@ public class BuffManager : MonoBehaviour
             equipedBuffs.Add(buffToLoad);
         }
         
+    }
+
+    public void UniqueBuffs(UniqueID id)
+    {
+        switch (id)
+        {
+            case UniqueID.extraCard:
+                hasExtraCardBuff = !hasExtraCardBuff;
+                if (hasExtraCardBuff) containersToDisplay = 4;
+                else containersToDisplay = 3;
+                break;
+        }
+    }
+
+    [ContextMenu("ResetAll uses")]
+    public void ResetBuffUses()
+    {
+        foreach (Buff _buff in buff)
+        {
+            _buff.picked = false;
+            _buff.displayed = false;
+        }
     }
 }

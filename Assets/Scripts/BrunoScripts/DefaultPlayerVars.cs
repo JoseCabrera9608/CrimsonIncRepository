@@ -11,7 +11,7 @@ public static class DefaultPlayerVars
     //======Stamina values==================
     public static float defaultMaxStamina { get { return 100; } }
     public static float defaultStaminaRegen { get { return 1; } }
-    public static float defaultRunStaminaCost { get { return 0.01f; } }
+    public static float defaultRunStaminaCost { get { return 100; } }
 
     //======Healing values==================
     public static float defaultHealAmount { get { return 50; } }
@@ -21,5 +21,11 @@ public static class DefaultPlayerVars
     public static float defaultDamage { get { return 7; } }
     public static float defaultDefense { get { return 1; } }
     public static float defaultStatusResistance { get { return 1; } }
+    public static float defaultAttackRange { get { return 1; } }
+    public static float defaultAttackSpeed { get { return 1; } }
+    public static float defaultCriticalHit { get { return 1; } }
+    
+    //=====Other values=============================
+    public static float defaultRecoveryTime { get { return 8; } }
 
 }

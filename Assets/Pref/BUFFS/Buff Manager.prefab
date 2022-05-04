@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5497726373792356686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5497726373792356684}
+  - component: {fileID: 5497726373792356687}
+  m_Layer: 0
+  m_Name: Buff Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5497726373792356684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497726373792356686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 419.22333, y: 333.2882, z: -132.3136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5497726373792356687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497726373792356686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68b718abc369f544955d6a2623fc8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containersToDisplay: 3
+  buffPanel: {fileID: 0}
+  buffContainer: []
+  containerParent: {fileID: 0}
+  containerPrefab: {fileID: 679433794573905503, guid: 7a30a8aec22e86e4b9673f1c72d4128b, type: 3}
+  buff:
+  - {fileID: 11400000, guid: 426e0cb4411510548a0753b506af3339, type: 2}
+  - {fileID: 11400000, guid: 8513b4358dff49e41a33ce34c54e3eb1, type: 2}
+  - {fileID: 11400000, guid: d0526f97a7d03b941bd85f383ce4bcf7, type: 2}
+  - {fileID: 11400000, guid: 8b8fb1c3901291746b1fb4850c50a07d, type: 2}
+  - {fileID: 11400000, guid: 6b5748377a45c954780cfd5cec86f9fd, type: 2}
+  - {fileID: 11400000, guid: dfc6387f6f6cff442b2d9a9f55d3751d, type: 2}
+  - {fileID: 11400000, guid: a70bc20faa77c6247886f52d62a50d55, type: 2}
+  - {fileID: 11400000, guid: f0a71e6f6a9b00642a93e6306b557f1f, type: 2}
+  - {fileID: 11400000, guid: a87766e7f9541c14f9c6395e928d7e3f, type: 2}
+  - {fileID: 11400000, guid: a91a627ebc1bdd640a57a7851adb7750, type: 2}
+  - {fileID: 11400000, guid: 576631abd91e6eb45b07d394b2cb1a2d, type: 2}
+  - {fileID: 11400000, guid: 68b1eb1044d5ce94fb6bf8c500670372, type: 2}
+  - {fileID: 11400000, guid: 0953846327e065c4da605298078d21be, type: 2}
+  - {fileID: 11400000, guid: f0b6388bffa3b294ca51e4ed931b5dee, type: 2}
+  - {fileID: 11400000, guid: a65512b547e705d4e9390aaca5b69b79, type: 2}
+  - {fileID: 11400000, guid: a80f1903b7c24334b8625833e6fb6c78, type: 2}
+  - {fileID: 11400000, guid: cfb34d68da5ca3148ab873b7ec87c519, type: 2}
+  equipedBuffs: []
+  hasExtraCardBuff: 0

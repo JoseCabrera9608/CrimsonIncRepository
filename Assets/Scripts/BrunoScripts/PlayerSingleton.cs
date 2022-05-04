@@ -24,7 +24,7 @@ public class PlayerSingleton : MonoBehaviour
         #region defaultVars
         //HP
         playerMaxHP = DefaultPlayerVars.defaultMaxHP;
-        playerCurrentHP = DefaultPlayerVars.defaultMaxHP; ;
+        playerCurrentHP = DefaultPlayerVars.defaultMaxHP;
         //Healing
         playerCurrentHealingCharges = DefaultPlayerVars.defaultMaxHealingCharges;
         playerMaxHealingCharges = DefaultPlayerVars.defaultMaxHealingCharges;
@@ -38,7 +38,12 @@ public class PlayerSingleton : MonoBehaviour
         playerDamage = DefaultPlayerVars.defaultDamage;
         playerDefense = DefaultPlayerVars.defaultDefense;
         playerStatusResistance = DefaultPlayerVars.defaultStatusResistance;
+        playerAttackRange = DefaultPlayerVars.defaultAttackRange;
+        playerAttackSpeed = DefaultPlayerVars.defaultAttackSpeed;
+        playerCriticalChance = DefaultPlayerVars.defaultCriticalHit;
+        //Others
         playerHitted = false;
+        playerRecoveryTime = DefaultPlayerVars.defaultRecoveryTime;
         #endregion
     }
 
@@ -62,7 +67,11 @@ public class PlayerSingleton : MonoBehaviour
     public float playerDamage { set; get; }
     public float playerDefense { set; get; }
     public float playerStatusResistance { set; get; }
+    public float playerAttackRange { set; get; }
+    public float playerAttackSpeed { set; get; }
+    public float playerCriticalChance { set; get; }
 
     //======Others==================
     public bool playerHitted { set; get; }
+    public float playerRecoveryTime { get; set; }
 }

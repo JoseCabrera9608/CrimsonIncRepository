@@ -10,31 +10,36 @@ public class Buff : ScriptableObject
     public string buffName;
     public string description;
     public bool picked;
-    public float oppositeMultiplier=1;
+    [HideInInspector]public float oppositeMultiplier=1;
 
-    [Header("Instan buff Settings")]
+    [Header("Single Buff Settings")]
     [SerializeField] public PlayerVars playerVars;
     public float instantMultiplier;
     [HideInInspector] public bool displayed;
 
-    [Header("Double buff settings")]
+    [Header("Double Buff Settings")]
     [SerializeField] public PlayerVars doubleVar1;
     public float doubleMultiplier1;
     [SerializeField] public PlayerVars doubleVar2;
     public float doubleMultiplier2;
 
+    [Header("Unique Buff Settings")]
+    [SerializeField] public UniqueID uniqueID;
 
     public void ApplyBuff()
     {
         switch (buffType)
         {
-            case BuffType.instant:
+            case BuffType.single:
                 HandleInstant(playerVars,instantMultiplier*oppositeMultiplier);
                 break;
 
             case BuffType.doubles:
                 HandleInstant(doubleVar1, doubleMultiplier1* oppositeMultiplier);
                 HandleInstant(doubleVar2, doubleMultiplier2* oppositeMultiplier);
+                break;
+            case BuffType.unique:
+                HandleUniqueBuff(uniqueID);
                 break;
         }
     }
@@ -78,15 +83,36 @@ public class Buff : ScriptableObject
             case PlayerVars.statusResistance:
                 PlayerSingleton.Instance.playerStatusResistance += DefaultPlayerVars.defaultStatusResistance * value;
                 break;
+
+            case PlayerVars.attackRange:
+                PlayerSingleton.Instance.playerAttackRange += DefaultPlayerVars.defaultAttackRange * value;
+                break;
+
+            case PlayerVars.attackSpeed:
+                PlayerSingleton.Instance.playerAttackSpeed += DefaultPlayerVars.defaultAttackSpeed * value;
+                break;
+
+            case PlayerVars.criticalHit:
+                PlayerSingleton.Instance.playerCriticalChance += DefaultPlayerVars.defaultCriticalHit * value;
+                break;
+
+            case PlayerVars.recoveryTime:
+                PlayerSingleton.Instance.playerRecoveryTime += DefaultPlayerVars.defaultRecoveryTime * value;
+                break;
+
         }
+    }
+
+    private void HandleUniqueBuff(UniqueID id)
+    {
+        BuffManager.Instance.UniqueBuffs(id);
     }
 }
 public enum BuffType
 {
-    instant,
+    single,
     doubles,
     unique,
-    oneUse
 };
 
 public enum PlayerVars
@@ -99,5 +125,17 @@ public enum PlayerVars
     runStaminaCost,
     damage,
     defense,
-    statusResistance
+    statusResistance,
+    attackRange,
+    attackSpeed,
+    criticalHit,
+    recoveryTime
 };
+
+public enum UniqueID
+{
+    lowHealthMoreDamage,
+    revive,
+    sacrificeRing,
+    extraCard
+}
