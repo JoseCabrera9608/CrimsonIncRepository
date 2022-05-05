@@ -11,14 +11,20 @@ public class ElevadorManyado : MonoBehaviour
     public GameObject barrera;
     public bool chocoLimite;
     public bool chocoLimiteAbajo;
-    
- 
+    public Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
 
         if (accionar == true && puedeSubir == true)
          {
-             barrera.SetActive(true);
+            barrera.SetActive(true);
+           // anim.SetTrigger("SubirBaranda");
              SubirElevadorMetodo();
             
              
@@ -27,6 +33,7 @@ public class ElevadorManyado : MonoBehaviour
 
         if (accionar == true && puedeSubir == false)
         {
+            // anim.SetTrigger("SubirBaranda");
             barrera.SetActive(true);
             BajarElevadorMetodo();
 
@@ -35,7 +42,7 @@ public class ElevadorManyado : MonoBehaviour
         }
         if (chocoLimite == true)
          {
-            barrera.SetActive(false);
+            
             DetenerElevador();
          }
 
@@ -46,6 +53,7 @@ public class ElevadorManyado : MonoBehaviour
 
     IEnumerator SubirElevador()
     {
+        anim.SetBool("Baranda", true);
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
         yield return new WaitForSeconds(1);
         
@@ -53,6 +61,7 @@ public class ElevadorManyado : MonoBehaviour
 
     IEnumerator BajarElevador()
     {
+        anim.SetBool("Baranda", true);
         transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
         yield return new WaitForSeconds(1);
         
@@ -64,7 +73,7 @@ public class ElevadorManyado : MonoBehaviour
     }
     public void DetenerElevador()
     {
-
+        
         StopAllCoroutines();
     }
     public void BajarElevadorMetodo()
@@ -90,6 +99,8 @@ public class ElevadorManyado : MonoBehaviour
             accionar = false;
             puedeSubir = false;
             barrera.SetActive(false);
+           // anim.SetTrigger("BajarBaranda");
+            anim.SetBool("Baranda",false);
 
             //Debug.Log("GAAA");
         }
@@ -100,6 +111,7 @@ public class ElevadorManyado : MonoBehaviour
             puedeSubir = true;
             //Debug.Log("GAAA");
             barrera.SetActive(false);
+            anim.SetBool("Baranda", false);
         }
     }
 
