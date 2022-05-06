@@ -12,8 +12,7 @@ public class DañoArmaCangrejo : MonoBehaviour
     SkinnedMeshRenderer mesh;
     GameObject cangrejoMesh;
     int index;
-    public Material material;
-
+   
    // CangrejoArena cangrejoArenaVida;
   //  private GameObject cangrejoArenaObjeto;
   //  SkinnedMeshRenderer meshArena;
