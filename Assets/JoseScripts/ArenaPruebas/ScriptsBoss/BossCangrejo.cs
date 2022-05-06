@@ -13,7 +13,6 @@ public class BossCangrejo : MonoBehaviour
     private bool onChase = false;
 
     //Variables para Habilidades
-    public HabilidadesEquipadas ability;
     public bool activarGolpeTenazas = false;
     public bool activarGolpeSecuencia = false;
     public bool activarEmbestida = false;
@@ -56,6 +55,7 @@ public class BossCangrejo : MonoBehaviour
 
     void Start()
     {
+        habilidades.enabled = false;
         abdomenCollider = abdomen.GetComponent<SphereCollider>();
         CabezaPlayer = GameObject.Find("PlayerHead");
         segundaFase = false;
@@ -74,7 +74,7 @@ public class BossCangrejo : MonoBehaviour
     
     void Update()
     {
-        if(vidaActual <= 75)
+        if(vidaActual <= 100)
         {
             segundaFase = true;
         }
@@ -86,6 +86,7 @@ public class BossCangrejo : MonoBehaviour
 
             case true:
                 PoderesSegundaFase();
+                habilidades.ability[3] = null;
                 habilidades.ability[2] = null;
                 break;
         }
@@ -203,8 +204,8 @@ public class BossCangrejo : MonoBehaviour
     private void StartChase(int id)
     {
         if(id == this.id)
-        { 
-        
+        {
+            habilidades.enabled = true;
         onChase = true;
         animCangrejo.SetTrigger("Comienzo");
         BarraDeVida.SetActive(true);
@@ -217,7 +218,7 @@ public class BossCangrejo : MonoBehaviour
         SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
         cuboColor.material.color = Color.red;
         agente.speed = 0;
-        yield return new WaitForSeconds(ability.activeTime);
+        yield return new WaitForSeconds(habilidades.activeTime);
         agente.speed = 5;
         cuboColor.material.color = Color.grey;
     }
@@ -226,30 +227,26 @@ public class BossCangrejo : MonoBehaviour
     {
         animCangrejo.SetTrigger("GolpeSecuencia");
         agente.speed = 0;
-        yield return new WaitForSeconds(ability.activeTime);
+        yield return new WaitForSeconds(habilidades.activeTime);
         agente.speed = 5;
     }
 
     IEnumerator Embestida()
     {
         animCangrejo.SetTrigger("Embestida");
-        agente.speed = 0;
+     // agente.speed = 0;
        // agente.stoppingDistance = 0;
         abdomenCollider.isTrigger = true;
-        yield return new WaitForSeconds(3);
-        animCangrejo.SetTrigger("EmpezarEmbestida");
+      yield return new WaitForSeconds(1);
+        
         embestidaCollider.SetActive(true);
         agente.speed = 1000;
         agente.acceleration = 70;
         
         yield return new WaitForSeconds(1.5f);
-        animCangrejo.SetTrigger("TerminarEmbestida");
+      //animCangrejo.SetTrigger("TerminarEmbestida");
         embestidaCollider.SetActive(false);
-        
         agente.speed = 0;
-        yield return new WaitForSeconds(2);
-        animCangrejo.SetTrigger("Comienzo");
-       // agente.stoppingDistance = 5;
         abdomenCollider.isTrigger = false;
         agente.speed = 5;
     }
@@ -258,7 +255,7 @@ public class BossCangrejo : MonoBehaviour
     {
         animCangrejo.SetTrigger("CanalizarMag");
         //yield return new WaitForSeconds(1.5f);
-        EsferaMagnetica.SetActive(true);
+        //EsferaMagnetica.SetActive(true);
         agente.speed = 0;
         yield return new WaitForSeconds(2.9f);
         //EsferaMagnetica.SetActive(false);
@@ -389,19 +386,19 @@ public class BossCangrejo : MonoBehaviour
         
     }
 
-    public void ActivarEsferaMagnetica()
+    public void ActivarEsferaMagneticaSegundaFase()
     {
         if (segundaFase == true)
         {
             EsferaMagnetica.SetActive(true);
         }
     }
-    public void DesactviarEsferaMagnetica()
+
+    public void ActivarEsferaMagnetica()
     {
-        if(segundaFase == true)
-        {
-            EsferaMagnetica.SetActive(false);
-        }
+       
+        EsferaMagnetica.SetActive(true);
+        
     }
-    
+
 }

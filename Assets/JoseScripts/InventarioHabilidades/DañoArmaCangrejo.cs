@@ -11,6 +11,9 @@ public class DañoArmaCangrejo : MonoBehaviour
     public int dañoDeArmaPasiva;
     SkinnedMeshRenderer mesh;
     GameObject cangrejoMesh;
+    int index;
+    public Material material;
+
    // CangrejoArena cangrejoArenaVida;
   //  private GameObject cangrejoArenaObjeto;
   //  SkinnedMeshRenderer meshArena;
@@ -25,14 +28,15 @@ public class DañoArmaCangrejo : MonoBehaviour
        // cangrejoArenaVida = cangrejoArenaObjeto.GetComponent<CangrejoArena>();
         cangrejoVida = cangrejo.GetComponent<BossCangrejo>();
         mesh = cangrejoMesh.GetComponent<SkinnedMeshRenderer>();
-
-        
-    }
+        index = mesh.materials.Length;
+       
+       
+}
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,9 +62,13 @@ public class DañoArmaCangrejo : MonoBehaviour
 
     IEnumerator CambioColor()
     {
-        mesh.material.color = Color.red;
+        mesh.materials[0].color = Color.red;
+        mesh.materials[1].color = Color.red;
+        mesh.materials[3].color = Color.red;
         yield return new WaitForSeconds(0.5f);
-        mesh.material.color = Color.grey;
+        mesh.materials[0].color = Color.grey;
+        mesh.materials[1].color = Color.grey;
+        mesh.materials[3].color = Color.grey;
     }
 
 }
