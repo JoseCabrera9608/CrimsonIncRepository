@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
     public float staminaRun;
 
     public bool recovery;
+    public bool onelevator;
 
     public bool incheck;
     public ProgressManager progress;
@@ -162,7 +163,7 @@ public class Movement : MonoBehaviour
             stamina = 0;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !isDashing && stamina >= 0.3f * staminaMax)
+        if (Input.GetKey(KeyCode.Space) && !isDashing && stamina >= 0.3f * staminaMax && onelevator == false)
         {
             if (dashAttempts <= 5000)  //Dashes maximos
             {
@@ -274,6 +275,21 @@ public class Movement : MonoBehaviour
 
 
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bounce"))
+        {
+            onelevator = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bounce"))
+        {
+            onelevator = false;
+        }
     }
 
 }
