@@ -98,9 +98,13 @@ public class Movement : MonoBehaviour
                 playeranim.SetBool("Run", false);
                 playeranim.SetBool("Walk", true);
             }
-            Recovery();
-
-            stamina -= (0.01f* staminaRun) * Time.deltaTime;
+            
+            if (playerInput.x != 0 || playerInput.y != 0)
+            {
+                Recovery();
+                stamina -= (0.01f * staminaRun) * Time.deltaTime;
+            }
+                //stamina -= (0.01f* staminaRun) * Time.deltaTime;
         }
         else
         {
@@ -165,7 +169,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && !isDashing && stamina >= 0.3f * staminaMax && onelevator == false)
         {
-            if (dashAttempts <= 5000)  //Dashes maximos
+            if (dashAttempts <= 5000 && (playerInput.x != 0 || playerInput.y != 0))  //Dashes maximos
             {
                 //FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
