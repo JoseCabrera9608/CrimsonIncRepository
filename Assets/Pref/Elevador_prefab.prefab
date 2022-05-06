@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1878155539840307103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2246995697142617205}
+  - component: {fileID: 849058621775784450}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Bounce
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2246995697142617205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878155539840307103}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8515396, y: -0.330446, z: 0.62063175}
+  m_LocalScale: {x: 2.3988867, y: 2.3988867, z: 2.3988867}
+  m_Children: []
+  m_Father: {fileID: 2544674843408334090}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &849058621775784450
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878155539840307103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.1913185, y: 3.4055312, z: 6.81957}
+  m_Center: {x: 0.60706955, y: 0.72931975, z: -0.40375715}
 --- !u!1 &2063587169543823468
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +138,7 @@ GameObject:
   - component: {fileID: 2655497828644023492}
   m_Layer: 0
   m_Name: interuptor
-  m_TagString: Limite
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,6 +220,7 @@ Transform:
   - {fileID: 6999469428225276386}
   - {fileID: 2655497828644023491}
   - {fileID: 7111382562545021637}
+  - {fileID: 2246995697142617205}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
