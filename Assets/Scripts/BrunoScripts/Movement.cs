@@ -273,23 +273,22 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Bounce"))
+        if (other.gameObject.CompareTag("Bounce"))
         {
             onelevator = true;
         }
+
     }
-    private void OnCollisionExit(Collision collision)
+
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Bounce"))
+
+        if (other.gameObject.CompareTag("Bounce"))
         {
             onelevator = false;
         }
+
     }
+
 
 }
