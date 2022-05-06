@@ -12,10 +12,13 @@ public class ElevadorManyado : MonoBehaviour
     public bool chocoLimite;
     public bool chocoLimiteAbajo;
     public Animator anim;
+    public GameObject interruptor;
+    Interruptor interruptorScript;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        interruptorScript = interruptor.GetComponent<Interruptor>();
     }
 
     void Update()
@@ -24,8 +27,10 @@ public class ElevadorManyado : MonoBehaviour
         if (accionar == true && puedeSubir == true)
          {
             barrera.SetActive(true);
-           // anim.SetTrigger("SubirBaranda");
-             SubirElevadorMetodo();
+            // anim.SetTrigger("SubirBaranda");
+            interruptorScript.DesactivarCollider();
+            SubirElevadorMetodo();
+
             
              
 
@@ -36,6 +41,7 @@ public class ElevadorManyado : MonoBehaviour
             // anim.SetTrigger("SubirBaranda");
             barrera.SetActive(true);
             BajarElevadorMetodo();
+            interruptorScript.DesactivarCollider();
 
 
 
@@ -101,7 +107,7 @@ public class ElevadorManyado : MonoBehaviour
             barrera.SetActive(false);
            // anim.SetTrigger("BajarBaranda");
             anim.SetBool("Baranda",false);
-
+            interruptorScript.ActivarCollider();
             //Debug.Log("GAAA");
         }
         if (other.gameObject.CompareTag("Nube"))
@@ -112,6 +118,7 @@ public class ElevadorManyado : MonoBehaviour
             //Debug.Log("GAAA");
             barrera.SetActive(false);
             anim.SetBool("Baranda", false);
+            interruptorScript.ActivarCollider();
         }
     }
 

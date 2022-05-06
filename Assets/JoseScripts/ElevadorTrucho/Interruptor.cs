@@ -7,9 +7,11 @@ public class Interruptor : MonoBehaviour
     ElevadorManyado _elevadorManyado;
     public GameObject elevador;
     public bool colliding;
+    public BoxCollider colliderTrigger;
     void Start()
     {
         _elevadorManyado = elevador.GetComponent<ElevadorManyado>();
+        colliderTrigger = this.gameObject.GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -38,5 +40,15 @@ public class Interruptor : MonoBehaviour
 
             colliding = false;
         }
+    }
+
+    public void DesactivarCollider()
+    {
+        colliderTrigger.enabled = false;
+    }
+
+    public void ActivarCollider()
+    {
+        colliderTrigger.enabled = true;
     }
 }
