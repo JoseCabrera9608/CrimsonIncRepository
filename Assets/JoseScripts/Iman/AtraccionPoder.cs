@@ -26,21 +26,21 @@ public class AtraccionPoder : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-       // if (other.CompareTag("Player"))
-        //{
+        if (other.CompareTag("Player"))
+        {
 
             rigPlayer.Add(other.GetComponent<Rigidbody>());
-        //}
+        }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
 
-       // if (other.CompareTag("Player"))
-        //{
+        if (other.CompareTag("Player"))
+        {
             rigPlayer.Remove(other.GetComponent<Rigidbody>());
-        //}
+        }
     }
 
     public void ActivarCollider()

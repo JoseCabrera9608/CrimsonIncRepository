@@ -363,18 +363,17 @@ public class BossCangrejo : MonoBehaviour
 
     public void DesactivarAtraccionDerecho()
     {
-        if (segundaFase == true)
-        {
+       
+        
             cuboAtraccionDerecho.SetActive(false);
-        }
+        
         
     }
     public void ActivarAtraccionIzquierdo()
     {
-        if (segundaFase == true)
-        {
+      
             cuboAtraccionIzquierdo.SetActive(true);
-        }
+      
         
     }
     public void DesactivarAtraccionIzquierdo()
