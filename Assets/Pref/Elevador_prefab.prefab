@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 7806144192152126625}
   - component: {fileID: 7207378530178913014}
   - component: {fileID: 2270375014171924028}
+  - component: {fileID: 622421428531693423}
   m_Layer: 0
   m_Name: Baranda_Low
   m_TagString: Untagged
@@ -125,6 +126,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &622421428531693423
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063587169543823468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 15.155725, y: 3.6876616, z: 0.20859496}
+  m_Center: {x: 0, y: 0.00000011920929, z: 0}
 --- !u!1 &2655497828644023490
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,8 +182,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03414978, y: 0.044847775, z: 0.028281162}
-  m_Center: {x: -0.000983169, y: 0.006413622, z: -0.03585937}
+  m_Size: {x: 0.03414978, y: 0.044847775, z: 0.030066103}
+  m_Center: {x: -0.0009831691, y: 0.006413622, z: -0.034966763}
 --- !u!114 &2655497828644023492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +209,6 @@ GameObject:
   - component: {fileID: 2544674843408334090}
   - component: {fileID: 8480467889374373744}
   - component: {fileID: 2655497829474546292}
-  - component: {fileID: 2655497829474546291}
   - component: {fileID: 2655497829474546293}
   m_Layer: 0
   m_Name: Elevador_prefab
@@ -259,20 +272,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!64 &2655497829474546291
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2889992531247474608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4406822824854963583, guid: 4cb6ea8f5ce1e3044a21db51eaf7d9f0, type: 3}
 --- !u!114 &2655497829474546293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +384,10 @@ GameObject:
   - component: {fileID: 6999469428225276386}
   - component: {fileID: 4303811860801500632}
   - component: {fileID: 1172205420374102357}
+  - component: {fileID: 7040322288797396482}
+  - component: {fileID: 8296331018359595396}
+  - component: {fileID: 5475321923457862299}
+  - component: {fileID: 5300255361285049175}
   m_Layer: 0
   m_Name: Elevador_Low 1
   m_TagString: Untagged
@@ -455,6 +458,58 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7040322288797396482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984993214889672277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.339443, y: 1.0561409, z: 14.197691}
+  m_Center: {x: 0, y: -1.9674139, z: 0}
+--- !u!65 &8296331018359595396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984993214889672277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3070984, y: 3.050933, z: 10.833965}
+  m_Center: {x: 7.733101, y: 0.033076763, z: -0.39879322}
+--- !u!65 &5475321923457862299
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984993214889672277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25335693, y: 3.0143452, z: 10.90332}
+  m_Center: {x: -7.7292557, y: 0.05201626, z: -0.39879227}
+--- !u!65 &5300255361285049175
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984993214889672277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.461205, y: 2.9796677, z: 0.32665157}
+  m_Center: {x: 0.0173378, y: 0.10403347, z: -5.6871266}
 --- !u!1 &5522282269658038080
 GameObject:
   m_ObjectHideFlags: 0
