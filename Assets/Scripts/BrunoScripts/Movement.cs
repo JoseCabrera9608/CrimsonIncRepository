@@ -83,10 +83,20 @@ public class Movement : MonoBehaviour
             moveDirection *= movSpeed;
         }
         
-        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            movSpeed = runSpeed;
-            playeranim.SetFloat("AnimSpeed", 1);
+
+            if (stamina > 0)
+            {
+                movSpeed = runSpeed;
+                playeranim.SetBool("Walk", false);
+                playeranim.SetBool("Run", true);
+            }
+            else
+            {
+                playeranim.SetBool("Run", false);
+                playeranim.SetBool("Walk", true);
+            }
             Recovery();
 
             stamina -= (0.01f* staminaRun) * Time.deltaTime;
@@ -94,17 +104,20 @@ public class Movement : MonoBehaviour
         else
         {
             movSpeed = walkSpeed;
-            playeranim.SetFloat("AnimSpeed", 0.7f);
+            playeranim.SetBool("Run", false);
+            playeranim.SetBool("Walk", true);
+            //playeranim.SetFloat("AnimSpeed", 0.7f);
         }
 
         if (playerInput.x == 0 && playerInput.y == 0)
         {
             playeranim.SetBool("Run", false);
+            playeranim.SetBool("Walk", false);
             //FindObjectOfType<AudioManager>().Stop("Movimiento");
         }
         else
         {
-            playeranim.SetBool("Run", true);
+            //playeranim.SetBool("Run", true);
 
         }
 
@@ -126,7 +139,12 @@ public class Movement : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        transform.rotation = playerRotation;
+        if (playerAttack.attackStatus == false)
+        {
+            transform.rotation = playerRotation;
+        }
+
+        //transform.rotation = playerRotation;
     }
 
     void HandleDash()
