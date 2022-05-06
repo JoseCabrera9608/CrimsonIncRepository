@@ -81,6 +81,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && combo == true)
         {
             playeranim.SetBool("Combo", true);
+            //playermov.Recovery();
 
         }
 
@@ -98,6 +99,11 @@ public class PlayerAttack : MonoBehaviour
     {
         combo = false;
         playeranim.SetBool("Combo", false);
+    }
+
+    void IddleState()
+    {
+
     }
 
     void Attacking()
