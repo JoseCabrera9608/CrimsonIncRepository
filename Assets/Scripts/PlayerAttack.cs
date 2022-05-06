@@ -16,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
     public bool attackStatus;
     public float staminaAttack;
 
+    public bool combo;
+
     public Movement playermov;
 
 
@@ -58,6 +60,7 @@ public class PlayerAttack : MonoBehaviour
 
           //FindObjectOfType<AudioManager>().Play("Ataque");
             attacking = false;
+
             attacktimer = 0;
         }
 
@@ -74,6 +77,27 @@ public class PlayerAttack : MonoBehaviour
             attacking = false;
 
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && combo == true)
+        {
+            playeranim.SetBool("Combo", true);
+
+        }
+
+
+
+
+    }
+
+    void ComboStateTrue()
+    {
+        combo = true;
+    }
+
+    void ComboStateFalse()
+    {
+        combo = false;
+        playeranim.SetBool("Combo", false);
     }
 
     void Attacking()
