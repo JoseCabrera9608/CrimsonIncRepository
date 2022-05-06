@@ -75,6 +75,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator Muerte()
     {
         anim.SetTrigger("Muerte");
+        agente.speed = 0;
         yield return new WaitForSeconds(3f);
         Destroy(this.gameObject);
     }
