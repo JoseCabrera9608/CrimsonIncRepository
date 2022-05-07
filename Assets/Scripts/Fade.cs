@@ -24,6 +24,12 @@ public class Fade : MonoBehaviour
         if (timer >= 0.7f)
         {
             anim.SetBool("Start", false);
+
+            if (fadeinend == true)
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 
@@ -36,5 +42,15 @@ public class Fade : MonoBehaviour
     {
         
         fadeinend = true;
+    }
+
+    public void MenuEnd()
+    {
+        anim.SetBool("MenuEnd", true);
+    }
+
+    public void MenuStart()
+    {
+        anim.SetBool("MenuEnd", false);
     }
 }
