@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MeganeuraStats : MonoBehaviour
 {
-    public float health;
-    public bool onAir;
+    [Header("=======Damages========")]  
     public float rayoIonDamage;
     public float bombardeoMisilesDamage;
     public float rayosEmpDamage;
@@ -14,12 +13,19 @@ public class MeganeuraStats : MonoBehaviour
     public float bombaNapalmBurnDamage;
     public float discosEmpDamage;
     public float discosEmpStaminaLoss;
+    
 
-    public int stakesToThrow=4;
     public Dictionary<Action, float> attacksDamage = new Dictionary<Action, float>();
 
+    [Header("=======General========")]
+    public float health;
     public float onGroundTime;
-
+    public float rotationSpeed;
+    public float attackDelay;
+    public bool isAttacking;
+    public bool onAir;
+    public bool canRotate;
+    public int stakesToThrow = 4;
     private void Start()
     {
         attacksDamage.Add(Action.rayoIon, rayoIonDamage);
@@ -28,6 +34,8 @@ public class MeganeuraStats : MonoBehaviour
         attacksDamage.Add(Action.vistaCazador, vistaCazadorDamage);
         attacksDamage.Add(Action.bombaNapalm, bombaNapalmDamage);
         attacksDamage.Add(Action.discosEmp, discosEmpDamage);
+        attacksDamage.Add(Action.idle, 0);
+        attacksDamage.Add(Action.bombaFlash, 0);
     }
 
 }
