@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 375092489214666798}
   - component: {fileID: 7167882367156501161}
   - component: {fileID: 1114181708317284420}
-  - component: {fileID: -4271564473344002222}
+  - component: {fileID: 1711266111773479062}
   m_Layer: 0
   m_Name: Bala2
   m_TagString: Untagged
@@ -91,12 +91,12 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7570090730287171095}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4271564473344002222
+--- !u!114 &1711266111773479062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7570090730287171095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481ca203c920b354190b5ce2ddc7a6a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e8305250feacf3488f861b682df33cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  damage: 20

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProyectilRecto : MonoBehaviour
 {
     public float speed;
+    public float damage;
 
     void Start()
     {
@@ -21,9 +22,17 @@ public class ProyectilRecto : MonoBehaviour
         Destroy(this.gameObject, 3f);
     }
 
-  /*  private void OnTriggerEnter(Collider other)
+    /*  private void OnTriggerEnter(Collider other)
+      {
+          Debug.Log("CollisionoConCubo");
+          Destroy(this.gameObject);
+      }*/
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("CollisionoConCubo");
-        Destroy(this.gameObject);
-    }*/
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            Destroy(this.gameObject);
+        }
+    }
 }
