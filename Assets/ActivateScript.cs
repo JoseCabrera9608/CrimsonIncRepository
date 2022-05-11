@@ -6,6 +6,7 @@ public class ActivateScript : MonoBehaviour
 {
 
     public GameObject Object;
+    public bool playercol;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class ActivateScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            playercol = true;
             Activate();
         }
     }
