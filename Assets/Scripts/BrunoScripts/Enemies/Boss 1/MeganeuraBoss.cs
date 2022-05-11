@@ -27,7 +27,7 @@ public class MeganeuraBoss : MonoBehaviour
     };
 
     //Multi vars
-    [SerializeField] private float currentDamageValue;
+    [SerializeField] public float currentDamageValue;
     [SerializeField] private bool evaluating = false;
     [SerializeField] private float t1;
     [SerializeField] private int container1=0;
@@ -37,8 +37,10 @@ public class MeganeuraBoss : MonoBehaviour
     private Ray attackRay;
 
     //Spawn objects
+    [Header("Objectos")]
     [SerializeField] private GameObject rayoEmp;
     [SerializeField] private GameObject explotion;
+    [SerializeField] private GameObject bombaNapalm;
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
@@ -89,7 +91,7 @@ public class MeganeuraBoss : MonoBehaviour
                     HandleBombaFlash();
                     break;
                 case Action.bombaNapalm:
-                    HandleBombaNapalm();
+                    HandleBombaNapalm(3,1);
                     break;
 
                 case Action.vistaCazador:
@@ -281,6 +283,7 @@ public class MeganeuraBoss : MonoBehaviour
             container1++;
             GameObject misile = Instantiate(rayoEmp);
             misile.transform.position = attackPos.position+new Vector3(0,0,2);
+            misile.transform.localEulerAngles = new Vector3(Random.Range(0,-46), Random.Range(-90, 91), 0);
             misile.GetComponent<RayoEmp>().damage = damages[Action.rayosEmp];               
         }else if (container1 >= 5&&bool1)
         {
@@ -297,11 +300,33 @@ public class MeganeuraBoss : MonoBehaviour
         currentAction = Action.idle;
         stats.isAttacking = false;
     }
-    private void HandleBombaNapalm()
+    private void HandleBombaNapalm(int bombs,float delay)
     {
-        Debug.Log("Handling: " + currentAction);
-        stats.isAttacking = false;
-        currentAction = Action.idle;
+        //Debug.Log("Handling: " + currentAction);
+        //stats.isAttacking = false;
+        //currentAction = Action.idle;
+        t1 += Time.deltaTime;
+        bool1 = true;
+        stats.isAttacking = true;
+
+        if (t1 > delay && container1 < bombs)
+        {
+            container1++;
+            t1 = 0;
+            GameObject napalm = Instantiate(bombaNapalm);
+            napalm.transform.position = attackPos.position;
+            napalm.GetComponent<BombaNapalm>().explotionDamage = damages[Action.bombaNapalm];
+            napalm.GetComponent<BombaNapalm>().burnDamage = stats.bombaNapalmBurnDamage;
+        }
+        else if (container1 >= bombs && bool1)
+        {
+            bool1 = false;
+            t1 = 0;
+            container1 = 0;
+            stats.isAttacking = false;
+            currentAction = Action.idle;
+        }
+
     }
     private void HandleVistaCazador()
     {
@@ -314,6 +339,8 @@ public class MeganeuraBoss : MonoBehaviour
         Debug.Log("Handling: " + currentAction);
         stats.isAttacking = false;
         currentAction = Action.idle;
+
+
     }
 }
 public enum Action
