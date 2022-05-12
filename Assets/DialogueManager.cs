@@ -9,7 +9,9 @@ public class DialogueManager : MonoBehaviour
     public Text actorName;
     public Text messageText;
     public RectTransform backgroundBox;
-    public string sentence;
+    private string sentence;
+
+    public float textspeed;
 
 
     Message[] currentMessages;
@@ -53,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             messageText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f / textspeed);
         }
 
 
