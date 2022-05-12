@@ -24,6 +24,7 @@ public class PlayerStatus : MonoBehaviour
     public bool hiteado;
     public bool pruebasingle;
     public bool interacting;
+    public bool activeinteraction;
 
 
     // Start is called before the first frame update
@@ -136,9 +137,16 @@ public class PlayerStatus : MonoBehaviour
         //transform.LookAt(InteractualObject);
     }
 
+    public void ActiveInteraction()
+    {
+
+        activeinteraction = true;
+    }
+
     public void AfterInteracting()
     {
         interacting = false;
+        activeinteraction = false;
         //anim.SetBool("Interact", false);
         //transform.LookAt(InteractualObject);
     }

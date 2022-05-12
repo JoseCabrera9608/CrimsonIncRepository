@@ -50,11 +50,17 @@ public class Checkpoint : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && colliding ==true)
         {
-            progress.checkpointIndex = checkpointIndex;
-            progress.lastposition = SpawnPoint.transform.position;
+            //progress.checkpointIndex = checkpointIndex;
+            //progress.lastposition = SpawnPoint.transform.position;
 
             playerStatus.InteractualObject = consolepoint;
             playerStatus.Interacting();
+        }
+
+        if (playerStatus.activeinteraction == true && colliding == true)
+        {
+            progress.checkpointIndex = checkpointIndex;
+            progress.lastposition = SpawnPoint.transform.position;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
