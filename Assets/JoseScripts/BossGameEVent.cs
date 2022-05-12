@@ -22,4 +22,15 @@ public class BossGameEVent : MonoBehaviour
         }
     }
 
+    public event Action<int> Conexion;
+
+    public void Conectar(int id)
+    {
+
+        if (Conexion != null)
+        {
+            Conexion(id);
+        }
+    }
+
 }
