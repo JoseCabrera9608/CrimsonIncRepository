@@ -13,10 +13,12 @@ public class Movement : MonoBehaviour
     public bool isDashing;
     public float staminaMax;
     public float stamina;
+    public float staminaRecovery;
     public float dashspeed;
     public float duraciondash;
     private int dashAttempts;
     public float dashStartTime;
+
     public float timer;
 
     public float staminaDash;
@@ -58,7 +60,12 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        
+        timer += Time.deltaTime;
+
+        if (timer >= staminaRecovery)
+        {
+            recovery = false;
+        }
     }
 
     private void FixedUpdate()
@@ -213,7 +220,12 @@ public class Movement : MonoBehaviour
 
     public void Recovery()
     {
-        StartCoroutine(RecoveryCoroutine());
+        timer = 0;
+        recovery = true;
+
+
+
+        //StartCoroutine(RecoveryCoroutine());
     }
 
     public IEnumerator RecoveryCoroutine()
