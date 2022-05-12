@@ -19,12 +19,14 @@ public class PlayerAttack : MonoBehaviour
     public bool combo;
 
     public Movement playermov;
+    public PlayerStatus playerStatus;
 
 
     void Start()
     {
         playermov = this.GetComponent<Movement>();
-        
+        playerStatus = this.GetComponent<PlayerStatus>();
+
         attacktimer = 0.5f;
         weaponCollider = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<BoxCollider>();
 
@@ -39,6 +41,11 @@ public class PlayerAttack : MonoBehaviour
     {
 
         attacktimer += Time.deltaTime;
+
+        if (playerStatus.interacting == true)
+        {
+            return;
+        }
 
         //PauseController pause = Pause.GetComponent<PauseController>();
 

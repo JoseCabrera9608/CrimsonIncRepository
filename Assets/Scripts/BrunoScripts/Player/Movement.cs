@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour
     public bool incheck;
     public ProgressManager progress;
     public PlayerAttack playerAttack;
+    public PlayerStatus playerStatus;
 
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] private float rotationSpeed;
@@ -48,6 +49,7 @@ public class Movement : MonoBehaviour
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         playerAttack = this.GetComponent<PlayerAttack>();
+        playerStatus = this.GetComponent<PlayerStatus>();
 
 
 
@@ -70,6 +72,12 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        if (playerStatus.interacting == true)
+        {
+            return;
+        }
+        
         PlayerMovement();
         PlayerRotation();
         HandleDash();

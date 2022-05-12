@@ -14,6 +14,8 @@ public class PlayerStatus : MonoBehaviour
     public Animator anim;
     public SkinnedMeshRenderer mesh;
 
+    public Transform InteractualObject;
+
     public float timer;
     public float healingtime;
     public float healingAmount;
@@ -21,6 +23,7 @@ public class PlayerStatus : MonoBehaviour
     
     public bool hiteado;
     public bool pruebasingle;
+    public bool interacting;
 
 
     // Start is called before the first frame update
@@ -73,7 +76,10 @@ public class PlayerStatus : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Healing();
+        if (interacting == true)
+        {
+            transform.LookAt(InteractualObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -121,7 +127,22 @@ public class PlayerStatus : MonoBehaviour
         }
 
     }
-    
+
+    public void Interacting()
+    {
+        interacting = true;
+        //anim.SetBool("Interact", true);
+        anim.SetTrigger("Interact");
+        //transform.LookAt(InteractualObject);
+    }
+
+    public void AfterInteracting()
+    {
+        interacting = false;
+        //anim.SetBool("Interact", false);
+        //transform.LookAt(InteractualObject);
+    }
+
     IEnumerator HittedCoroutine()
     {
 

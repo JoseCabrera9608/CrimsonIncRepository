@@ -16,6 +16,9 @@ public class Checkpoint : MonoBehaviour
     public ProgressManager progress;
     public GameObject Player;
     public GameObject SpawnPoint;
+    public PlayerStatus playerStatus;
+
+    public Transform consolepoint;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,8 @@ public class Checkpoint : MonoBehaviour
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         mesh = this.GetComponent<MeshRenderer>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        playerStatus = Player.GetComponent<PlayerStatus>();
+        
 
         if (progress.lastposition != Vector3.zero)
         {
@@ -47,6 +52,9 @@ public class Checkpoint : MonoBehaviour
         {
             progress.checkpointIndex = checkpointIndex;
             progress.lastposition = SpawnPoint.transform.position;
+
+            playerStatus.InteractualObject = consolepoint;
+            playerStatus.Interacting();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
