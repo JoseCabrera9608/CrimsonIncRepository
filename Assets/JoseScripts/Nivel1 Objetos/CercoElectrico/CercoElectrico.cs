@@ -7,23 +7,22 @@ public class CercoElectrico : MonoBehaviour
     public float damage;
     [SerializeField] bool desactivar;
     Animator anim;
-    BoxCollider collider;
+    public int id;
+    BoxCollider colliderElectrico;
     void Start()
     {
         anim = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider>();
+        colliderElectrico = GetComponent<BoxCollider>();
+        //  BossGameEVent.current.combatTriggerExit += StartChase;
+        BossGameEVent.current.Conexion += Desactivar;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (desactivar == true)
-        {
-            anim.SetTrigger("Apagar");
-            collider.enabled = false;
 
-        }
     }
+        
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,4 +31,21 @@ public class CercoElectrico : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentHP -= damage;
         }
     }
+
+    public void Desactivar(int id)
+    {
+        if (id == this.id)
+        {
+            anim.SetTrigger("Apagar");
+            colliderElectrico.enabled = false;
+        }
+        
+         /*   if (desactivar == true)
+        {
+            anim.SetTrigger("Apagar");
+            colliderElectrico.enabled = false;
+
+        }*/
+    }
 }
+    
