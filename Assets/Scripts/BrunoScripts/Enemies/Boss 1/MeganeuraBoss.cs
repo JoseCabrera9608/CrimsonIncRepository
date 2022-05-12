@@ -27,20 +27,24 @@ public class MeganeuraBoss : MonoBehaviour
     };
 
     //Multi vars
-    [SerializeField] public float currentDamageValue;
-    [SerializeField] private bool evaluating = false;
-    [SerializeField] private float t1;
-    [SerializeField] private int container1=0;
-    [SerializeField] private bool bool1=false;
+    [HideInInspector] public float currentDamageValue;
+    private bool evaluating = false;
+    private float t1;
+    private int container1=0;
+    private bool bool1=false;
     [SerializeField] private Transform attackPos;
     private LineRenderer lr;
     private Ray attackRay;
-
+    /*[HideInInspector]*/ public bool laserConstant;
     //Spawn objects
-    [Header("Objectos")]
+    [Header("Objetos")]
     [SerializeField] private GameObject rayoEmp;
     [SerializeField] private GameObject explotion;
     [SerializeField] private GameObject bombaNapalm;
+    [SerializeField] private GameObject bombaFlash;
+    [SerializeField] private GameObject discoEmp;
+    [SerializeField] private GameObject rayoIon;
+    [SerializeField] private GameObject vistaCazador;
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
@@ -74,28 +78,28 @@ public class MeganeuraBoss : MonoBehaviour
                     break;
 
                 case Action.rayoIon:
-                    HandleRayoIon(3,4);
-                    currentDamageValue = stats.attacksDamage[currentAction];
-
+                    HandleRayoIon();
+                    currentDamageValue = damages[Action.rayoIon];
                     break;
 
                 case Action.bombardeoMisiles:
-                    HandleBombardeoMisiles(0.5f);
+                    HandleBombardeoMisiles();
                     break;
 
                 case Action.rayosEmp:
-                    HandleRayosEmp(5);
+                    HandleRayosEmp();
                     break;
 
                 case Action.bombaFlash:
                     HandleBombaFlash();
                     break;
                 case Action.bombaNapalm:
-                    HandleBombaNapalm(3,1);
+                    HandleBombaNapalm();
                     break;
 
                 case Action.vistaCazador:
                     HandleVistaCazador();
+                    currentDamageValue = damages[Action.vistaCazador];
                     break;
 
                 case Action.discosEmp:
@@ -203,67 +207,56 @@ public class MeganeuraBoss : MonoBehaviour
         currentDamageValue = damages[currentAction];
     }
 
-    private void HandleRayoIon(float aimTime,float laserDuration)
+    //done
+    private void HandleRayoIon()
     {
-        stats.isAttacking = true;
-        lr.enabled = true;
+        //Debug.Log("Handling: " + currentAction);
+        //stats.isAttacking = false;
+        //currentAction = Action.idle;
+
         t1 += Time.deltaTime;
-        bool1 = false;
+        stats.isAttacking = true;
+        rayoIon.SetActive(true);
         stats.canRotate = false;
-        BoxCollider col = attackPos.GetComponent<BoxCollider>();
-        col.enabled = false;
 
-        attackRay.origin = attackPos.position;
-        attackRay.direction = attackPos.forward;
+        MeganeuraLaser laser = rayoIon.GetComponent<MeganeuraLaser>();
+        laser.damage = currentDamageValue;
+        laser.rotationSpeed = stats.laserRotationSpeed;
+        laser.damagePerTick = true;
 
-        Quaternion direction = Quaternion.LookRotation(player.transform.position - attackPos.position);
-
-        if(t1<aimTime*0.85f&&bool1==false)
-            attackPos.rotation = Quaternion.RotateTowards(attackPos.rotation, direction, 7 * Time.deltaTime);
-        else if (t1 > aimTime)
+        if (t1 > stats.laserAimTime*0.8f&&t1<stats.laserAimTime)
         {
-            bool1 = true;
-            attackPos.rotation = Quaternion.RotateTowards(attackPos.rotation, direction, 10 * Time.deltaTime);
-            lr.startWidth=1.5f;
-            lr.endWidth=1.5f;
-
-            col.enabled = true;
-        }
-        RaycastHit hit;
-        if (Physics.Raycast(attackRay,out hit, 100))
+            laser.canRotate = false;
+        }else if (t1 > stats.laserAimTime)
         {
-            lr.SetPosition(0, attackPos.position);
-            lr.SetPosition(1, hit.point);
+            laser.isActive = true;
+            laser.canRotate = true;
         }
 
-        if (t1 > aimTime + laserDuration)
+        if (t1 >= stats.laserAimTime + stats.laserAttackTime)
         {
-            lr.enabled = false;
-            lr.startWidth = 0.2f;
-            lr.endWidth = 0.2f;
-            t1 = 0;
-            col.enabled = false;
-            stats.canRotate = true;
+            rayoIon.SetActive(false);
             currentAction = Action.idle;
-            bool1 = false;
+            stats.isAttacking = false;
+            t1 = 0;
+            stats.canRotate = true;
         }
-
-        
     }
-    private void HandleBombardeoMisiles(float delay)
+    //done
+    private void HandleBombardeoMisiles()
     {
         t1 += Time.deltaTime;
         bool1 = true;
         stats.isAttacking = true;
 
-        if (t1 > delay&&container1<30)
+        if (t1 > stats.bmDelay&&container1<stats.bmAmount)
         {
             container1++;
             t1 = 0;
             GameObject _explotion = Instantiate(explotion);
             _explotion.transform.position = player.transform.position;
             _explotion.GetComponent<Misiles>().damage = damages[Action.bombardeoMisiles];
-        }else if (container1 >= 30 && bool1)
+        }else if (container1 >= stats.bmAmount && bool1)
         {
             bool1 = false;
             t1 = 0;
@@ -272,19 +265,24 @@ public class MeganeuraBoss : MonoBehaviour
             currentAction = Action.idle;               
         }
     }
-    private void HandleRayosEmp(int emp)
+    //done
+    private void HandleRayosEmp()
     {
         bool1 = true;
         stats.isAttacking = true;
         t1 += Time.deltaTime;       
-        if (t1 > 1&&container1<emp)
+        if (t1 > 1&&container1<stats.rempAmount)
         {
             t1 = 0;
             container1++;
             GameObject misile = Instantiate(rayoEmp);
-            misile.transform.position = attackPos.position+new Vector3(0,0,2);
+            misile.transform.position = attackPos.position+attackPos.forward*2;
             misile.transform.localEulerAngles = new Vector3(Random.Range(0,-46), Random.Range(-90, 91), 0);
             misile.GetComponent<RayoEmp>().damage = damages[Action.rayosEmp];               
+            misile.GetComponent<RayoEmp>().speed = stats.rempSpeed;               
+            misile.GetComponent<RayoEmp>().rotationSpeed = stats.rempRotationSpeed;               
+            misile.GetComponent<RayoEmp>().lifeTime = stats.rempLifeTime;               
+            misile.GetComponent<RayoEmp>().followTime = stats.rempFollowTime;               
         }else if (container1 >= 5&&bool1)
         {
             bool1 = false;
@@ -294,13 +292,21 @@ public class MeganeuraBoss : MonoBehaviour
             currentAction = Action.idle;
         }
     }
+    //done
     private void HandleBombaFlash()
     {
-        Debug.Log("Handling: " + currentAction);
-        currentAction = Action.idle;
+        stats.isAttacking = true;
+
+        GameObject bomba = Instantiate(bombaFlash);
+        bomba.transform.position = attackPos.position+bomba.transform.forward;
+        bomba.GetComponent<BombaFlash>().delay = stats.flashDelay;
+        bomba.GetComponent<BombaFlash>().flashDuration = stats.flashDuration;
+
         stats.isAttacking = false;
+        currentAction = Action.idle;
     }
-    private void HandleBombaNapalm(int bombs,float delay)
+    //done
+    private void HandleBombaNapalm()
     {
         //Debug.Log("Handling: " + currentAction);
         //stats.isAttacking = false;
@@ -309,7 +315,7 @@ public class MeganeuraBoss : MonoBehaviour
         bool1 = true;
         stats.isAttacking = true;
 
-        if (t1 > delay && container1 < bombs)
+        if (t1 > stats.napalmDelay && container1 < stats.napalmAmount)
         {
             container1++;
             t1 = 0;
@@ -318,7 +324,7 @@ public class MeganeuraBoss : MonoBehaviour
             napalm.GetComponent<BombaNapalm>().explotionDamage = damages[Action.bombaNapalm];
             napalm.GetComponent<BombaNapalm>().burnDamage = stats.bombaNapalmBurnDamage;
         }
-        else if (container1 >= bombs && bool1)
+        else if (container1 >= stats.napalmAmount && bool1)
         {
             bool1 = false;
             t1 = 0;
@@ -328,18 +334,63 @@ public class MeganeuraBoss : MonoBehaviour
         }
 
     }
+
     private void HandleVistaCazador()
     {
-        Debug.Log("Handling: " + currentAction);
-        stats.isAttacking = false;
-        currentAction = Action.idle;
+        t1 += Time.deltaTime;
+        stats.isAttacking = true;
+        vistaCazador.SetActive(true);
+        stats.canRotate = false;
+
+        MeganeuraLaser laser = vistaCazador.GetComponent<MeganeuraLaser>();
+        laser.damage = currentDamageValue;
+        laser.rotationSpeed = stats.laserRotationSpeed;
+        laser.damagePerTick = false;
+
+        if (t1 > stats.cazadorAimTime * 0.8f && t1 < stats.cazadorAimTime)
+        {
+            laser.canRotate = false;
+        }
+        else if (t1 > stats.cazadorAimTime)
+        {
+            laser.isActive = true;
+        }
+
+        if (t1 >= stats.cazadorAimTime + stats.cazadorLaserDuration)
+        {
+            vistaCazador.SetActive(false);
+            currentAction = Action.idle;
+            stats.isAttacking = false;
+            t1 = 0;
+            stats.canRotate = true;
+        }
     }
+    //done
     private void HandleDiscosEmp()
     {
-        Debug.Log("Handling: " + currentAction);
-        stats.isAttacking = false;
-        currentAction = Action.idle;
+        t1 += Time.deltaTime;
+        stats.isAttacking = true;
+        if (t1 > stats.discDelay&&container1<stats.discAmount)
+        {
+            t1 = 0;
+            container1++;
+            GameObject disc = Instantiate(discoEmp);
+            disc.transform.position = attackPos.position + attackPos.forward;
+            disc.GetComponent<DiscosEmp>().damage = damages[Action.discosEmp];
+            disc.GetComponent<DiscosEmp>().staminaDamage = stats.discosEmpStaminaLoss;
+            disc.GetComponent<DiscosEmp>().maxSpeed = stats.discMaxSpeed;
+            disc.GetComponent<DiscosEmp>().rotationSpeed = stats.discRotationSpeed;
+            disc.GetComponent<DiscosEmp>().left = bool1;
+            bool1 = !bool1;
 
+        }else if (container1 >= stats.discAmount)
+        {
+            t1 = 0;
+            container1=0;
+            bool1 = false;
+            currentAction = Action.idle;
+            stats.isAttacking = false;
+        }
 
     }
 }

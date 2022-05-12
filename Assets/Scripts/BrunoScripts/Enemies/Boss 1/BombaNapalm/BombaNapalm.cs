@@ -26,7 +26,7 @@ public class BombaNapalm : MonoBehaviour
         playerPosition = FindObjectOfType<PlayerStatus>().transform;
         distanceToPlayer = Vector3.Distance(transform.position, playerPosition.position);
         rb = GetComponent<Rigidbody>();
-        AlingToPlayer();
+        AlignToPlayer();
         ApplyForce();
         rb.centerOfMass = Vector3.one;
     }
@@ -37,7 +37,7 @@ public class BombaNapalm : MonoBehaviour
         DamagePlayer();
     }
 
-    private void AlingToPlayer()
+    private void AlignToPlayer()
     {
         var lookPos = playerPosition.position;
         lookPos.y = transform.position.y;

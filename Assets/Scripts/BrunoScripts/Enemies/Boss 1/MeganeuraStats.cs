@@ -21,11 +21,46 @@ public class MeganeuraStats : MonoBehaviour
     public float health;
     public float onGroundTime;
     public float rotationSpeed;
+    [HideInInspector] public bool isAttacking;
     public float attackDelay;
-    public bool isAttacking;
-    public bool onAir;
-    public bool canRotate;
+    [HideInInspector]public bool onAir;
+    [HideInInspector] public bool canRotate;
     public int stakesToThrow = 4;
+
+    [Header("Rayo ion=======================")]
+    public float laserRotationSpeed;
+    public float laserAimTime;
+    public float laserAttackTime;
+
+    [Header("Bombardeo misiles=======================")]
+    public float bmAmount;
+    public float bmDelay;
+
+    [Header("Rayos emp=======================")]
+    public float rempAmount;
+    public float rempSpeed;
+    public float rempRotationSpeed;
+    public float rempFollowTime;
+    public float rempLifeTime;
+
+    [Header("Bomba napalm=======================")]
+    public int napalmAmount;
+    public float napalmDelay;
+
+    [Header("Bomba Flash=======================")]
+    public float flashDuration;
+    public float flashDelay;
+
+    [Header("DiscosEMP=======================")]
+    public float discMaxSpeed;
+    public float discRotationSpeed;
+    public float discAmount;
+    public float discDelay;
+    [Header("Vista cazador===================")]
+    public float cazadorAimTime;
+    public float cazadorRotationSpeed;
+    public float cazadorLaserDuration;
+
     private void Start()
     {
         attacksDamage.Add(Action.rayoIon, rayoIonDamage);

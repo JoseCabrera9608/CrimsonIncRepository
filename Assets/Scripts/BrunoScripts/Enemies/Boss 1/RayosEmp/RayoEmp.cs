@@ -6,10 +6,12 @@ public class RayoEmp : MonoBehaviour
 {
     private Rigidbody rb;
     private GameObject target;
-    [SerializeField] private float speed;
-    [SerializeField] private float rotationSpeed;
-    public float damage;
-    private float lifeTime;
+    [HideInInspector] public float speed;
+    [HideInInspector] public float rotationSpeed;
+    [HideInInspector] public float damage;
+    [HideInInspector] public float t;
+    [HideInInspector] public float lifeTime;
+    [HideInInspector] public float followTime;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,14 +19,14 @@ public class RayoEmp : MonoBehaviour
     }
     private void Update()
     {
-        lifeTime += Time.deltaTime;
-        if (lifeTime <= 20)
+        t += Time.deltaTime;
+        if (t <= followTime)
         {
             rb.velocity = transform.forward * speed;
             Quaternion direction = Quaternion.LookRotation((target.transform.position + new Vector3(0, 1, 0)) - transform.position);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, direction, rotationSpeed * Time.deltaTime);
         }
-        else if (lifeTime >= 40) Destroy(gameObject);
+        else if (t >= lifeTime) Destroy(gameObject);
         
     }
 
