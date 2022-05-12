@@ -10,7 +10,7 @@ public class BossCangrejo : MonoBehaviour
     //Variables NavMesh
     GameObject player;
     public NavMeshAgent agente;
-    private bool onChase = false;
+    public bool onChase = false;
 
     //Variables para Habilidades
     public bool activarGolpeTenazas = false;

@@ -159,9 +159,9 @@ public class CangrejoArena : MonoBehaviour
     IEnumerator HabilidadGolpeTenaza()
     {
         animCangrejo.SetTrigger("GolpeTenaza");
-        GolpeTenazaCollider.SetActive(true);
+        //GolpeTenazaCollider.SetActive(true);
         yield return new WaitForSeconds(3);
-        GolpeTenazaCollider.SetActive(false);
+        //GolpeTenazaCollider.SetActive(false);
       
        
     }
@@ -277,11 +277,5 @@ public class CangrejoArena : MonoBehaviour
             EsferaMagnetica.SetActive(true);
         }
     }
-    public void DesactviarEsferaMagnetica()
-    {
-        if (segundaFase == true)
-        {
-            EsferaMagnetica.SetActive(false);
-        }
-    }
+ 
 }
