@@ -21,10 +21,11 @@ public class MeganeuraBoss : MonoBehaviour
         {1,Action.bombardeoMisiles },
         {2,Action.rayosEmp },
         {3,Action.bombaFlash },
-        {4,Action.bombaNapalm },
+        {4,Action.lluviaLasers },
         {5,Action.vistaCazador },
         {6,Action.discosEmp },
     };
+
 
     //Multi vars
     [HideInInspector] public float currentDamageValue;
@@ -33,14 +34,11 @@ public class MeganeuraBoss : MonoBehaviour
     private int container1=0;
     private bool bool1=false;
     [SerializeField] private Transform attackPos;
-    private LineRenderer lr;
-    private Ray attackRay;
-    /*[HideInInspector]*/ public bool laserConstant;
     //Spawn objects
     [Header("Objetos")]
     [SerializeField] private GameObject rayoEmp;
     [SerializeField] private GameObject explotion;
-    [SerializeField] private GameObject bombaNapalm;
+    [SerializeField] private GameObject lluviaDeLasers;
     [SerializeField] private GameObject bombaFlash;
     [SerializeField] private GameObject discoEmp;
     [SerializeField] private GameObject rayoIon;
@@ -50,7 +48,6 @@ public class MeganeuraBoss : MonoBehaviour
         stats = GetComponent<MeganeuraStats>();
         damages = stats.attacksDamage;
         player = FindObjectOfType<PlayerStatus>().gameObject;
-        lr = GetComponent<LineRenderer>();
         bobing.Pause();
 
         StartCoroutine(SpawnStakes());
@@ -58,54 +55,57 @@ public class MeganeuraBoss : MonoBehaviour
     }
     private void Update()
     {
-        //Test
-        //if (Input.GetMouseButtonDown(0)) GravityStake();
-        //if (Input.GetKeyDown(KeyCode.P)) EvaluateAttack();
 
-        StakesCheck();
-        RotateToPlayer();
-        StateMachine();
+        if (stats.isAlive)
+        {
+            StakesCheck();
+            RotateToPlayer();
+            StateMachine();
+        }
+        
     }
 
     private void StateMachine()
-    {       
-        if (stats.onAir)
+    {
+        //if (currentAction == Action.idle)
+        //{
+        //    StartCoroutine(EvaluateAttack());
+        //}
+        switch (currentAction)
         {
-            switch (currentAction)
-            {
-                case Action.idle:
-                    if(evaluating==false) StartCoroutine(EvaluateAttack());
-                    break;
+            case Action.idle:
+                if (evaluating == false) StartCoroutine(EvaluateAttack());
+                break;
 
-                case Action.rayoIon:
-                    HandleRayoIon();
-                    currentDamageValue = damages[Action.rayoIon];
-                    break;
+            case Action.rayoIon:
+                HandleRayoIon();
+                //currentDamageValue = damages[Action.rayoIon];
+                break;
 
-                case Action.bombardeoMisiles:
-                    HandleBombardeoMisiles();
-                    break;
+            case Action.bombardeoMisiles:
+                HandleBombardeoMisiles();
+                break;
 
-                case Action.rayosEmp:
-                    HandleRayosEmp();
-                    break;
+            case Action.rayosEmp:
+                HandleRayosEmp();
+                break;
 
-                case Action.bombaFlash:
-                    HandleBombaFlash();
-                    break;
-                case Action.bombaNapalm:
-                    HandleBombaNapalm();
-                    break;
+            case Action.bombaFlash:
+                HandleBombaFlash();
+                break;
+            case Action.lluviaLasers:
+                HandleLluviaDeLasers();
+                break;
 
-                case Action.vistaCazador:
-                    HandleVistaCazador();
-                    currentDamageValue = damages[Action.vistaCazador];
-                    break;
+            case Action.vistaCazador:
+                HandleVistaCazador();
+                //currentDamageValue = damages[Action.vistaCazador];
+                break;
 
-                case Action.discosEmp:
-                    HandleDiscosEmp();
-                    break;
-            }
+            case Action.discosEmp:
+                HandleDiscosEmp();
+                break;
+            
         }
         
     }
@@ -193,7 +193,23 @@ public class MeganeuraBoss : MonoBehaviour
             pos[i] = posTransform[i].position;
         }
     }
+    private void CheckHealth()
+    {
+        if (stats.health <= 0&&stats.isAlive)
+        {
+            stats.isAlive = false;
+            HandleDeath();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerWeapon"))
+        {
+            stats.health -= PlayerSingleton.Instance.playerDamage;
+            CheckHealth();
+        }
 
+    }
     //HANDLE ATTACK METHODS
     private IEnumerator EvaluateAttack()
     {
@@ -201,7 +217,16 @@ public class MeganeuraBoss : MonoBehaviour
         yield return new WaitForSeconds(stats.attackDelay);
 
         int random;
-        random =Random.Range(0, 7);
+
+        if (stats.onAir)
+        {
+            random = Random.Range(0, 7);
+        }
+        else
+        {
+            random = Random.Range(2, 5);
+        }
+        
         currentAction = actionsDic[random];
         evaluating = false;
         currentDamageValue = damages[currentAction];
@@ -306,25 +331,21 @@ public class MeganeuraBoss : MonoBehaviour
         currentAction = Action.idle;
     }
     //done
-    private void HandleBombaNapalm()
+    private void HandleLluviaDeLasers()
     {
-        //Debug.Log("Handling: " + currentAction);
-        //stats.isAttacking = false;
-        //currentAction = Action.idle;
         t1 += Time.deltaTime;
         bool1 = true;
         stats.isAttacking = true;
 
-        if (t1 > stats.napalmDelay && container1 < stats.napalmAmount)
+        if (t1 > stats.lluviaDelay && container1 < stats.lluviaAmount)
         {
             container1++;
             t1 = 0;
-            GameObject napalm = Instantiate(bombaNapalm);
-            napalm.transform.position = attackPos.position;
-            napalm.GetComponent<BombaNapalm>().explotionDamage = damages[Action.bombaNapalm];
-            napalm.GetComponent<BombaNapalm>().burnDamage = stats.bombaNapalmBurnDamage;
+            GameObject obj = Instantiate(lluviaDeLasers);
+            obj.transform.position = player.transform.position + new Vector3(0, 10, 0);
+            obj.GetComponent<LluviaLasers>().damage = damages[Action.lluviaLasers];
         }
-        else if (container1 >= stats.napalmAmount && bool1)
+        else if (container1 >= stats.lluviaAmount && bool1)
         {
             bool1 = false;
             t1 = 0;
@@ -393,15 +414,22 @@ public class MeganeuraBoss : MonoBehaviour
         }
 
     }
+
+    private void HandleDeath()
+    {
+        //logic to handle death
+        FlightSwitch(false);
+        StopAllCoroutines();
+    }
 }
 public enum Action
 {
-    idle,
-    rayoIon,
-    bombardeoMisiles,
-    rayosEmp,
-    bombaFlash,
-    bombaNapalm,
-    vistaCazador,
-    discosEmp
+    idle,                   
+    rayoIon, //on air
+    bombardeoMisiles, //both
+    rayosEmp, //both
+    bombaFlash, //both
+    lluviaLasers, //on air
+    vistaCazador, // on air
+    discosEmp //on air
 };

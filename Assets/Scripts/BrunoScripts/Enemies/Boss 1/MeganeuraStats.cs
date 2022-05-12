@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class MeganeuraStats : MonoBehaviour
 {
     [Header("=======Damages========")]  
@@ -9,8 +8,7 @@ public class MeganeuraStats : MonoBehaviour
     public float bombardeoMisilesDamage;
     public float rayosEmpDamage;
     public float vistaCazadorDamage;
-    public float bombaNapalmDamage;
-    public float bombaNapalmBurnDamage;
+    public float lluviaDamage;
     public float discosEmpDamage;
     public float discosEmpStaminaLoss;
     
@@ -26,6 +24,7 @@ public class MeganeuraStats : MonoBehaviour
     [HideInInspector]public bool onAir;
     [HideInInspector] public bool canRotate;
     public int stakesToThrow = 4;
+    public bool isAlive=true;
 
     [Header("Rayo ion=======================")]
     public float laserRotationSpeed;
@@ -43,9 +42,9 @@ public class MeganeuraStats : MonoBehaviour
     public float rempFollowTime;
     public float rempLifeTime;
 
-    [Header("Bomba napalm=======================")]
-    public int napalmAmount;
-    public float napalmDelay;
+    [Header("Lluvia de lasers=======================")]
+    public int lluviaAmount;
+    public float lluviaDelay;
 
     [Header("Bomba Flash=======================")]
     public float flashDuration;
@@ -67,7 +66,7 @@ public class MeganeuraStats : MonoBehaviour
         attacksDamage.Add(Action.bombardeoMisiles,bombardeoMisilesDamage);
         attacksDamage.Add(Action.rayosEmp, rayosEmpDamage);
         attacksDamage.Add(Action.vistaCazador, vistaCazadorDamage);
-        attacksDamage.Add(Action.bombaNapalm, bombaNapalmDamage);
+        attacksDamage.Add(Action.lluviaLasers, lluviaDamage);
         attacksDamage.Add(Action.discosEmp, discosEmpDamage);
         attacksDamage.Add(Action.idle, 0);
         attacksDamage.Add(Action.bombaFlash, 0);

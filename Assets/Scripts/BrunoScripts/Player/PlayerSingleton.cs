@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerSingleton : MonoBehaviour
 {
     private static PlayerSingleton _instance;
@@ -17,6 +17,7 @@ public class PlayerSingleton : MonoBehaviour
             return _instance;
         }
     }
+    public static Action<float> onPlayerStun;
     private void OnEnable()
     {
         _instance = this;
