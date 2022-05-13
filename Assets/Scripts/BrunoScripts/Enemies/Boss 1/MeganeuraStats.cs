@@ -22,7 +22,7 @@ public class MeganeuraStats : MonoBehaviour
     [HideInInspector] public bool isAttacking;
     public float attackDelay;
     [HideInInspector]public bool onAir;
-    [HideInInspector] public bool canRotate;
+    public bool canRotate;
     public int stakesToThrow = 4;
     public bool isAlive=true;
 

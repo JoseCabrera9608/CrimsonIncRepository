@@ -43,6 +43,11 @@ public class MeganeuraBoss : MonoBehaviour
     [SerializeField] private GameObject discoEmp;
     [SerializeField] private GameObject rayoIon;
     [SerializeField] private GameObject vistaCazador;
+
+    [SerializeField]private bool isActive=false;
+    [SerializeField] private float timeToActivate;
+    [SerializeField]private BoxCollider col;
+    private bool initialStakes=false;
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
@@ -50,13 +55,13 @@ public class MeganeuraBoss : MonoBehaviour
         player = FindObjectOfType<PlayerStatus>().gameObject;
         bobing.Pause();
 
-        StartCoroutine(SpawnStakes());
+        //StartCoroutine(SpawnStakes());
         SetPos();
     }
     private void Update()
     {
 
-        if (stats.isAlive)
+        if (stats.isAlive&&isActive)
         {
             StakesCheck();
             RotateToPlayer();
@@ -161,6 +166,10 @@ public class MeganeuraBoss : MonoBehaviour
                 FlightSwitch( false);
                 StartCoroutine(SpawnStakes());
             }
+        }else if (stats.onAir == false && initialStakes == false)
+        {
+            initialStakes = true;
+            StartCoroutine(SpawnStakes());
         }
     }
     private IEnumerator SpawnStakes()
@@ -181,8 +190,16 @@ public class MeganeuraBoss : MonoBehaviour
     private void StopBobing() => bobing.Pause();
     private void FlightSwitch(bool changeOnAir)
     {
-        if (changeOnAir)transform.DOMove(pos[1], 7, false).SetEase(Ease.OutBack).OnComplete(StartBobing);
-        else transform.DOMove(pos[0], 3, false).SetEase(Ease.InBack).OnComplete(StopBobing);
+        if (changeOnAir)
+        {
+            stats.canRotate = true;
+            transform.DOMove(pos[1], 7, false).SetEase(Ease.OutBack).OnComplete(StartBobing);
+        }
+        else
+        {
+            stats.canRotate = false;
+            transform.DOMove(pos[0], 3, false).SetEase(Ease.InBack).OnComplete(StopBobing);
+        }
 
         stats.onAir = changeOnAir;
     }
@@ -208,7 +225,19 @@ public class MeganeuraBoss : MonoBehaviour
             stats.health -= PlayerSingleton.Instance.playerDamage;
             CheckHealth();
         }
+        if (other.CompareTag("Player")&&col.enabled==true)
+        {
+            StartCoroutine(Activate());
+        }
 
+    }
+
+    private IEnumerator Activate()
+    {
+        col.enabled = false;
+        yield return new WaitForSeconds(timeToActivate);
+        isActive = true;
+        
     }
     //HANDLE ATTACK METHODS
     private IEnumerator EvaluateAttack()
