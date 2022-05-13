@@ -196,6 +196,7 @@ public class BossCangrejo : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("MuerteBoss");
             StartCoroutine(MuerteCangrejo());
             EfectoSegundaFase.SetActive(false);
+            BuffManager.Instance.ShowPanel();
             bossDoorScript.PlayAnimation();
             
 
