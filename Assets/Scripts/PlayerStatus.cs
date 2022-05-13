@@ -114,7 +114,7 @@ public class PlayerStatus : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && timer > healingtime)
+        if (Input.GetKeyDown(KeyCode.Q) && timer > healingtime && PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
         {
             timer = 0;
             healingtime = (0.01f * maxtimehealing)* healingAmount;

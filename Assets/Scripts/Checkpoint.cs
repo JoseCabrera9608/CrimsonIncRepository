@@ -27,7 +27,8 @@ public class Checkpoint : MonoBehaviour
         mesh = this.GetComponent<MeshRenderer>();
         Player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = Player.GetComponent<PlayerStatus>();
-        
+
+        PlayerSingleton.Instance.playerCurrentHP = 1;
 
         if (progress.lastposition != Vector3.zero)
         {
@@ -61,6 +62,8 @@ public class Checkpoint : MonoBehaviour
         {
             progress.checkpointIndex = checkpointIndex;
             progress.lastposition = SpawnPoint.transform.position;
+            PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
+            PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
