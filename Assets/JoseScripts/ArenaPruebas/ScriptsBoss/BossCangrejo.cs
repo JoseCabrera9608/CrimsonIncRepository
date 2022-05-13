@@ -54,7 +54,7 @@ public class BossCangrejo : MonoBehaviour
     float timerDescanso;
     bool activarDescanso;
     GameObject CabezaPlayer;
-
+    Transform transformPlayer;
     void Start()
     {
         bossDoorScript = BossDoor.GetComponent<AnimationPlayer>();
@@ -69,6 +69,7 @@ public class BossCangrejo : MonoBehaviour
         agente = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
+        //transformPlayer = CabezaPlayer.GetComponent<Transform>();
 
 
     }
@@ -76,7 +77,12 @@ public class BossCangrejo : MonoBehaviour
     
     void Update()
     {
-        if(vidaActual <= 100)
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("Iddle"))
+        {
+            MirarAljugador();
+        }
+
+        if (vidaActual <= 100)
         {
             segundaFase = true;
         }
@@ -227,7 +233,7 @@ public class BossCangrejo : MonoBehaviour
     {
         animCangrejo.SetTrigger("GolpeTenaza");
         agente.speed = 0;
-        yield return new WaitForSeconds(habilidades.activeTime);
+        yield return new WaitForSeconds(4);
         agente.speed = 5;
     }
 
@@ -235,7 +241,7 @@ public class BossCangrejo : MonoBehaviour
     {
         animCangrejo.SetTrigger("GolpeSecuencia");
         agente.speed = 0;
-        yield return new WaitForSeconds(habilidades.activeTime);
+        yield return new WaitForSeconds(4f);
         agente.speed = 5;
     }
 
@@ -246,7 +252,7 @@ public class BossCangrejo : MonoBehaviour
      // agente.speed = 0;
        // agente.stoppingDistance = 0;
         abdomenCollider.isTrigger = true;
-      yield return new WaitForSeconds(1);
+      yield return new WaitForSeconds(3);
         
         embestidaCollider.SetActive(true);
         agente.speed = 1000;
@@ -316,12 +322,25 @@ public class BossCangrejo : MonoBehaviour
         yield return new WaitForSeconds(4);
         timerDeBuff = 0;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("PlayerWeapon"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            hitted = true;
+           // MirarAljugador();
         }
+    }
+    
+
+    void MirarAljugador()
+    {
+        
+       // Vector3 relativePos = CabezaPlayer.transform.position - transform.position;
+
+        Quaternion rotTarget = Quaternion.LookRotation(CabezaPlayer.transform.position - this.transform.position);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, 200 * Time.deltaTime);
+        //Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up * -0.1f*Time.deltaTime);
+       // transform.rotation = rotation;
+        Debug.Log("Deberia GIRAAAAAAAR");
     }
 
     public void ActivarColliderBrazoDerecho()
@@ -346,10 +365,10 @@ public class BossCangrejo : MonoBehaviour
 
     public void ActivarMagnetoEnGolpe()
     {
-        if(segundaFase == true)
+      /*  if(segundaFase == true)
         {
             ActivarAtraccionDerecho();
-        }
+        }*/
     }
 
     public void ActivarAtraccionDerecho()
@@ -398,5 +417,7 @@ public class BossCangrejo : MonoBehaviour
         EsferaMagnetica.SetActive(true);
         
     }
+
+    
 
 }

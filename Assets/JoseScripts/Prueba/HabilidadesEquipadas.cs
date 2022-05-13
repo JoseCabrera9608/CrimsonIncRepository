@@ -8,7 +8,7 @@ public class HabilidadesEquipadas : MonoBehaviour
     [SerializeField] float cooldownTime;
     public float activeTime;
     GameObject player;
-    [SerializeField] private float distance;
+    public float distance;
     [SerializeField] private bool casting = false;
     int index;
     public bool attacking = false;
