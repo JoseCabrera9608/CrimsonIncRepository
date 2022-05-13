@@ -149,10 +149,9 @@ public class Movement : MonoBehaviour
             playeranim.SetBool("Walk", false);
             //FindObjectOfType<AudioManager>().Stop("Movimiento");
         }
-        else
+        if (playerInput.x > 0 || playerInput.y > 0 && movSpeed == walkSpeed)
         {
-            //playeranim.SetBool("Run", true);
-
+            //FindObjectOfType<AudioManager>().Play("CaminarMetal");
         }
 
         Vector3 movementVelocity = moveDirection;
