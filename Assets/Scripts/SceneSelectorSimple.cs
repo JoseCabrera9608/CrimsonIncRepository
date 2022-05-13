@@ -8,11 +8,11 @@ public class SceneSelectorSimple : MonoBehaviour
     // Start is called before the first frame update
     public string sceneName;
     public Vector3 hubpos;
-    //public ProgressManager progress;
+    public ProgressManager progress;
 
     void Start()
     {
-        //progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     // Update is called once per frame
@@ -74,6 +74,7 @@ public class SceneSelectorSimple : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            progress.lastposition = hubpos;
             SceneManager.LoadScene(sceneName);
         }
     }
