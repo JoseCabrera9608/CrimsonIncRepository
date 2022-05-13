@@ -14,6 +14,7 @@ public class PlayerStatus : MonoBehaviour
     public Animator anim;
     public SkinnedMeshRenderer mesh;
 
+    public ProgressManager progress;
     public Transform InteractualObject;
 
     public float timer;
@@ -25,6 +26,9 @@ public class PlayerStatus : MonoBehaviour
     public bool pruebasingle;
     public bool interacting;
     public bool activeinteraction;
+    public bool playerdeath;
+
+    public int lvl;
 
 
     // Start is called before the first frame update
@@ -33,8 +37,15 @@ public class PlayerStatus : MonoBehaviour
         //PlayerSingleton.Instance.playerCurrentHP -= 50;
         //playermov.enabled = false;
 
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         playerAttack = this.GetComponent<PlayerAttack>();
         timer = maxtimehealing;
+
+        if (lvl == 1)
+        {
+            progress.lastposition = new Vector3(57, -3, 7);
+            //progress.lastposition = new Vector3(57, 0, -200);
+        }
 
         //playerlife = 100;
 
@@ -44,11 +55,21 @@ public class PlayerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerSingleton.Instance.playerCurrentHP <= 0)
+        if (PlayerSingleton.Instance.playerCurrentHP <= 0 && lvl ==0)
         {
             Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Destroy(gameObject);
+        }
+
+        if (PlayerSingleton.Instance.playerCurrentHP <= 0 && lvl == 1)
+        {
+            playerdeath = true;
+            Death();
+        }
+        else
+        {
+            playerdeath = false;
         }
 
         if (hiteado == true)
@@ -57,7 +78,15 @@ public class PlayerStatus : MonoBehaviour
         }
         SingletonConnect();
 
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            lvl = 0;
+        }
 
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            lvl = 1;
+        }
 
         playerlife = PlayerSingleton.Instance.playerCurrentHP;
         pruebasingle = PlayerSingleton.Instance.playerHitted;
@@ -78,6 +107,23 @@ public class PlayerStatus : MonoBehaviour
         {
             transform.LookAt(InteractualObject);
         }
+    }
+
+    public void Death()
+    {
+        anim.SetBool("Death", true);
+        
+        this.transform.position = progress.lastposition;
+        PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
+        PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
+    }
+
+    public void AfterDeath()
+    {
+        anim.SetBool("Death", false);
+        this.transform.position = progress.lastposition;
+        PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
+        PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
     }
 
     void SingletonConnect()

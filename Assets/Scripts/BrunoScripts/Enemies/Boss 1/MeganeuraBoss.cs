@@ -18,6 +18,7 @@ public class MeganeuraBoss : MonoBehaviour
     Tween bobing;
 
     private GameObject player;
+    public PlayerStatus playerStatus;
     private Dictionary<int, Action> actionsDic=new Dictionary<int, Action>()
     {
         {0,Action.rayoIon },
@@ -58,6 +59,8 @@ public class MeganeuraBoss : MonoBehaviour
         player = FindObjectOfType<PlayerStatus>().gameObject;
         bobing.Pause();
         SetPos();
+
+        playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
     }
     private void Update()
     {
@@ -68,7 +71,11 @@ public class MeganeuraBoss : MonoBehaviour
             RotateToPlayer();
             StateMachine();
         }
-        
+
+        if (playerStatus.playerdeath == true)
+        {
+            Deactivate();
+        }      
     }
 
     private void StateMachine()
@@ -241,6 +248,15 @@ public class MeganeuraBoss : MonoBehaviour
         isActive = true;
         
     }
+
+    public void Deactivate()
+    {
+        col.enabled = true;
+        EnemyBar.SetActive(false);
+       
+        isActive = false;
+    }
+
     //HANDLE ATTACK METHODS
     private IEnumerator EvaluateAttack()
     {

@@ -20,7 +20,7 @@ public class DeathArea : MonoBehaviour
 
         if (timer >= 0.3f && contact == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         }
     }
@@ -30,7 +30,7 @@ public class DeathArea : MonoBehaviour
         {
             timer = 0;
             contact = true;
-            Destroy(other.gameObject);
+            PlayerSingleton.Instance.playerCurrentHP -= PlayerSingleton.Instance.playerMaxHP;
 
 
         }
