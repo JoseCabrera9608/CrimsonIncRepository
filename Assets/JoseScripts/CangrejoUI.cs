@@ -15,7 +15,7 @@ public class CangrejoUI : MonoBehaviour
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<BossCangrejo>();
-        enemy.vidaActual = 10;
+        enemy.vidaActual = 150;
     }
 
     // Update is called once per frame
