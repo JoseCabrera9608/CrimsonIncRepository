@@ -62,6 +62,10 @@ public class BuffManager : MonoBehaviour
         ResetBuffDisplay();
         SetBuffInformation();
 
+        //Le agregue esto porque el mouse no salia owo - Santiago
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         buffPanel.SetActive(true);
         buffPanel.GetComponent<CanvasGroup>().alpha = 0;
         buffPanel.GetComponent<CanvasGroup>().interactable = true;
@@ -88,6 +92,11 @@ public class BuffManager : MonoBehaviour
                 hidePanel.Join(container.GetComponent<RectTransform>().DOScale(0, 1).SetEase(Ease.InBack));
             }
         }
+
+        //Le agregue esto para desactivar el mouse owo - Santiago
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         hidePanel.Append(buffPanel.GetComponent<CanvasGroup>().DOFade(0, 1));
         hidePanel.OnComplete(HidePanel);
     }

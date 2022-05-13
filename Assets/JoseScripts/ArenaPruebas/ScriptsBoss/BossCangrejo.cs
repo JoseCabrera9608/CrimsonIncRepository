@@ -44,6 +44,7 @@ public class BossCangrejo : MonoBehaviour
     private GameObject cangrejo;
     public int vidaActual;
     public bool hitted;
+    public bool bossDeath;
     //CanvaUI
     public GameObject BarraDeVida;
     //
@@ -196,7 +197,14 @@ public class BossCangrejo : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("MuerteBoss");
             StartCoroutine(MuerteCangrejo());
             EfectoSegundaFase.SetActive(false);
-            BuffManager.Instance.ShowPanel();
+
+            if (bossDeath == false)
+            {
+                BuffManager.Instance.ShowPanel();
+            }
+            
+
+            bossDeath = true;
             bossDoorScript.PlayAnimation();
             
 
