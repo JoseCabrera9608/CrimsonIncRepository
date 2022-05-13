@@ -34,7 +34,7 @@ public class ArenaCagUI : MonoBehaviour
         if (enemyhealth <= 0)
         {
             
-            Destroy(Enemy);
+           // Destroy(Enemy);
             EnemyHealthBar.SetActive(false);
 
         }

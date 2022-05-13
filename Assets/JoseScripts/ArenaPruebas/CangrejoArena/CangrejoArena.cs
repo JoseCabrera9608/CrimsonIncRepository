@@ -122,6 +122,12 @@ public class CangrejoArena : MonoBehaviour
             RecibioDaño();
             playerDamage.hitted = false;
         }
+        if(vidaActual <= 0)
+        {
+            animCangrejo.SetTrigger("Muerte");
+            Destroy(this);
+            EfectoSegundaFase.SetActive(false);
+        }
     }
 
     void EmpezarPersecucion()

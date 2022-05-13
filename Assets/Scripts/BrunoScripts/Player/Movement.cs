@@ -328,5 +328,10 @@ public class Movement : MonoBehaviour
 
     }
 
+    public void Pisadas()
+    {
+        FindObjectOfType<AudioManager>().Play("CaminarNormal");
+    }
+
 
 }
