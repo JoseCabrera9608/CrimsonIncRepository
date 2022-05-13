@@ -55,12 +55,9 @@ public class PlayerStatus : MonoBehaviour
         {
             StartCoroutine(HittedCoroutine());
         }
+        SingletonConnect();
 
 
-        if (PlayerSingleton.Instance.playerCurrentHP > 100)
-        {
-            PlayerSingleton.Instance.playerCurrentHP = 100;
-        }
 
         playerlife = PlayerSingleton.Instance.playerCurrentHP;
         pruebasingle = PlayerSingleton.Instance.playerHitted;
@@ -81,6 +78,12 @@ public class PlayerStatus : MonoBehaviour
         {
             transform.LookAt(InteractualObject);
         }
+    }
+
+    void SingletonConnect()
+    {
+        healingAmount = PlayerSingleton.Instance.playerHealAmount;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,7 +107,11 @@ public class PlayerStatus : MonoBehaviour
 
         if (timer <= healingtime && PlayerSingleton.Instance.playerCurrentHealingCharges > 0)
         {
-            PlayerSingleton.Instance.playerCurrentHP += (healingAmount/healingtime)*Time.deltaTime;
+            //PlayerSingleton.Instance.playerCurrentHP += (healingAmount/healingtime)*Time.deltaTime;
+            if (PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
+            {
+                PlayerSingleton.Instance.playerCurrentHP += (healingAmount / healingtime) * Time.deltaTime; ;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && timer > healingtime)

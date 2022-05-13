@@ -68,6 +68,7 @@ public class Movement : MonoBehaviour
         {
             recovery = false;
         }
+        SingletonConnect();
     }
 
     private void FixedUpdate()
@@ -83,6 +84,17 @@ public class Movement : MonoBehaviour
         HandleDash();
         Falling();
     }
+
+    void SingletonConnect()
+    {
+        staminaMax = PlayerSingleton.Instance.playerMaxStamina;
+
+        stamina = PlayerSingleton.Instance.playerCurrentStamina;
+
+        staminaRun = PlayerSingleton.Instance.playerRunStaminaCost;
+
+    }
+
     private void PlayerMovement()
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
