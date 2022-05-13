@@ -18,14 +18,14 @@ public class ProyectilTeledirigido : MonoBehaviour
     void Update()
     {
         StartCoroutine(Teledirigido());
-        Destroy(this.gameObject, 8f);
+        Destroy(this.gameObject, 5f);
     }
 
     IEnumerator Teledirigido()
     {
         gameObject.transform.LookAt(target);
         transform.Translate(0f, 0f, speed * Time.deltaTime);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3.5f);
         target = null;
         transform.position += transform.forward * (speed * Time.deltaTime);
 
