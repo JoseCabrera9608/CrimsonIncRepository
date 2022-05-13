@@ -28,7 +28,7 @@ public class Checkpoint : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = Player.GetComponent<PlayerStatus>();
 
-        PlayerSingleton.Instance.playerCurrentHP = 1;
+
 
         if (progress.lastposition != Vector3.zero)
         {
