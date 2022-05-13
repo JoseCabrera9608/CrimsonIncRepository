@@ -89,7 +89,7 @@ public class Movement : MonoBehaviour
     {
         staminaMax = PlayerSingleton.Instance.playerMaxStamina;
 
-        stamina = PlayerSingleton.Instance.playerCurrentStamina;
+        PlayerSingleton.Instance.playerCurrentStamina = stamina;
 
         staminaRun = PlayerSingleton.Instance.playerRunStaminaCost;
 
