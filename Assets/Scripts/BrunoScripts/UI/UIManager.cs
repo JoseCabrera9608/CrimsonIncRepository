@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
 
 
     //======DASH===================
-    private void UpdateDash()=> dashFill.fillAmount = movement.stamina / movement.staminaMax;
+    private void UpdateDash()=> dashFill.fillAmount = movement.PlayerSingleton.Instance.playerCurrentStamina / movement.staminaMax;
 
     //======DASH===================
     #endregion

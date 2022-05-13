@@ -89,7 +89,7 @@ public class Movement : MonoBehaviour
     {
         staminaMax = PlayerSingleton.Instance.playerMaxStamina;
 
-        PlayerSingleton.Instance.playerCurrentStamina = stamina;
+        
 
         staminaRun = PlayerSingleton.Instance.playerRunStaminaCost;
 
@@ -114,7 +114,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
 
-            if (stamina > 0)
+            if (PlayerSingleton.Instance.playerCurrentStamina > 0)
             {
                 movSpeed = runSpeed;
                 playeranim.SetBool("Walk", false);
@@ -129,7 +129,7 @@ public class Movement : MonoBehaviour
             if (rb.velocity != new Vector3(0, 0, 0) && playerAttack.attackStatus == false)
             {
                 Recovery();
-                stamina -= (0.01f * staminaRun) * Time.deltaTime;
+                PlayerSingleton.Instance.playerCurrentStamina -= (0.01f * staminaRun) * Time.deltaTime;
             }
                 //stamina -= (0.01f* staminaRun) * Time.deltaTime;
         }
@@ -185,30 +185,30 @@ public class Movement : MonoBehaviour
 
         if (recovery == false)
         {
-            stamina += Time.deltaTime;
+            PlayerSingleton.Instance.playerCurrentStamina += Time.deltaTime;
         }
         
-        if (stamina <= 0)
+        if (PlayerSingleton.Instance.playerCurrentStamina <= 0)
         {
             movSpeed = walkSpeed;
-            stamina = 0;
+            PlayerSingleton.Instance.playerCurrentStamina = 0;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !isDashing && stamina >= 0.3f * staminaMax && onelevator == false)
+        if (Input.GetKey(KeyCode.Space) && !isDashing && PlayerSingleton.Instance.playerCurrentStamina >= 0.3f * staminaMax && onelevator == false)
         {
             if (dashAttempts <= 5000 && (rb.velocity != new Vector3(0,0,0)))  //Dashes maximos
             {
                 //FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
                 //DashParticles.Play();
-                stamina -= (0.01f* staminaDash)*staminaMax;
+                PlayerSingleton.Instance.playerCurrentStamina -= (0.01f* staminaDash)*staminaMax;
                 Recovery();
             }
         }
 
-        if (stamina >= staminaMax)
+        if (PlayerSingleton.Instance.playerCurrentStamina >= staminaMax)
         {
-            stamina = staminaMax;
+            PlayerSingleton.Instance.playerCurrentStamina = staminaMax;
         }
 
         if (isDashing)
