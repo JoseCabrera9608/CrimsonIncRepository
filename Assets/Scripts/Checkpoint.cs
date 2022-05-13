@@ -75,7 +75,8 @@ public class Checkpoint : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            //progress.lastposition = new Vector3 (7,0,-6);
+            progress.lastposition = new Vector3(57, -3, 6);
+            SceneManager.LoadScene("TinocoMirror");
             //SceneManager.LoadScene("EnriqueTest2");
 
             //ChangeScene();
