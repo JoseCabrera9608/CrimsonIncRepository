@@ -8,7 +8,7 @@ public class SceneSelectorSimple : MonoBehaviour
     // Start is called before the first frame update
     public string sceneName;
     public Vector3 hubpos;
-    public ProgressManager progress;
+    //public ProgressManager progress;
 
     void Start()
     {
