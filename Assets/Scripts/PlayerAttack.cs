@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
 
         //PauseController pause = Pause.GetComponent<PauseController>();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  && playermov.PlayerSingleton.Instance.playerCurrentStamina >= 0.25f * playermov.staminaMax)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  && PlayerSingleton.Instance.playerCurrentStamina >= 0.25f * playermov.staminaMax)
         {
             attacking = true;
             //attackStatus = true;
@@ -118,7 +118,7 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         weaponCollider.enabled = true;
         playermov.Recovery();
-        playermov.PlayerSingleton.Instance.playerCurrentStamina -= (0.01f * staminaAttack) * playermov.staminaMax;
+        PlayerSingleton.Instance.playerCurrentStamina -= (0.01f * staminaAttack) * playermov.staminaMax;
     }
     void AfterAttack()
     {
