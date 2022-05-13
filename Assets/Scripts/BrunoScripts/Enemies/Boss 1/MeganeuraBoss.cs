@@ -8,6 +8,9 @@ public class MeganeuraBoss : MonoBehaviour
     private MeganeuraStats stats;
     private Dictionary<Action,float> damages;
 
+    public GameObject EnemyBar;
+
+
     public GameObject stake;
     public List<GameObject> stakeList;
     public Transform[] posTransform;
@@ -233,6 +236,7 @@ public class MeganeuraBoss : MonoBehaviour
     private IEnumerator Activate()
     {
         col.enabled = false;
+        EnemyBar.SetActive(true);
         yield return new WaitForSeconds(timeToActivate);
         isActive = true;
         
