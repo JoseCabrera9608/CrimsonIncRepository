@@ -10,9 +10,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public NavMeshAgent agente;
     public Animator anim;
     //Habilidades
-    public bool golpeLargo;
+    public bool disparar;
     public bool golpeMelee;
     public bool magnetizar;
+
 
     //Comienzo
     public bool onChase;
@@ -26,7 +27,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
     SkinnedMeshRenderer meshDelEnemigo;
     public GameObject meshObject;
     public GameObject magneto;
-    
+
+    public GameObject disparo;
+    public GameObject firePoint;
+
 
     void Start()
     {
@@ -62,6 +66,12 @@ public class EnemiPequeñoControlador : MonoBehaviour
             StartCoroutine(Magnetizar());
             magnetizar = false;
         }
+
+        if(disparar == true)
+        {
+            StartCoroutine(Disparar());
+            disparar = false;
+        }
     }
 
     private void StartChase(int id)
@@ -69,6 +79,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         if (id == this.id)
         {
             onChase = true;
+            anim.SetTrigger("Comenzar");
         }
     }
 
@@ -76,7 +87,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     {
         anim.SetTrigger("Muerte");
         agente.speed = 0;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
 
@@ -99,20 +110,41 @@ public class EnemiPequeñoControlador : MonoBehaviour
     }
     IEnumerator GolpeMeleeActivate()
     {
-        anim.SetTrigger("Golpe");
+        anim.SetTrigger("AtaqueMelee");
         agente.speed = 1.7f;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+        agente.speed = 4;
     }
 
     IEnumerator Magnetizar()
     {
-        anim.SetTrigger("Magneto");
-        magneto.SetActive(true);
-        yield return new WaitForSeconds(2.95f);
-        anim.SetTrigger("TerminarMag");
-        magneto.SetActive(false);
+        agente.speed = 2.3f;
+        anim.SetTrigger("Magnetizar");
+        yield return new WaitForSeconds(1);
+        agente.speed = 4;
        
     }
+
+    IEnumerator Disparar()
+    {
+        agente.speed = 1;
+        anim.SetTrigger("Disparar");
+        yield return new WaitForSeconds(1.5f);
+        agente.speed = 4;
+    }
+
+
+    public void SpawnDeDisparo()
+    {
+        GameObject tiposDisparo;
+        if (firePoint != null)
+        {
+
+            tiposDisparo = Instantiate(disparo, firePoint.transform.position, Quaternion.identity);
+            tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
+        }
+    }
+
 
     public void ActivarColliderDerecho()
     {
@@ -134,12 +166,12 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     public void ActivarMagneto()
     {
-       // magneto.SetActive(true);
+       magneto.SetActive(true);
     }
 
     public void DesactivarMagneto()
     {
-      //  magneto.SetActive(false);
+       // magneto.SetActive(false);
     }
 
 }
