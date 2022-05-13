@@ -23,6 +23,7 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         mesh = this.GetComponent<MeshRenderer>();
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -43,6 +44,7 @@ public class Checkpoint : MonoBehaviour
         if (checkpointIndex == progress.checkpointIndex)
         {
             mesh.material = activeMat;
+
         }
         else
         {
@@ -53,6 +55,8 @@ public class Checkpoint : MonoBehaviour
         {
             //progress.checkpointIndex = checkpointIndex;
             //progress.lastposition = SpawnPoint.transform.position;
+            FindObjectOfType<AudioManager>().Play("Checkpoint");
+
 
             playerStatus.InteractualObject = consolepoint;
             playerStatus.Interacting();

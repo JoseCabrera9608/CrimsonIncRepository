@@ -29,6 +29,7 @@ public class ElevadorManyado : MonoBehaviour
             barrera.SetActive(true);
             // anim.SetTrigger("SubirBaranda");
             interruptorScript.DesactivarCollider();
+           
             SubirElevadorMetodo();
 
             
@@ -40,6 +41,7 @@ public class ElevadorManyado : MonoBehaviour
         {
             // anim.SetTrigger("SubirBaranda");
             barrera.SetActive(true);
+            
             BajarElevadorMetodo();
             interruptorScript.DesactivarCollider();
 
@@ -50,7 +52,8 @@ public class ElevadorManyado : MonoBehaviour
          {
             
             DetenerElevador();
-         }
+            
+        }
 
 
 
@@ -108,6 +111,7 @@ public class ElevadorManyado : MonoBehaviour
            // anim.SetTrigger("BajarBaranda");
             anim.SetBool("Baranda",false);
             interruptorScript.ActivarCollider();
+            FindObjectOfType<AudioManager>().Stop("Elevador");
             //Debug.Log("GAAA");
         }
         if (other.gameObject.CompareTag("Nube"))
@@ -119,6 +123,7 @@ public class ElevadorManyado : MonoBehaviour
             barrera.SetActive(false);
             anim.SetBool("Baranda", false);
             interruptorScript.ActivarCollider();
+            FindObjectOfType<AudioManager>().Stop("Elevador");
         }
     }
 

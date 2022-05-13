@@ -103,17 +103,19 @@ public class Movement : MonoBehaviour
         moveDirection = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z) * playerInput.y;
         moveDirection += Camera.main.transform.right * playerInput.x;
         moveDirection.Normalize();
+        
 
         //moveDirection.y = 0;
 
         if (isDashing == false && playerAttack.attackStatus == false)
         {
             moveDirection *= movSpeed;
+            
         }
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
-
+         //   FindObjectOfType<AudioManager>().Play("CaminarMetal");
             if (PlayerSingleton.Instance.playerCurrentStamina > 0)
             {
                 movSpeed = runSpeed;
@@ -259,6 +261,7 @@ public class Movement : MonoBehaviour
 
     void OnStartDash()
     {
+        FindObjectOfType<AudioManager>().Play("Dash");
         isDashing = true;
         dashStartTime = Time.time;
         //dashAttempts += 1;

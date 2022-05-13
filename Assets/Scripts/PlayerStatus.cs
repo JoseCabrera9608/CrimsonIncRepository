@@ -138,9 +138,11 @@ public class PlayerStatus : MonoBehaviour
 
     public void Interacting()
     {
+       
         interacting = true;
         //anim.SetBool("Interact", true);
         anim.SetTrigger("Interact");
+        
         //transform.LookAt(InteractualObject);
     }
 

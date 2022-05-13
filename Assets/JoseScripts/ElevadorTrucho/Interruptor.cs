@@ -20,6 +20,7 @@ public class Interruptor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E ) && colliding == true)
         {
             _elevadorManyado.accionar = true;
+            FindObjectOfType<AudioManager>().Play("Elevador");
         }
     }
 

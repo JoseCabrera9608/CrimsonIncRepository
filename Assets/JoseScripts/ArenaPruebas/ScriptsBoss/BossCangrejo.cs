@@ -62,7 +62,6 @@ public class BossCangrejo : MonoBehaviour
         abdomenCollider = abdomen.GetComponent<SphereCollider>();
         CabezaPlayer = GameObject.Find("PlayerHead");
         segundaFase = false;
-        vidaActual = 150;
         cangrejo = GameObject.Find("Crabby");
         animCangrejo = GetComponent<Animator>();
         mesh = GetComponent<MeshRenderer>();
@@ -136,6 +135,13 @@ public class BossCangrejo : MonoBehaviour
         {
             agente.speed = 5;
         }
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("Activarse"))
+        {
+            agente.speed = 0;
+            
+        }
+
+
 
         if (activarPasiva == true)
         {
@@ -147,7 +153,7 @@ public class BossCangrejo : MonoBehaviour
 
     #region PoderesSegundaFase
 
-    #region
+   
     void PoderesSegundaFase()
     {
         TimerDeBuff();
@@ -179,44 +185,44 @@ public class BossCangrejo : MonoBehaviour
             activarGolpeSecuencia = false;
         }
         
-       /* if (activarEmbestida == true)
-        {
-            StartCoroutine(Embestida());
-            activarEmbestida = false;
-        }
-
-        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
-        {
-            transform.LookAt(player.transform);
-        }
-       */
-       /* if (activarPasiva == true)
-        {
-            StartCoroutine(PasivaCaparazon());
-            activarPasiva = false;
-        }
-       */
         if (vidaActual <= 0)
         {
+            FindObjectOfType<AudioManager>().Play("MuerteBoss");
             StartCoroutine(MuerteCangrejo());
             EfectoSegundaFase.SetActive(false);
             bossDoorScript.PlayAnimation();
+            
+
 
         }
     }
     #endregion
-    #endregion
+   
     private void StartChase(int id)
     {
         if(id == this.id)
         {
-            habilidades.enabled = true;
-        onChase = true;
-        animCangrejo.SetTrigger("Comienzo");
-        BarraDeVida.SetActive(true);
+            /* FindObjectOfType<AudioManager>().Play("BossAparece");
+             habilidades.enabled = true;
+             onChase = true;
+             animCangrejo.SetTrigger("Comienzo");
+             BarraDeVida.SetActive(true);*/
+            StartCoroutine(ComenzarBoss());
+            
         }
     }
     #region CouroutinesHabilidades
+
+    IEnumerator ComenzarBoss()
+    {
+        animCangrejo.SetTrigger("Comienzo");
+        BarraDeVida.SetActive(true);
+        habilidades.enabled = true;
+        yield return new WaitForSeconds(1);
+        onChase = true;
+      //  animCangrejo.SetTrigger("Comienzo");
+        FindObjectOfType<AudioManager>().Play("BossAparece");
+    }
     IEnumerator HabilidadGolpeTenaza()
     {
         animCangrejo.SetTrigger("GolpeTenaza");
@@ -257,24 +263,14 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator HabilidadMagneto()
     {
         animCangrejo.SetTrigger("CanalizarMag");
-        //yield return new WaitForSeconds(1.5f);
-        //EsferaMagnetica.SetActive(true);
         agente.speed = 0;
         yield return new WaitForSeconds(2.9f);
-        //EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(2);
         agente.speed = 5.5f;
-        
-        
 
     }
 
-    /*IEnumerator PasivaCaparazon()
-    {
-        caparazon.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        caparazon.SetActive(false);
-    }*/
+  
 
     IEnumerator MuerteCangrejo()
     {
