@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BossCangrejo : MonoBehaviour
 {
+    public GameObject BossDoor;
+    AnimationPlayer bossDoorScript;
     public HabilidadesEquipadas habilidades;
     public int id;
     //Variables NavMesh
@@ -55,6 +57,7 @@ public class BossCangrejo : MonoBehaviour
 
     void Start()
     {
+        bossDoorScript = BossDoor.GetComponent<AnimationPlayer>();
         habilidades.enabled = false;
         abdomenCollider = abdomen.GetComponent<SphereCollider>();
         CabezaPlayer = GameObject.Find("PlayerHead");
@@ -129,9 +132,9 @@ public class BossCangrejo : MonoBehaviour
             StartCoroutine(Embestida());
             activarEmbestida = false;
         }
-        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("PreparacionEmbestida"))
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("Caminata"))
         {
-            //transform.LookAt(CabezaPlayer.transform);
+            agente.speed = 5;
         }
 
         if (activarPasiva == true)
@@ -197,6 +200,8 @@ public class BossCangrejo : MonoBehaviour
         {
             StartCoroutine(MuerteCangrejo());
             EfectoSegundaFase.SetActive(false);
+            bossDoorScript.PlayAnimation();
+
         }
     }
     #endregion
@@ -215,12 +220,9 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator HabilidadGolpeTenaza()
     {
         animCangrejo.SetTrigger("GolpeTenaza");
-        SkinnedMeshRenderer cuboColor = cangrejo.gameObject.GetComponent<SkinnedMeshRenderer>();
-        cuboColor.material.color = Color.red;
         agente.speed = 0;
         yield return new WaitForSeconds(habilidades.activeTime);
         agente.speed = 5;
-        cuboColor.material.color = Color.grey;
     }
 
     IEnumerator HabilidadSecuenciaGolpes()
@@ -233,6 +235,7 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator Embestida()
     {
+        agente.speed = 0;
         animCangrejo.SetTrigger("Embestida");
      // agente.speed = 0;
        // agente.stoppingDistance = 0;
@@ -355,10 +358,10 @@ public class BossCangrejo : MonoBehaviour
 
     public void ActivarAtraccionDerecho()
     {
-        if (segundaFase == true)
-        {
+        
+        
             cuboAtraccionDerecho.SetActive(true);
-        }
+        
     }
 
     public void DesactivarAtraccionDerecho()
