@@ -68,7 +68,7 @@ public class KomodoController : MonoBehaviour
 
         if (lanzarNube == true)
         {
-            dañoNube.activado = true;
+            //dañoNube.activado = true;
             startFight = false;
             anim.SetTrigger("Giro");
             StartCoroutine(LanzarNube());

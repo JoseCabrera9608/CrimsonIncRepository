@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6118409670576098254}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.02, y: -2.12, z: -3.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7604649, y: 0.76046467, z: 1.9994907}
   m_Children: []
   m_Father: {fileID: 6118409671011271785}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6118409670576098253
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4822,8 +4822,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6118409671011271785}
-  - component: {fileID: 6118409671011271791}
   - component: {fileID: 6118409671011271790}
+  - component: {fileID: 8371622040986891022}
+  - component: {fileID: 6280383758333868569}
   m_Layer: 0
   m_Name: NubeKomodo
   m_TagString: NubeKomodo
@@ -4846,20 +4847,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 2.89}
---- !u!136 &6118409671011271791
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6118409671011271787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.8
-  m_Height: 1
-  m_Direction: 0
-  m_Center: {x: -1.2899996, y: -1.7789445, z: -3.95}
 --- !u!114 &6118409671011271790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4872,5 +4859,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a97bdb2652255047b78e77025b94ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capsuleCollider: {fileID: 6118409671011271791}
+  capsuleCollider: {fileID: 0}
   activado: 0
+  colliderNube: {fileID: 0}
+  fuerza: 0
+--- !u!65 &8371622040986891022
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6118409671011271787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &6280383758333868569
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6118409671011271787}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c03fb80c926b8d84cbc3687fde5be955, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

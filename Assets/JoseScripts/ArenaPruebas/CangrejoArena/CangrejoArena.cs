@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class CangrejoArena : MonoBehaviour
 {
+
+    WeaponDamagePlayer playerDamage;
+    public GameObject armaPlayer;
     //Variables NavMesh
     GameObject player;
 
@@ -25,8 +28,8 @@ public class CangrejoArena : MonoBehaviour
     public GameObject EfectoSegundaFase;
 
    
-    DañoArmaCangrejo dañoPlayer;
-    public GameObject armaPlayer;
+   /* DañoArmaCangrejo dañoPlayer;
+    public GameObject armaPlayer;*/
 
     //Colliders
     public GameObject GolpeTenazaCollider;
@@ -42,6 +45,8 @@ public class CangrejoArena : MonoBehaviour
     private GameObject cangrejo;
 
     public bool hitted;
+    SkinnedMeshRenderer mesh;
+    public GameObject meshCangrejo;
 
     void Start()
     {
@@ -52,13 +57,18 @@ public class CangrejoArena : MonoBehaviour
         animCangrejo = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         agente = GetComponent<NavMeshAgent>();
-        dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
+        playerDamage = armaPlayer.GetComponent<WeaponDamagePlayer>();
+        mesh = meshCangrejo.GetComponent<SkinnedMeshRenderer>();
     }
 
 
     void Update()
     {
-        
+        if(vidaActual <= 100)
+        {
+            segundaFase = true;
+            EfectoSegundaFase.SetActive(true);
+        }
         if (Input.GetKeyDown(KeyCode.T))
         {
 
@@ -101,14 +111,16 @@ public class CangrejoArena : MonoBehaviour
                 ActivarMagneto();
 
         }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            segundaFase = true;
-            EfectoSegundaFase.SetActive(true);
-        }
+       
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             ActivarPasiva();
+        }
+
+        if (playerDamage.hitted == true)
+        {
+            RecibioDaño();
+            playerDamage.hitted = false;
         }
     }
 
@@ -148,12 +160,13 @@ public class CangrejoArena : MonoBehaviour
         StartCoroutine(Magnetizar());
     }
 
+    
     IEnumerator Pasiva()
     {
         caparazonLuz.SetActive(true);
-        dañoPlayer.dañoDeArma = 3;
+        playerDamage.dañoDeArma = 3;
         yield return new WaitForSeconds(14f);
-        dañoPlayer.dañoDeArma = 7;
+        playerDamage.dañoDeArma = 7;
         caparazonLuz.SetActive(false);
     }
     IEnumerator HabilidadGolpeTenaza()
@@ -196,18 +209,18 @@ public class CangrejoArena : MonoBehaviour
     IEnumerator Magnetizar()
     {
         animCangrejo.SetTrigger("CanalizarMag");
-        EsferaMagnetica.SetActive(true);
+        //EsferaMagnetica.SetActive(true);
         yield return new WaitForSeconds(3.8f);
-        EsferaMagnetica.SetActive(false);
+       // EsferaMagnetica.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerWeapon"))
         {
             hitted = true;
         }
-    }
+    }*/
 
     public void ActivarColliderBrazoDerecho()
     {
@@ -229,53 +242,53 @@ public class CangrejoArena : MonoBehaviour
         brazoIzquierdoCollider.SetActive(false);
     }
 
-    public void ActivarMagnetoEnGolpe()
-    {
-        if (segundaFase == true)
-        {
-            ActivarAtraccionDerecho();
-        }
-    }
 
     public void ActivarAtraccionDerecho()
     {
-        if (segundaFase == true)
-        {
+       
             cuboAtraccionDerecho.SetActive(true);
-        }
     }
 
-    public void DesactivarAtraccionDerecho()
-    {
-        if (segundaFase == true)
-        {
-            cuboAtraccionDerecho.SetActive(false);
-        }
-
-    }
+   
     public void ActivarAtraccionIzquierdo()
     {
-        if (segundaFase == true)
-        {
+        
             cuboAtraccionIzquierdo.SetActive(true);
-        }
-
     }
-    public void DesactivarAtraccionIzquierdo()
-    {
-        if (segundaFase == true)
-        {
-            cuboAtraccionIzquierdo.SetActive(false);
-        }
-
-    }
+    
 
     public void ActivarEsferaMagnetica()
+    {
+       
+        
+            EsferaMagnetica.SetActive(true);
+        
+    }
+    public void ActivarEsferaMagneticaSegundaFase()
     {
         if (segundaFase == true)
         {
             EsferaMagnetica.SetActive(true);
         }
     }
- 
+
+    void RecibioDaño()
+    {
+
+        vidaActual -= playerDamage.dañoDeArma;
+        StartCoroutine(CambioColor());
+
+    }
+    IEnumerator CambioColor()
+    {
+        mesh.materials[0].color = Color.red;
+        mesh.materials[1].color = Color.red;
+        mesh.materials[3].color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        mesh.materials[0].color = Color.grey;
+        mesh.materials[1].color = Color.grey;
+        mesh.materials[3].color = Color.grey;
+    }
+
+
 }

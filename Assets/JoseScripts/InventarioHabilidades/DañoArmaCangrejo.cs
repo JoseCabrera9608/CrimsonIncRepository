@@ -12,6 +12,7 @@ public class DañoArmaCangrejo : MonoBehaviour
     SkinnedMeshRenderer mesh;
     GameObject cangrejoMesh;
     int index;
+    public bool hitted;
    
    // CangrejoArena cangrejoArenaVida;
   //  private GameObject cangrejoArenaObjeto;
@@ -50,7 +51,8 @@ public class DañoArmaCangrejo : MonoBehaviour
         if (other.gameObject.CompareTag("CuerpoBoss"))
         {
             cangrejoVida.vidaActual -= dañoDeArma;
-            StartCoroutine(CambioColor());  
+            StartCoroutine(CambioColor());
+            hitted = true;
         }
        /* if (other.gameObject.CompareTag("CuerpoBossArena"))
         {
