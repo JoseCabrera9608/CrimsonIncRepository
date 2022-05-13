@@ -41,7 +41,7 @@ public class BuffManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
         if (Input.GetKeyDown(KeyCode.I)) ShowPanel();
 
-        LowHealthDamageBuff();
+        //LowHealthDamageBuff();
         
     }
     public void SpawnContainers()
@@ -172,7 +172,7 @@ public class BuffManager : MonoBehaviour
     }
     public void ResetBuffDisplay()
     {
-        Debug.Log("Reseting display");
+        //Debug.Log("Reseting display");
         foreach(Buff _buff in buff)
         {
             if(_buff.picked==false) _buff.displayed = false;
@@ -250,8 +250,8 @@ public class BuffManager : MonoBehaviour
      
         PlayerSingleton.Instance.playerDamage = extraDamage+prevDamage;
 
-        if (Input.GetMouseButtonDown(0)) PlayerSingleton.Instance.playerCurrentHP -= 80f;
-        if (Input.GetMouseButtonDown(1)) PlayerSingleton.Instance.playerCurrentHP += 30f;
+        //if (Input.GetMouseButtonDown(0)) PlayerSingleton.Instance.playerCurrentHP -= 80f;
+        //if (Input.GetMouseButtonDown(1)) PlayerSingleton.Instance.playerCurrentHP += 30f;
 
     }
     [ContextMenu("ResetAll uses")]

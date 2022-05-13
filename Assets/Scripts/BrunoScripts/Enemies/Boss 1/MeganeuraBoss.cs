@@ -54,14 +54,12 @@ public class MeganeuraBoss : MonoBehaviour
         damages = stats.attacksDamage;
         player = FindObjectOfType<PlayerStatus>().gameObject;
         bobing.Pause();
-
-        //StartCoroutine(SpawnStakes());
         SetPos();
     }
     private void Update()
     {
 
-        if (stats.isAlive&&isActive)
+        if (stats.isAlive&&isActive&&player!=null)
         {
             StakesCheck();
             RotateToPlayer();
@@ -449,6 +447,7 @@ public class MeganeuraBoss : MonoBehaviour
         //logic to handle death
         FlightSwitch(false);
         StopAllCoroutines();
+        BuffManager.Instance.ShowPanel();
     }
 }
 public enum Action
