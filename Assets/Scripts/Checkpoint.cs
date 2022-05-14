@@ -72,7 +72,7 @@ public class Checkpoint : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //progress.lastposition = new Vector3(0, 0, 0);
+            progress.lastposition = new Vector3(80, 0, -108);
             SceneManager.LoadScene("WB_Diego");
 
             //ChangeScene();

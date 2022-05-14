@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
 
         //PauseController pause = Pause.GetComponent<PauseController>();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  && PlayerSingleton.Instance.playerCurrentStamina >= 0.25f * playermov.staminaMax)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  && PlayerSingleton.Instance.playerCurrentStamina >= 0.1f * playermov.staminaMax)
         {
             attacking = true;
             //attackStatus = true;
