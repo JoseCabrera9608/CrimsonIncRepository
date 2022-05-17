@@ -88,6 +88,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && combo == true)
         {
             playeranim.SetBool("Combo", true);
+            playermov.Recovery();
             //playermov.Recovery();
 
         }
