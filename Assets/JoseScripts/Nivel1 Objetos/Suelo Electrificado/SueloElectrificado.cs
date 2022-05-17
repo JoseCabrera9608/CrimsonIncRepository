@@ -41,7 +41,7 @@ public class SueloElectrificado : MonoBehaviour
     IEnumerator ActivarCollider()
     {
         colliderSuelo.enabled = true;
-        yield return new WaitForSeconds(0.58f);
+        yield return new WaitForSeconds(0.55f);
         colliderSuelo.enabled = false;
         time = 0;
     }

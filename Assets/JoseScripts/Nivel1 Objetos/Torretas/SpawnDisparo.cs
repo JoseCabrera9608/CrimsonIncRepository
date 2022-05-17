@@ -13,8 +13,13 @@ public class SpawnDisparo : MonoBehaviour
     public bool activado;
     float timer;
     public float tiempoEntreDisparo;
+    Transform target;
+    GameObject cabezaPlayer;
+
     void Start()
     {
+        cabezaPlayer = GameObject.Find("PlayerHead");
+        target = cabezaPlayer.transform;
         disparo = tiposDisparo[tipoDeBala];
         activado = true;
         BossGameEVent.current.Conexion += Desactivar;
@@ -23,7 +28,9 @@ public class SpawnDisparo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(activado == true)
+        gameObject.transform.LookAt(target);
+
+        if (activado == true)
         {
             timer += Time.deltaTime;
 

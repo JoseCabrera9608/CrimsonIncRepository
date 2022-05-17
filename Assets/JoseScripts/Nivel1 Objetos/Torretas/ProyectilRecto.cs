@@ -34,5 +34,12 @@ public class ProyectilRecto : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentHP -= damage;
             Destroy(this.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Limite"))
+        {
+            Destroy(this.gameObject);
+        }
     }
+
+    
 }

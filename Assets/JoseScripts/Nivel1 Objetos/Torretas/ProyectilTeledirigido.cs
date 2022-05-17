@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProyectilTeledirigido : MonoBehaviour
 {
     public float speed;
+    public float speedAfter;
     Transform target;
     GameObject cabezaPlayer;
     public float damage;
@@ -27,7 +28,7 @@ public class ProyectilTeledirigido : MonoBehaviour
         transform.Translate(0f, 0f, speed * Time.deltaTime);
         yield return new WaitForSeconds(3.5f);
         target = null;
-        transform.position += transform.forward * (speed * Time.deltaTime);
+        transform.position += transform.forward * (speedAfter * Time.deltaTime);
 
     }
 
@@ -36,6 +37,10 @@ public class ProyectilTeledirigido : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerSingleton.Instance.playerCurrentHP -= damage;
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.CompareTag("Limite"))
+        {
             Destroy(this.gameObject);
         }
     }
