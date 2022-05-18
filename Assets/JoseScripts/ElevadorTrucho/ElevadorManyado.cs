@@ -28,13 +28,8 @@ public class ElevadorManyado : MonoBehaviour
          {
             barrera.SetActive(true);
             // anim.SetTrigger("SubirBaranda");
-            interruptorScript.DesactivarCollider();
-           
+            //interruptorScript.DesactivarCollider();
             SubirElevadorMetodo();
-
-            
-             
-
          }
 
         if (accionar == true && puedeSubir == false)
@@ -43,20 +38,15 @@ public class ElevadorManyado : MonoBehaviour
             barrera.SetActive(true);
             
             BajarElevadorMetodo();
-            interruptorScript.DesactivarCollider();
-
-
-
+            //interruptorScript.DesactivarCollider();
         }
+
         if (chocoLimite == true)
          {
             
             DetenerElevador();
             
         }
-
-
-
 
     }
 
@@ -110,7 +100,7 @@ public class ElevadorManyado : MonoBehaviour
             barrera.SetActive(false);
            // anim.SetTrigger("BajarBaranda");
             anim.SetBool("Baranda",false);
-            interruptorScript.ActivarCollider();
+           // interruptorScript.ActivarCollider();
             FindObjectOfType<AudioManager>().Stop("Elevador");
             //Debug.Log("GAAA");
         }
@@ -122,7 +112,7 @@ public class ElevadorManyado : MonoBehaviour
             //Debug.Log("GAAA");
             barrera.SetActive(false);
             anim.SetBool("Baranda", false);
-            interruptorScript.ActivarCollider();
+          //  interruptorScript.ActivarCollider();
             FindObjectOfType<AudioManager>().Stop("Elevador");
         }
     }
