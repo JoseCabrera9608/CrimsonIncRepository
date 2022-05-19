@@ -64,7 +64,7 @@ public class MeganeuraStats : MonoBehaviour
     {
         attacksDamage.Add(Action.rayoIon, rayoIonDamage);
         attacksDamage.Add(Action.bombardeoMisiles,bombardeoMisilesDamage);
-        attacksDamage.Add(Action.rayosEmp, rayosEmpDamage);
+        attacksDamage.Add(Action.misilesEmp, rayosEmpDamage);
         attacksDamage.Add(Action.vistaCazador, vistaCazadorDamage);
         attacksDamage.Add(Action.lluviaLasers, lluviaDamage);
         attacksDamage.Add(Action.discosEmp, discosEmpDamage);
