@@ -23,7 +23,7 @@ public class MeganeuraBoss : MonoBehaviour
     {
         {0,Action.rayoIon },
         {1,Action.bombardeoMisiles },
-        {2,Action.rayosEmp },
+        {2,Action.misilesEmp },
         {3,Action.bombaFlash },
         {4,Action.lluviaLasers },
         {5,Action.vistaCazador },
@@ -48,7 +48,7 @@ public class MeganeuraBoss : MonoBehaviour
     [SerializeField] private GameObject rayoIon;
     [SerializeField] private GameObject vistaCazador;
 
-    [SerializeField]private bool isActive=false;
+    /*[HideInInspector]*/public bool isActive=false;
     [SerializeField] private float timeToActivate;
     [SerializeField]private BoxCollider col;
     private bool initialStakes=false;
@@ -99,7 +99,7 @@ public class MeganeuraBoss : MonoBehaviour
                 HandleBombardeoMisiles();
                 break;
 
-            case Action.rayosEmp:
+            case Action.misilesEmp:
                 HandleRayosEmp();
                 break;
 
@@ -243,7 +243,8 @@ public class MeganeuraBoss : MonoBehaviour
     private IEnumerator Activate()
     {
         col.enabled = false;
-        EnemyBar.SetActive(true);
+        //quitar luego
+        if(EnemyBar!=null)EnemyBar.SetActive(true);
         yield return new WaitForSeconds(timeToActivate);
         isActive = true;
         
@@ -350,7 +351,7 @@ public class MeganeuraBoss : MonoBehaviour
             GameObject misile = Instantiate(rayoEmp);
             misile.transform.position = attackPos.position+attackPos.forward*2;
             misile.transform.localEulerAngles = new Vector3(Random.Range(0,-46), Random.Range(-90, 91), 0);
-            misile.GetComponent<RayoEmp>().damage = damages[Action.rayosEmp];               
+            misile.GetComponent<RayoEmp>().damage = damages[Action.misilesEmp];               
             misile.GetComponent<RayoEmp>().speed = stats.rempSpeed;               
             misile.GetComponent<RayoEmp>().rotationSpeed = stats.rempRotationSpeed;               
             misile.GetComponent<RayoEmp>().lifeTime = stats.rempLifeTime;               
@@ -475,7 +476,7 @@ public enum Action
     idle,                   
     rayoIon, //on air
     bombardeoMisiles, //both
-    rayosEmp, //both
+    misilesEmp, //both
     bombaFlash, //both
     lluviaLasers, //on air
     vistaCazador, // on air
