@@ -46,8 +46,9 @@ public class ElevadorManyado : MonoBehaviour
         if (chocoLimite == true)
         {
 
-            velocidad = 0;
-            
+            DetenerElevador();
+
+
         }
 
     }
