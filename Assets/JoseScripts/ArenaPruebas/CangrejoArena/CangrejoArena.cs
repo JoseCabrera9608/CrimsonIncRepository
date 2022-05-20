@@ -51,7 +51,7 @@ public class CangrejoArena : MonoBehaviour
     public GameObject efectoLuces2;
     public GameObject efectoFuego;
     public ParticleSystem PS_efectoLuces1;
-
+    public GameObject healthBar;
     void Start()
     {
         //EnemyHealthBar.SetActive(true);
@@ -73,6 +73,7 @@ public class CangrejoArena : MonoBehaviour
         switch(enUso)
         {
             case true:
+                healthBar.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.T))
                 {
 
@@ -129,6 +130,7 @@ public class CangrejoArena : MonoBehaviour
                 break;
 
             case false:
+                healthBar.SetActive(false);
                 break;
                 
         }
@@ -145,6 +147,7 @@ public class CangrejoArena : MonoBehaviour
             animCangrejo.SetTrigger("Muerte");
             Destroy(efectoFuego);
             Destroy(efectoLuces2);
+            Destroy(healthBar);
             Destroy(this);
 
             EfectoSegundaFase.SetActive(false);
