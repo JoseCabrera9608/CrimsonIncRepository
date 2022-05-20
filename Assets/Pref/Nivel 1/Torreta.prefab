@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4892275422945817251}
   - component: {fileID: 4892275422945817248}
+  - component: {fileID: 3445900145586456691}
   m_Layer: 0
   m_Name: Torreta
   m_TagString: Untagged
@@ -141,13 +142,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b434dff554ab97544bbd831c951854b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   firePoint: {fileID: 4892275424109981549}
   tiposDisparo:
   - {fileID: 5887115034480186155, guid: 811541fddd8d3414b8cc5cc365063872, type: 3}
   - {fileID: 7570090730287171095, guid: c9c1cf7bed35c2a429a71db11762bd50, type: 3}
   tipoDeBala: 0
   fire: 0
+  activado: 0
   tiempoEntreDisparo: 2
+  apuntar: 1
+--- !u!65 &3445900145586456691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4892275422945817249}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3502804, y: 1, z: 1.633064}
+  m_Center: {x: 0.051528804, y: 0, z: 0.11179824}
 --- !u!1 &4892275424109981549
 GameObject:
   m_ObjectHideFlags: 0

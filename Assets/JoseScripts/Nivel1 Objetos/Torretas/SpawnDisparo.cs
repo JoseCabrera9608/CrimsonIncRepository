@@ -15,20 +15,25 @@ public class SpawnDisparo : MonoBehaviour
     public float tiempoEntreDisparo;
     Transform target;
     GameObject cabezaPlayer;
-
+    public bool apuntar;
     void Start()
     {
         cabezaPlayer = GameObject.Find("PlayerHead");
         target = cabezaPlayer.transform;
         disparo = tiposDisparo[tipoDeBala];
         activado = true;
+        
         BossGameEVent.current.Conexion += Desactivar;
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.LookAt(target);
+        if(apuntar == true)
+        {
+            gameObject.transform.LookAt(target);
+        }
+        
 
         if (activado == true)
         {
@@ -86,5 +91,20 @@ public class SpawnDisparo : MonoBehaviour
         SpawnDeDisparo();
         yield return new WaitForSeconds(1);
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            apuntar = false;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            apuntar = true;
+        }
     }
 }
