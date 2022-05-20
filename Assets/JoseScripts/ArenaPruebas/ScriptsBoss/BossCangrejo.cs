@@ -56,6 +56,9 @@ public class BossCangrejo : MonoBehaviour
     bool activarDescanso;
     GameObject CabezaPlayer;
     Transform transformPlayer;
+    public GameObject efectoLuces1;
+    public GameObject efectoLuces2;
+    public GameObject efectoFuego;
     void Start()
     {
         bossDoorScript = BossDoor.GetComponent<AnimationPlayer>();
@@ -85,8 +88,24 @@ public class BossCangrejo : MonoBehaviour
 
         if (vidaActual <= 100)
         {
-            segundaFase = true;
+            //segundaFase = true;
         }
+
+        if (vidaActual <= 120)
+        {
+            efectoLuces1.SetActive(true);
+        }
+
+        if(vidaActual <= 100)
+        {
+            efectoLuces1.SetActive(false);
+            efectoLuces2.SetActive(true);
+        }
+        if(vidaActual <= 80)
+        {
+            efectoFuego.SetActive(true);
+        }
+
         switch (segundaFase)
         {
             case false:
@@ -149,6 +168,27 @@ public class BossCangrejo : MonoBehaviour
         }
 
 
+        if (vidaActual <= 0)
+        {
+            FindObjectOfType<AudioManager>().Play("MuerteBoss");
+            StartCoroutine(MuerteCangrejo());
+            EfectoSegundaFase.SetActive(false);
+            efectoFuego.SetActive(false);
+            efectoLuces2.SetActive(false);
+
+            if (bossDeath == false)
+            {
+                BuffManager.Instance.ShowPanel();
+            }
+
+
+            bossDeath = true;
+            bossDoorScript.PlayAnimation();
+
+
+
+        }
+
 
         if (activarPasiva == true)
         {
@@ -197,6 +237,8 @@ public class BossCangrejo : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("MuerteBoss");
             StartCoroutine(MuerteCangrejo());
             EfectoSegundaFase.SetActive(false);
+            efectoFuego.SetActive(false);
+            efectoLuces2.SetActive(false);
 
             if (bossDeath == false)
             {

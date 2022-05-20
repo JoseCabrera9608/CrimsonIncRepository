@@ -13,6 +13,9 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public bool disparar;
     public bool golpeMelee;
     public bool magnetizar;
+    //Particulas
+    public GameObject fuego;
+    SphereCollider colliderCuerpo;
 
 
     //Comienzo
@@ -30,7 +33,9 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     public GameObject disparo;
     public GameObject firePoint;
+    public GameObject healthBar;
 
+    HabilidadesEquipadas _habilidadesEquipadas;
 
     void Start()
     {
@@ -38,6 +43,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
         BossGameEVent.current.combatTriggerExit += StartChase;
         player = GameObject.FindWithTag("Player");
         meshDelEnemigo = meshObject.GetComponent<SkinnedMeshRenderer>();
+        _habilidadesEquipadas = this.gameObject.GetComponent<HabilidadesEquipadas>();
+        colliderCuerpo = this.gameObject.GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -72,6 +79,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
             StartCoroutine(Disparar());
             disparar = false;
         }
+      
     }
 
     private void StartChase(int id)
@@ -85,10 +93,16 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     IEnumerator Muerte()
     {
+        
         anim.SetTrigger("Muerte");
         agente.speed = 0;
-        yield return new WaitForSeconds(1f);
-        Destroy(this.gameObject);
+        fuego.SetActive(true);
+        meshDelEnemigo.material.color = Color.white;
+        colliderCuerpo.enabled = false;
+        healthBar.SetActive(false);
+        Destroy(_habilidadesEquipadas);
+        Destroy(this);
+        yield return null;
     }
 
 
