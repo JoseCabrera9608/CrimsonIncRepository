@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Movement playermov;
     public PlayerStatus playerStatus;
+    public VisualEffect vfx;
 
 
     void Start()
@@ -118,6 +120,7 @@ public class PlayerAttack : MonoBehaviour
     {
         attacking = true;
         weaponCollider.enabled = true;
+        vfx.Play();
         playermov.Recovery();
         PlayerSingleton.Instance.playerCurrentStamina -= (0.01f * staminaAttack) * playermov.staminaMax;
     }
@@ -125,5 +128,6 @@ public class PlayerAttack : MonoBehaviour
     {
         attacking = false;
         weaponCollider.enabled = false;
+        //vfx.Stop();
     }
 }
