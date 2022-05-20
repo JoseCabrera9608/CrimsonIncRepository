@@ -21,12 +21,12 @@ public class ElevadorManyado : MonoBehaviour
         interruptorScript = interruptor.GetComponent<Interruptor>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         if (accionar == true && puedeSubir == true)
          {
-            barrera.SetActive(true);
+            //barrera.SetActive(true);
             // anim.SetTrigger("SubirBaranda");
             //interruptorScript.DesactivarCollider();
             SubirElevadorMetodo();
@@ -35,7 +35,7 @@ public class ElevadorManyado : MonoBehaviour
         if (accionar == true && puedeSubir == false)
         {
             // anim.SetTrigger("SubirBaranda");
-            barrera.SetActive(true);
+            //barrera.SetActive(true);
             
             BajarElevadorMetodo();
             //interruptorScript.DesactivarCollider();
@@ -52,7 +52,9 @@ public class ElevadorManyado : MonoBehaviour
 
     IEnumerator SubirElevador()
     {
+        barrera.SetActive(true);
         anim.SetBool("Baranda", true);
+        yield return new WaitForSeconds(1.1f);
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
         yield return new WaitForSeconds(1);
         
@@ -87,32 +89,31 @@ public class ElevadorManyado : MonoBehaviour
             collision.gameObject.transform.parent = this.transform;
         }
 
-
+    }
+    IEnumerator bajarBaranda()
+    {
+        anim.SetBool("Baranda", false);
+        yield return new WaitForSeconds(2f);
+        barrera.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Limite"))
         {
-            //Debug.Log("GAAA");
+          
             accionar = false;
             puedeSubir = false;
-            barrera.SetActive(false);
-           // anim.SetTrigger("BajarBaranda");
-            anim.SetBool("Baranda",false);
-           // interruptorScript.ActivarCollider();
+            StartCoroutine(bajarBaranda());
             FindObjectOfType<AudioManager>().Stop("Elevador");
-            //Debug.Log("GAAA");
+           
         }
         if (other.gameObject.CompareTag("Nube"))
         {
-            //Debug.Log("GAAA");
+            
             accionar = false;
             puedeSubir = true;
-            //Debug.Log("GAAA");
-            barrera.SetActive(false);
-            anim.SetBool("Baranda", false);
-          //  interruptorScript.ActivarCollider();
+            StartCoroutine(bajarBaranda());
             FindObjectOfType<AudioManager>().Stop("Elevador");
         }
     }
@@ -124,4 +125,6 @@ public class ElevadorManyado : MonoBehaviour
             collision.gameObject.transform.parent = null;
         }
     }
+
+    
 }
