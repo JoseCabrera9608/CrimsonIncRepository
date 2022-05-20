@@ -26,6 +26,8 @@ public class PlayerDebug : MonoBehaviour
     public Movement player;
     public PlayerAttack playerAttack;
 
+    public Animator playeranim;
+
     public CinemachineCameraOffset cineoff;
     public CinemachineFreeLook cinefree;
 
@@ -61,8 +63,28 @@ public class PlayerDebug : MonoBehaviour
     {
 
         input = s;
-        playerAttack.damage = float.Parse(input);
+        //playerAttack.damage = float.Parse(input);
+        PlayerSingleton.Instance.playerDamage = float.Parse(input);
 
+    }
+
+    public void Attack1Speed(string s)
+    {
+
+        input = s;
+        playeranim.SetFloat("Attack1Speed", float.Parse(input));
+    }
+    public void Attack2Speed(string s)
+    {
+
+        input = s;
+        playeranim.SetFloat("Attack2Speed", float.Parse(input));
+    }
+    public void Attack3Speed(string s)
+    {
+
+        input = s;
+        playeranim.SetFloat("Attack3Speed", float.Parse(input));
     }
 
     public void WalkSpeed(string s)
@@ -78,6 +100,20 @@ public class PlayerDebug : MonoBehaviour
         input = s;
         player.runSpeed = float.Parse(input);
 
+    }
+
+    public void AnimWalkSpeed(string s)
+    {
+
+        input = s;
+        playeranim.SetFloat("WalkSpeed", float.Parse(input));
+    }
+
+    public void AnimRunSpeed(string s)
+    {
+
+        input = s;
+        playeranim.SetFloat("RunSpeed", float.Parse(input));
     }
 
     public void PlayerJump(string s)
@@ -104,6 +140,36 @@ public class PlayerDebug : MonoBehaviour
     {
         input = s;
         player.staminaMax = float.Parse(input);
+
+    }
+
+    //STAMINA
+    public void StaminaAttack(string s)
+    {
+
+        input = s;
+        playerAttack.staminaAttack = float.Parse(input);
+
+    }
+    public void StaminaRun(string s)
+    {
+
+        input = s;
+        player.staminaRunValue = float.Parse(input);
+
+    }
+    public void StaminaDash(string s)
+    {
+
+        input = s;
+        player.staminaDash = float.Parse(input);
+
+    }
+    public void StaminaRecovery(string s)
+    {
+
+        input = s;
+        player.staminaRecovery = float.Parse(input);
 
     }
 

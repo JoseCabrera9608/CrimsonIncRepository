@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
 
     public float staminaDash;
     public float staminaRun;
+    public float staminaRunValue;
 
     public bool recovery;
     public bool onelevator;
@@ -92,6 +93,7 @@ public class Movement : MonoBehaviour
         
 
         staminaRun = PlayerSingleton.Instance.playerRunStaminaCost;
+        PlayerSingleton.Instance.playerRunStaminaCost = staminaRunValue;
 
     }
 
