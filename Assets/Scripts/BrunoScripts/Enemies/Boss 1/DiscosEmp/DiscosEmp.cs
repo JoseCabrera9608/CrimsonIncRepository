@@ -13,6 +13,7 @@ public class DiscosEmp : MonoBehaviour
 
     [HideInInspector] public bool left;
     [HideInInspector] public bool targetLocked;
+    [HideInInspector] public float extraFollowTime;
 
      private bool canFollow=true;
      private float followT;
@@ -53,7 +54,7 @@ public class DiscosEmp : MonoBehaviour
         if (targetLocked && canFollow == true)
         {
             followT += Time.deltaTime;
-            if (followT > 2) canFollow = false;
+            if (followT > extraFollowTime) canFollow = false;
         }
     }
     private void RotateToTarget()

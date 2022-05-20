@@ -52,6 +52,12 @@ public class MeganeuraBoss : MonoBehaviour
     [SerializeField] private float timeToActivate;
     [SerializeField]private BoxCollider col;
     private bool initialStakes=false;
+
+
+
+    [Header("=====Attack probabilities=======")]
+    public ProbabilitiesOnAir[] airAttacks;
+    public ProbabilitiesOnGround[] groundAttacks;
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
@@ -148,6 +154,7 @@ public class MeganeuraBoss : MonoBehaviour
             _stake.transform.position = transform.position;
             _stake.transform.localEulerAngles = direction;
             _stake.GetComponent<Rigidbody>().velocity = _stake.transform.up*50;
+            _stake.GetComponent<Stake>().parent = transform;
             
             //_stake.transform.parent = transform;
             stakeList.Add(_stake);
@@ -264,18 +271,34 @@ public class MeganeuraBoss : MonoBehaviour
         evaluating = true;
         yield return new WaitForSeconds(stats.attackDelay);
 
-        int random;
+        int random=Random.Range(0,101);
 
         if (stats.onAir)
         {
-            random = Random.Range(0, 7);
+            for(int i = 0; i < airAttacks.Length; i++)
+            {
+                if (random >= airAttacks[i].minProbability && random <= airAttacks[i].maxProbability)
+                {
+                    currentAction = airAttacks[i].nextAttack;
+                    break;
+                }
+            }
+
         }
         else
         {
-            random = Random.Range(2, 5);
+            //random = Random.Range(2, 5);
+            for (int i = 0; i < groundAttacks.Length; i++)
+            {
+                if (random >= groundAttacks[i].minProbability && random <= groundAttacks[i].maxProbability)
+                {
+                    currentAction = groundAttacks[i].nextAttack;
+                    break;
+                }
+            }
         }
         
-        currentAction = actionsDic[random];
+        //currentAction = actionsDic[random];
         evaluating = false;
         currentDamageValue = damages[currentAction];
     }
@@ -329,6 +352,7 @@ public class MeganeuraBoss : MonoBehaviour
             GameObject _explotion = Instantiate(explotion);
             _explotion.transform.position = player.transform.position;
             _explotion.GetComponent<Misiles>().damage = damages[Action.bombardeoMisiles];
+            _explotion.GetComponent<Misiles>().timer = stats.bmTimeToExplode;
         }else if (container1 >= stats.bmAmount && bool1)
         {
             bool1 = false;
@@ -390,7 +414,7 @@ public class MeganeuraBoss : MonoBehaviour
             container1++;
             t1 = 0;
             GameObject obj = Instantiate(lluviaDeLasers);
-            obj.transform.position = player.transform.position + new Vector3(0, 10, 0);
+            obj.transform.position = player.transform.position + new Vector3(0, stats.lluviaLasersHeight, 0);
             obj.GetComponent<LluviaLasers>().damage = damages[Action.lluviaLasers];
         }
         else if (container1 >= stats.lluviaAmount && bool1)
@@ -446,6 +470,7 @@ public class MeganeuraBoss : MonoBehaviour
             GameObject disc = Instantiate(discoEmp);
             disc.transform.position = attackPos.position + attackPos.forward;
             disc.GetComponent<DiscosEmp>().damage = damages[Action.discosEmp];
+            disc.GetComponent<DiscosEmp>().extraFollowTime = stats.empDiscExtraFollowTime;
             disc.GetComponent<DiscosEmp>().staminaDamage = stats.discosEmpStaminaLoss;
             disc.GetComponent<DiscosEmp>().maxSpeed = stats.discMaxSpeed;
             disc.GetComponent<DiscosEmp>().rotationSpeed = stats.discRotationSpeed;
@@ -475,10 +500,25 @@ public enum Action
 {
     idle,                   
     rayoIon, //on air
-    bombardeoMisiles, //both
-    misilesEmp, //both
-    bombaFlash, //both
+    bombardeoMisiles, // air grond
+    misilesEmp, //air ground
+    bombaFlash, //air ground
     lluviaLasers, //on air
     vistaCazador, // on air
     discosEmp //on air
 };
+[System.Serializable]
+public class ProbabilitiesOnAir
+{
+    [SerializeField] public Action nextAttack;
+    public float minProbability;
+    public float maxProbability;
+}
+[System.Serializable]
+public class ProbabilitiesOnGround
+{
+    [SerializeField] public Action nextAttack;
+    public float minProbability;
+    public float maxProbability;
+    
+}

@@ -22,9 +22,9 @@ public class MeganeuraStats : MonoBehaviour
     [HideInInspector] public bool isAttacking;
     public float attackDelay;
     [HideInInspector]public bool onAir;
-    public bool canRotate;
+    [HideInInspector]public bool canRotate;
     public int stakesToThrow = 4;
-    public bool isAlive=true;
+    [HideInInspector]public bool isAlive=true;
 
     [Header("Rayo ion=======================")]
     public float laserRotationSpeed;
@@ -34,7 +34,7 @@ public class MeganeuraStats : MonoBehaviour
     [Header("Bombardeo misiles=======================")]
     public float bmAmount;
     public float bmDelay;
-
+    public float bmTimeToExplode;
     [Header("Rayos emp=======================")]
     public float rempAmount;
     public float rempSpeed;
@@ -45,7 +45,7 @@ public class MeganeuraStats : MonoBehaviour
     [Header("Lluvia de lasers=======================")]
     public int lluviaAmount;
     public float lluviaDelay;
-
+    public float lluviaLasersHeight;
     [Header("Bomba Flash=======================")]
     public float flashDuration;
     public float flashDelay;
@@ -55,6 +55,7 @@ public class MeganeuraStats : MonoBehaviour
     public float discRotationSpeed;
     public float discAmount;
     public float discDelay;
+    public float empDiscExtraFollowTime;
     [Header("Vista cazador===================")]
     public float cazadorAimTime;
     public float cazadorRotationSpeed;

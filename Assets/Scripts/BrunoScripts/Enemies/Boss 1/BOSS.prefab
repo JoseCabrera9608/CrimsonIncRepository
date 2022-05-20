@@ -484,6 +484,38 @@ MonoBehaviour:
   isActive: 0
   timeToActivate: 5
   col: {fileID: 813730325673094457}
+  airAttacks:
+  - nextAttack: 1
+    minProbability: 0
+    maxProbability: 14
+  - nextAttack: 2
+    minProbability: 15
+    maxProbability: 29
+  - nextAttack: 3
+    minProbability: 30
+    maxProbability: 44
+  - nextAttack: 4
+    minProbability: 45
+    maxProbability: 59
+  - nextAttack: 5
+    minProbability: 60
+    maxProbability: 74
+  - nextAttack: 6
+    minProbability: 75
+    maxProbability: 89
+  - nextAttack: 7
+    minProbability: 90
+    maxProbability: 100
+  groundAttacks:
+  - nextAttack: 2
+    minProbability: 0
+    maxProbability: 33
+  - nextAttack: 3
+    minProbability: 34
+    maxProbability: 67
+  - nextAttack: 4
+    minProbability: 68
+    maxProbability: 100
 --- !u!114 &813730325673094469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +549,7 @@ MonoBehaviour:
   laserAttackTime: 4
   bmAmount: 20
   bmDelay: 0.3
+  bmTimeToExplode: 3
   rempAmount: 5
   rempSpeed: 10
   rempRotationSpeed: 40
@@ -524,12 +557,14 @@ MonoBehaviour:
   rempLifeTime: 30
   lluviaAmount: 10
   lluviaDelay: 2
+  lluviaLasersHeight: 10
   flashDuration: 3
   flashDelay: 4
   discMaxSpeed: 15
   discRotationSpeed: 40
   discAmount: 3
   discDelay: 1
+  empDiscExtraFollowTime: 1
   cazadorAimTime: 3
   cazadorRotationSpeed: 360
   cazadorLaserDuration: 1
@@ -545,7 +580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49a1ca1fb2aa6b46bc7fe90b33e78fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!54 &813730325673094470
 Rigidbody:
   m_ObjectHideFlags: 0
