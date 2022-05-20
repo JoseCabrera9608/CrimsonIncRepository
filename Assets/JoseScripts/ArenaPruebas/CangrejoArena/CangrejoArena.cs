@@ -43,10 +43,14 @@ public class CangrejoArena : MonoBehaviour
     public NavMeshAgent agente;
     bool perseguir;
     private GameObject cangrejo;
-
+    public bool enUso;
     public bool hitted;
     SkinnedMeshRenderer mesh;
     public GameObject meshCangrejo;
+    public GameObject efectoLuces1;
+    public GameObject efectoLuces2;
+    public GameObject efectoFuego;
+    public ParticleSystem PS_efectoLuces1;
 
     void Start()
     {
@@ -59,62 +63,74 @@ public class CangrejoArena : MonoBehaviour
         agente = GetComponent<NavMeshAgent>();
         playerDamage = armaPlayer.GetComponent<WeaponDamagePlayer>();
         mesh = meshCangrejo.GetComponent<SkinnedMeshRenderer>();
+        enUso = false;
     }
 
 
     void Update()
     {
-        if(vidaActual <= 100)
+        
+        switch(enUso)
         {
-            segundaFase = true;
-            EfectoSegundaFase.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
+            case true:
+                if (Input.GetKeyDown(KeyCode.T))
+                {
 
-            perseguir = true;
-            animCangrejo.SetTrigger("Caminar");
+                    perseguir = true;
+                    animCangrejo.SetTrigger("Caminar");
 
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PararPersecucion();
-            perseguir = false;
-            
-        }
-        if (perseguir == true)
-        {
-            EmpezarPersecucion();
-        }
+                }
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    PararPersecucion();
+                    perseguir = false;
+
+                }
+                if (perseguir == true)
+                {
+                    EmpezarPersecucion();
+                }
 
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-                ActivarGolpeTenaza();
-        }
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    ActivarGolpeTenaza();
+                }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-                ActivarGolpeSecuencia();
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    ActivarGolpeSecuencia();
 
-        }
+                }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-                ActivarEmbestida();
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    ActivarEmbestida();
 
-        }
+                }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-                ActivarMagneto();
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    ActivarMagneto();
 
-        }
-       
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            ActivarPasiva();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    ActivarPasiva();
+                }
+
+              /*  if (playerDamage.hitted == true)
+                {
+                    RecibioDaño();
+                    playerDamage.hitted = false;
+                }*/
+                break;
+
+            case false:
+                break;
+                
         }
 
         if (playerDamage.hitted == true)
@@ -122,11 +138,36 @@ public class CangrejoArena : MonoBehaviour
             RecibioDaño();
             playerDamage.hitted = false;
         }
+       
+       
         if(vidaActual <= 0)
         {
             animCangrejo.SetTrigger("Muerte");
+            Destroy(efectoFuego);
+            Destroy(efectoLuces2);
             Destroy(this);
+
             EfectoSegundaFase.SetActive(false);
+        }
+        if(vidaActual<= 140 && vidaActual >=130)
+        {
+            //efectoLuces1.SetActive(true);
+            PS_efectoLuces1.Play();
+        }
+
+        if (vidaActual <= 120 && vidaActual>=110)
+        {
+            PS_efectoLuces1.Play();
+        }
+
+        if (vidaActual <= 90)
+        {
+            efectoLuces1.SetActive(false);
+            efectoLuces2.SetActive(true);
+        }
+        if (vidaActual <= 60)
+        {
+            efectoFuego.SetActive(true);
         }
     }
 
@@ -296,6 +337,8 @@ public class CangrejoArena : MonoBehaviour
         mesh.materials[1].color = Color.grey;
         mesh.materials[3].color = Color.grey;
     }
+
+    
 
 
 }
