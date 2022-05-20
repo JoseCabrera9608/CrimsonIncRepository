@@ -29,6 +29,7 @@ public class ElevadorManyado : MonoBehaviour
             //barrera.SetActive(true);
             // anim.SetTrigger("SubirBaranda");
             //interruptorScript.DesactivarCollider();
+            chocoLimite = false;
             SubirElevadorMetodo();
          }
 
@@ -36,7 +37,8 @@ public class ElevadorManyado : MonoBehaviour
         {
             // anim.SetTrigger("SubirBaranda");
             //barrera.SetActive(true);
-            
+
+            chocoLimite = false;
             BajarElevadorMetodo();
             //interruptorScript.DesactivarCollider();
         }
