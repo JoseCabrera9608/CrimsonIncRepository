@@ -22409,7 +22409,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520595971}
-  m_LocalRotation: {x: 0.085488416, y: -0.000000017879131, z: 0.0000000014982, w: 0.9963392}
+  m_LocalRotation: {x: 0.085488416, y: -0.000000017879138, z: 0.0000000014982615, w: 0.9963392}
   m_LocalPosition: {x: -33.39, y: 2.848, z: 40.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -29390,7 +29390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544674843408334090, guid: 12936e013de53d74ea89073d425265f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 2544674843408334090, guid: 12936e013de53d74ea89073d425265f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -37228,18 +37228,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: CaminarNormal
-    clip: {fileID: 8300000, guid: f8ee626ded9b2e844bfe209396f2a20d, type: 3}
-    volume: 0.8
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: CaminarMetal
-    clip: {fileID: 8300000, guid: 5f59c2f85799f674c87da07477b5517b, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: Checkpoint
     clip: {fileID: 8300000, guid: a0df11a2ead6c8a4b9916c6aed28b5d0, type: 3}
     volume: 1
@@ -37257,6 +37245,24 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: SondaAtaqueMelee
+    clip: {fileID: 8300000, guid: faf04f45f5812294abd590811f8f7c44, type: 3}
+    volume: 0.762
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SondaAtaqueRango
+    clip: {fileID: 8300000, guid: 202f67aa45107514d9e95e594116d36a, type: 3}
+    volume: 0.762
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SondaAtraccion
+    clip: {fileID: 8300000, guid: 72a716377efc94f4baccdcaabcf60adf, type: 3}
+    volume: 0.762
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &829345871
 Transform:
@@ -85551,7 +85557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833898472}
-  m_LocalRotation: {x: 0.103597164, y: 0.000000017640504, z: -0.0000000018373927, w: 0.99461937}
+  m_LocalRotation: {x: 0.103597164, y: -0.000000017640495, z: 0.0000000018373919, w: 0.99461937}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -91778,7 +91784,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027361430}
-  m_LocalRotation: {x: 0.06739931, y: 0.0000000042918136, z: -2.8992456e-10, w: 0.9977261}
+  m_LocalRotation: {x: 0.06739931, y: -0.0000000042918136, z: 2.8992456e-10, w: 0.9977261}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -98040,6 +98046,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1527193056419590666, guid: f3af480a6035caf49ac9c2121a6f5d1a, type: 3}
+      propertyPath: m_Pitch
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527193056419590666, guid: f3af480a6035caf49ac9c2121a6f5d1a, type: 3}
+      propertyPath: m_Volume
+      value: 0.145
+      objectReference: {fileID: 0}
     - target: {fileID: 6242989787911566055, guid: f3af480a6035caf49ac9c2121a6f5d1a, type: 3}
       propertyPath: m_Name
       value: EnemigoSonda (2)
