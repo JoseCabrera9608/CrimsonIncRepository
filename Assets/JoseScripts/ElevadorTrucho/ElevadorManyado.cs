@@ -56,7 +56,7 @@ public class ElevadorManyado : MonoBehaviour
         anim.SetBool("Baranda", true);
         yield return new WaitForSeconds(1.1f);
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
-        yield return new WaitForSeconds(1);
+        yield return null;
         
     }
 
@@ -64,7 +64,7 @@ public class ElevadorManyado : MonoBehaviour
     {
         anim.SetBool("Baranda", true);
         transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
-        yield return new WaitForSeconds(1);
+        yield return null;
         
     }
 
