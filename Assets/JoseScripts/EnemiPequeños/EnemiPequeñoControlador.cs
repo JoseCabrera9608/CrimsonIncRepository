@@ -100,6 +100,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         meshDelEnemigo.material.color = Color.white;
         colliderCuerpo.enabled = false;
         healthBar.SetActive(false);
+        BrazoDerechoCollider.enabled = false;
         Destroy(_habilidadesEquipadas);
         Destroy(this);
         yield return null;
