@@ -58,6 +58,10 @@ public class MeganeuraBoss : MonoBehaviour
     [Header("=====Attack probabilities=======")]
     public ProbabilitiesOnAir[] airAttacks;
     public ProbabilitiesOnGround[] groundAttacks;
+
+    [Header("VERSION ARENA")]
+    public bool dummy;
+    public bool attackOnCooldown;
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
@@ -81,7 +85,10 @@ public class MeganeuraBoss : MonoBehaviour
         if (playerStatus.playerdeath == true)
         {
             Deactivate();
-        }      
+        }
+
+        //ARENA
+        if (dummy&&attackOnCooldown==false) Arena();
     }
 
     private void StateMachine()
@@ -93,7 +100,8 @@ public class MeganeuraBoss : MonoBehaviour
         switch (currentAction)
         {
             case Action.idle:
-                if (evaluating == false) StartCoroutine(EvaluateAttack());
+                if (evaluating == false /*arena*/&& dummy == false) StartCoroutine(EvaluateAttack());
+                else attackOnCooldown = false;
                 break;
 
             case Action.rayoIon:
@@ -494,6 +502,45 @@ public class MeganeuraBoss : MonoBehaviour
         FlightSwitch(false);
         StopAllCoroutines();
         BuffManager.Instance.ShowPanel();
+    }
+
+    private void Arena()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.rayoIon;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.bombardeoMisiles;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.misilesEmp;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.bombaFlash;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.lluviaLasers;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.vistaCazador;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            attackOnCooldown = true;
+            currentAction = Action.discosEmp;
+        }
     }
 }
 public enum Action
