@@ -43,8 +43,8 @@ public class ElevadorManyado : MonoBehaviour
 
         if (chocoLimite == true)
          {
-            
-            DetenerElevador();
+
+            velocidad = 0;
             
         }
 
@@ -101,7 +101,7 @@ public class ElevadorManyado : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Limite"))
         {
-          
+            
             accionar = false;
             puedeSubir = false;
             StartCoroutine(bajarBaranda());
