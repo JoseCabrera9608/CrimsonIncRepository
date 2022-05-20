@@ -42,7 +42,7 @@ public class ElevadorManyado : MonoBehaviour
         }
 
         if (chocoLimite == true)
-         {
+        {
 
             velocidad = 0;
             
@@ -104,6 +104,7 @@ public class ElevadorManyado : MonoBehaviour
             
             accionar = false;
             puedeSubir = false;
+            chocoLimite = true;
             StartCoroutine(bajarBaranda());
             FindObjectOfType<AudioManager>().Stop("Elevador");
            
