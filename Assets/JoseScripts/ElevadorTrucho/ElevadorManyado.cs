@@ -77,7 +77,7 @@ public class ElevadorManyado : MonoBehaviour
     }
     public void DetenerElevador()
     {
-        
+        barrera.SetActive(false);
         StopAllCoroutines();
     }
     public void BajarElevadorMetodo()
