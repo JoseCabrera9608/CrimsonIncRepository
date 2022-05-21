@@ -31,6 +31,7 @@ public class PlayerDebug : MonoBehaviour
     public CinemachineCameraOffset cineoff;
     public CinemachineFreeLook cinefree;
 
+
     private void Awake()
     {
         player = Player.GetComponent<Movement>();
@@ -194,6 +195,21 @@ public class PlayerDebug : MonoBehaviour
 
     }
 
+    public void CameraRadius(string s)
+    {
+        input = s;
+        cinefree.m_Orbits[0].m_Radius = float.Parse(input);
+        cinefree.m_Orbits[1].m_Radius = float.Parse(input);
+        cinefree.m_Orbits[2].m_Radius = float.Parse(input);
+
+    }
+
+    public void CameraFOV(string s)
+    {
+        input = s;
+        cinefree.m_Lens.FieldOfView = float.Parse(input);
+
+    }
 
     public void CameraXDamping(string s)
     {
