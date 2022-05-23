@@ -70,14 +70,14 @@ public class Checkpoint : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             progress.lastposition = new Vector3(80, 0, -108);
             SceneManager.LoadScene("WB_Diego");
 
             //ChangeScene();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             progress.lastposition = new Vector3(57, -3, 6);
             SceneManager.LoadScene("TinocoMirror");
