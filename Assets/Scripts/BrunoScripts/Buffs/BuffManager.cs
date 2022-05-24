@@ -23,6 +23,8 @@ public class BuffManager : MonoBehaviour
     private float prevDamage;
     public bool sacrificeRing = false;
     //public float sacrificeRingCharges;
+
+    [SerializeField]private GeneralDataHolder dataHolder;
     private void Awake()
     {
         Instance = this;       
@@ -58,6 +60,8 @@ public class BuffManager : MonoBehaviour
     {
         if (containerParent == null) Debug.LogError("Falta asignar el objeto padre de los contenedores");
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SpawnContainers();
         ResetBuffDisplay();
         SetBuffInformation();
@@ -149,7 +153,7 @@ public class BuffManager : MonoBehaviour
                         buff.oppositeMultiplier = 1;
                     }
                     buffOnGround = true;
-                    SpawnBuffRecoveryObject();
+                    dataHolder.spawnDataRecoveryObject=true; 
                 }
                 else if (buffOnGround == true)
                 {
@@ -165,10 +169,6 @@ public class BuffManager : MonoBehaviour
             }
         }
         
-    }
-    public void SpawnBuffRecoveryObject()
-    {
-        //AQUI DEBERIA IR LA LOGICA PARA QUE EL OBJETO APAREZCA EN EL LUGAR DE LA MUERTE
     }
     public void RecoverBuffs()
     {

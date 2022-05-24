@@ -4,9 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 public class MeganeuraBoss : MonoBehaviour
 {
-    [SerializeField]public Action currentAction;
+    [SerializeField]public Maction currentAction;
     private MeganeuraStats stats;
-    private Dictionary<Action,float> damages;
+    private Dictionary<Maction,float> damages;
 
     public GameObject EnemyBar;
 
@@ -19,15 +19,15 @@ public class MeganeuraBoss : MonoBehaviour
 
     private GameObject player;
     public PlayerStatus playerStatus;
-    private Dictionary<int, Action> actionsDic=new Dictionary<int, Action>()
+    private Dictionary<int, Maction> actionsDic=new Dictionary<int, Maction>()
     {
-        {0,Action.rayoIon },
-        {1,Action.bombardeoMisiles },
-        {2,Action.misilesEmp },
-        {3,Action.bombaFlash },
-        {4,Action.lluviaLasers },
-        {5,Action.vistaCazador },
-        {6,Action.discosEmp },
+        {0,Maction.rayoIon },
+        {1,Maction.bombardeoMisiles },
+        {2,Maction.misilesEmp },
+        {3,Maction.bombaFlash },
+        {4,Maction.lluviaLasers },
+        {5,Maction.vistaCazador },
+        {6,Maction.discosEmp },
     };
 
 
@@ -99,37 +99,37 @@ public class MeganeuraBoss : MonoBehaviour
         //}
         switch (currentAction)
         {
-            case Action.idle:
+            case Maction.idle:
                 if (evaluating == false /*arena*/&& dummy == false) StartCoroutine(EvaluateAttack());
                 else attackOnCooldown = false;
                 break;
 
-            case Action.rayoIon:
+            case Maction.rayoIon:
                 HandleRayoIon();
                 //currentDamageValue = damages[Action.rayoIon];
                 break;
 
-            case Action.bombardeoMisiles:
+            case Maction.bombardeoMisiles:
                 HandleBombardeoMisiles();
                 break;
 
-            case Action.misilesEmp:
+            case Maction.misilesEmp:
                 HandleRayosEmp();
                 break;
 
-            case Action.bombaFlash:
+            case Maction.bombaFlash:
                 HandleBombaFlash();
                 break;
-            case Action.lluviaLasers:
+            case Maction.lluviaLasers:
                 HandleLluviaDeLasers();
                 break;
 
-            case Action.vistaCazador:
+            case Maction.vistaCazador:
                 HandleVistaCazador();
                 //currentDamageValue = damages[Action.vistaCazador];
                 break;
 
-            case Action.discosEmp:
+            case Maction.discosEmp:
                 HandleDiscosEmp();
                 break;
             
@@ -340,7 +340,7 @@ public class MeganeuraBoss : MonoBehaviour
         if (t1 >= stats.laserAimTime + stats.laserAttackTime)
         {
             rayoIon.SetActive(false);
-            currentAction = Action.idle;
+            currentAction = Maction.idle;
             stats.isAttacking = false;
             t1 = 0;
             stats.canRotate = true;
@@ -359,7 +359,7 @@ public class MeganeuraBoss : MonoBehaviour
             t1 = 0;
             GameObject _explotion = Instantiate(explotion);
             _explotion.transform.position = player.transform.position;
-            _explotion.GetComponent<Misiles>().damage = damages[Action.bombardeoMisiles];
+            _explotion.GetComponent<Misiles>().damage = damages[Maction.bombardeoMisiles];
             _explotion.GetComponent<Misiles>().timer = stats.bmTimeToExplode;
         }else if (container1 >= stats.bmAmount && bool1)
         {
@@ -367,7 +367,7 @@ public class MeganeuraBoss : MonoBehaviour
             t1 = 0;
             container1 = 0;
             stats.isAttacking = false;
-            currentAction = Action.idle;               
+            currentAction = Maction.idle;               
         }
     }
     //done
@@ -383,7 +383,7 @@ public class MeganeuraBoss : MonoBehaviour
             GameObject misile = Instantiate(rayoEmp);
             misile.transform.position = attackPos.position+attackPos.forward*2;
             misile.transform.localEulerAngles = new Vector3(Random.Range(0,-46), Random.Range(-90, 91), 0);
-            misile.GetComponent<RayoEmp>().damage = damages[Action.misilesEmp];               
+            misile.GetComponent<RayoEmp>().damage = damages[Maction.misilesEmp];               
             misile.GetComponent<RayoEmp>().speed = stats.rempSpeed;               
             misile.GetComponent<RayoEmp>().rotationSpeed = stats.rempRotationSpeed;               
             misile.GetComponent<RayoEmp>().lifeTime = stats.rempLifeTime;               
@@ -394,7 +394,7 @@ public class MeganeuraBoss : MonoBehaviour
             t1 = 0;
             container1 = 0;
             stats.isAttacking = false;
-            currentAction = Action.idle;
+            currentAction = Maction.idle;
         }
     }
     //done
@@ -408,7 +408,7 @@ public class MeganeuraBoss : MonoBehaviour
         bomba.GetComponent<BombaFlash>().flashDuration = stats.flashDuration;
 
         stats.isAttacking = false;
-        currentAction = Action.idle;
+        currentAction = Maction.idle;
     }
     //done
     private void HandleLluviaDeLasers()
@@ -423,7 +423,7 @@ public class MeganeuraBoss : MonoBehaviour
             t1 = 0;
             GameObject obj = Instantiate(lluviaDeLasers);
             obj.transform.position = player.transform.position + new Vector3(0, stats.lluviaLasersHeight, 0);
-            obj.GetComponent<LluviaLasers>().damage = damages[Action.lluviaLasers];
+            obj.GetComponent<LluviaLasers>().damage = damages[Maction.lluviaLasers];
         }
         else if (container1 >= stats.lluviaAmount && bool1)
         {
@@ -431,7 +431,7 @@ public class MeganeuraBoss : MonoBehaviour
             t1 = 0;
             container1 = 0;
             stats.isAttacking = false;
-            currentAction = Action.idle;
+            currentAction = Maction.idle;
         }
 
     }
@@ -460,7 +460,7 @@ public class MeganeuraBoss : MonoBehaviour
         if (t1 >= stats.cazadorAimTime + stats.cazadorLaserDuration)
         {
             vistaCazador.SetActive(false);
-            currentAction = Action.idle;
+            currentAction = Maction.idle;
             stats.isAttacking = false;
             t1 = 0;
             stats.canRotate = true;
@@ -477,7 +477,7 @@ public class MeganeuraBoss : MonoBehaviour
             container1++;
             GameObject disc = Instantiate(discoEmp);
             disc.transform.position = attackPos.position + attackPos.forward;
-            disc.GetComponent<DiscosEmp>().damage = damages[Action.discosEmp];
+            disc.GetComponent<DiscosEmp>().damage = damages[Maction.discosEmp];
             disc.GetComponent<DiscosEmp>().extraFollowTime = stats.empDiscExtraFollowTime;
             disc.GetComponent<DiscosEmp>().staminaDamage = stats.discosEmpStaminaLoss;
             disc.GetComponent<DiscosEmp>().maxSpeed = stats.discMaxSpeed;
@@ -490,7 +490,7 @@ public class MeganeuraBoss : MonoBehaviour
             t1 = 0;
             container1=0;
             bool1 = false;
-            currentAction = Action.idle;
+            currentAction = Maction.idle;
             stats.isAttacking = false;
         }
 
@@ -509,41 +509,41 @@ public class MeganeuraBoss : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             attackOnCooldown = true;
-            currentAction = Action.rayoIon;
+            currentAction = Maction.rayoIon;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             attackOnCooldown = true;
-            currentAction = Action.bombardeoMisiles;
+            currentAction = Maction.bombardeoMisiles;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             attackOnCooldown = true;
-            currentAction = Action.misilesEmp;
+            currentAction = Maction.misilesEmp;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             attackOnCooldown = true;
-            currentAction = Action.bombaFlash;
+            currentAction = Maction.bombaFlash;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             attackOnCooldown = true;
-            currentAction = Action.lluviaLasers;
+            currentAction = Maction.lluviaLasers;
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             attackOnCooldown = true;
-            currentAction = Action.vistaCazador;
+            currentAction = Maction.vistaCazador;
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             attackOnCooldown = true;
-            currentAction = Action.discosEmp;
+            currentAction = Maction.discosEmp;
         }
     }
 }
-public enum Action
+public enum Maction
 {
     idle,                   
     rayoIon, //on air
@@ -557,14 +557,14 @@ public enum Action
 [System.Serializable]
 public class ProbabilitiesOnAir
 {
-    [SerializeField] public Action nextAttack;
+    [SerializeField] public Maction nextAttack;
     public float minProbability;
     public float maxProbability;
 }
 [System.Serializable]
 public class ProbabilitiesOnGround
 {
-    [SerializeField] public Action nextAttack;
+    [SerializeField] public Maction nextAttack;
     public float minProbability;
     public float maxProbability;
     

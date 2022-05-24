@@ -13,7 +13,7 @@ public class MeganeuraStats : MonoBehaviour
     public float discosEmpStaminaLoss;
     
 
-    public Dictionary<Action, float> attacksDamage = new Dictionary<Action, float>();
+    public Dictionary<Maction, float> attacksDamage = new Dictionary<Maction, float>();
 
     [Header("=======General========")]
     public float health;
@@ -63,14 +63,14 @@ public class MeganeuraStats : MonoBehaviour
 
     private void Start()
     {
-        attacksDamage.Add(Action.rayoIon, rayoIonDamage);
-        attacksDamage.Add(Action.bombardeoMisiles,bombardeoMisilesDamage);
-        attacksDamage.Add(Action.misilesEmp, rayosEmpDamage);
-        attacksDamage.Add(Action.vistaCazador, vistaCazadorDamage);
-        attacksDamage.Add(Action.lluviaLasers, lluviaDamage);
-        attacksDamage.Add(Action.discosEmp, discosEmpDamage);
-        attacksDamage.Add(Action.idle, 0);
-        attacksDamage.Add(Action.bombaFlash, 0);
+        attacksDamage.Add(Maction.rayoIon, rayoIonDamage);
+        attacksDamage.Add(Maction.bombardeoMisiles,bombardeoMisilesDamage);
+        attacksDamage.Add(Maction.misilesEmp, rayosEmpDamage);
+        attacksDamage.Add(Maction.vistaCazador, vistaCazadorDamage);
+        attacksDamage.Add(Maction.lluviaLasers, lluviaDamage);
+        attacksDamage.Add(Maction.discosEmp, discosEmpDamage);
+        attacksDamage.Add(Maction.idle, 0);
+        attacksDamage.Add(Maction.bombaFlash, 0);
     }
 
 }
