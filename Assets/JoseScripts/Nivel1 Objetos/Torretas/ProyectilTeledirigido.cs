@@ -37,6 +37,7 @@ public class ProyectilTeledirigido : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerSingleton.Instance.playerHitted = true;
             Destroy(this.gameObject);
         }
         if (other.gameObject.CompareTag("Limite"))

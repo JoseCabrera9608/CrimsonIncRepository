@@ -13,6 +13,9 @@ public class PlayerStatus : MonoBehaviour
     public Material matHitted;
     public Animator anim;
     public SkinnedMeshRenderer mesh;
+    public MeshRenderer armaMesh;
+    public Material armaMatNormal;
+    public Material armaMatHitted;
 
     public ProgressManager progress;
     public Transform InteractualObject;
@@ -210,6 +213,7 @@ public class PlayerStatus : MonoBehaviour
     {
 
         mesh.material = matHitted;
+        armaMesh.material = armaMatHitted;
         healingtime = 0;
 
         yield return new WaitForSeconds(0.5f);
@@ -217,6 +221,7 @@ public class PlayerStatus : MonoBehaviour
         PlayerSingleton.Instance.playerHitted = false;
         hiteado = false;
         mesh.material = matNormal;
+        armaMesh.material = armaMatNormal;
     }
 }
 
