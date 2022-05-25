@@ -19,6 +19,7 @@ public class Message
 {
     public int actorId;
     public string message;
+    public AudioClip audioClip;
 }
 
 [System.Serializable]
