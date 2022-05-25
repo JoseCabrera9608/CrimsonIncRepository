@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemiPequeñoControlador : MonoBehaviour
 {
+    HabilidadesEquipadas tiemposHabilidades;
     public int id;
     GameObject player;
     public NavMeshAgent agente;
@@ -13,6 +14,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public bool disparar;
     public bool golpeMelee;
     public bool magnetizar;
+    public bool kamikaze;
     //Particulas
     public GameObject fuego;
     SphereCollider colliderCuerpo;
@@ -34,11 +36,13 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject disparo;
     public GameObject firePoint;
     public GameObject healthBar;
+    public GameObject explosion;
 
     HabilidadesEquipadas _habilidadesEquipadas;
 
     void Start()
     {
+        tiemposHabilidades = GetComponent<HabilidadesEquipadas>();
         anim = GetComponent<Animator>();
         BossGameEVent.current.combatTriggerExit += StartChase;
         player = GameObject.FindWithTag("Player");
@@ -78,6 +82,17 @@ public class EnemiPequeñoControlador : MonoBehaviour
         {
             StartCoroutine(Disparar());
             disparar = false;
+        }
+
+        if(kamikaze == true)
+        {
+            StartCoroutine(Kamikaze());
+            if(tiemposHabilidades.activeTime <= 0)
+            {
+                GameObject explosionParticula;
+                explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
         }
       
     }
@@ -148,6 +163,13 @@ public class EnemiPequeñoControlador : MonoBehaviour
         agente.speed = 4;
     }
 
+    IEnumerator Kamikaze()
+    {
+        agente.speed = 6;
+        //anim.setTrigger("Kamikaze");
+        yield return null;
+    }
+
 
     public void SpawnDeDisparo()
     {
@@ -187,6 +209,17 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public void DesactivarMagneto()
     {
        // magneto.SetActive(false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject explosionParticula;
+            explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
+            PlayerSingleton.Instance.playerCurrentHP -= 50;
+            Destroy(this.gameObject);
+        }
     }
 
 }
