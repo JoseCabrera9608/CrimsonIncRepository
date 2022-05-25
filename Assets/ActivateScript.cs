@@ -8,6 +8,7 @@ public class ActivateScript : MonoBehaviour
     public GameObject Object;
     public bool playercol;
     public DialogueTrigger dialogue;
+    public bool stopCollider;
 
     
     // Start is called before the first frame update
@@ -29,9 +30,15 @@ public class ActivateScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && playercol == false)
+        if (other.gameObject.CompareTag("Player") && playercol == false && stopCollider == false)
         {
             dialogue.StartDialogue();
+            playercol = true;
+            //Activate();
+        }
+        if (other.gameObject.CompareTag("Player") && playercol == false && stopCollider == true)
+        {
+            dialogue.StopDialogue();
             playercol = true;
             //Activate();
         }

@@ -18,7 +18,7 @@ public class SueloElectrificado : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         time += Time.deltaTime;
 
@@ -28,11 +28,13 @@ public class SueloElectrificado : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerSingleton.Instance.playerHitted = true;
             Debug.Log("Daño por piso");
         }
     }

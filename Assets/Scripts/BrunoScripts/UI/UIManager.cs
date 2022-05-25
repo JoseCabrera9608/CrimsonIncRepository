@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public bool gameIsPaused;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject playerPanel;
+    [SerializeField] private GameObject sondaPanel;
     private void Awake()
     {
         Instance = this;
@@ -101,6 +103,8 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         optionsPanel.SetActive(false);
+        playerPanel.SetActive(false);
+        sondaPanel.SetActive(false);
         Time.timeScale = 1;
         CursorController("block"); 
         gameIsPaused = false;
@@ -130,9 +134,24 @@ public class UIManager : MonoBehaviour
     }
 
     public void OpenOptionsPanel()=> optionsPanel.SetActive(true);
+    public void OpenPlayerPanel() => playerPanel.SetActive(true);
+    public void OpenSondaPanel() => sondaPanel.SetActive(true);
+
     public void CloseOptionsPanel()
     {
         optionsPanel.SetActive(false);
+        //=======APLICAR AJUSTES============
+    }
+
+    public void ClosePlayerPanel()
+    {
+        playerPanel.SetActive(false);
+        //=======APLICAR AJUSTES============
+    }
+
+    public void CloseSondaPanel()
+    {
+        sondaPanel.SetActive(false);
         //=======APLICAR AJUSTES============
     }
     #endregion

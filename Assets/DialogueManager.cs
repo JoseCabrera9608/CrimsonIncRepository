@@ -11,6 +11,9 @@ public class DialogueManager : MonoBehaviour
     public RectTransform backgroundBox;
     private string sentence;
 
+    //public AudioClip audioClip;
+    public AudioSource audioSource;
+
     public float textspeed;
 
 
@@ -32,6 +35,16 @@ public class DialogueManager : MonoBehaviour
         DisplayMessage();
     }
 
+    public void CloseDialogue()
+    {
+        backgroundBox.localScale = new Vector3(1, 1, 1);
+        isActive = false;
+        backgroundBox.localScale = new Vector3(0, 0, 0);
+
+        Debug.Log("Cerraste dialogo prro");
+        audioSource.Stop();
+    }
+
     void DisplayMessage()
     {
         Message messageToDisplay = currentMessages[activeMessage];
@@ -39,7 +52,8 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
 
         sentence = messageToDisplay.message;
-
+        audioSource.clip = messageToDisplay.audioClip;
+        audioSource.Play();
         StartCoroutine(TypeSentence(sentence));
 
 
@@ -47,6 +61,7 @@ public class DialogueManager : MonoBehaviour
 
         actorName.text = actorToDisplay.name;
         actorImage.sprite = actorToDisplay.sprite;
+        //audioClip = messageToDisplay.audioClip;
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -67,6 +82,7 @@ public class DialogueManager : MonoBehaviour
         if (activeMessage < currentMessages.Length)
         {
             DisplayMessage();
+            //audioSource.Play();
         }
         else
         {
@@ -90,6 +106,7 @@ public class DialogueManager : MonoBehaviour
             //NextMessage();
             if (messageText.text == sentence)
             {
+                audioSource.Stop();
                 NextMessage();
             }
             else

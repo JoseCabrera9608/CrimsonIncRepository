@@ -11,7 +11,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         FindObjectOfType<DialogueManager>().OpenDialogue(messages, actors);
     }
-
+    public void StopDialogue()
+    {
+        FindObjectOfType<DialogueManager>().CloseDialogue();
+    }
 }
 
 [System.Serializable]
@@ -19,6 +22,7 @@ public class Message
 {
     public int actorId;
     public string message;
+    public AudioClip audioClip;
 }
 
 [System.Serializable]
