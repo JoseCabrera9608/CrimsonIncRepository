@@ -18,7 +18,7 @@ public class SueloElectrificado : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         time += Time.deltaTime;
 
@@ -27,6 +27,7 @@ public class SueloElectrificado : MonoBehaviour
             StartCoroutine(ActivarCollider());
         }
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
