@@ -7,11 +7,14 @@ public class GorgonopsiaStats : MonoBehaviour
     [Header("")]
     [Header("================General Settings===========================")]
     public float closeRangeRadius;
+    public float rotationSpeed;
     public float farRangeRadius;
     public float health;
     public float generalAoeBonus;
     public float generalAttackSpeedBonus;
     public bool fireBonus;
+    public Transform defaultPosition;
+    [HideInInspector]public Vector3 defaultPositionVector;
     [Header("")]
     [Header("================General Damages============================")]
     public float cargaCalorDamage;
@@ -24,11 +27,30 @@ public class GorgonopsiaStats : MonoBehaviour
     [Header("")]
     [Header("================Aliento de Calor===========================")]
     public float alientoCalorChargeTime;
-    public float alientoCalorSpeed;
+    public float alientoCalorRotationDuration;
     public float alientoCalorRange;
     public float alientoCalorAngle;
     public bool alientoCalorFullyCharged;
     public bool alientoCalorFinished;
+
+    [Header("")]
+    [Header("================Rugido Explosivo===========================")]
+    public float rugidoExplosivoRadius;
+    public float rugidoExplosivoChargeTime;
+
+    [Header("")]
+    [Header("================Bombas Jaeger===========================")]
+    public float bombaJaegerSpeed;
+    public float bombaJaegerBurnDamage;
+    public float bombaJaegerTimeToAct;
+    public float bombaJaegerExplotionRadius;
+    public float bombaJaegerDistanceTreshHold;
+
+    [Header("")]
+    [Header("================Bombas 360===========================")]
+    public float bomba360DistanceTreshold;
+    public float bomba360TimeToDamage;
+    public float bomba360Amount;
     //Hidden in inspector
     public Dictionary<Gstates,float> gorgoDamages = new Dictionary<Gstates,float>();
     private void Awake()
@@ -44,13 +66,7 @@ public class GorgonopsiaStats : MonoBehaviour
     }
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        defaultPositionVector = defaultPosition.position;
     }
     private void OnDrawGizmos()
     {
@@ -58,6 +74,9 @@ public class GorgonopsiaStats : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, closeRangeRadius);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, farRangeRadius);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(defaultPosition.position, .5f);
     }
 }
 public enum Gstates
