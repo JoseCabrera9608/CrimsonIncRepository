@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class DiscosEmp : MonoBehaviour
 {
     private Rigidbody rb;
@@ -19,12 +20,14 @@ public class DiscosEmp : MonoBehaviour
      private float followT;
 
     [SerializeField] private SphereCollider col;
+    [SerializeField] private GameObject graphics;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = FindObjectOfType<PlayerStatus>().gameObject;
         speed = maxSpeed;
-        AlignToPlayer();        
+        AlignToPlayer();
+        graphics.transform.DORotate(new Vector3(0, 360, 0), 0.5f, RotateMode.LocalAxisAdd).SetLoops(-1,LoopType.Yoyo);
     }
 
     // Update is called once per frame
