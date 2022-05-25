@@ -35,6 +35,16 @@ public class DialogueManager : MonoBehaviour
         DisplayMessage();
     }
 
+    public void CloseDialogue()
+    {
+        backgroundBox.localScale = new Vector3(1, 1, 1);
+        isActive = false;
+        backgroundBox.localScale = new Vector3(0, 0, 0);
+
+        Debug.Log("Cerraste dialogo prro");
+        audioSource.Stop();
+    }
+
     void DisplayMessage()
     {
         Message messageToDisplay = currentMessages[activeMessage];

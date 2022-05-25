@@ -11,7 +11,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         FindObjectOfType<DialogueManager>().OpenDialogue(messages, actors);
     }
-
+    public void StopDialogue()
+    {
+        FindObjectOfType<DialogueManager>().CloseDialogue();
+    }
 }
 
 [System.Serializable]
