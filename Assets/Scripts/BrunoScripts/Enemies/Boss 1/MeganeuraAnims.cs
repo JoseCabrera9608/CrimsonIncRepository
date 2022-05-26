@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeganeuraAnims : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private MeganeuraBoss boss;
     private MeganeuraStats stat;
     private void Start()
@@ -15,7 +15,13 @@ public class MeganeuraAnims : MonoBehaviour
     }
     private void Update()
     {       
-        animator.SetBool("onAir",stat.onAir);       
+        animator.SetBool("onAir",stat.onAir);
+        animator.SetBool("isActive", boss.isActive);
+        animator.SetBool("isDead", !stat.isAlive);
+    }
+    public void DamageAnimation()
+    {
+        animator.SetTrigger("damageTrigger");
     }
     private void OnTriggerEnter(Collider other)
     {

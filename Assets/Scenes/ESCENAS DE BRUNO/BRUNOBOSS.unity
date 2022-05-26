@@ -1537,7 +1537,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170521927}
-  m_LocalRotation: {x: 0.04111109, y: 0.9336916, z: 0.11390961, w: -0.3369784}
+  m_LocalRotation: {x: 0.041111086, y: 0.9336916, z: 0.11390962, w: -0.3369784}
   m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6005,6 +6005,8 @@ MonoBehaviour:
   gameIsPaused: 0
   pausePanel: {fileID: 1365472362}
   optionsPanel: {fileID: 1202319830}
+  playerPanel: {fileID: 0}
+  sondaPanel: {fileID: 0}
 --- !u!114 &875433685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8768,6 +8770,9 @@ MonoBehaviour:
   matHitted: {fileID: 2100000, guid: 538b3e2d02104304e90ac9724c868dd1, type: 2}
   anim: {fileID: 1223034381}
   mesh: {fileID: 254589767}
+  armaMesh: {fileID: 0}
+  armaMatNormal: {fileID: 0}
+  armaMatHitted: {fileID: 0}
   progress: {fileID: 0}
   InteractualObject: {fileID: 0}
   timer: 0
@@ -10817,7 +10822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604841704}
-  m_LocalRotation: {x: 0.04721761, y: 0.9314715, z: 0.1308294, w: -0.33617714}
+  m_LocalRotation: {x: 0.047217604, y: 0.9314715, z: 0.1308294, w: -0.33617714}
   m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12105,7 +12110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793413675}
-  m_LocalRotation: {x: 0.04721762, y: 0.9314715, z: 0.1308294, w: -0.3361771}
+  m_LocalRotation: {x: 0.0472176, y: 0.9314715, z: 0.1308294, w: -0.3361771}
   m_LocalPosition: {x: 11.113168, y: 1.4, z: 43.487553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -13678,6 +13683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BOSS
       objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094466, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: probability.Array.size
       value: 7
@@ -13709,6 +13718,14 @@ PrefabInstance:
     - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: probability.Array.data[6].nextAttack
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: onGroundTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094471, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_RootOrder
@@ -13753,6 +13770,10 @@ PrefabInstance:
     - target: {fileID: 813730325673094471, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782396802935590356, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.45
       objectReference: {fileID: 0}
     - target: {fileID: 7358121568748105661, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_IsActive

@@ -23,7 +23,7 @@ public class BuffRecovery : MonoBehaviour
     void Update()
     {
         DetectSafeGround();
-        if (Input.GetMouseButton(1)) PlayerSingleton.Instance.playerCurrentHP -= 10;
+        //if (Input.GetMouseButton(1)) PlayerSingleton.Instance.playerCurrentHP -= 10;
     }
     private void DetectSafeGround()
     {

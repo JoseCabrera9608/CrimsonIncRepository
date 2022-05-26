@@ -5,6 +5,7 @@ using DG.Tweening;
 public class MeganeuraBoss : MonoBehaviour
 {
     [SerializeField]public Maction currentAction;
+    [SerializeField]private MeganeuraAnims anims;
     private MeganeuraStats stats;
     private Dictionary<Maction,float> damages;
 
@@ -62,9 +63,19 @@ public class MeganeuraBoss : MonoBehaviour
     [Header("VERSION ARENA")]
     public bool dummy;
     public bool attackOnCooldown;
+
+    private void OnEnable()
+    {
+        PlayerStatus.onPlayerDeath += SuperReset;
+    }
+    private void OnDisable()
+    {
+        PlayerStatus.onPlayerDeath -= SuperReset;
+    }
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
+        //anims.GetComponent<MeganeuraAnims>();
         damages = stats.attacksDamage;
         player = FindObjectOfType<PlayerStatus>().gameObject;
         bobing.Pause();
@@ -209,19 +220,28 @@ public class MeganeuraBoss : MonoBehaviour
         bobing = transform.DOMove(pos[1] + new Vector3(0, -2, 0), 7, false)
             .SetEase(Ease.InOutBack).SetLoops(-1, LoopType.Yoyo);
         bobing.Play();
+
+        stats.onAir = true;
     }
-    private void StopBobing() => bobing.Pause();
+    private void StopBobing()
+    {
+        bobing.Pause();
+        stats.onAir = false;
+    }
     private void FlightSwitch(bool changeOnAir)
     {
         if (changeOnAir)
         {
             stats.canRotate = true;
-            transform.DOMove(pos[1], 7, false).SetEase(Ease.OutBack).OnComplete(StartBobing);
+            transform.DOMove(pos[1], stats.startFlightDuration, false).SetEase(Ease.OutBack).OnComplete(StartBobing);
         }
         else
         {
             stats.canRotate = false;
-            transform.DOMove(pos[0], 3, false).SetEase(Ease.InBack).OnComplete(StopBobing);
+            transform.DORotate(new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z),
+                stats.descendDuration*.6f,RotateMode.Fast);
+
+            transform.DOMove(pos[0], stats.descendDuration, false).SetEase(Ease.InBack).OnComplete(StopBobing);
         }
 
         stats.onAir = changeOnAir;
@@ -246,6 +266,7 @@ public class MeganeuraBoss : MonoBehaviour
         if (other.CompareTag("PlayerWeapon"))
         {
             stats.health -= PlayerSingleton.Instance.playerDamage;
+            anims.DamageAnimation();
             CheckHealth();
         }
         if (other.CompareTag("Player")&&col.enabled==true)
@@ -541,6 +562,17 @@ public class MeganeuraBoss : MonoBehaviour
             attackOnCooldown = true;
             currentAction = Maction.discosEmp;
         }
+    }
+
+    [ContextMenu("Super Reset olle zhy")]
+    public void SuperReset()
+    {
+        GameObject obj = Instantiate(stats.nuera);
+        obj.transform.position = stats.initialPos;
+        obj.transform.localEulerAngles = stats.initialRot;
+        obj.GetComponent<MeganeuraBoss>().isActive = false;
+        obj.GetComponent<MeganeuraBoss>().col.enabled = true;
+        Destroy(gameObject);
     }
 }
 public enum Maction

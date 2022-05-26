@@ -9,6 +9,7 @@ public class Misiles : MonoBehaviour
     public float timer;
     public float damage;
     public float explotionDuration;
+    public GameObject particles;
     void Start()
     {
         full.transform.DOScale(1, timer).OnComplete(CreateExplosion);
@@ -22,6 +23,8 @@ public class Misiles : MonoBehaviour
     }
     private IEnumerator DestroyObject()
     {
+        GameObject obj = Instantiate(particles);
+        particles.transform.position = transform.position+new Vector3(0,1,0);
         yield return new WaitForSeconds(explotionDuration);
         Destroy(gameObject);
     }

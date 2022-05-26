@@ -17,14 +17,18 @@ public class MeganeuraStats : MonoBehaviour
 
     [Header("=======General========")]
     public float health;
+    [HideInInspector]public float maxHealth;
     public float onGroundTime;
     public float rotationSpeed;
+    public float startFlightDuration;
+    public float descendDuration;
+
     [HideInInspector] public bool isAttacking;
     public float attackDelay;
-    [HideInInspector]public bool onAir;
+    public bool onAir;
     [HideInInspector]public bool canRotate;
     public int stakesToThrow = 4;
-    [HideInInspector]public bool isAlive=true;
+    public bool isAlive=true;
 
     [Header("Rayo ion=======================")]
     public float laserRotationSpeed;
@@ -61,8 +65,14 @@ public class MeganeuraStats : MonoBehaviour
     public float cazadorRotationSpeed;
     public float cazadorLaserDuration;
 
+    public GameObject nuera;
+    [HideInInspector]public Vector3 initialPos;
+    [HideInInspector]public Vector3 initialRot;
     private void Start()
     {
+        initialPos = transform.position;
+        initialRot = transform.localEulerAngles;
+        maxHealth = health;
         attacksDamage.Add(Maction.rayoIon, rayoIonDamage);
         attacksDamage.Add(Maction.bombardeoMisiles,bombardeoMisilesDamage);
         attacksDamage.Add(Maction.misilesEmp, rayosEmpDamage);
