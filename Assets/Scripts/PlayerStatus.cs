@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,9 @@ public class PlayerStatus : MonoBehaviour
 
     public ProgressManager progress;
     public Transform InteractualObject;
+
+    public static Action onPlayerDeath;
+
 
     public float timer;
     public float healingtime;
@@ -115,8 +119,8 @@ public class PlayerStatus : MonoBehaviour
     public void Death()
     {
         anim.SetBool("Death", true);
-        
         this.transform.position = progress.lastposition;
+        onPlayerDeath?.Invoke();
         PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
         PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
     }

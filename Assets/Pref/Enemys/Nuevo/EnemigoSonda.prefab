@@ -663,6 +663,7 @@ Transform:
   - {fileID: 6513023042405469239}
   - {fileID: 6513023042809627246}
   - {fileID: 6243614454723807767}
+  - {fileID: 5573544000468107202}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -759,6 +760,7 @@ MonoBehaviour:
   disparar: 0
   golpeMelee: 0
   magnetizar: 0
+  kamikaze: 0
   fuego: {fileID: 3479744240830248516}
   onChase: 0
   BrazoDerechoCollider: {fileID: 6513023042670545460}
@@ -766,8 +768,11 @@ MonoBehaviour:
   meshObject: {fileID: 3151989563936706592}
   magneto: {fileID: 6513023042067216508}
   disparo: {fileID: 5887115034480186155, guid: 811541fddd8d3414b8cc5cc365063872, type: 3}
+  bomba: {fileID: 0}
   firePoint: {fileID: 6513023042809627247}
+  bombafirePoint: {fileID: 6894768539041854776}
   healthBar: {fileID: 6513023042405469232}
+  explosion: {fileID: 0}
 --- !u!1 &6448009196157823744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1246,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6894768539041854776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5573544000468107202}
+  m_Layer: 0
+  m_Name: BombaFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5573544000468107202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894768539041854776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.037, y: 1.266, z: 0.267}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6766762405149829213}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7981665602917612410
 GameObject:
   m_ObjectHideFlags: 0
