@@ -9,8 +9,18 @@ public class NubeDaño : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= 0.5f;
+            PlayerSingleton.Instance.playerCurrentHP -= 1.4f;
            
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerSingleton.Instance.playerCurrentHP -= 20f;
+
         }
     }
 
