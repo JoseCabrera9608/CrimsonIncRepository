@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "PoderesBossCangrejo/BuffPasiva", order = 5)]
 public class PasivaCaparazon : Habilidad_SO
 {
     public override void Activate(GameObject parent)

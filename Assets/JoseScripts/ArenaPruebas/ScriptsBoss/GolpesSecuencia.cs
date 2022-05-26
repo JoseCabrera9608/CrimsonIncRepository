@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "PoderesBossCangrejo/GolpesSecuencia", order = 2)]
 public class GolpesSecuencia : Habilidad_SO
 {
     public override void Activate(GameObject parent)

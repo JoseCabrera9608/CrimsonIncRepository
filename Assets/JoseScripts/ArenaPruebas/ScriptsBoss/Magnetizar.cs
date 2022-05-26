@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "PoderesBossCangrejo/MagnetizarBoss", order = 4)]
 public class Magnetizar : Habilidad_SO
 {
     public override void Activate(GameObject parent)

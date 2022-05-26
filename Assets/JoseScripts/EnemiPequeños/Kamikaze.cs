@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName ="PoderesSonda/Kamikaze",order =1)]
 public class Kamikaze : Habilidad_SO
 {
     public override void Activate(GameObject parent)

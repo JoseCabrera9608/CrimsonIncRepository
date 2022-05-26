@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "PoderesSonda/GolpeMelee", order = 3)]
 public class GolpeMelee : Habilidad_SO
 {
     public override void Activate(GameObject parent)

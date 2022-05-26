@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "PoderesSonda/Magnetizar", order = 2)]
 public class MagnetizarPequeño :Habilidad_SO
 {
     public override void Activate(GameObject parent)

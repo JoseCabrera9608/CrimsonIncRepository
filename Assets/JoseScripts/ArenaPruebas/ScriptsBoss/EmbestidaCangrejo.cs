@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "PoderesBossCangrejo/Embestida", order = 3)]
 public class EmbestidaCangrejo : Habilidad_SO
 {
     public override void Activate(GameObject parent)
