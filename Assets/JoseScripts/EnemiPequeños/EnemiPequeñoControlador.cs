@@ -34,7 +34,9 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject magneto;
 
     public GameObject disparo;
+    public GameObject bomba;
     public GameObject firePoint;
+    public GameObject bombafirePoint;
     public GameObject healthBar;
     public GameObject explosion;
 
@@ -178,6 +180,17 @@ public class EnemiPequeñoControlador : MonoBehaviour
         {
 
             tiposDisparo = Instantiate(disparo, firePoint.transform.position, Quaternion.identity);
+            tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
+        }
+    }
+
+    public void SpawnDeBomba()
+    {
+        GameObject tiposDisparo;
+        if (firePoint != null)
+        {
+
+            tiposDisparo = Instantiate(bomba, bombafirePoint.transform.position, Quaternion.identity);
             tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
         }
     }
