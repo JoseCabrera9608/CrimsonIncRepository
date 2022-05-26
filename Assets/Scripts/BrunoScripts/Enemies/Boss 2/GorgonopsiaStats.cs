@@ -6,15 +6,20 @@ public class GorgonopsiaStats : MonoBehaviour
 {
     [Header("")]
     [Header("================General Settings===========================")]
+    public bool isAlive;
+    public float evaluationTime;
     public float closeRangeRadius;
     public float rotationSpeed;
     public float farRangeRadius;
     public float health;
-    public float generalAoeBonus;
+    public float fireDamage;
+    public float fireDuration;
     public float generalAttackSpeedBonus;
     public bool fireBonus;
+    public bool attackSpeedBonus;
     public Transform defaultPosition;
     [HideInInspector]public Vector3 defaultPositionVector;
+    [HideInInspector]public float maxHP;
     [Header("")]
     [Header("================General Damages============================")]
     public float cargaCalorDamage;
@@ -39,18 +44,35 @@ public class GorgonopsiaStats : MonoBehaviour
     public float rugidoExplosivoChargeTime;
 
     [Header("")]
-    [Header("================Bombas Jaeger===========================")]
+    [Header("================Bombas Jaeger==============================")]
     public float bombaJaegerSpeed;
     public float bombaJaegerBurnDamage;
     public float bombaJaegerTimeToAct;
     public float bombaJaegerExplotionRadius;
     public float bombaJaegerDistanceTreshHold;
+    public bool on50Health;
 
     [Header("")]
-    [Header("================Bombas 360===========================")]
+    [Header("================Bombas 360=================================")]
     public float bomba360DistanceTreshold;
     public float bomba360TimeToDamage;
     public float bomba360Amount;
+
+    [Header("")]
+    [Header("================Embestida Fenetica=========================")]
+    public float embestidaFreneticaAnimationDuration;
+    public float embestidaFreneticaAmount;
+    public float embestidaFreneticaDelay;
+    public float embestidaFreneticaDuration;
+    public float embestidaFreneticaBlinkDistance;
+
+    [Header("")]
+    [Header("==========================Blink============================")]
+    public float blinkDefaultTime;
+
+    [Header("")]
+    [Header("==========================Cargas de Calor============================")]
+    public float cargaCalorChargeTime;
     //Hidden in inspector
     public Dictionary<Gstates,float> gorgoDamages = new Dictionary<Gstates,float>();
     private void Awake()
@@ -66,6 +88,7 @@ public class GorgonopsiaStats : MonoBehaviour
     }
     void Start()
     {
+        maxHP = health;
         defaultPositionVector = defaultPosition.position;
     }
     private void OnDrawGizmos()

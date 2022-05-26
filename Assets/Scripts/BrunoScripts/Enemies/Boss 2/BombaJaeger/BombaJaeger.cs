@@ -60,8 +60,12 @@ public class BombaJaeger : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Ground"))
-        {            
-            if (onGround == false) StartCoroutine(ApplyForce());
+        {
+            if (onGround == false)
+            {
+                StartCoroutine(ApplyForce());
+                rb.AddForce(Vector3.up * 5,ForceMode.VelocityChange);
+            }
             onGround = true;
         }
     }

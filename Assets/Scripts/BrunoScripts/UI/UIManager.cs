@@ -103,8 +103,8 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         optionsPanel.SetActive(false);
-        playerPanel.SetActive(false);
-        sondaPanel.SetActive(false);
+        if(playerPanel!=null)playerPanel.SetActive(false);
+        if(sondaPanel!=null)sondaPanel.SetActive(false);
         Time.timeScale = 1;
         CursorController("block"); 
         gameIsPaused = false;

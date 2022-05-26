@@ -64,8 +64,7 @@ public class AlientoCalor : MonoBehaviour
     private void RotateAlientoCalor()
     {
         Vector3 direction = new Vector3(0, alientoCalorAngle * -2, 0);
-        Debug.Log(direction);
-        transform.DORotate(direction, alientoCalorRotationDuration,RotateMode.LocalAxisAdd).SetEase(Ease.InOutSine)
+        transform.DORotate(direction, alientoCalorRotationDuration,RotateMode.LocalAxisAdd).SetEase(Ease.InExpo)
             .OnComplete(DeactivateObject);
     }
     private void DeactivateObject()

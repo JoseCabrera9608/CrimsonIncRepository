@@ -12,9 +12,13 @@ public class RugidoExplosivo : MonoBehaviour
 
     private GameObject player;
     [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject fireObject;
+
+    private GorgonopsiaStats stats;
     void Start()
     {
         player = FindObjectOfType<PlayerStatus>().gameObject;
+        stats = FindObjectOfType<GorgonopsiaStats>();
 
         transform.localScale = new Vector3(dimension*2,dimension*2,dimension*2);
         fullSprite.transform.localScale = Vector3.zero;
@@ -32,6 +36,13 @@ public class RugidoExplosivo : MonoBehaviour
         GameObject obj = Instantiate(particles);
         obj.transform.position = transform.position;
         obj.transform.localScale = transform.localScale;
+
+        if (stats.fireBonus)
+        {
+            GameObject fire = Instantiate(fireObject);
+            fire.transform.position = transform.position;
+            fire.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+        }
         Destroy(gameObject);
     }
 }
