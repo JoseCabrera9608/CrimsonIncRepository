@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class SueloElectrificado : MonoBehaviour
 {
-    [SerializeField] float time;
+    float time;
     public BoxCollider colliderSuelo;
     public float damage;
     public bool desactivado;
     public int id;
+    public float tiempoDeActivacionRayos;
+    
+    public bool electrocutar;
 
     void Start()
     {
+        
         colliderSuelo = GetComponent<BoxCollider>();
         BossGameEVent.current.Conexion += Desactivar;
 
@@ -22,10 +26,16 @@ public class SueloElectrificado : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if(time >= 2)
+        if(time >= tiempoDeActivacionRayos)
+        {
+            electrocutar = true;
+        }
+
+        if(electrocutar == true)
         {
             StartCoroutine(ActivarCollider());
         }
+       
     }
 
 
@@ -43,9 +53,10 @@ public class SueloElectrificado : MonoBehaviour
     IEnumerator ActivarCollider()
     {
         colliderSuelo.enabled = true;
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(0.1f);
         colliderSuelo.enabled = false;
         time = 0;
+        electrocutar = false;
     }
 
     public void Desactivar (int id)
