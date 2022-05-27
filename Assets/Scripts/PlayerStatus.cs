@@ -51,7 +51,12 @@ public class PlayerStatus : MonoBehaviour
 
         if (lvl == 1)
         {
-            progress.lastposition = new Vector3(57, -3, 7);
+            progress.lastposition = new Vector3(57, -3, 4);
+            //progress.lastposition = new Vector3(57, 0, -200);
+        }
+        if (lvl == 2)
+        {
+            progress.lastposition = new Vector3(57, -3, 125);
             //progress.lastposition = new Vector3(57, 0, -200);
         }
 
@@ -131,22 +136,22 @@ public class PlayerStatus : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (lvl == 1)
+        if (lvl == 1 || lvl == 2)
         {
+            anim.SetTrigger("DeathUp");
             this.transform.position = progress.lastposition;
             onPlayerDeath?.Invoke();
             PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
             PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
+            
         }
 
     }
 
     public void AfterDeath()
     {
-        anim.SetBool("Death", false);
-        this.transform.position = progress.lastposition;
-        PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
-        PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
+        GetComponent<Movement>().enabled = true;
+        playerdeath = false;
     }
 
     void SingletonConnect()

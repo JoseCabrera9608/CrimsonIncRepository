@@ -333,6 +333,19 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Bounce"))
+        {
+            onelevator = true;
+        }
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            onramp = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
 
