@@ -7132,6 +7132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc7259e9d0327649b277e3e541eb743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToDestroy: 
+  actualScene: 
 --- !u!114 &205877186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8218,6 +8220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 654601079}
+  volSlider: {fileID: 0}
   sensibilidad: 0
   cinem: {fileID: 1204831231}
   progress: {fileID: 489991779}
@@ -20413,6 +20416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc7259e9d0327649b277e3e541eb743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToDestroy: 
+  actualScene: 
 --- !u!114 &489991779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31256,6 +31261,7 @@ MonoBehaviour:
   damage: 0
   attackStatus: 0
   staminaAttack: 10
+  audioSource: {fileID: 0}
   combo: 0
   playermov: {fileID: 0}
   playerStatus: {fileID: 0}
@@ -40363,6 +40369,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MusicaBoss
+    clip: {fileID: 8300000, guid: 35da464ecbe1c4a4280c3ab7753be49b, type: 3}
+    volume: 0.762
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &829345871
 Transform:
   m_ObjectHideFlags: 0
@@ -42059,6 +42071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
+  volSlider: {fileID: 0}
   sensibilidad: 0
   cinem: {fileID: 0}
   progress: {fileID: 0}
@@ -99440,6 +99453,7 @@ MonoBehaviour:
   damage: 0
   attackStatus: 0
   staminaAttack: 10
+  audioSource: {fileID: 0}
   combo: 0
   playermov: {fileID: 0}
   playerStatus: {fileID: 0}

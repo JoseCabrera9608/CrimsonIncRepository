@@ -100,7 +100,13 @@ public class MeganeuraBoss : MonoBehaviour
 
         if (stats.isAlive == false)
         {
-            FindObjectOfType<AudioManager>().Stop("MusicaBoss");
+            
+            if (dummy == false)
+            {
+                FindObjectOfType<AudioManager>().Stop("MusicaBoss");
+            }
+            
+            
             StopAllCoroutines();
             bobing.Kill();
         }
@@ -278,7 +284,8 @@ public class MeganeuraBoss : MonoBehaviour
         }
         if (other.CompareTag("Player")&&col.enabled==true)
         {
-            FindObjectOfType<AudioManager>().Play("MusicaBoss");
+
+            
             StartCoroutine(Activate());
         }
 
@@ -288,7 +295,11 @@ public class MeganeuraBoss : MonoBehaviour
     {
         col.enabled = false;
         //quitar luego
-        if(EnemyBar!=null)EnemyBar.SetActive(true);
+        if (dummy == false)
+        {
+            FindObjectOfType<AudioManager>().Play("MusicaBoss");
+        }
+        if (EnemyBar!=null)EnemyBar.SetActive(true);
         yield return new WaitForSeconds(timeToActivate);
         isActive = true;
         
