@@ -70,18 +70,25 @@ public class Checkpoint : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha1))
         {
             progress.lastposition = new Vector3(80, 0, -108);
             SceneManager.LoadScene("WB_Diego");
 
             //ChangeScene();
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha2))
         {
             progress.lastposition = new Vector3(57, -3, 6);
             SceneManager.LoadScene("TinocoMirror");
             //SceneManager.LoadScene("EnriqueTest2");
+
+            //ChangeScene();
+        }
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            progress.lastposition = new Vector3(80, 0, -108);
+            SceneManager.LoadScene("WB_Diego");
 
             //ChangeScene();
         }
