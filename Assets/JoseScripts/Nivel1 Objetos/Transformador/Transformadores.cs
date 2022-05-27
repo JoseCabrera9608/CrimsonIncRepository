@@ -11,40 +11,64 @@ public class Transformadores : MonoBehaviour
     public float distanciaParticula;
     public float tiempoDeDetonacion;
     public GameObject colliderParedElectrica;
+    public bool activado;
+    public int id;
 
     void Start()
     {
         esteSistema = GetComponent<ParticleSystem>();
-        
-        
-        
+        BossGameEVent.current.Conexion += Desactivar;
+
+
+
         //var emision = esteSistema.emission;
     }
 
     // Update is called once per frame
     void Update()
     {
-        tiempoDeDetonacion += Time.deltaTime;
-        emisionVariable += Time.deltaTime*multiplicadorParticula;
-        distanciaParticula += Time.deltaTime*0.5f;
-
-        esteSistema.startSpeed = distanciaParticula;
-
-        var emision = esteSistema.emission;
-        emision.rateOverTime = emisionVariable;
-
-        if(tiempoDeDetonacion >= 8 && tiempoDeDetonacion <= 9)
+        if(activado == true)
         {
-           colliderParedElectrica.SetActive(true);
+            tiempoDeDetonacion += Time.deltaTime;
+            emisionVariable += Time.deltaTime * multiplicadorParticula;
+            distanciaParticula += Time.deltaTime * 0.5f;
 
+            esteSistema.startSpeed = distanciaParticula;
+
+            var emision = esteSistema.emission;
+            emision.rateOverTime = emisionVariable;
+
+            if (tiempoDeDetonacion >= 8 && tiempoDeDetonacion <= 9)
+            {
+                colliderParedElectrica.SetActive(true);
+
+            }
+            if (tiempoDeDetonacion >= 10)
+            {
+                emisionVariable = 3;
+                distanciaParticula = 3;
+                colliderParedElectrica.SetActive(false);
+                tiempoDeDetonacion = 0;
+                esteSistema.Play();
+            }
         }
-        if(tiempoDeDetonacion >= 10)
+        else
         {
-            emisionVariable = 3;
-            distanciaParticula = 3;
-            colliderParedElectrica.SetActive(false);
-            tiempoDeDetonacion = 0;
-            esteSistema.Play();
+            return;
+        }
+       
+    }
+
+    public void Desactivar(int id)
+    {
+        if (id == this.id)
+        {
+            activado = false;
+            if (esteSistema.isPlaying)
+            {
+                esteSistema.Stop();
+            }
+            //Destroy(this.gameObject);
         }
     }
 
