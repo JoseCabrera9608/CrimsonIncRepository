@@ -7,6 +7,8 @@ public class BombaJaeger : MonoBehaviour
     private Rigidbody rb;
     private GameObject player;
     [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject fireArea;
+    private GorgonopsiaStats stats;
     [Header("================CONTROL VARS=============")]
     public float speed;
     public float damage;
@@ -21,6 +23,7 @@ public class BombaJaeger : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerStatus>().gameObject;
+        stats = FindObjectOfType<GorgonopsiaStats>();
         rb = GetComponent<Rigidbody>();
         StartCoroutine(AutoDestroy());
     }
@@ -40,6 +43,13 @@ public class BombaJaeger : MonoBehaviour
             if (distanceToPlayer <= distanceTreshHold)
             {
                 PlayerSingleton.Instance.playerCurrentHP -= damage;
+            }
+
+            if (stats.fireBonus)
+            {
+                GameObject fire = Instantiate(fireArea);
+                fire.transform.position = transform.position-new Vector3(0,transform.localScale.y/2,0);
+                fire.transform.localScale =new Vector3( transform.localScale.x*3,.3f,transform.localScale.z*3);
             }
             Destroy(gameObject);
         }

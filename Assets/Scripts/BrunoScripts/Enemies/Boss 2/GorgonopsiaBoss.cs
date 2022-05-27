@@ -154,10 +154,11 @@ public class GorgonopsiaBoss : MonoBehaviour
             RugidoExplosivo script = obj.GetComponent<RugidoExplosivo>();
             script.damage = stats.rugidoExplosivoDamage;
             script.dimension = stats.rugidoExplosivoRadius;
-            script.chargeTime = stats.rugidoExplosivoChargeTime;
+            if (stats.attackSpeedBonus) script.chargeTime = stats.rugidoExplosivoChargeTime - (stats.rugidoExplosivoChargeTime * stats.generalAttackSpeedBonus);
+            else script.chargeTime = stats.rugidoExplosivoChargeTime;
 
-           
-            if(currentHeatCharges!=2)StartCoroutine(TryToChargeHeat(stats.rugidoExplosivoChargeTime));
+
+            if (currentHeatCharges!=2)StartCoroutine(TryToChargeHeat(stats.rugidoExplosivoChargeTime));
             else StartCoroutine(ResetActing(stats.rugidoExplosivoChargeTime));
             //currentAction = Gstates.idle;
         }
@@ -183,7 +184,8 @@ public class GorgonopsiaBoss : MonoBehaviour
                 obj.transform.position = transform.position + new Vector3(0, 0.1f, 0);
                 Bomba360 script = obj.GetComponent<Bomba360>();
                 script.damage = stats.bombas360Damage;
-                script.timeToDamage = stats.bomba360TimeToDamage;
+                if (stats.attackSpeedBonus) script.timeToDamage = stats.bomba360TimeToDamage - (stats.bomba360TimeToDamage * stats.generalAttackSpeedBonus);
+                else script.timeToDamage = stats.bomba360TimeToDamage;
                 script.distanceTreshold = stats.bomba360DistanceTreshold;
             }
         }
@@ -202,7 +204,8 @@ public class GorgonopsiaBoss : MonoBehaviour
         isActing = true;
         AlientoCalor script = alientoCalor.GetComponent<AlientoCalor>();
         script.alientoCalorChargeTime = stats.alientoCalorChargeTime;
-        script.alientoCalorRotationDuration = stats.alientoCalorRotationDuration;
+        if (stats.attackSpeedBonus) script.alientoCalorRotationDuration = stats.alientoCalorRotationDuration - (stats.alientoCalorRotationDuration * stats.generalAttackSpeedBonus);
+        else script.alientoCalorRotationDuration = stats.alientoCalorRotationDuration;
         script.alientoCalorRange = stats.alientoCalorRange;
         script.alientoCalorAngle = stats.alientoCalorAngle;
         script.alientoCalorDamage = stats.alientoCalorDamage;
@@ -235,7 +238,8 @@ public class GorgonopsiaBoss : MonoBehaviour
             obj.GetComponent<Rigidbody>().AddForce(transform.forward * 4, ForceMode.VelocityChange);
             BombaJaeger script = obj.GetComponent<BombaJaeger>();
             script.damage = stats.bombasJaegerDamage;
-            script.speed = stats.bombaJaegerSpeed;
+            if (stats.attackSpeedBonus) script.speed = stats.bombaJaegerSpeed + (stats.bombaJaegerSpeed * stats.generalAttackSpeedBonus);
+            else script.speed = stats.bombaJaegerSpeed;
             script.distanceTreshHold = stats.bombaJaegerDistanceTreshHold;
             script.explotionRadius = stats.bombaJaegerExplotionRadius;
             script.timeToAct = stats.bombaJaegerTimeToAct;
@@ -253,7 +257,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         //Mover al destino y rotar hacia el jugador
         transform.position = new Vector3(destination.x,originalPos.y,destination.z);
         var lookPos = player.transform.position;
-        lookPos.y = transform.position.y;
+        //lookPos.y = transform.position.y;
         transform.LookAt(lookPos);
         //transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
@@ -300,8 +304,14 @@ public class GorgonopsiaBoss : MonoBehaviour
                 embestidaFreneticaParent.SetActive(true);
                 float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position) * 2;
                 //MOVE 
-                embestidaTween= transform.DOMove(transform.forward *distanceToPlayer,
-                    stats.embestidaFreneticaDuration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
+                float duration;
+                if(stats.attackSpeedBonus) duration= stats.embestidaFreneticaDuration-(stats.embestidaFreneticaDuration*stats.generalAttackSpeedBonus);
+                else duration= stats.embestidaFreneticaDuration;
+
+                //Vector3 desiredPosition = new Vector3(player.transform.position.x*2, transform.position.y,
+                //    player.transform.position.z*2);
+                embestidaTween = transform.DOMove(transform.position+(transform.forward*distanceToPlayer),
+                    duration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
                 embestidaTween.Play();
             }           
         }
