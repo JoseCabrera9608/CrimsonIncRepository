@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     public float damage;
     public bool attackStatus;
     public float staminaAttack;
-
+    public AudioSource audioSource;
     public bool combo;
 
     public Movement playermov;
@@ -28,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         playermov = this.GetComponent<Movement>();
         playerStatus = this.GetComponent<PlayerStatus>();
+        audioSource = this.GetComponent<AudioSource>();
 
         attacktimer = 0.5f;
         weaponCollider = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<BoxCollider>();
@@ -57,10 +58,11 @@ public class PlayerAttack : MonoBehaviour
             //attackStatus = true;
             //playermov.Recovery();
             playeranim.SetBool("Attack", true);
+            //audioSource.Play();
             //playermov.stamina -= 0.25f * playermov.staminaMax;
 
 
-            
+
 
         }
 
@@ -90,6 +92,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && combo == true)
         {
             playeranim.SetBool("Combo", true);
+            
             playermov.Recovery();
             //playermov.Recovery();
 
@@ -121,6 +124,7 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         weaponCollider.enabled = true;
         vfx.Play();
+        audioSource.Play();
         playermov.Recovery();
         PlayerSingleton.Instance.playerCurrentStamina -= (0.01f * staminaAttack) * playermov.staminaMax;
     }
