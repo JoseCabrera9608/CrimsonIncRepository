@@ -21,7 +21,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     SphereCollider colliderCuerpo;
 
     public float propulsionForce;
-
+    public float normalspeed;
     //Comienzo
     public bool onChase;
     //Colliders
@@ -54,6 +54,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
         meshDelEnemigo = meshObject.GetComponent<SkinnedMeshRenderer>();
         _habilidadesEquipadas = this.gameObject.GetComponent<HabilidadesEquipadas>();
         colliderCuerpo = this.gameObject.GetComponent<SphereCollider>();
+
+        normalspeed = agente.speed;
     }
 
     // Update is called once per frame
@@ -156,7 +158,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         anim.SetTrigger("AtaqueMelee");
         agente.speed = 1.7f;
         yield return new WaitForSeconds(1);
-        agente.speed = 4;
+        agente.speed = normalspeed;
     }
 
     IEnumerator Magnetizar()
@@ -164,7 +166,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         agente.speed = 2.3f;
         anim.SetTrigger("Magnetizar");
         yield return new WaitForSeconds(1);
-        agente.speed = 4;
+        agente.speed = normalspeed;
        
     }
 
@@ -173,7 +175,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         agente.speed = 1;
         anim.SetTrigger("Disparar");
         yield return new WaitForSeconds(1.5f);
-        agente.speed = 4;
+        agente.speed = normalspeed;
     }
 
     IEnumerator Kamikaze()
@@ -188,7 +190,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         agente.speed = 1;
         anim.SetTrigger("Bomba");
         yield return new WaitForSeconds(1.5f);
-        agente.speed = 4;
+        agente.speed = normalspeed;
     }
 
 
