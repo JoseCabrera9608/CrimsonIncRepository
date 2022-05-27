@@ -56,7 +56,8 @@ public class PlayerStatus : MonoBehaviour
         }
         if (lvl == 2)
         {
-            progress.lastposition = new Vector3(57, -3, 125);
+            progress.lastposition = new Vector3(57, 6, 255);
+            //progress.lastposition = new Vector3(57, -3, 125);
             //progress.lastposition = new Vector3(57, 0, -200);
         }
 

@@ -16,6 +16,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     private GameObject player;
 
     #endregion
+    public GameObject EnemyBar;
     #region Objetos a crear
     [Header("===============OBJETOS A CREAR=================")]
     [SerializeField] private GameObject alientoCalor;
@@ -514,6 +515,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         if (other.CompareTag("Player") && stats.isActive == false)
         {
             stats.isActive = true;
+            if (EnemyBar != null) EnemyBar.SetActive(true);
             col.enabled = false; 
         }
     }
