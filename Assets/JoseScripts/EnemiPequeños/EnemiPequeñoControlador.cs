@@ -16,6 +16,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public bool magnetizar;
     public bool kamikaze;
     public bool lanzarBomba;
+    public bool clavarEstaca;
     //Particulas
     public GameObject fuego;
     SphereCollider colliderCuerpo;
@@ -41,6 +42,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject bombafirePoint;
     public GameObject healthBar;
     public GameObject explosion;
+    public GameObject estacaPrefab;
+    public GameObject estacaPoint;
 
 
     HabilidadesEquipadas _habilidadesEquipadas;
@@ -108,6 +111,13 @@ public class EnemiPequeñoControlador : MonoBehaviour
             
         }
 
+        if(clavarEstaca == true)
+        {
+            StartCoroutine(esperarEstaca());
+            clavarEstaca = false;
+               
+        }
+
 
 
     }
@@ -119,6 +129,14 @@ public class EnemiPequeñoControlador : MonoBehaviour
             onChase = true;
             anim.SetTrigger("Comenzar");
         }
+    }
+
+    IEnumerator esperarEstaca()
+    {
+        agente.speed = 0;
+        yield return new WaitForSeconds(3);
+        agente.speed = normalspeed;
+        
     }
 
     IEnumerator Muerte()
@@ -244,13 +262,17 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")&& kamikaze ==true)
         {
             GameObject explosionParticula;
             explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
             PlayerSingleton.Instance.playerCurrentHP -= 50;
             Destroy(this.gameObject);
         }
+    }
+    public void PonerEstaca()
+    {
+        GameObject estaca = Instantiate(estacaPrefab, estacaPoint.transform.position, estacaPoint.transform.rotation);
     }
 
 }

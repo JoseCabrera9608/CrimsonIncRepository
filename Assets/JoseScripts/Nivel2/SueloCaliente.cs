@@ -42,7 +42,8 @@ public class SueloCaliente : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            movimientoJugador.movSpeed -= 2;
+            movimientoJugador.runSpeed = 5;
+            movimientoJugador.walkSpeed = 5;
         }
     }
 
@@ -51,7 +52,7 @@ public class SueloCaliente : MonoBehaviour
     {
         humo.SetActive(true);
         colliderSuelo.enabled = true;
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5f);
         humo.SetActive(false);
         colliderSuelo.enabled = false;
         time = 0;
@@ -70,7 +71,8 @@ public class SueloCaliente : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        movimientoJugador.movSpeed = 9;
+        movimientoJugador.runSpeed = 9;
+        movimientoJugador.walkSpeed = 9;
     }
 
     

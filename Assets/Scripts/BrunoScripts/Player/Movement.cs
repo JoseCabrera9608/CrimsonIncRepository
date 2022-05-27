@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
     public PlayerStatus playerStatus;
 
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] public float rotationSpeed;
     [SerializeField] public float movSpeed;
     public float runSpeed;
     public float walkSpeed;
