@@ -100,6 +100,7 @@ public class MeganeuraBoss : MonoBehaviour
 
         if (stats.isAlive == false)
         {
+            FindObjectOfType<AudioManager>().Stop("MusicaBoss");
             StopAllCoroutines();
             bobing.Kill();
         }
@@ -277,6 +278,7 @@ public class MeganeuraBoss : MonoBehaviour
         }
         if (other.CompareTag("Player")&&col.enabled==true)
         {
+            FindObjectOfType<AudioManager>().Play("MusicaBoss");
             StartCoroutine(Activate());
         }
 
