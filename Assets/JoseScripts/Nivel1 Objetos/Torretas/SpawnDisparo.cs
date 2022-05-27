@@ -79,7 +79,7 @@ public class SpawnDisparo : MonoBehaviour
     {
         if (id == this.id)
         {
-            activado = true;
+            activado = false;
         }
     }
     void SpawnDeDisparo()
@@ -97,7 +97,7 @@ public class SpawnDisparo : MonoBehaviour
     {
         if (id == this.id)
         {
-            activado = false;
+            activado = true;
         }
     }
 
