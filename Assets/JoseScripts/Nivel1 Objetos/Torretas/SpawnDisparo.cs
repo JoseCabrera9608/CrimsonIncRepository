@@ -16,14 +16,16 @@ public class SpawnDisparo : MonoBehaviour
     Transform target;
     GameObject cabezaPlayer;
     public bool apuntar;
+    public GameObject laser;
     void Start()
     {
         cabezaPlayer = GameObject.Find("PlayerHead");
         target = cabezaPlayer.transform;
         disparo = tiposDisparo[tipoDeBala];
-        activado = true;
         
+        BossGameEVent.current.combatTriggerExit += Activar;
         BossGameEVent.current.Conexion += Desactivar;
+        
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class SpawnDisparo : MonoBehaviour
 
         if (activado == true)
         {
+            laser.SetActive(true);
             timer += Time.deltaTime;
 
             if (timer >= tiempoEntreDisparo)
@@ -50,6 +53,10 @@ public class SpawnDisparo : MonoBehaviour
                 fire = false;
                 timer = 0;
             }
+        }
+        else
+        {
+            laser.SetActive(false);
         }
         /*timer += Time.deltaTime;
 
@@ -72,7 +79,7 @@ public class SpawnDisparo : MonoBehaviour
     {
         if (id == this.id)
         {
-            activado = false;
+            activado = true;
         }
     }
     void SpawnDeDisparo()
@@ -85,6 +92,15 @@ public class SpawnDisparo : MonoBehaviour
             tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
         }
     }
+
+    public void Activar(int id)
+    {
+        if (id == this.id)
+        {
+            activado = false;
+        }
+    }
+
 
     IEnumerator Disparar()
     {
