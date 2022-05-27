@@ -15,6 +15,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public bool golpeMelee;
     public bool magnetizar;
     public bool kamikaze;
+    public bool lanzarBomba;
     //Particulas
     public GameObject fuego;
     SphereCollider colliderCuerpo;
@@ -98,7 +99,15 @@ public class EnemiPequeñoControlador : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-      
+
+        if (lanzarBomba == true)
+        {
+            StartCoroutine(LanzarBomba());
+            
+        }
+
+
+
     }
 
     private void StartChase(int id)
@@ -174,6 +183,14 @@ public class EnemiPequeñoControlador : MonoBehaviour
         yield return null;
     }
 
+    IEnumerator LanzarBomba()
+    {
+        agente.speed = 1;
+        anim.SetTrigger("Bomba");
+        yield return new WaitForSeconds(1.5f);
+        agente.speed = 4;
+    }
+
 
     public void SpawnDeDisparo()
     {
@@ -189,8 +206,9 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public void SpawnDeBomba()
     {
 
-        GameObject bombasa = (GameObject)Instantiate(bomba, bombafirePoint.transform.TransformPoint(0, 0, 2f), bombafirePoint.transform.rotation);
+        GameObject bombasa = (GameObject)Instantiate(bomba, bombafirePoint.transform.TransformPoint(0, 0, 0), bombafirePoint.transform.rotation);
         bombasa.GetComponent<Rigidbody>().AddForce(bombafirePoint.transform.forward * propulsionForce, ForceMode.Impulse);
+        lanzarBomba = false;
     }
 
 

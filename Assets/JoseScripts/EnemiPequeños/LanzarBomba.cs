@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "PoderesSonda/Bomba", order = 1)]
-public class LanzarBomba : ScriptableObject
+public class LanzarBomba : Habilidad_SO
 {
-    protected static object _calamarController;
-    public new string name;
-    public float cooldownTime;
-    public float activeTime;
-    public float distanceToActivate;
-    public float minDistance;
-
-
-    public virtual void Activate(GameObject parent)
+    public override void Activate(GameObject parent)
     {
+        EnemiPequeñoControlador _enemigoPequeño = parent.GetComponent<EnemiPequeñoControlador>();
 
+        _enemigoPequeño.lanzarBomba = true;
     }
 }
