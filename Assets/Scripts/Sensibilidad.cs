@@ -7,6 +7,7 @@ using Cinemachine;
 public class Sensibilidad : MonoBehaviour
 {
     public Slider slider;
+    public Slider volSlider; 
     public float sensibilidad;
     public CinemachineFreeLook cinem;
 
@@ -34,15 +35,22 @@ public class Sensibilidad : MonoBehaviour
 
         if (slider.value <= 0)
         {
-            cinem.m_YAxis.m_MaxSpeed = 0.7f;
-            cinem.m_XAxis.m_MaxSpeed = 70;
+            if (cinem != null)
+            {
+                cinem.m_YAxis.m_MaxSpeed = 0.7f;
+                cinem.m_XAxis.m_MaxSpeed = 70;
+            }
         }
         else
         {
-            cinem.m_YAxis.m_MaxSpeed = slider.value * 7;
-            cinem.m_XAxis.m_MaxSpeed = slider.value * 700;
-        }
+            if (cinem != null)
+            {
+                cinem.m_YAxis.m_MaxSpeed = slider.value * 7;
+                cinem.m_XAxis.m_MaxSpeed = slider.value * 700;
+            }
 
+        }
+        AudioListener.volume = volSlider.value;
     }
 
 

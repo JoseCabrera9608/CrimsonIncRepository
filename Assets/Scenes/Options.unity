@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 1170673029}
   - component: {fileID: 1170673030}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: VolSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1019,6 +1019,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  progress: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1318260043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,6 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2096386413}
+  volSlider: {fileID: 1170673030}
   sensibilidad: 0
   cinem: {fileID: 0}
   progress: {fileID: 0}
@@ -1481,7 +1484,7 @@ GameObject:
   - component: {fileID: 2096386412}
   - component: {fileID: 2096386413}
   m_Layer: 5
-  m_Name: Slider (1)
+  m_Name: SensSlider
   m_TagString: SensController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

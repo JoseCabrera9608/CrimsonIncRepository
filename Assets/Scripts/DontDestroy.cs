@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
+    public string sceneToDestroy;
+    public string actualScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +17,13 @@ public class DontDestroy : MonoBehaviour
     void Update()
     {
         
+        actualScene =  SceneManager.GetActiveScene().name;
+
+        if (actualScene == sceneToDestroy)
+        {
+            Destroy(gameObject);
+
+        }
     }
 
     void Awake()
