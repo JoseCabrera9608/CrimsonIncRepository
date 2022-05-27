@@ -92,6 +92,10 @@ public class Checkpoint : MonoBehaviour
 
             //ChangeScene();
         }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerSingleton.Instance.playerCurrentHP = -11;
+        }
     }
 
 
