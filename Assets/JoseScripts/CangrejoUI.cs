@@ -8,21 +8,30 @@ public class CangrejoUI : MonoBehaviour
 {
     public Image healthBar;
     BossCangrejo enemy;
-    public int enemyhealth;
+    public float enemyhealth;
+    public float maxhealth;
+    
     public GameObject Enemy;
     public GameObject EnemyHealthBar;
 
     void Start()
     {
+        //playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
         enemy = Enemy.gameObject.GetComponent<BossCangrejo>();
-        enemy.vidaActual = 450;
+        maxhealth = enemy.vidaActual;
+
+        //enemy = Enemy.gameObject.GetComponent<BossCangrejo>();
+        //enemy.vidaActual = 450;
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyhealth = enemy.vidaActual;
-        healthBar.fillAmount = enemyhealth / 450;
+        healthBar.fillAmount = enemyhealth / maxhealth;
+
+        //enemyhealth = enemy.vidaActual;
+        //healthBar.fillAmount = enemyhealth / 450;
 
 
         /* if (enemy.hitted == true)
