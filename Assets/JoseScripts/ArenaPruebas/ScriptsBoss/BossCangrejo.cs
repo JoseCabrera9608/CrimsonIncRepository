@@ -91,17 +91,17 @@ public class BossCangrejo : MonoBehaviour
             //segundaFase = true;
         }
 
-        if (vidaActual <= 120)
+        if (vidaActual <= 430)
         {
             efectoLuces1.SetActive(true);
         }
 
-        if(vidaActual <= 100)
+        if(vidaActual <= 390)
         {
             efectoLuces1.SetActive(false);
             efectoLuces2.SetActive(true);
         }
-        if(vidaActual <= 80)
+        if(vidaActual <= 200)
         {
             efectoFuego.SetActive(true);
         }
