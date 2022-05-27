@@ -15,14 +15,14 @@ public class CangrejoUI : MonoBehaviour
     void Start()
     {
         enemy = Enemy.gameObject.GetComponent<BossCangrejo>();
-        enemy.vidaActual = 150;
+        enemy.vidaActual = 450;
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyhealth = enemy.vidaActual;
-        healthBar.fillAmount = enemyhealth / 150f;
+        healthBar.fillAmount = enemyhealth / 450;
 
 
         /* if (enemy.hitted == true)
