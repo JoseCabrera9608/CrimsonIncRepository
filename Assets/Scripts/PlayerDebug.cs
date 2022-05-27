@@ -26,6 +26,13 @@ public class PlayerDebug : MonoBehaviour
     public Movement player;
     public PlayerAttack playerAttack;
 
+    public Sensibilidad sensi;
+    public Slider sensislider;
+
+    public float pruebaa;
+
+    public Text sensitext;
+
     public Animator playeranim;
 
     public CinemachineCameraOffset cineoff;
@@ -36,6 +43,7 @@ public class PlayerDebug : MonoBehaviour
     {
         player = Player.GetComponent<Movement>();
         playerAttack = Player.GetComponent<PlayerAttack>();
+        sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
 
         speed = player.movSpeed;
         //jump = player.jumpForce;
@@ -54,10 +62,28 @@ public class PlayerDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        if (sensislider.value <= 0)
+        {
+            sensislider.value = 0.1f;
+        }
+
+        sensitext.text = sensislider.value.ToString("F2"); 
+    }
+
+    public void Sensi(string s)
+    {
+
+        input = s;
+        //playerAttack.damage = float.Parse(input);
+        sensislider.value = float.Parse(input);
+
     }
 
     public void PlayerAttack(string s)
