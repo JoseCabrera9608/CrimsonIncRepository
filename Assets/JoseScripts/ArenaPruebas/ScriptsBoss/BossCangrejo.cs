@@ -332,6 +332,7 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator MuerteCangrejo()
     {
+        FindObjectOfType<AudioManager>().Stop("BossMusic");
         animCangrejo.SetTrigger("Muerte");
         EsferaMagnetica.SetActive(false);
         yield return new WaitForSeconds(0.5f);
@@ -469,7 +470,4 @@ public class BossCangrejo : MonoBehaviour
         EsferaMagnetica.SetActive(true);
         
     }
-
-    
-
 }
