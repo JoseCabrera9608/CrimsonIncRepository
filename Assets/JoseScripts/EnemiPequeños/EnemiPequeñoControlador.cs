@@ -19,6 +19,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject fuego;
     SphereCollider colliderCuerpo;
 
+    public float propulsionForce;
 
     //Comienzo
     public bool onChase;
@@ -39,6 +40,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject bombafirePoint;
     public GameObject healthBar;
     public GameObject explosion;
+
 
     HabilidadesEquipadas _habilidadesEquipadas;
 
@@ -186,13 +188,9 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     public void SpawnDeBomba()
     {
-        GameObject tiposDisparo;
-        if (firePoint != null)
-        {
 
-            tiposDisparo = Instantiate(bomba, bombafirePoint.transform.position, Quaternion.identity);
-            tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
-        }
+        GameObject bombasa = (GameObject)Instantiate(bomba, bombafirePoint.transform.TransformPoint(0, 0, 2f), bombafirePoint.transform.rotation);
+        bombasa.GetComponent<Rigidbody>().AddForce(bombafirePoint.transform.forward * propulsionForce, ForceMode.Impulse);
     }
 
 
