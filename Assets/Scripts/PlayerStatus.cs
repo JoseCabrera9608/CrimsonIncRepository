@@ -34,6 +34,7 @@ public class PlayerStatus : MonoBehaviour
     public bool interacting;
     public bool activeinteraction;
     public bool playerdeath;
+    public bool dying;
 
     public int lvl;
 
@@ -62,21 +63,9 @@ public class PlayerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerSingleton.Instance.playerCurrentHP <= 0 && lvl ==0)
+        if (PlayerSingleton.Instance.playerCurrentHP <= 0 && playerdeath == false)
         {
-            Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Destroy(gameObject);
-        }
-
-        if (PlayerSingleton.Instance.playerCurrentHP <= 0 && lvl == 1)
-        {
-            playerdeath = true;
-            Death();
-        }
-        else
-        {
-            playerdeath = false;
+            PreDeath();
         }
 
         if (hiteado == true)
@@ -116,13 +105,39 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public void ReloadDeath()
+    {
+        //Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Destroy(gameObject);
+    }
+
+    public void PreDeath()
+    {
+        anim.SetTrigger("Death");
+        GetComponent<Movement>().enabled = false;
+        playerdeath = true;
+    }
+
     public void Death()
     {
-        anim.SetBool("Death", true);
-        this.transform.position = progress.lastposition;
-        onPlayerDeath?.Invoke();
-        PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
-        PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
+        
+
+        if (lvl == 0)
+        {
+            //Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Destroy(gameObject);
+        }
+
+        if (lvl == 1)
+        {
+            this.transform.position = progress.lastposition;
+            onPlayerDeath?.Invoke();
+            PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
+            PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
+        }
+
     }
 
     public void AfterDeath()
@@ -139,14 +154,13 @@ public class PlayerStatus : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        /*if (other.gameObject.CompareTag("DmgArea") && playermov.fallVelocity <= 0)
+        if (collision.gameObject.CompareTag("Acid"))
         {
-            playerlife -= 40;
-        }*/
-
-
+            anim.SetTrigger("Acid");
+            dying = true;
+        }
     }
     private void OnParticleTrigger()
     {
