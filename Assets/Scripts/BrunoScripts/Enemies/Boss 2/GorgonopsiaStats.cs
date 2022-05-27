@@ -20,6 +20,7 @@ public class GorgonopsiaStats : MonoBehaviour
     public Transform defaultPosition;
     [HideInInspector]public Vector3 defaultPositionVector;
     [HideInInspector]public float maxHP;
+    public bool isActive;
     [Header("")]
     [Header("================General Damages============================")]
     public float cargaCalorDamage;

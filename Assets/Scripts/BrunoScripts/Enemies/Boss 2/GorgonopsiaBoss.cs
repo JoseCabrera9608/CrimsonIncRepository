@@ -27,6 +27,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     [SerializeField] private GameObject[] legs;
     [SerializeField] private GameObject[] cargaCalor;
     [SerializeField] private GameObject legParent;
+    [SerializeField] private BoxCollider col;
 
     #endregion
 
@@ -58,7 +59,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stats.isAlive == true)
+        if (stats.isAlive == true&&stats.isActive)
         {
             StateMachine();
             RotateToPlayer();
@@ -498,13 +499,19 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (other.CompareTag("PlayerWeapon"))
         {
-            if (stats.health <= PlayerSingleton.Instance.playerDamage)
+            if (stats.health <= PlayerSingleton.Instance.playerDamage&&stats.isAlive)
             {
                 stats.health -= PlayerSingleton.Instance.playerDamage;
                 HandleDeath();
             }
             else stats.health -= PlayerSingleton.Instance.playerDamage;
             if (stats.health <= stats.maxHP / 2) stats.on50Health = true;
+        }
+
+        if (other.CompareTag("Player") && stats.isActive == false)
+        {
+            stats.isActive = true;
+            col.enabled = false; 
         }
     }
 }

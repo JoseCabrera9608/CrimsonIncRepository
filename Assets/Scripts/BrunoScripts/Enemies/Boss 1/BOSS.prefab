@@ -633,34 +633,44 @@ MonoBehaviour:
   - nextAttack: 1
     minProbability: 0
     maxProbability: 14
+    animationTriggerName: rayoIon
   - nextAttack: 2
     minProbability: 15
     maxProbability: 29
+    animationTriggerName: bombardeoMisiles
   - nextAttack: 3
     minProbability: 30
     maxProbability: 44
+    animationTriggerName: misilesEmp
   - nextAttack: 4
     minProbability: 45
     maxProbability: 59
+    animationTriggerName: flash
   - nextAttack: 5
     minProbability: 60
     maxProbability: 74
+    animationTriggerName: lluviaLasers
   - nextAttack: 6
     minProbability: 75
     maxProbability: 89
+    animationTriggerName: vistaCazador
   - nextAttack: 7
     minProbability: 90
     maxProbability: 100
+    animationTriggerName: discoEmp
   groundAttacks:
   - nextAttack: 2
     minProbability: 0
     maxProbability: 33
+    animationTriggerName: bombardeoMisiles
   - nextAttack: 3
     minProbability: 34
     maxProbability: 67
+    animationTriggerName: misilesEmp
   - nextAttack: 4
     minProbability: 68
     maxProbability: 100
+    animationTriggerName: flash
   dummy: 0
   attackOnCooldown: 0
 --- !u!114 &813730325673094469
@@ -686,7 +696,7 @@ MonoBehaviour:
   maxHealth: 0
   onGroundTime: 13
   rotationSpeed: 30
-  startFlightDuration: 3
+  startFlightDuration: 7
   descendDuration: 1
   isAttacking: 0
   attackDelay: 3

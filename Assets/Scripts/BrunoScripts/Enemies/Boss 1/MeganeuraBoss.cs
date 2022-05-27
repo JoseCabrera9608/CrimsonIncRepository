@@ -98,6 +98,11 @@ public class MeganeuraBoss : MonoBehaviour
             Deactivate();
         }
 
+        if (stats.isAlive == false)
+        {
+            StopAllCoroutines();
+            bobing.Kill();
+        }
         //ARENA
         if (dummy&&attackOnCooldown==false) Arena();
     }
@@ -159,20 +164,20 @@ public class MeganeuraBoss : MonoBehaviour
         }
         
     }
-    private void GravityStake()
+    public void GravityStake()
     {
         Vector3 direction;
-        
-        for(int i = 0; i < stats.stakesToThrow; i++)
-        {
-            direction.y = Random.Range(0,361);
-            direction.x = 95;
-            direction.z = 0;
-
+        direction.y = Random.Range(0, 361);
+        direction.x = 90;
+        direction.z = 0;
+        for (int i = 0; i < stats.stakesToThrow; i++)
+        {           
             GameObject _stake = Instantiate(stake);
+            direction.y += 90;
             _stake.transform.position = transform.position;
             _stake.transform.localEulerAngles = direction;
-            _stake.GetComponent<Rigidbody>().velocity = _stake.transform.up*50;
+            _stake.transform.DORotate(new Vector3(180, _stake.transform.localEulerAngles.y, _stake.transform.localEulerAngles.z), 1.5f).SetEase(Ease.InQuint);
+            _stake.GetComponent<Rigidbody>().velocity = _stake.transform.up*25;
             _stake.GetComponent<Stake>().parent = transform;
             
             //_stake.transform.parent = transform;
@@ -210,6 +215,7 @@ public class MeganeuraBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(stats.onGroundTime);
         GravityStake();
+        anims.SetTrigger("estacas");
         FlightSwitch(true);
         stats.canRotate = true;
     }
@@ -309,6 +315,7 @@ public class MeganeuraBoss : MonoBehaviour
                 if (random >= airAttacks[i].minProbability && random <= airAttacks[i].maxProbability)
                 {
                     currentAction = airAttacks[i].nextAttack;
+                    anims.SetTrigger(airAttacks[i].animationTriggerName);
                     break;
                 }
             }
@@ -322,6 +329,7 @@ public class MeganeuraBoss : MonoBehaviour
                 if (random >= groundAttacks[i].minProbability && random <= groundAttacks[i].maxProbability)
                 {
                     currentAction = groundAttacks[i].nextAttack;
+                    anims.SetTrigger(airAttacks[i].animationTriggerName);
                     break;
                 }
             }
@@ -521,6 +529,11 @@ public class MeganeuraBoss : MonoBehaviour
     {
         //logic to handle death
         FlightSwitch(false);
+        foreach(GameObject stake in stakeList)
+        {
+            Destroy(stake);
+        }
+        StopBobing();
         StopAllCoroutines();
         BuffManager.Instance.ShowPanel();
     }
@@ -592,6 +605,7 @@ public class ProbabilitiesOnAir
     [SerializeField] public Maction nextAttack;
     public float minProbability;
     public float maxProbability;
+    public string animationTriggerName;
 }
 [System.Serializable]
 public class ProbabilitiesOnGround
@@ -599,5 +613,5 @@ public class ProbabilitiesOnGround
     [SerializeField] public Maction nextAttack;
     public float minProbability;
     public float maxProbability;
-    
+    public string animationTriggerName;
 }

@@ -1734,7 +1734,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56384014}
-  m_LocalRotation: {x: 0.103597164, y: -0.000000017640504, z: 0.0000000018373927, w: 0.99461937}
+  m_LocalRotation: {x: 0.103597164, y: 0.000000017640494, z: -0.0000000018373918, w: 0.99461937}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4470,6 +4470,7 @@ GameObject:
   - component: {fileID: 206556654}
   - component: {fileID: 206556653}
   - component: {fileID: 206556655}
+  - component: {fileID: 206556656}
   m_Layer: 0
   m_Name: Gorgonopsia
   m_TagString: Untagged
@@ -4523,8 +4524,9 @@ MonoBehaviour:
   defaultPosition: {fileID: 633513077}
   defaultPositionVector: {x: 0, y: 0, z: 0}
   maxHP: 0
+  isActive: 0
   cargaCalorDamage: 1
-  embestidaFreneticaDamage: 1
+  embestidaFreneticaDamage: 30
   rugidoExplosivoDamage: 50
   bombas360Damage: 50
   alientoCalorDamage: 45
@@ -4547,7 +4549,7 @@ MonoBehaviour:
   bomba360TimeToDamage: 1.3
   bomba360Amount: 4
   embestidaFreneticaAnimationDuration: 1
-  embestidaFreneticaAmount: 100
+  embestidaFreneticaAmount: 3
   embestidaFreneticaDelay: 1.5
   embestidaFreneticaDuration: 1
   embestidaFreneticaBlinkDistance: 20
@@ -4583,6 +4585,7 @@ MonoBehaviour:
   - {fileID: 259540841}
   - {fileID: 14721136}
   legParent: {fileID: 1247662784}
+  col: {fileID: 206556656}
   isActing: 0
   evaluatingAttack: 0
   bombaJaegerPosIzquierda: {fileID: 1791497661}
@@ -4620,6 +4623,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.63, y: 3.56, z: 5.7}
   m_Center: {x: 0.15, y: 1.74, z: -0.92}
+--- !u!65 &206556656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206556651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 10, z: 1}
+  m_Center: {x: 0, y: 0, z: 9.5}
 --- !u!1 &207593117
 GameObject:
   m_ObjectHideFlags: 0
@@ -7611,7 +7627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0502cef1bcc8524eb13d74fb2eda966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   parent: {fileID: 0}
   damage: 0
   showDebugAreas: 1
