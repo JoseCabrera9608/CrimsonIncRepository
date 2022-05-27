@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
 
     public bool recovery;
     public bool onelevator;
+    public bool onramp;
 
     public bool incheck;
     public ProgressManager progress;
@@ -41,7 +42,7 @@ public class Movement : MonoBehaviour
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
 
     [SerializeField] public bool isGrounded;
-    private float airTime;
+    [SerializeField] private float airTime;
     [SerializeField] private float leapingVelocity;
     [SerializeField] private float fallSpeed;
     [SerializeField] private float rayCastOffset;
@@ -281,11 +282,19 @@ public class Movement : MonoBehaviour
         Vector3 rayCastOrigin = transform.position;
         //Vector3 targetPosition;
         //targetPosition = transform.position;
-        if (!isGrounded)
+        if (!isGrounded && onelevator == false)
         {
             airTime += Time.deltaTime;
             //rb.AddForce(transform.forward * leapingVelocity);
             rb.AddForce(-Vector3.up * fallSpeed * airTime);
+        }
+        if( airTime > 0.15f && onelevator == false && onramp == false)
+        {
+            playeranim.SetBool("Falling", true);
+        }
+        else
+        {
+            playeranim.SetBool("Falling", false);
         }
 
         if (Physics.Raycast(rayCastOrigin, -Vector3.up, out hit, rayCastOffset, groundLayer))
@@ -297,6 +306,7 @@ public class Movement : MonoBehaviour
 
             airTime = 0;
             isGrounded = true;
+            playeranim.SetBool("Falling", false);
 
         }
         else
@@ -317,7 +327,10 @@ public class Movement : MonoBehaviour
         {
             onelevator = true;
         }
-
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            onramp = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -326,6 +339,10 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Bounce"))
         {
             onelevator = false;
+        }
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            onramp = false;
         }
 
     }

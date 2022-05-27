@@ -115,8 +115,9 @@ public class PlayerStatus : MonoBehaviour
     public void PreDeath()
     {
         anim.SetTrigger("Death");
-        GetComponent<Movement>().enabled = false;
+        anim.SetBool("Falling", false);
         playerdeath = true;
+        GetComponent<Movement>().enabled = false;
     }
 
     public void Death()
