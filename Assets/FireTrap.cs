@@ -12,7 +12,8 @@ public class FireTrap : MonoBehaviour
     public GameObject fireSpawned;
     public float firelifetime;
     public float intervalo;
-    
+    public CapsuleCollider col;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,25 @@ public class FireTrap : MonoBehaviour
     }
     public void FireSpawn()
     {
-       
+
         if (firepoint != null && timer >= cd)
         {
 
-            GameObject bombasa = (GameObject)Instantiate(fire, firepoint.transform.TransformPoint(0, 0, 0), fire.transform.rotation);
+
+
+            fire.SetActive(true);
+
             timer = 0;
+        }
+
+        if (firelifetime < timer)
+        {
+            fire.SetActive(false);
+        }
+
+        if (timer > 1)
+        {
+            //col.enabled = true;
         }
 
     }
