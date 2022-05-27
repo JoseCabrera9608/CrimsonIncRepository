@@ -1474,7 +1474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169026447}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 267.21317, y: -37.77, z: 34.587555}
+  m_LocalPosition: {x: 264.02002, y: -37.77, z: 25.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 803677808}
@@ -1537,8 +1537,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170521927}
-  m_LocalRotation: {x: 0.041111086, y: 0.9336916, z: 0.11390962, w: -0.3369784}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
+  m_LocalRotation: {x: 0.04111109, y: 0.9336916, z: 0.11390961, w: -0.3369784}
+  m_LocalPosition: {x: 3.1931458, y: 0, z: 8.847555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1160134548}
@@ -5745,7 +5745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803677807}
   m_LocalRotation: {x: 0.03497482, y: 0.9356091, z: 0.0969074, w: -0.33767042}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
+  m_LocalPosition: {x: 3.1931458, y: 0, z: 8.847555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1537888778}
@@ -8784,6 +8784,7 @@ MonoBehaviour:
   interacting: 0
   activeinteraction: 0
   playerdeath: 0
+  dying: 0
   lvl: 0
 --- !u!114 &1223034377
 MonoBehaviour:
@@ -8836,6 +8837,7 @@ MonoBehaviour:
   staminaRunValue: 0
   recovery: 0
   onelevator: 0
+  onramp: 0
   incheck: 0
   progress: {fileID: 0}
   playerAttack: {fileID: 0}
@@ -8845,6 +8847,7 @@ MonoBehaviour:
   runSpeed: 15
   walkSpeed: 8
   isGrounded: 1
+  airTime: 0
   leapingVelocity: 50
   fallSpeed: 400
   rayCastOffset: 0.1
@@ -10822,8 +10825,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604841704}
-  m_LocalRotation: {x: 0.04721761, y: 0.9314715, z: 0.1308294, w: -0.33617714}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
+  m_LocalRotation: {x: -0.13908927, y: -7.832919e-10, z: -1.10015136e-10, w: 0.99027985}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 680040233}
@@ -12110,8 +12113,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793413675}
-  m_LocalRotation: {x: 0.04721762, y: 0.9314715, z: 0.1308294, w: -0.3361771}
-  m_LocalPosition: {x: 11.113168, y: 1.4, z: 43.487553}
+  m_LocalRotation: {x: -0.13908929, y: -0.0000000015871627, z: 2.892128e-12, w: 0.9902799}
+  m_LocalPosition: {x: 7.92, y: 1.4, z: 34.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13936,6 +13939,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.x
       value: -0.8678394
       objectReference: {fileID: 0}
+    - target: {fileID: 813730325527793027, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325527793027, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.06
+      objectReference: {fileID: 0}
     - target: {fileID: 813730325673094466, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_Name
       value: BOSS
@@ -13980,93 +13991,13 @@ PrefabInstance:
       propertyPath: probability.Array.data[6].nextAttack
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[0].maxProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[0].minProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[1].maxProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[1].minProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[2].maxProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[2].minProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[3].maxProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[3].minProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[4].maxProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[4].minProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[5].maxProbability
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[5].minProbability
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[6].maxProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: airAttacks.Array.data[6].minProbability
-      value: 1111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: groundAttacks.Array.data[0].maxProbability
-      value: 1111111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: groundAttacks.Array.data[0].minProbability
-      value: 1111111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: groundAttacks.Array.data[1].maxProbability
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: groundAttacks.Array.data[1].minProbability
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: groundAttacks.Array.data[2].maxProbability
-      value: 1111111
-      objectReference: {fileID: 0}
-    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
-      propertyPath: groundAttacks.Array.data[2].minProbability
-      value: 1111111
-      objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: onGroundTime
-      value: 3
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: startFlightDuration
