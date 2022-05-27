@@ -22,7 +22,7 @@ public class SueloElectrificado : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         time += Time.deltaTime;
 

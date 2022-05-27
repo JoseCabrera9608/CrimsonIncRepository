@@ -17,6 +17,9 @@
         },
         {
             "m_Id": "9798ba688762437493aebc0ca27b2c5c"
+        },
+        {
+            "m_Id": "cb1be744fca84b5ea9827295d3ceba41"
         }
     ],
     "m_Keywords": [],
@@ -68,6 +71,9 @@
         },
         {
             "m_Id": "5ad4bb5d23f04f758f56da90e58ff2a0"
+        },
+        {
+            "m_Id": "56e26cc49504481a91047a058f4c3b85"
         }
     ],
     "m_GroupDatas": [],
@@ -85,6 +91,20 @@
                     "m_Id": "d11f7500cbaf4c5c9febea56071caf73"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "56e26cc49504481a91047a058f4c3b85"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2dd3c61a64d44945bea70fecc68c8121"
+                },
+                "m_SlotId": 1236996230
             }
         },
         {
@@ -765,6 +785,41 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "56e26cc49504481a91047a058f4c3b85",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -985.0,
+            "y": 443.0,
+            "width": 171.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "7f6aa7121b9f4fa8bebcce8bd752cb14"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "cb1be744fca84b5ea9827295d3ceba41"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "5ad4bb5d23f04f758f56da90e58ff2a0",
     "m_Group": {
         "m_Id": ""
@@ -884,6 +939,21 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.BaseColor"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "7f6aa7121b9f4fa8bebcce8bd752cb14",
+    "m_Id": 0,
+    "m_DisplayName": "TiempoFrecuencia",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -1309,6 +1379,29 @@
         "y": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "cb1be744fca84b5ea9827295d3ceba41",
+    "m_Guid": {
+        "m_GuidSerialized": "e7867517-8c34-40f5-9c07-28b406ab2834"
+    },
+    "m_Name": "TiempoFrecuencia",
+    "m_DefaultReferenceName": "Vector1_cb1be744fca84b5ea9827295d3ceba41",
+    "m_OverrideReferenceName": "TiempoFrecuencia_",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 1.5,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
