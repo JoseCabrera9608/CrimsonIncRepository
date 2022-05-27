@@ -134,6 +134,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator esperarEstaca()
     {
         agente.speed = 0;
+        anim.SetTrigger("ClavarEstaca");
         yield return new WaitForSeconds(3);
         agente.speed = normalspeed;
         
@@ -262,7 +263,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player")&& kamikaze ==true)
+        if (collision.gameObject.CompareTag("Player"))
         {
             GameObject explosionParticula;
             explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
