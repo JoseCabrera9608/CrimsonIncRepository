@@ -1734,7 +1734,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56384014}
-  m_LocalRotation: {x: 0.103597164, y: 0.000000017640494, z: -0.0000000018373918, w: 0.99461937}
+  m_LocalRotation: {x: 0.103597164, y: 0.000000017640495, z: -0.0000000018373919, w: 0.99461937}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2641,6 +2641,7 @@ MonoBehaviour:
   interacting: 0
   activeinteraction: 0
   playerdeath: 0
+  dying: 0
   lvl: 0
 --- !u!114 &99964922
 MonoBehaviour:
@@ -2693,6 +2694,7 @@ MonoBehaviour:
   staminaRunValue: 0
   recovery: 0
   onelevator: 0
+  onramp: 0
   incheck: 0
   progress: {fileID: 0}
   playerAttack: {fileID: 0}
@@ -2702,6 +2704,7 @@ MonoBehaviour:
   runSpeed: 15
   walkSpeed: 8
   isGrounded: 1
+  airTime: 0
   leapingVelocity: 50
   fallSpeed: 400
   rayCastOffset: 0.1
@@ -25381,6 +25384,7 @@ MonoBehaviour:
   staminaRunValue: 100
   recovery: 0
   onelevator: 0
+  onramp: 0
   incheck: 0
   progress: {fileID: 0}
   playerAttack: {fileID: 0}
@@ -25390,6 +25394,7 @@ MonoBehaviour:
   runSpeed: 15
   walkSpeed: 8
   isGrounded: 1
+  airTime: 0
   leapingVelocity: 50
   fallSpeed: 1000
   rayCastOffset: 0.1
@@ -25429,6 +25434,7 @@ MonoBehaviour:
   interacting: 0
   activeinteraction: 0
   playerdeath: 0
+  dying: 0
   lvl: 0
 --- !u!136 &1114840993
 CapsuleCollider:

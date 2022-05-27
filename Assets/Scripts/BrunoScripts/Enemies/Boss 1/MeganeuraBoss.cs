@@ -272,7 +272,7 @@ public class MeganeuraBoss : MonoBehaviour
         if (other.CompareTag("PlayerWeapon"))
         {
             stats.health -= PlayerSingleton.Instance.playerDamage;
-            anims.DamageAnimation();
+            if(stats.isAlive)anims.DamageAnimation();
             CheckHealth();
         }
         if (other.CompareTag("Player")&&col.enabled==true)
@@ -329,7 +329,7 @@ public class MeganeuraBoss : MonoBehaviour
                 if (random >= groundAttacks[i].minProbability && random <= groundAttacks[i].maxProbability)
                 {
                     currentAction = groundAttacks[i].nextAttack;
-                    anims.SetTrigger(airAttacks[i].animationTriggerName);
+                    anims.SetTrigger(groundAttacks[i].animationTriggerName);
                     break;
                 }
             }

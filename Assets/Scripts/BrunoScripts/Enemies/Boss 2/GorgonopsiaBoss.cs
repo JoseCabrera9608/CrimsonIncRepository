@@ -445,10 +445,13 @@ public class GorgonopsiaBoss : MonoBehaviour
 
     public void HandleDeath()
     {
-        stats.isAlive = false;
-        transform.DORotate(new Vector3(-180, transform.localEulerAngles.y, transform.localEulerAngles.z)
+        if (stats.isAlive)
+        {
+            transform.DORotate(new Vector3(-180, transform.localEulerAngles.y, transform.localEulerAngles.z)
             , 1, RotateMode.Fast).SetEase(Ease.Flash);
-        transform.DOJump(new Vector3(transform.position.x,transform.position.y+2,transform.position.z), 6, 1, 1, false);
+            transform.DOJump(new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), 6, 1, 1, false);
+        }
+        stats.isAlive = false;      
     }
     //========================UTILITY METHODS========================
     private void RotateToPlayer()
