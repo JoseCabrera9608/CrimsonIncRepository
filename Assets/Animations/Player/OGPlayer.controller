@@ -842,6 +842,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: DeathBool
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: AttackTrigger
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -990,6 +1002,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Dash
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: DeathBool
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8595772166439909622}
@@ -1500,7 +1515,7 @@ AnimatorStateMachine:
     m_Position: {x: -480, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8035491613573905164}
-    m_Position: {x: 800, y: 910, z: 0}
+    m_Position: {x: 290, y: 730, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -151956053044695424}
     m_Position: {x: 1010, y: 700, z: 0}

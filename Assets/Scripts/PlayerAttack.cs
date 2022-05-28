@@ -58,6 +58,7 @@ public class PlayerAttack : MonoBehaviour
             //attackStatus = true;
             //playermov.Recovery();
             playeranim.SetBool("Attack", true);
+            playeranim.SetTrigger("AttackTrigger");
             //audioSource.Play();
             //playermov.stamina -= 0.25f * playermov.staminaMax;
 

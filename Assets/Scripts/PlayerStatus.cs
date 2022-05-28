@@ -121,6 +121,7 @@ public class PlayerStatus : MonoBehaviour
     public void PreDeath()
     {
         anim.SetTrigger("Death");
+        anim.SetBool("DeathBool", true);
         anim.SetBool("Falling", false);
         playerdeath = true;
         GetComponent<Movement>().enabled = false;
@@ -140,6 +141,7 @@ public class PlayerStatus : MonoBehaviour
         if (lvl == 1 || lvl == 2)
         {
             anim.SetTrigger("DeathUp");
+            anim.SetBool("DeathBool", false);
             this.transform.position = progress.lastposition;
             onPlayerDeath?.Invoke();
             PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
