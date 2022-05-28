@@ -598,6 +598,7 @@ public class MeganeuraBoss : MonoBehaviour
         obj.transform.localEulerAngles = stats.initialRot;
         obj.GetComponent<MeganeuraBoss>().isActive = false;
         obj.GetComponent<MeganeuraBoss>().col.enabled = true;
+        FindObjectOfType<AudioManager>().Stop("MusicaBoss");
         Destroy(gameObject);
     }
 }

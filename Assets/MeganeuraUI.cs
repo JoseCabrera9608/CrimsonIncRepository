@@ -9,14 +9,18 @@ public class MeganeuraUI : MonoBehaviour
     MeganeuraStats enemy;
     public float enemyhealth;
     public float maxhealth;
+    public GameObject Player;
     public GameObject Enemy;
     public GameObject EnemyHealthBar;
     public PlayerStatus playerStatus;
+    public bool playerdeath1;
+    public bool findboss;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatus>();
+        playerStatus = Player.GetComponent<PlayerStatus>();
+        Enemy = GameObject.FindGameObjectWithTag("Boss");
         enemy = Enemy.gameObject.GetComponent<MeganeuraStats>();
         maxhealth = enemy.health;
         //enemy.health = 150;
@@ -28,9 +32,17 @@ public class MeganeuraUI : MonoBehaviour
         enemyhealth = enemy.health;
         healthBar.fillAmount = enemyhealth / maxhealth;
 
+        playerdeath1 = playerStatus.playerdeath;
+
         if (playerStatus.playerdeath == true)
         {
             enemy.health = maxhealth;
+            findboss = false;
+
+            Enemy = GameObject.FindGameObjectWithTag("Boss");
+            enemy = Enemy.gameObject.GetComponent<MeganeuraStats>();
+
+
         }
 
         if (enemyhealth <= 0)
