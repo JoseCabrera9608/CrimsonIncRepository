@@ -306,6 +306,7 @@ public class Movement : MonoBehaviour
 
             airTime = 0;
             isGrounded = true;
+            onelevator = false;
             playeranim.SetBool("Falling", false);
 
         }
