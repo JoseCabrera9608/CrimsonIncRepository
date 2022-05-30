@@ -4,10 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 public class MeganeuraBoss : MonoBehaviour
 {
-    [SerializeField]public Maction currentAction;
-    [SerializeField]private MeganeuraAnims anims;
+    [SerializeField] public Maction currentAction;
+    [SerializeField] private MeganeuraAnims anims;
     private MeganeuraStats stats;
-    private Dictionary<Maction,float> damages;
+    private Dictionary<Maction, float> damages;
 
     public GameObject EnemyBar;
 
@@ -15,12 +15,12 @@ public class MeganeuraBoss : MonoBehaviour
     public GameObject stake;
     public List<GameObject> stakeList;
     public Transform[] posTransform;
-    private Vector3[] pos=new Vector3[2];
+    private Vector3[] pos = new Vector3[2];
     Tween bobing;
 
     private GameObject player;
     public PlayerStatus playerStatus;
-    private Dictionary<int, Maction> actionsDic=new Dictionary<int, Maction>()
+    private Dictionary<int, Maction> actionsDic = new Dictionary<int, Maction>()
     {
         {0,Maction.rayoIon },
         {1,Maction.bombardeoMisiles },
@@ -36,8 +36,8 @@ public class MeganeuraBoss : MonoBehaviour
     [HideInInspector] public float currentDamageValue;
     private bool evaluating = false;
     private float t1;
-    private int container1=0;
-    private bool bool1=false;
+    private int container1 = 0;
+    private bool bool1 = false;
     [SerializeField] private Transform attackPos;
     //Spawn objects
     [Header("Objetos")]
@@ -49,16 +49,20 @@ public class MeganeuraBoss : MonoBehaviour
     [SerializeField] private GameObject rayoIon;
     [SerializeField] private GameObject vistaCazador;
 
-    /*[HideInInspector]*/public bool isActive=false;
+    /*[HideInInspector]*/
+    public bool isActive = false;
     [SerializeField] private float timeToActivate;
-    [SerializeField]private BoxCollider col;
-    private bool initialStakes=false;
+    [SerializeField] private BoxCollider col;
+    private bool initialStakes = false;
 
 
 
     [Header("=====Attack probabilities=======")]
     public ProbabilitiesOnAir[] airAttacks;
     public ProbabilitiesOnGround[] groundAttacks;
+
+    [Header("=====AUTORIZACION DE ATAQUES DEL PROTOCOLO DE LOS DEPREDADORES=======")]
+    public bool attackOnGround;
 
     [Header("VERSION ARENA")]
     public bool dummy;
@@ -183,8 +187,8 @@ public class MeganeuraBoss : MonoBehaviour
             direction.y += 90;
             _stake.transform.position = transform.position;
             _stake.transform.localEulerAngles = direction;
-            _stake.transform.DORotate(new Vector3(180, _stake.transform.localEulerAngles.y, _stake.transform.localEulerAngles.z), 1.5f).SetEase(Ease.InQuint);
-            _stake.GetComponent<Rigidbody>().velocity = _stake.transform.up*25;
+            _stake.transform.DORotate(new Vector3(180, _stake.transform.localEulerAngles.y, _stake.transform.localEulerAngles.z), stats.stakeRotationDuration).SetEase(Ease.InQuint);
+            _stake.GetComponent<Rigidbody>().velocity = _stake.transform.up*stats.stakeSpeed;
             _stake.GetComponent<Stake>().parent = transform;
             
             //_stake.transform.parent = transform;
@@ -334,7 +338,7 @@ public class MeganeuraBoss : MonoBehaviour
             }
 
         }
-        else
+        else if(stats.onAir==false&&attackOnGround)
         {
             //random = Random.Range(2, 5);
             for (int i = 0; i < groundAttacks.Length; i++)

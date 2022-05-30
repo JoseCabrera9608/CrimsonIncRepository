@@ -1474,7 +1474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169026447}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 264.02002, y: -37.77, z: 25.74}
+  m_LocalPosition: {x: 267.21317, y: -37.77, z: 34.587555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 803677808}
@@ -1537,8 +1537,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170521927}
-  m_LocalRotation: {x: 0.04111109, y: 0.9336916, z: 0.11390961, w: -0.3369784}
-  m_LocalPosition: {x: 3.1931458, y: 0, z: 8.847555}
+  m_LocalRotation: {x: 0.041111086, y: 0.9336916, z: 0.11390962, w: -0.3369784}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1160134548}
@@ -3645,6 +3645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1369695460}
   enemyhealth: 200
+  maxhealth: 0
   Enemy: {fileID: 0}
   EnemyHealthBar: {fileID: 457370796}
 --- !u!1 &469427779
@@ -5745,7 +5746,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803677807}
   m_LocalRotation: {x: 0.03497482, y: 0.9356091, z: 0.0969074, w: -0.33767042}
-  m_LocalPosition: {x: 3.1931458, y: 0, z: 8.847555}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1537888778}
@@ -8203,6 +8204,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6538097304133394600, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
+      propertyPath: sounds.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538097304133394600, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
+      propertyPath: sounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 35da464ecbe1c4a4280c3ab7753be49b, type: 3}
+    - target: {fileID: 6538097304133394600, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
+      propertyPath: sounds.Array.data[7].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538097304133394600, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
+      propertyPath: sounds.Array.data[7].name
+      value: MusicaBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538097304133394600, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
+      propertyPath: sounds.Array.data[7].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538097304133394600, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
+      propertyPath: sounds.Array.data[7].volume
+      value: 0.329
+      objectReference: {fileID: 0}
     - target: {fileID: 6538097304133394601, guid: 45bf7d386c5fd72489d5ebbbbfa0d9fe, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -8283,6 +8308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc7259e9d0327649b277e3e541eb743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToDestroy: 
+  actualScene: 
 --- !u!114 &1167874189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8807,6 +8834,7 @@ MonoBehaviour:
   damage: 0
   attackStatus: 0
   staminaAttack: 10
+  audioSource: {fileID: 0}
   combo: 0
   playermov: {fileID: 0}
   playerStatus: {fileID: 0}
@@ -10825,8 +10853,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604841704}
-  m_LocalRotation: {x: -0.13908927, y: -7.832919e-10, z: -1.10015136e-10, w: 0.99027985}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.04721761, y: 0.9314715, z: 0.1308294, w: -0.33617714}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000076293945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 680040233}
@@ -12113,8 +12141,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793413675}
-  m_LocalRotation: {x: -0.13908929, y: -0.0000000015871627, z: 2.892128e-12, w: 0.9902799}
-  m_LocalPosition: {x: 7.92, y: 1.4, z: 34.64}
+  m_LocalRotation: {x: 0.04721762, y: 0.9314715, z: 0.1308294, w: -0.3361771}
+  m_LocalPosition: {x: 11.113168, y: 1.4, z: 43.487553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12367,7 +12395,7 @@ Transform:
   m_GameObject: {fileID: 1841460557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 181.58, y: 1, z: 207.95}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -13947,6 +13975,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 8.06
       objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094457, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: m_Center.z
+      value: 37.1
+      objectReference: {fileID: 0}
     - target: {fileID: 813730325673094466, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_Name
       value: BOSS
@@ -13991,13 +14023,37 @@ PrefabInstance:
       propertyPath: probability.Array.data[6].nextAttack
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: groundAttacks.Array.data[0].maxProbability
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: groundAttacks.Array.data[0].minProbability
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: groundAttacks.Array.data[1].maxProbability
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: groundAttacks.Array.data[1].minProbability
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: groundAttacks.Array.data[2].maxProbability
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 813730325673094468, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
+      propertyPath: groundAttacks.Array.data[2].minProbability
+      value: 66
+      objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: onGroundTime
-      value: 10000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: startFlightDuration
@@ -14017,7 +14073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094471, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094471, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: m_LocalRotation.w

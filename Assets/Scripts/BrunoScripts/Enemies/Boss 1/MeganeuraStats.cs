@@ -30,6 +30,9 @@ public class MeganeuraStats : MonoBehaviour
     public int stakesToThrow = 4;
     public bool isAlive=true;
 
+    [Header("Estacas=======================")]
+    public float stakeRotationDuration;
+    public float stakeSpeed;
     [Header("Rayo ion=======================")]
     public float laserRotationSpeed;
     public float laserAimTime;
