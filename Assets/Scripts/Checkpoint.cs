@@ -25,7 +25,7 @@ public class Checkpoint : MonoBehaviour
     {
         
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
-        mesh = this.GetComponent<MeshRenderer>();
+        //mesh = this.GetComponent<MeshRenderer>();
         Player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = Player.GetComponent<PlayerStatus>();
 
