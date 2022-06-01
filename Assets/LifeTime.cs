@@ -29,7 +29,7 @@ public class LifeTime : MonoBehaviour
             if (fireTrap.traptype == "Ice")
             {
                 playermesh.material = iceMat;
-                playeranim.SetBool("Frozen", true);
+                //playeranim.SetBool("Frozen", true);
                 playerStatus.Freeze();
             }
 
