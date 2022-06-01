@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NubeDaño : MonoBehaviour
 {
-
+    public float dañoPorSegundo;
+    public float dañoAlEntrar;
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= 1.4f;
+            PlayerSingleton.Instance.playerCurrentHP -= dañoPorSegundo;
            
         }
 
@@ -19,7 +20,7 @@ public class NubeDaño : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= 20f;
+            PlayerSingleton.Instance.playerCurrentHP -= dañoAlEntrar;
 
         }
     }
