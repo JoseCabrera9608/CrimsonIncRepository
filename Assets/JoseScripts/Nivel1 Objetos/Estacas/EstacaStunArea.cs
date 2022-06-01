@@ -6,11 +6,13 @@ public class EstacaStunArea : MonoBehaviour
 {
     GameObject player;
     Movement movimientoPlayer;
+    PlayerStatus playerStatus;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         movimientoPlayer = player.GetComponent<Movement>();
+        playerStatus = player.GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -23,11 +25,8 @@ public class EstacaStunArea : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-               movimientoPlayer.runSpeed = 0;
-               movimientoPlayer.walkSpeed = 0;
-               movimientoPlayer.dashspeed = 0;
-               movimientoPlayer.rotationSpeed = 0;
-            //movimientoPlayer.enabled = false;
+           
+            playerStatus.Freeze();
         }
     }
 
@@ -35,11 +34,8 @@ public class EstacaStunArea : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-             movimientoPlayer.runSpeed = 9;
-             movimientoPlayer.walkSpeed = 9;
-             movimientoPlayer.dashspeed = 15;
-            //movimientoPlayer.enabled = true;
-            movimientoPlayer.rotationSpeed = 10;
+          
+                playerStatus.UnFreeze();
             
         }
     }
@@ -47,5 +43,10 @@ public class EstacaStunArea : MonoBehaviour
     public void DesactivarArea()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public void UnFreeze()
+    {
+        playerStatus.UnFreeze();
     }
 }
