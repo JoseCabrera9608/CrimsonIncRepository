@@ -16,7 +16,7 @@ public class EmissionChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        t = Mathf.Lerp(1.5f, 3f, Mathf.PingPong(Time.time, 1));
+        t = Mathf.Lerp(.3f, 2.5f, Mathf.PingPong(Time.time, 1));
         mat.SetVector("_EmissionColor", color * t);
     }
 }
