@@ -114,10 +114,14 @@ MonoBehaviour:
   cd: 0
   firepoint: {fileID: 4901011286526447647}
   fire: {fileID: 5495312360118238103}
-  fireSpawned: {fileID: 0}
+  colliderobj: {fileID: 8416806141986729851}
   firelifetime: 4
   intervalo: 2
-  col: {fileID: 6971709891958875491}
+  col: {fileID: 8340132301601454360}
+  coltimer: 0
+  colsize: 0
+  maxcolsize: 0
+  traptype: 
 --- !u!1 &4901011286526447647
 GameObject:
   m_ObjectHideFlags: 0
@@ -9808,7 +9812,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0.12}
   m_LocalScale: {x: 1, y: 1, z: 2}
-  m_Children: []
+  m_Children:
+  - {fileID: 6592041377649194722}
   m_Father: {fileID: 5500908288785110205}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19423,8 +19428,6 @@ GameObject:
   - component: {fileID: 5500908288785110205}
   - component: {fileID: 5658670300898286471}
   - component: {fileID: 5657678762025961877}
-  - component: {fileID: 6971709891958875491}
-  - component: {fileID: 8460941791103839626}
   m_Layer: 0
   m_Name: FireHorizontal
   m_TagString: Trampas
@@ -24234,29 +24237,67 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!136 &6971709891958875491
+--- !u!1 &8416806141986729851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6592041377649194722}
+  - component: {fileID: 8340132301601454360}
+  - component: {fileID: 8529619473492631671}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6592041377649194722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416806141986729851}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5500589896503922565}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8340132301601454360
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5495312360118238103}
+  m_GameObject: {fileID: 8416806141986729851}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.97
-  m_Height: 6.31
+  m_Height: 3.263802
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 2.04}
---- !u!114 &8460941791103839626
+  m_Center: {x: 0, y: -0.0000002579458, z: 1.0819032}
+--- !u!114 &8529619473492631671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5495312360118238103}
+  m_GameObject: {fileID: 8416806141986729851}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae60570318549dd4f873a6723fcbdff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireTrap: {fileID: 0}
+  Player: {fileID: 0}
+  playermesh: {fileID: 0}
+  iceMat: {fileID: 2100000, guid: fbbbeb19b3025ed4e903d30b858d97e2, type: 2}
+  playeranim: {fileID: 0}
+  playerStatus: {fileID: 0}
