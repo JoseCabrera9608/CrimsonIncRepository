@@ -38,15 +38,19 @@ public class PlayerStatus : MonoBehaviour
 
     public int lvl;
 
+    public Rigidbody rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //PlayerSingleton.Instance.playerCurrentHP -= 50;
         //playermov.enabled = false;
-
+        
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         playerAttack = this.GetComponent<PlayerAttack>();
+        rb = this.GetComponent<Rigidbody>();
+        
         timer = maxtimehealing;
 
         if (lvl == 1)
@@ -234,6 +238,16 @@ public class PlayerStatus : MonoBehaviour
         activeinteraction = false;
         //anim.SetBool("Interact", false);
         //transform.LookAt(InteractualObject);
+    }
+
+    public void Freeze()
+    {
+        rb.isKinematic = true;
+    }
+
+    public void UnFreeze()
+    {
+        rb.isKinematic = false;
     }
 
     IEnumerator HittedCoroutine()

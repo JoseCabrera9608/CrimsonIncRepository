@@ -9,11 +9,14 @@ public class LifeTime : MonoBehaviour
     public GameObject Player;
     public SkinnedMeshRenderer playermesh;
     public Material iceMat;
+    public Animator playeranim;
+    public PlayerStatus playerStatus;
 
 
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        playerStatus = Player.GetComponent<PlayerStatus>();
         
     }
 
@@ -26,6 +29,8 @@ public class LifeTime : MonoBehaviour
             if (fireTrap.traptype == "Ice")
             {
                 playermesh.material = iceMat;
+                playeranim.SetBool("Frozen", true);
+                playerStatus.Freeze();
             }
 
         }
