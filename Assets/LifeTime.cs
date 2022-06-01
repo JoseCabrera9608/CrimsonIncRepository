@@ -9,8 +9,9 @@ public class LifeTime : MonoBehaviour
     public GameObject Player;
     public SkinnedMeshRenderer playermesh;
     public Material iceMat;
-    public Animator playeranim;
     public PlayerStatus playerStatus;
+    public float dmgpersecond;
+    public float initialdmg;
 
 
     private void Start()
@@ -20,19 +21,34 @@ public class LifeTime : MonoBehaviour
         
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP = -11;
+            //PlayerSingleton.Instance.playerCurrentHP = -11;
+
+            if (fireTrap.traptype == "Fire")
+            {
+                PlayerSingleton.Instance.playerCurrentHP -= initialdmg;
+            }
 
             if (fireTrap.traptype == "Ice")
             {
+                PlayerSingleton.Instance.playerCurrentHP = -11;
                 playermesh.material = iceMat;
-                //playeranim.SetBool("Frozen", true);
-                playerStatus.Freeze();
+                playerStatus.Ice();
             }
 
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (fireTrap.traptype == "Fire")
+        {
+            PlayerSingleton.Instance.playerCurrentHP -= Time.deltaTime * dmgpersecond;
         }
     }
 }

@@ -40,6 +40,8 @@ public class PlayerStatus : MonoBehaviour
 
     public Rigidbody rb;
 
+    public GameObject freezeParticles;
+
 
     // Start is called before the first frame update
     void Start()
@@ -248,6 +250,13 @@ public class PlayerStatus : MonoBehaviour
     public void UnFreeze()
     {
         rb.isKinematic = false;
+    }
+
+    public void Ice()
+    {
+        Freeze();
+        freezeParticles.SetActive(true);
+        anim.SetTrigger("Frozen");
     }
 
     IEnumerator HittedCoroutine()
