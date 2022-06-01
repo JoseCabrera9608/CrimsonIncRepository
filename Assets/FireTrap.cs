@@ -9,14 +9,27 @@ public class FireTrap : MonoBehaviour
     public float cd;
     public GameObject firepoint;
     public GameObject fire;
-    public GameObject fireSpawned;
+    public GameObject colliderobj;
     public float firelifetime;
     public float intervalo;
     public CapsuleCollider col;
 
+    public float coltimer;
+    public float colsize;
+    public float maxcolsize;
+
+    public string traptype;
+
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        maxcolsize = colliderobj.transform.localScale.z;
+    }
+
     void Start()
     {
+        colliderobj.transform.localScale = new Vector3(colliderobj.transform.localScale.x, colliderobj.transform.localScale.y, 0.1f);
         timer = firelifetime + intervalo;
         cd = firelifetime + intervalo;
     }
@@ -25,15 +38,16 @@ public class FireTrap : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        FireSpawn();
+        
+        Spawn();
     }
-    public void FireSpawn()
+    public void Spawn()
     {
 
         if (firepoint != null && timer >= cd)
         {
-
-
+            
+            
 
             fire.SetActive(true);
 
@@ -42,13 +56,16 @@ public class FireTrap : MonoBehaviour
 
         if (firelifetime < timer)
         {
+            colsize = 0;
             fire.SetActive(false);
         }
 
-        if (timer > 1)
+        if (timer > 0 && timer < firelifetime && colsize< maxcolsize)
         {
-            //col.enabled = true;
+            colsize += Time.deltaTime;
+            colliderobj.transform.localScale = new Vector3(colliderobj.transform.localScale.x, colliderobj.transform.localScale.y, colsize);
         }
+
 
     }
 }
