@@ -4,15 +4,76 @@ using UnityEngine;
 
 public class SueloCongelante : MonoBehaviour
 {
-    // Start is called before the first frame update
+    float time;
+    public BoxCollider colliderSuelo;
+    public bool desactivado;
+    public float tiempoDeActivacion;
+    public bool congelar;
+    GameObject player;
+    public GameObject humo;
+    Movement movimientoJugador;
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
+        colliderSuelo = GetComponent<BoxCollider>();
+        movimientoJugador = player.GetComponent<Movement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
+
+        if (time >= tiempoDeActivacion)
+        {
+            congelar = true;
+
+        }
+
+        if (congelar == true)
+        {
+            StartCoroutine(ActivarCollider());
+        }
+
+        if(congelar == false)
+        {
+            movimientoJugador.runSpeed = 9;
+            movimientoJugador.walkSpeed = 9;
+        }
+
     }
+
+
+    IEnumerator ActivarCollider()
+    {
+        humo.SetActive(true);
+        colliderSuelo.enabled = true;
+        yield return new WaitForSeconds(5f);
+        humo.SetActive(false);
+        colliderSuelo.enabled = false;
+        time = 0;
+        congelar = false;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") &&congelar == true)
+        {
+        
+         movimientoJugador.runSpeed = 3.8f;
+         movimientoJugador.walkSpeed = 3.8f;
+        
+
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        movimientoJugador.runSpeed = 9;
+        movimientoJugador.walkSpeed = 9;
+    }
+
+    
+
+
 }
