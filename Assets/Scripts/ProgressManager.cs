@@ -23,6 +23,8 @@ public class ProgressManager : MonoBehaviour
     public Vector3 lastposition;
     public Vector3 hubpos;
 
+    public int enemysdeath;
+
     private void Awake()
     {
         sens = 0.5f;

@@ -8,18 +8,25 @@ public class Door : MonoBehaviour
     public Animator anim;
     public bool bossDoor;
     public BoxCollider triggerbox;
+    public int enemysToOpen;
+
+    public ProgressManager progress;
     
     
     // Start is called before the first frame update
     void Start()
     {
-       
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (progress.enemysdeath == enemysToOpen && enemysToOpen != 0)
+        {
+            OpenDoor();
+            //progress.enemysdeath = 0;
+        }
     }
 
     public void OpenDoor()
@@ -30,6 +37,7 @@ public class Door : MonoBehaviour
 
     public void CloseDoor()
     {
+        progress.enemysdeath = 0;
         anim.SetBool("OpenDoor", false);
         anim.SetBool("CloseDoor", true);
     }
@@ -46,7 +54,11 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            OpenDoor();
+            if (enemysToOpen == 0)
+            {
+                OpenDoor();
+            }
+
         }
     }
 

@@ -45,15 +45,18 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject estacaPrefab;
     public GameObject estacaPoint;
     public int comboNumber;
-    
-    
-    
+
+    public ProgressManager progress;
+
+
+
 
 
     HabilidadesEquipadas _habilidadesEquipadas;
 
     void Start()
     {
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         tiemposHabilidades = GetComponent<HabilidadesEquipadas>();
         anim = GetComponent<Animator>();
         BossGameEVent.current.combatTriggerExit += StartChase;
@@ -170,6 +173,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         colliderCuerpo.enabled = false;
         healthBar.SetActive(false);
         BrazoDerechoCollider.enabled = false;
+        progress.enemysdeath += 1;
         Destroy(_habilidadesEquipadas);
         Destroy(this);
         yield return null;
