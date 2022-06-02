@@ -45,8 +45,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject estacaPrefab;
     public GameObject estacaPoint;
     public int comboNumber;
-    public GameObject puertaNivelTuto;
-    Door puertaScript;
+    
+    
     
 
 
@@ -61,7 +61,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         meshDelEnemigo = meshObject.GetComponent<SkinnedMeshRenderer>();
         _habilidadesEquipadas = this.gameObject.GetComponent<HabilidadesEquipadas>();
         colliderCuerpo = this.gameObject.GetComponent<SphereCollider>();
-        puertaScript = puertaNivelTuto.GetComponent<Door>();
+        
         
 
         normalspeed = agente.speed;
