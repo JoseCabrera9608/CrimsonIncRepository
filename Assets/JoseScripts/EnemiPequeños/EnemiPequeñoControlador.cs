@@ -44,6 +44,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject explosion;
     public GameObject estacaPrefab;
     public GameObject estacaPoint;
+    public int comboNumber;
 
 
     HabilidadesEquipadas _habilidadesEquipadas;
@@ -133,8 +134,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     IEnumerator esperarEstaca()
     {
+        comboNumber = Random.Range(0, 2);
         agente.speed = 0;
         anim.SetTrigger("ClavarEstaca");
+        anim.SetFloat("ElegirCombo", comboNumber);
         yield return new WaitForSeconds(3);
         agente.speed = normalspeed;
         
