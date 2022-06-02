@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     public bool bossDoor;
     public BoxCollider triggerbox;
     
+    
     // Start is called before the first frame update
     void Start()
     {
