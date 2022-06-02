@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviour
     public bool incheck;
     public Material matNormal;
     public Material matHitted;
+    public Material iceMat;
     public Animator anim;
     public SkinnedMeshRenderer mesh;
     public MeshRenderer armaMesh;
@@ -130,7 +131,7 @@ public class PlayerStatus : MonoBehaviour
         anim.SetBool("DeathBool", true);
         anim.SetBool("Falling", false);
         playerdeath = true;
-        GetComponent<Movement>().enabled = false;
+        Freeze();
     }
 
     public void Death()
@@ -245,18 +246,26 @@ public class PlayerStatus : MonoBehaviour
     public void Freeze()
     {
         rb.isKinematic = true;
+        GetComponent<Movement>().enabled = false;
     }
 
     public void UnFreeze()
     {
         rb.isKinematic = false;
+        GetComponent<Movement>().enabled = true;
+        mesh.material = matNormal;
+        anim.Play("Iddle");
     }
 
     public void Ice()
     {
-        Freeze();
+        
+        mesh.material = iceMat;
         freezeParticles.SetActive(true);
-        anim.SetTrigger("Frozen");
+        freezeParticles.GetComponent<ParticleSystem>().Clear();
+        freezeParticles.GetComponent<ParticleSystem>().Play();
+        anim.Play("FrozDeath");
+        Freeze();
     }
 
     IEnumerator HittedCoroutine()

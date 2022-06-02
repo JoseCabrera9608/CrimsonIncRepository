@@ -8,7 +8,6 @@ public class LifeTime : MonoBehaviour
     public FireTrap fireTrap;
     public GameObject Player;
     public SkinnedMeshRenderer playermesh;
-    public Material iceMat;
     public PlayerStatus playerStatus;
     public float dmgpersecond;
     public float initialdmg;
@@ -36,8 +35,7 @@ public class LifeTime : MonoBehaviour
 
             if (fireTrap.traptype == "Ice")
             {
-                PlayerSingleton.Instance.playerCurrentHP = -11;
-                playermesh.material = iceMat;
+                PlayerSingleton.Instance.playerCurrentHP = -11;              
                 playerStatus.Ice();
             }
 
