@@ -45,6 +45,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject estacaPrefab;
     public GameObject estacaPoint;
     public int comboNumber;
+    
 
 
     HabilidadesEquipadas _habilidadesEquipadas;
@@ -58,6 +59,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         meshDelEnemigo = meshObject.GetComponent<SkinnedMeshRenderer>();
         _habilidadesEquipadas = this.gameObject.GetComponent<HabilidadesEquipadas>();
         colliderCuerpo = this.gameObject.GetComponent<SphereCollider>();
+        
 
         normalspeed = agente.speed;
     }
@@ -65,13 +67,21 @@ public class EnemiPequeñoControlador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerSingleton.Instance.playerFreezed == true)
+        {
+            anim.SetBool("Congelado", true);
+        }
+        else
+        {
+            anim.SetBool("Congelado", false);
+        }
         if (onChase == true)
         {
             
             agente.SetDestination(player.transform.position);
 
         }
-
+        
         if (golpeMelee == true)
         {
             StartCoroutine(GolpeMeleeActivate());
@@ -108,8 +118,12 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
         if (lanzarBomba == true)
         {
-            StartCoroutine(LanzarBomba());
             
+            StartCoroutine(LanzarBomba());
+
+
+
+
         }
 
         if(clavarEstaca == true)
@@ -213,6 +227,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         transform.LookAt(player.transform.position);
         anim.SetTrigger("Bomba");
         yield return new WaitForSeconds(1.5f);
+        
         agente.speed = normalspeed;
     }
 
