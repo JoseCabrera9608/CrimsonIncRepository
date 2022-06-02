@@ -43,6 +43,8 @@ public class PlayerStatus : MonoBehaviour
 
     public GameObject freezeParticles;
 
+    public RigidbodyConstraints rigidbodyConstraints;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +55,8 @@ public class PlayerStatus : MonoBehaviour
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         playerAttack = this.GetComponent<PlayerAttack>();
         rb = this.GetComponent<Rigidbody>();
-        
+        rigidbodyConstraints = rb.constraints;
+
         timer = maxtimehealing;
 
         if (lvl == 1)
@@ -161,7 +164,9 @@ public class PlayerStatus : MonoBehaviour
     public void AfterDeath()
     {
         GetComponent<Movement>().enabled = true;
+        rb.isKinematic = false;
         playerdeath = false;
+        
     }
 
     void SingletonConnect()
@@ -245,15 +250,18 @@ public class PlayerStatus : MonoBehaviour
 
     public void Freeze()
     {
-        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        
+        //anim.enabled = false;
         GetComponent<Movement>().enabled = false;
     }
 
     public void UnFreeze()
     {
-        rb.isKinematic = false;
+        rb.constraints = rigidbodyConstraints;
         GetComponent<Movement>().enabled = true;
         mesh.material = matNormal;
+        anim.enabled = true;
         anim.Play("Iddle");
     }
 
@@ -264,23 +272,25 @@ public class PlayerStatus : MonoBehaviour
         freezeParticles.SetActive(true);
         freezeParticles.GetComponent<ParticleSystem>().Clear();
         freezeParticles.GetComponent<ParticleSystem>().Play();
-        anim.Play("FrozDeath");
+        anim.enabled = false;
+        //anim.Play("FrozDeath");
         Freeze();
     }
 
     IEnumerator HittedCoroutine()
     {
 
-        mesh.material = matHitted;
-        armaMesh.material = armaMatHitted;
+        //mesh.material = matHitted;
+        mesh.material.SetColor("_EmissionColor", Color.red);
+        armaMesh.material.SetColor("_EmissionColor", Color.red);
         healingtime = 0;
 
         yield return new WaitForSeconds(0.5f);
 
         PlayerSingleton.Instance.playerHitted = false;
         hiteado = false;
-        mesh.material = matNormal;
-        armaMesh.material = armaMatNormal;
+        mesh.material.SetColor("_EmissionColor", Color.cyan);
+        armaMesh.material.SetColor("_EmissionColor", Color.cyan);
     }
 }
 
