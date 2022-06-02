@@ -74,5 +74,6 @@ public class PlayerSingleton : MonoBehaviour
 
     //======Others==================
     public bool playerHitted { set; get; }
+    public bool playerFreezed { set; get; }
     public float playerRecoveryTime { get; set; }
 }

@@ -259,6 +259,7 @@ public class PlayerStatus : MonoBehaviour
     public void UnFreeze()
     {
         anim.enabled = true;
+        PlayerSingleton.Instance.playerFreezed = false;
         if (playerdeath == false)
         {
             rb.constraints = rigidbodyConstraints;
@@ -271,7 +272,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void Ice()
     {
-        
+        PlayerSingleton.Instance.playerFreezed = true;
         mesh.material = iceMat;
         freezeParticles.SetActive(true);
         freezeParticles.GetComponent<ParticleSystem>().Clear();
