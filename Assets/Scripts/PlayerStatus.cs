@@ -252,17 +252,21 @@ public class PlayerStatus : MonoBehaviour
     {
         rb.constraints = RigidbodyConstraints.FreezeAll;
         
-        //anim.enabled = false;
+        anim.enabled = false;
         GetComponent<Movement>().enabled = false;
     }
 
     public void UnFreeze()
     {
-        rb.constraints = rigidbodyConstraints;
-        GetComponent<Movement>().enabled = true;
-        mesh.material = matNormal;
         anim.enabled = true;
-        anim.Play("Iddle");
+        if (playerdeath == false)
+        {
+            rb.constraints = rigidbodyConstraints;
+            GetComponent<Movement>().enabled = true;
+            mesh.material = matNormal;
+            
+            anim.Play("Iddle");
+        }
     }
 
     public void Ice()
@@ -272,7 +276,7 @@ public class PlayerStatus : MonoBehaviour
         freezeParticles.SetActive(true);
         freezeParticles.GetComponent<ParticleSystem>().Clear();
         freezeParticles.GetComponent<ParticleSystem>().Play();
-        anim.enabled = false;
+        //anim.enabled = false;
         //anim.Play("FrozDeath");
         Freeze();
     }
