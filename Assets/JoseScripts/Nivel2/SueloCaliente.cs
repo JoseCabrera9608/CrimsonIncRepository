@@ -11,10 +11,11 @@ public class SueloCaliente : MonoBehaviour
     public float tiempoDeActivacion;
     public bool quemar;
     public GameObject humo;
-    public GameObject player;
+    GameObject player;
     Movement movimientoJugador;
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         colliderSuelo = GetComponent<BoxCollider>();
         movimientoJugador = player.GetComponent<Movement>();
     }
