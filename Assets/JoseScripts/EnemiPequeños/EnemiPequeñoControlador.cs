@@ -210,6 +210,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator LanzarBomba()
     {
         agente.speed = 1;
+        transform.LookAt(player.transform.position);
         anim.SetTrigger("Bomba");
         yield return new WaitForSeconds(1.5f);
         agente.speed = normalspeed;
