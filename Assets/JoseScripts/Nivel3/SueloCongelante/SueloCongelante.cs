@@ -9,9 +9,12 @@ public class SueloCongelante : MonoBehaviour
     public bool desactivado;
     public float tiempoDeActivacion;
     public bool congelar;
+    public bool saved;
     GameObject player;
     public GameObject humo;
     Movement movimientoJugador;
+    public float tempwalkspeed;
+    public float temprunspeed;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -37,8 +40,8 @@ public class SueloCongelante : MonoBehaviour
 
         if(congelar == false)
         {
-            movimientoJugador.runSpeed = 9;
-            movimientoJugador.walkSpeed = 9;
+            //movimientoJugador.runSpeed = 9;
+            //movimientoJugador.walkSpeed = 9;
         }
 
     }
@@ -55,13 +58,22 @@ public class SueloCongelante : MonoBehaviour
         congelar = false;
     }
 
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") &&congelar == true)
         {
-        
-         movimientoJugador.runSpeed = 3.8f;
-         movimientoJugador.walkSpeed = 3.8f;
+            if (saved == false)
+            {
+                temprunspeed = movimientoJugador.runSpeed;
+                tempwalkspeed = movimientoJugador.walkSpeed;
+                saved = true;
+            }
+            else
+            {
+                movimientoJugador.runSpeed = 3.8f;
+                movimientoJugador.walkSpeed = 3.8f;
+            }
         
 
         }
@@ -69,8 +81,9 @@ public class SueloCongelante : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        movimientoJugador.runSpeed = 9;
-        movimientoJugador.walkSpeed = 9;
+        movimientoJugador.runSpeed = temprunspeed;
+        movimientoJugador.walkSpeed = tempwalkspeed;
+        saved = false;
     }
 
     
