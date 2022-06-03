@@ -49,7 +49,7 @@ public class BombScript : MonoBehaviour
     {
         GameObject tiposDisparo;
 
-        if (!collision.gameObject.CompareTag("Enemy"))
+        if (!collision.gameObject.CompareTag("Enemy") && bomba == false)
         {
             tiposDisparo = Instantiate(bomba, bombafirePoint.transform.position, Quaternion.identity);
             tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
