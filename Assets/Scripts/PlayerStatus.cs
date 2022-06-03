@@ -71,6 +71,13 @@ public class PlayerStatus : MonoBehaviour
             //progress.lastposition = new Vector3(57, 0, -200);
         }
 
+        if (lvl == 3)
+        {
+            progress.lastposition = new Vector3(100, -3, 65);
+            //progress.lastposition = new Vector3(57, -3, 125);
+            //progress.lastposition = new Vector3(57, 0, -200);
+        }
+
         //playerlife = 100;
 
         //playermov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
