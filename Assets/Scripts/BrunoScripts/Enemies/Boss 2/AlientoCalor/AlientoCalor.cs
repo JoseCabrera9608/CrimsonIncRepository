@@ -11,7 +11,7 @@ public class AlientoCalor : MonoBehaviour
     public float alientoCalorAngle;
     public float alientoCalorDamage;
     public bool alientoCalorFullyCharged;
-    public bool alientoCalorFinished;
+    //public bool alientoCalorFinished;
 
     public bool damageDealt;
     private void OnEnable()
