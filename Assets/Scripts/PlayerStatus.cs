@@ -59,6 +59,12 @@ public class PlayerStatus : MonoBehaviour
 
         timer = maxtimehealing;
 
+        if (lvl == 0)
+        {
+            progress.lastposition = new Vector3(80, 0, -110);
+            //progress.lastposition = new Vector3(57, 0, -200);
+        }
+
         if (lvl == 1)
         {
             progress.lastposition = new Vector3(57, -3, 4);

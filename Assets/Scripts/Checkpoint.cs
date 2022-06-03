@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
     public bool colliding;
 
     public MeshRenderer mesh;
+    public MeshRenderer lowmesh;
     public Material normalMat;
     public Material activeMat;
 
@@ -43,12 +44,16 @@ public class Checkpoint : MonoBehaviour
     {
         if (checkpointIndex == progress.checkpointIndex)
         {
-            mesh.material = activeMat;
+            //mesh.material = activeMat;
+            mesh.material.SetColor("_EmissionColor", Color.cyan);
+            lowmesh.material.SetColor("_EmissionColor", Color.cyan);
 
         }
         else
         {
-            mesh.material = normalMat;
+            //mesh.material = normalMat;
+            mesh.material.SetColor("_EmissionColor", Color.red);
+            lowmesh.material.SetColor("_EmissionColor", Color.red);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && colliding ==true)
@@ -72,7 +77,7 @@ public class Checkpoint : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            progress.lastposition = new Vector3(80, 0, -108);
+            progress.lastposition = new Vector3(80, 0, -110);
             SceneManager.LoadScene("WB_Diego");
 
             //ChangeScene();
