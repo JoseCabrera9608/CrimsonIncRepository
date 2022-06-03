@@ -10,7 +10,7 @@ public class Sensibilidad : MonoBehaviour
     public Slider volSlider; 
     public float sensibilidad;
     public CinemachineFreeLook cinem;
-
+    public Text sensitext;
     public ProgressManager progress;
 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class Sensibilidad : MonoBehaviour
     void Update()
     {
         //sensibilidad = slider.value;
-
+        sensitext.text = slider.value.ToString("F2");
         if (slider.value <= 0)
         {
             if (cinem != null)
