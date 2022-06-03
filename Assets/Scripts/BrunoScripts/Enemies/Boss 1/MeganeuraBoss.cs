@@ -287,16 +287,14 @@ public class MeganeuraBoss : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerWeapon"))
+        if (other.CompareTag("PlayerWeapon")&&isActive)
         {
             stats.health -= PlayerSingleton.Instance.playerDamage;
             if(stats.isAlive)anims.DamageAnimation();
             CheckHealth();
         }
         if (other.CompareTag("Player")&&col.enabled==true)
-        {
-
-            
+        {            
             StartCoroutine(Activate());
         }
 

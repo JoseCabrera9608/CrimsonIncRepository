@@ -44,6 +44,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     private Vector3 originalPos;
     public Tween embestidaTween;
 
+    public bool attacked;
     private GorgonopsiaAnims anims;
     #endregion
 
@@ -140,8 +141,8 @@ public class GorgonopsiaBoss : MonoBehaviour
         yield return new WaitForSeconds(stats.evaluationTime);
 
         int random = Random.Range(0, 101);
-        //Debug.Log("Attack number is= " + random);
-        if (currentHeatCharges == 2)
+      
+        if (currentHeatCharges == 2||attacked==false)
         {
             for (int i = 0; i < attackProbabilities.Length; i++)
             {
@@ -149,13 +150,15 @@ public class GorgonopsiaBoss : MonoBehaviour
                 {
                     currentAction = attackProbabilities[i].nextAttack;
                     anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
+                    attacked = true;
                     break;
                 }
             }
         }
-        else
+        else if(currentHeatCharges!=2&&attacked==true)
         {
             currentAction = Gstates.cargaCalor;
+            attacked = false;
         }
         //for(int i = 0; i < attackProbabilities.Length; i++)
         //{
@@ -225,7 +228,7 @@ public class GorgonopsiaBoss : MonoBehaviour
 
             //if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
             //else StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
-            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration ));
+            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration +1));
         }
         isActing = true;
         AlientoCalor script = alientoCalor.GetComponent<AlientoCalor>();
@@ -491,6 +494,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     public IEnumerator ResetActing(float time)
     {
         yield return new WaitForSeconds(time);
+        //attacked = false;
         currentAction = Gstates.idle;
         timer1 = 0;
         isActing = false;
@@ -522,7 +526,7 @@ public class GorgonopsiaBoss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerWeapon"))
+        if (other.CompareTag("PlayerWeapon")&&stats.isActive)
         {
             if (stats.health <= PlayerSingleton.Instance.playerDamage&&stats.isAlive)
             {

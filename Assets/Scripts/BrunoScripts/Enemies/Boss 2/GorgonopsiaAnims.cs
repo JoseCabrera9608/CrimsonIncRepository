@@ -24,7 +24,7 @@ public class GorgonopsiaAnims : MonoBehaviour
     }
     public void SetAnimationTrigger(string triggerName)
     {
-        Debug.Log("Trigger set is= " + triggerName);
+        //Debug.Log("Trigger set is= " + triggerName);
         animator.SetTrigger(triggerName);
     }
 }
