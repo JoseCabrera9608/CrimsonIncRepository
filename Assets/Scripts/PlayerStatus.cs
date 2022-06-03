@@ -74,6 +74,7 @@ public class PlayerStatus : MonoBehaviour
         if (lvl == 3)
         {
             progress.lastposition = new Vector3(100, -3, 65);
+            transform.position = progress.lastposition;
             //progress.lastposition = new Vector3(57, -3, 125);
             //progress.lastposition = new Vector3(57, 0, -200);
         }
@@ -150,7 +151,7 @@ public class PlayerStatus : MonoBehaviour
     {
         
 
-        if (lvl == 0)
+        if (lvl == 0 || lvl == 3)
         {
             //Destroy(gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
