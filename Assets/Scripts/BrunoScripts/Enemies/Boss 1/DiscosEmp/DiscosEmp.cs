@@ -64,8 +64,9 @@ public class DiscosEmp : MonoBehaviour
     {
         if (canFollow)
         {
-            
-            Quaternion direction = Quaternion.LookRotation(player.transform.position - transform.position);
+            Vector3 directionPos = player.transform.position - transform.position;
+            directionPos += Vector3.up * 1.6f;
+            Quaternion direction = Quaternion.LookRotation(directionPos);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, direction, rotationSpeed * Time.deltaTime);
         }       
     }

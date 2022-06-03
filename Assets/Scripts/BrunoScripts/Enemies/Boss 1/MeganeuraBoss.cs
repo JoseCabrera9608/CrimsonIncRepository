@@ -79,6 +79,7 @@ public class MeganeuraBoss : MonoBehaviour
     private void Start()
     {
         stats = GetComponent<MeganeuraStats>();
+        currentAction = Maction.idle;
         //anims.GetComponent<MeganeuraAnims>();
         damages = stats.attacksDamage;
         player = FindObjectOfType<PlayerStatus>().gameObject;
@@ -220,6 +221,12 @@ public class MeganeuraBoss : MonoBehaviour
         {
             initialStakes = true;
             StartCoroutine(SpawnStakes());
+        }
+
+
+        for(int i = 0; i < stakeList.Count; i++)
+        {
+            if (i > stats.stakesToThrow - 1) Destroy(stakeList[i]);
         }
     }
     private IEnumerator SpawnStakes()
@@ -597,11 +604,17 @@ public class MeganeuraBoss : MonoBehaviour
     [ContextMenu("Super Reset olle zhy")]
     public void SuperReset()
     {
+        foreach(GameObject stake in stakeList)
+        {
+            Destroy(stake);
+        }
         GameObject obj = Instantiate(stats.nuera);
         obj.transform.position = stats.initialPos;
         obj.transform.localEulerAngles = stats.initialRot;
         obj.GetComponent<MeganeuraBoss>().isActive = false;
         obj.GetComponent<MeganeuraBoss>().col.enabled = true;
+        obj.GetComponent<MeganeuraBoss>().stakeList.Clear();
+        
         FindObjectOfType<AudioManager>().Stop("MusicaBoss");
         Destroy(gameObject);
     }

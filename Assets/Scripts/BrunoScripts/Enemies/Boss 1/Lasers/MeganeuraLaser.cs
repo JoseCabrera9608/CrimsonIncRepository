@@ -23,6 +23,7 @@ public class MeganeuraLaser : MonoBehaviour
     {
         lr.startWidth = .05f;
         lr.endWidth = .05f;
+        transform.LookAt(player.transform.position);
         isActive = false;
         canRotate = true;
         damageDealt = false;
