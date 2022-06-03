@@ -47,7 +47,7 @@ public class LluviaLasers : MonoBehaviour
     private IEnumerator DestroyThisObject()
     {
         yield return new WaitForSeconds(0.2f);
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
