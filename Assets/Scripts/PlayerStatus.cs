@@ -134,7 +134,9 @@ public class PlayerStatus : MonoBehaviour
         anim.SetBool("DeathBool", true);
         anim.SetBool("Falling", false);
         playerdeath = true;
-        Freeze();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        GetComponent<Movement>().enabled = false;
+
     }
 
     public void Death()
@@ -164,7 +166,7 @@ public class PlayerStatus : MonoBehaviour
     public void AfterDeath()
     {
         GetComponent<Movement>().enabled = true;
-        rb.isKinematic = false;
+        rb.constraints = rigidbodyConstraints;
         playerdeath = false;
         
     }

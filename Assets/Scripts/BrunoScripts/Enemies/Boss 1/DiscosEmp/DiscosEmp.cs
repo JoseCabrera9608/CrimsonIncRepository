@@ -98,8 +98,14 @@ public class DiscosEmp : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentStamina -= DefaultPlayerVars.defaultMaxStamina*staminaDamage;
             Destroy(gameObject);
         }
+
+        if (other.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+
         col.enabled = true;
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     private void OnDrawGizmos()
     {
