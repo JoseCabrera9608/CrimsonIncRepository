@@ -43,8 +43,8 @@ public class SueloCaliente : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            movimientoJugador.runSpeed = 5;
-            movimientoJugador.walkSpeed = 5;
+          //  movimientoJugador.runSpeed = 5;
+          //  movimientoJugador.walkSpeed = 5;
         }
     }
 
@@ -72,8 +72,8 @@ public class SueloCaliente : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        movimientoJugador.runSpeed = 9;
-        movimientoJugador.walkSpeed = 9;
+       // movimientoJugador.runSpeed = 9;
+      //  movimientoJugador.walkSpeed = 9;
     }
 
     
