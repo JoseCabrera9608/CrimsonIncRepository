@@ -43,6 +43,8 @@ public class GorgonopsiaBoss : MonoBehaviour
     [SerializeField] private bool bool2;
     private Vector3 originalPos;
     public Tween embestidaTween;
+
+    private GorgonopsiaAnims anims;
     #endregion
 
     #region probabilidades
@@ -54,6 +56,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         stats = GetComponent<GorgonopsiaStats>();
         player = FindObjectOfType<PlayerStatus>().gameObject;
+        anims = GetComponent<GorgonopsiaAnims>();
         originalPos = transform.position;
     }
 
@@ -133,17 +136,36 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (stats.on50Health && SpawnJaegerBombs()) HandleBombaJaeger(); 
         evaluatingAttack = true;
+
         yield return new WaitForSeconds(stats.evaluationTime);
+
         int random = Random.Range(0, 101);
-        Debug.Log("Attack number is= " + random);
-        for(int i = 0; i < attackProbabilities.Length; i++)
+        //Debug.Log("Attack number is= " + random);
+        if (currentHeatCharges == 2)
         {
-            if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
+            for (int i = 0; i < attackProbabilities.Length; i++)
             {
-                currentAction = attackProbabilities[i].nextAttack;
-                break;
+                if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
+                {
+                    currentAction = attackProbabilities[i].nextAttack;
+                    anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
+                    break;
+                }
             }
         }
+        else
+        {
+            currentAction = Gstates.cargaCalor;
+        }
+        //for(int i = 0; i < attackProbabilities.Length; i++)
+        //{
+        //    if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
+        //    {
+        //        currentAction = attackProbabilities[i].nextAttack;
+        //        anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
+        //        break;
+        //    }
+        //}
 
         evaluatingAttack = false;
     }
@@ -160,8 +182,9 @@ public class GorgonopsiaBoss : MonoBehaviour
             else script.chargeTime = stats.rugidoExplosivoChargeTime;
 
 
-            if (currentHeatCharges!=2)StartCoroutine(TryToChargeHeat(stats.rugidoExplosivoChargeTime));
-            else StartCoroutine(ResetActing(stats.rugidoExplosivoChargeTime));
+            //if (currentHeatCharges!=2)StartCoroutine(TryToChargeHeat(stats.rugidoExplosivoChargeTime));
+            //else StartCoroutine(ResetActing(stats.rugidoExplosivoChargeTime));
+            StartCoroutine(ResetActing(stats.rugidoExplosivoChargeTime));
             //currentAction = Gstates.idle;
         }
         isActing = true;
@@ -171,9 +194,10 @@ public class GorgonopsiaBoss : MonoBehaviour
         timer1 += Time.deltaTime;
         if (isActing == false)
         {
-            
-            if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.bomba360Amount * stats.bomba360TimeToDamage));
-            else StartCoroutine(ResetActing(stats.bomba360Amount * stats.bomba360TimeToDamage));
+
+            //if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.bomba360Amount * stats.bomba360TimeToDamage));
+            //else StartCoroutine(ResetActing(stats.bomba360Amount * stats.bomba360TimeToDamage));
+            StartCoroutine(ResetActing(stats.bomba360Amount * stats.bomba360TimeToDamage));
         }
 
         isActing = true;
@@ -197,11 +221,11 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (isActing == false)
         {
-            alientoCalor.SetActive(true); 
-           
-            if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
-            else StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
+            alientoCalor.SetActive(true);
 
+            //if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
+            //else StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
+            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration ));
         }
         isActing = true;
         AlientoCalor script = alientoCalor.GetComponent<AlientoCalor>();
@@ -271,13 +295,14 @@ public class GorgonopsiaBoss : MonoBehaviour
         if(bool1==true)timer1 += Time.deltaTime;
 
         if (isActing == false)
-        {           
-            if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat((stats.embestidaFreneticaAnimationDuration
+        {
+            //if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat((stats.embestidaFreneticaAnimationDuration
+            //+ stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
+            //else
+            //    StartCoroutine(ResetActing((stats.embestidaFreneticaAnimationDuration
+            //+ stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
+            StartCoroutine(ResetActing((stats.embestidaFreneticaAnimationDuration
             + stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
-            else
-                StartCoroutine(ResetActing((stats.embestidaFreneticaAnimationDuration
-            + stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
-
         }
 
         isActing = true;
@@ -301,6 +326,7 @@ public class GorgonopsiaBoss : MonoBehaviour
             //========================MOTION=================================
             if (timer1 >= stats.embestidaFreneticaDelay+stats.blinkDefaultTime)
             {
+                anims.SetAnimationTrigger("embestidaFrenetica");
                 timer1 = 0;
                 bool1 = false;
                 embestidaFreneticaParent.SetActive(true);
@@ -310,8 +336,7 @@ public class GorgonopsiaBoss : MonoBehaviour
                 if(stats.attackSpeedBonus) duration= stats.embestidaFreneticaDuration-(stats.embestidaFreneticaDuration*stats.generalAttackSpeedBonus);
                 else duration= stats.embestidaFreneticaDuration;
 
-                //Vector3 desiredPosition = new Vector3(player.transform.position.x*2, transform.position.y,
-                //    player.transform.position.z*2);
+                
                 embestidaTween = transform.DOMove(transform.position+(transform.forward*distanceToPlayer),
                     duration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
                 embestidaTween.Play();
@@ -386,6 +411,8 @@ public class GorgonopsiaBoss : MonoBehaviour
             StartCoroutine(DeactivateLegColliders(stats.cargaCalorChargeTime));
             legParent.SetActive(true);
 
+            anims.SetAnimationTrigger("cargaCalor");
+
             leftLegOn = true;
             rightLegOn = true;
             legs[0].SetActive(true);
@@ -446,12 +473,6 @@ public class GorgonopsiaBoss : MonoBehaviour
 
     public void HandleDeath()
     {
-        if (stats.isAlive)
-        {
-            transform.DORotate(new Vector3(-180, transform.localEulerAngles.y, transform.localEulerAngles.z)
-            , 1, RotateMode.Fast).SetEase(Ease.Flash);
-            transform.DOJump(new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), 6, 1, 1, false);
-        }
         stats.isAlive = false;      
     }
     //========================UTILITY METHODS========================
@@ -528,4 +549,5 @@ public class GorgonopsiaAttackProbabilities
     [SerializeField] public Gstates nextAttack;
     public float minProbability;
     public float maxProbability;
+    public string animationTrigger;
 }
