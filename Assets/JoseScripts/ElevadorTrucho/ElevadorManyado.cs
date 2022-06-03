@@ -90,6 +90,7 @@ public class ElevadorManyado : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.parent = this.transform;
+            collision.gameObject.isStatic = true;
         }
 
     }
@@ -127,6 +128,7 @@ public class ElevadorManyado : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.parent = null;
+            collision.gameObject.isStatic = false;
         }
     }
 
