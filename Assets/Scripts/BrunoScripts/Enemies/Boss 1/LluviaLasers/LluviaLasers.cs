@@ -51,8 +51,12 @@ public class LluviaLasers : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("PlayerWeapon"))
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+        //  if (other.CompareTag("Player") || other.CompareTag("PlayerWeapon"))
+        //  PlayerSingleton.Instance.playerCurrentHP -= damage;
+        if (other.CompareTag("PlayerWeapon"))
+        {
+            Destroy(this.gameObject);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
