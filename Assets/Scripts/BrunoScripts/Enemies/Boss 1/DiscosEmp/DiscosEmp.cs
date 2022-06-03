@@ -92,14 +92,14 @@ public class DiscosEmp : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")||other.CompareTag("PlayerWeapon"))
+        if (other.CompareTag("Player")||other.CompareTag("PlayerWeapon") || other.CompareTag("Ground"))
         {
             PlayerSingleton.Instance.playerCurrentHP -= damage;
             PlayerSingleton.Instance.playerCurrentStamina -= DefaultPlayerVars.defaultMaxStamina*staminaDamage;
             Destroy(gameObject);
         }
         col.enabled = true;
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     private void OnDrawGizmos()
     {
