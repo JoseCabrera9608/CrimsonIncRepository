@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class AlientoCalor : MonoBehaviour
 {
-    [SerializeField]private LineRenderer lr;
+    //[SerializeField]private LineRenderer lr;
     public float alientoCalorChargeTime;
     public float alientoCalorRotationDuration;
     public float alientoCalorRange;
@@ -14,11 +14,12 @@ public class AlientoCalor : MonoBehaviour
     //public bool alientoCalorFinished;
 
     public bool damageDealt;
+    public GameObject fuego;
     private void OnEnable()
     {
         StartCoroutine(ChargeAlientoCalor());
         transform.localEulerAngles = new Vector3(0, alientoCalorAngle, 0);
-        lr.enabled = false;
+        //lr.enabled = false;
         damageDealt = false;
     }
 
@@ -31,19 +32,19 @@ public class AlientoCalor : MonoBehaviour
     private IEnumerator ChargeAlientoCalor()
     {
         alientoCalorFullyCharged = false;
-        lr.enabled = false;
+        //lr.enabled = false;
         yield return new WaitForSeconds(alientoCalorChargeTime);
         alientoCalorFullyCharged = true;
-        lr.enabled = true;
+        //lr.enabled = true;
         RotateAlientoCalor();
     }
     private void SetLinePositions()
     {
         if (alientoCalorFullyCharged)
         {
-            lr.SetPosition(0, transform.position);
+            //lr.SetPosition(0, transform.position);
             Vector3 direction = transform.position + (transform.forward * alientoCalorRange);
-            lr.SetPosition(1, direction);
+            //lr.SetPosition(1, direction);
         }       
     }
     private void DamagePlayer()
@@ -63,6 +64,7 @@ public class AlientoCalor : MonoBehaviour
     }
     private void RotateAlientoCalor()
     {
+        fuego.SetActive(true);
         Vector3 direction = new Vector3(0, alientoCalorAngle * -2, 0);
         transform.DORotate(direction, alientoCalorRotationDuration,RotateMode.LocalAxisAdd).SetEase(Ease.InExpo)
             .OnComplete(DeactivateObject);
@@ -70,5 +72,6 @@ public class AlientoCalor : MonoBehaviour
     private void DeactivateObject()
     {
         gameObject.SetActive(false);
+        fuego.SetActive(false);
     }
 }
