@@ -7,12 +7,19 @@ public class StunEstacaBoss : MonoBehaviour
     public GameObject esferaStun;
     public float timer;
     bool activarEsfera;
-    void Start()
+    private void OnEnable()
     {
-       
+        PlayerStatus.onPlayerDeath += DestroyOnPlayerDeath;
+    }
+    private void OnDisable()
+    {
+        PlayerStatus.onPlayerDeath -= DestroyOnPlayerDeath;
     }
 
-    
+    private void DestroyOnPlayerDeath()
+    {
+        Destroy(gameObject);
+    }
     void Update()
     {
         timer += Time.deltaTime;
