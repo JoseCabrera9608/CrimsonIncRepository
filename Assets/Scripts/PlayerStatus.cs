@@ -166,7 +166,7 @@ public class PlayerStatus : MonoBehaviour
     public void AfterDeath()
     {
         GetComponent<Movement>().enabled = true;
-        rb.isKinematic = false;
+        rb.constraints = rigidbodyConstraints;
         playerdeath = false;
         
     }
