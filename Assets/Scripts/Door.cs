@@ -22,7 +22,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (progress.enemysdeath == enemysToOpen && enemysToOpen != 0)
+        if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0)
         {
             OpenDoor();
             //progress.enemysdeath = 0;
