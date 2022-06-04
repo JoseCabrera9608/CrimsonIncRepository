@@ -21,6 +21,11 @@ public class Checkpoint : MonoBehaviour
 
     public Transform consolepoint;
 
+    public float timer;
+    public float timer2;
+    public bool limit1;
+    public bool limit2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,14 +51,36 @@ public class Checkpoint : MonoBehaviour
         {
             //mesh.material = activeMat;
             mesh.material.SetColor("_EmissionColor", Color.cyan);
+            
             lowmesh.material.SetColor("_EmissionColor", Color.cyan);
 
         }
         else
         {
+            timer += Time.deltaTime;
+            //timer2 += Time.deltaTime;
+
+            if (timer < 2)
+            {
+                timer2 += 2*Time.deltaTime;
+                mesh.material.SetColor("_EmissionColor", Color.red * timer2 * 3);
+                lowmesh.material.SetColor("_EmissionColor", Color.red * timer2 * 3);
+            }
+            if (timer >=2 && timer <=4)
+            {
+                timer2 -= 2*Time.deltaTime;
+                mesh.material.SetColor("_EmissionColor", Color.red * timer2 * 3);
+                lowmesh.material.SetColor("_EmissionColor", Color.red * timer2 * 3);
+
+            }
+            if (timer > 4)
+            {
+                timer = 0;
+            }
+
             //mesh.material = normalMat;
-            mesh.material.SetColor("_EmissionColor", Color.red);
-            lowmesh.material.SetColor("_EmissionColor", Color.red);
+            //mesh.material.SetColor("_EmissionColor", Color.red *4);
+            //lowmesh.material.SetColor("_EmissionColor", Color.red *4);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && colliding ==true)
