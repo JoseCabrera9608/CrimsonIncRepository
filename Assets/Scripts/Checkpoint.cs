@@ -50,9 +50,27 @@ public class Checkpoint : MonoBehaviour
         if (checkpointIndex == progress.checkpointIndex)
         {
             //mesh.material = activeMat;
-            mesh.material.SetColor("_EmissionColor", Color.cyan);
-            
-            lowmesh.material.SetColor("_EmissionColor", Color.cyan);
+
+            timer += Time.deltaTime;
+            //timer2 += Time.deltaTime;
+
+            if (timer < 2)
+            {
+                timer2 += 2 * Time.deltaTime;
+                mesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
+                lowmesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
+            }
+            if (timer >= 2 && timer <= 4)
+            {
+                timer2 -= 2 * Time.deltaTime;
+                mesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
+                lowmesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
+
+            }
+            if (timer > 4)
+            {
+                timer = 0;
+            }
 
         }
         else
