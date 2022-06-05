@@ -10,13 +10,13 @@ public class SkinnedMeshToMesh : MonoBehaviour
     public float refreshRate;
     void Start()
     {
-        
+        StartCoroutine(UpdateVfxGraphs());
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(UpdateVfxGraphs());
+
     }
     IEnumerator UpdateVfxGraphs()
     {
