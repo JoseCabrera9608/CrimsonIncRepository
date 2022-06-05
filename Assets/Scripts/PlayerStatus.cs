@@ -59,6 +59,8 @@ public class PlayerStatus : MonoBehaviour
 
         timer = maxtimehealing;
 
+        transform.position = progress.lastposition;
+
         if (lvl == 0)
         {
             //progress.lastposition = new Vector3(80, 0, -110);
@@ -67,7 +69,7 @@ public class PlayerStatus : MonoBehaviour
 
         if (lvl == 1)
         {
-            progress.lastposition = new Vector3(57, -3, 4);
+            //progress.lastposition = new Vector3(57, -3, 4);
             //progress.lastposition = new Vector3(57, 0, -200);
         }
         if (lvl == 2)
@@ -104,15 +106,16 @@ public class PlayerStatus : MonoBehaviour
         }
         SingletonConnect();
 
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        if (progress.resetlvl == true)
         {
             lvl = 0;
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        else
         {
             lvl = 1;
         }
+
+
 
         playerlife = PlayerSingleton.Instance.playerCurrentHP;
         pruebasingle = PlayerSingleton.Instance.playerHitted;

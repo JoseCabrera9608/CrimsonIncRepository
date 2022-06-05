@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour
 
     public void ChangeScene()
     {
-
+        progress.lastposition = initialPosition;
         SceneManager.LoadScene(sceneName);
 
     }

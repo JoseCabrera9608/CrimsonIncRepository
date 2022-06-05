@@ -17,6 +17,8 @@ public class ProgressManager : MonoBehaviour
     public int lvl;
     public bool changing;
 
+    public bool resetlvl;
+
     public Sensibilidad sensi;
 
     private static ProgressManager instance;

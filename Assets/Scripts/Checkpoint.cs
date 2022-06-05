@@ -25,6 +25,7 @@ public class Checkpoint : MonoBehaviour
     public float timer2;
     public bool limit1;
     public bool limit2;
+    public bool resetlvl;
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +111,14 @@ public class Checkpoint : MonoBehaviour
 
             playerStatus.InteractualObject = consolepoint;
             playerStatus.Interacting();
+            if (resetlvl == true)
+            {
+                progress.resetlvl = true;
+            }
+            else
+            {
+                progress.resetlvl = false;
+            }
         }
 
         if (playerStatus.activeinteraction == true && colliding == true)
@@ -139,6 +148,13 @@ public class Checkpoint : MonoBehaviour
         {
             progress.lastposition = new Vector3(57, 6, 255);
             SceneManager.LoadScene("Lvl2");
+
+            //ChangeScene();
+        }
+        if ( Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            progress.lastposition = new Vector3(57, 0, -196);
+            SceneManager.LoadScene("TinocoMirror");
 
             //ChangeScene();
         }
