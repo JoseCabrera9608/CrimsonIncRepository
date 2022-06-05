@@ -14958,7 +14958,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+        m_Name: Mesh
+        m_Overridden: 0
     m_Bool:
       m_Array: []
 --- !u!4 &413043633
@@ -14969,7 +14972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413043630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1891952139}
@@ -17165,6 +17168,7 @@ MonoBehaviour:
   sens: 0
   lvl: 0
   changing: 0
+  resetlvl: 0
   sensi: {fileID: 241890655}
   lastposition: {x: 0, y: 0, z: 0}
   hubpos: {x: 0, y: 0, z: 0}
@@ -78976,9 +78980,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847d98e699e89ef4aae3d810e82d592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinnedMesh: {fileID: 0}
-  VFXGraphs: {fileID: 0}
-  refreshRate: 0
+  skinnedMesh: {fileID: 1675172012}
+  VFXGraphs: {fileID: 413043632}
+  refreshRate: 0.02
 --- !u!4 &1896258396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 274984453601948968, guid: b7188f20a7d3053468245152c9358dd7, type: 3}

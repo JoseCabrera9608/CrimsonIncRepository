@@ -22,6 +22,9 @@ public class SkinnedMeshToMesh : MonoBehaviour
     {
         while (gameObject.activeSelf)
         {
+            Mesh m = new Mesh();
+            skinnedMesh.BakeMesh(m);
+            VFXGraphs.SetMesh("Mesh", m);
             yield return new WaitForSeconds(refreshRate);
         }
         
