@@ -20,10 +20,13 @@ public class Movement : MonoBehaviour
     public float dashStartTime;
 
     public float timer;
+    public float dashcdtimer;
 
     public float staminaDash;
     public float staminaRun;
     public float staminaRunValue;
+    public float dashCD;
+    public bool candash;
 
     public bool recovery;
     public bool onelevator;
@@ -183,9 +186,15 @@ public class Movement : MonoBehaviour
         //transform.rotation = playerRotation;
     }
 
+    void ResetDash()
+    {
+        candash = true;
+    }
+
     void HandleDash()
     {
         bool isTryingToDash = Input.GetKeyDown(KeyCode.Space);
+        dashcdtimer += Time.deltaTime;
 
         if (recovery == false)
         {
@@ -198,7 +207,7 @@ public class Movement : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentStamina = 0;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !isDashing && PlayerSingleton.Instance.playerCurrentStamina >= 0.3f * staminaMax && onelevator == false && playerStatus.dying == false)
+        if (Input.GetKey(KeyCode.Space) && !isDashing && PlayerSingleton.Instance.playerCurrentStamina >= 0.3f * staminaMax && onelevator == false && playerStatus.dying == false && candash == true)
         {
             if (dashAttempts <= 5000 && (rb.velocity != new Vector3(0,0,0)))  //Dashes maximos
             {
@@ -207,7 +216,10 @@ public class Movement : MonoBehaviour
                 //DashParticles.Play();
                 PlayerSingleton.Instance.playerCurrentStamina -= (0.01f* staminaDash)*staminaMax;
                 Recovery();
+                candash = false;
+                Invoke("ResetDash", dashCD);
             }
+
         }
 
         if (PlayerSingleton.Instance.playerCurrentStamina >= staminaMax)
