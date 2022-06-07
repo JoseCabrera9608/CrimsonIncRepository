@@ -46,6 +46,8 @@ public class PlayerStatus : MonoBehaviour
     public RigidbodyConstraints rigidbodyConstraints;
 
     public static Action<float> damagePlayer;
+
+    public GameObject healingEffect;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -243,13 +245,19 @@ public class PlayerStatus : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && timer > healingtime && PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
         {
+            StartCoroutine(HealingEffectDuration());
             timer = 0;
             healingtime = (0.01f * maxtimehealing)* healingAmount;
             //PlayerSingleton.Instance.playerCurrentHP += 10;
             PlayerSingleton.Instance.playerCurrentHealingCharges -= 1;
         }
     }
-
+    IEnumerator HealingEffectDuration()
+    {
+        healingEffect.SetActive(true);
+        yield return new WaitForSeconds(5.5f);
+        healingEffect.SetActive(false);
+    }
     void AnimationStatus()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") || anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
