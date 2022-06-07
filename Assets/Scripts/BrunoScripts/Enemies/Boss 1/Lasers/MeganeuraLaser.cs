@@ -42,10 +42,10 @@ public class MeganeuraLaser : MonoBehaviour
         lr.endWidth=1.2f;
         if (playerLockedOn)
         {
-            if (damagePerTick) PlayerSingleton.Instance.playerCurrentHP -= damage * Time.deltaTime;
+            if (damagePerTick) PlayerStatus.damagePlayer?.Invoke(damage* Time.deltaTime);
             else if (damagePerTick == false && damageDealt == false)
-            {               
-                PlayerSingleton.Instance.playerCurrentHP -= damage;                
+            {
+                PlayerStatus.damagePlayer?.Invoke(damage);
                 damageDealt = true;
             }
         }
