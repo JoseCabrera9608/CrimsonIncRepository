@@ -37,6 +37,8 @@ public class Movement : MonoBehaviour
     public PlayerAttack playerAttack;
     public PlayerStatus playerStatus;
 
+    public ParticleSystem DashParticles;
+
     //======================Una vez los valores esten definidos quitar y asignar en Singleton=====================
     [SerializeField] public float rotationSpeed;
     [SerializeField] public float movSpeed;
@@ -213,7 +215,7 @@ public class Movement : MonoBehaviour
             {
                 //FindObjectOfType<AudioManager>().Play("Dash");
                 OnStartDash();
-                //DashParticles.Play();
+                DashParticles.Play();
                 PlayerSingleton.Instance.playerCurrentStamina -= (0.01f* staminaDash)*staminaMax;
                 Recovery();
                 candash = false;
