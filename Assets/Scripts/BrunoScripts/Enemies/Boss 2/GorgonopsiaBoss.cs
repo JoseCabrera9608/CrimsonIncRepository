@@ -70,7 +70,8 @@ public class GorgonopsiaBoss : MonoBehaviour
             RotateToPlayer();
             UpdateCargaCalorVisuals();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Y)) PlayerStatus.damagePlayer?.Invoke(10);
         //currentDamageValue = stats.gorgoDamages[currentAction];
     }
     private void StateMachine()

@@ -45,8 +45,16 @@ public class PlayerStatus : MonoBehaviour
 
     public RigidbodyConstraints rigidbodyConstraints;
 
-
+    public static Action<float> damagePlayer;
     // Start is called before the first frame update
+    private void OnEnable()
+    {
+        damagePlayer += OnTakeDamage;
+    }
+    private void OnDisable()
+    {
+        damagePlayer -= OnTakeDamage;
+    }
     void Start()
     {
         //PlayerSingleton.Instance.playerCurrentHP -= 50;
@@ -142,7 +150,7 @@ public class PlayerStatus : MonoBehaviour
     {
         Movement playermov = GetComponent<Movement>();
 
-        if (playermov.isDashing)
+        if (playermov.isDashing==false)
         {
             PlayerSingleton.Instance.playerCurrentHP -= damage;
         }
