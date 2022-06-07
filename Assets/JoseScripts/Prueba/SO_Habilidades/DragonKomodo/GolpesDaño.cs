@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GolpesDaño : MonoBehaviour
 {
-    //public GameObject playerObj;
-    //PlayerStats player;
+    public GameObject playerObj;
+    PlayerStatus playerstatus;
     public int damage;
+
 
     void Start()
     {
-       /* player = playerObj.gameObject.GetComponent<PlayerStats>();
-        playerObj = GameObject.FindGameObjectWithTag("Player");*/
+       playerstatus = playerObj.gameObject.GetComponent<PlayerStatus>();
+        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -24,8 +25,9 @@ public class GolpesDaño : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
-            PlayerSingleton.Instance.playerHitted = true;
+            playerstatus.OnTakeDamage(damage);
+            //PlayerSingleton.Instance.playerCurrentHP -= damage;
+            //PlayerSingleton.Instance.playerHitted = true;
             //player.playerlife -= damage;
             Debug.Log("Recibio daño " + damage);
 

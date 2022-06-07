@@ -138,6 +138,18 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public void OnTakeDamage(float damage)
+    {
+        Movement playermov = GetComponent<Movement>();
+
+        if (playermov.isDashing)
+        {
+            PlayerSingleton.Instance.playerCurrentHP -= damage;
+        }
+        
+        
+    }
+
     public void ReloadDeath()
     {
         //Destroy(gameObject);
