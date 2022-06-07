@@ -42,7 +42,8 @@ public class BombaJaeger : MonoBehaviour
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             if (distanceToPlayer <= distanceTreshHold)
             {
-                PlayerSingleton.Instance.playerCurrentHP -= damage;
+                //PlayerSingleton.Instance.playerCurrentHP -= damage;
+                PlayerStatus.damagePlayer?.Invoke(damage);
             }
 
             if (stats.fireBonus)

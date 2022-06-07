@@ -28,7 +28,7 @@ public class RugidoExplosivo : MonoBehaviour
     private void OnChargeComplete()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= dimension) PlayerSingleton.Instance.playerCurrentHP -= damage;
+        if (distanceToPlayer <= dimension) /*PlayerSingleton.Instance.playerCurrentHP -= damage*/ PlayerStatus.damagePlayer?.Invoke(damage);
         foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>())
         {
             renderer.enabled = false;

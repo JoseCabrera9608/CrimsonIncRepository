@@ -57,7 +57,8 @@ public class AlientoCalor : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<PlayerStatus>() != null&&damageDealt==false)
                 {
                     damageDealt = true;
-                    PlayerSingleton.Instance.playerCurrentHP -= alientoCalorDamage;
+                    //PlayerSingleton.Instance.playerCurrentHP -= alientoCalorDamage;
+                    PlayerStatus.damagePlayer?.Invoke(alientoCalorDamage);
                 }
             }
         }

@@ -44,11 +44,13 @@ public class EmbestidaFreneticaDamageTrigger : MonoBehaviour
     }
     private void DamagePlayer()
     {
-        PlayerSingleton.Instance.playerCurrentHP -= damage;
+        //PlayerSingleton.Instance.playerCurrentHP -= damage;
+        PlayerStatus.damagePlayer?.Invoke(damage);
     }
     private void Instakill()
     {
-        PlayerSingleton.Instance.playerCurrentHP = 0;
+        //PlayerSingleton.Instance.playerCurrentHP = 0;
+        PlayerStatus.damagePlayer?.Invoke(9999);
     }
     private void OnDrawGizmos()
     {
