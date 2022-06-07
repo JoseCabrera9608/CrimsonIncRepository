@@ -41,6 +41,7 @@ public class PlayerDebug : MonoBehaviour
 
     private void Awake()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         player = Player.GetComponent<Movement>();
         playerAttack = Player.GetComponent<PlayerAttack>();
         //sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
