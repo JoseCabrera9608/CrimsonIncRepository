@@ -28,7 +28,7 @@ public class CercoElectrico : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerStatus.damagePlayer?.Invoke(damage);
+            PlayerSingleton.Instance.playerCurrentHP -= 100;
         }
     }
 
