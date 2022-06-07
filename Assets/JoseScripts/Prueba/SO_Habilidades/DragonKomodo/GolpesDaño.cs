@@ -11,8 +11,9 @@ public class GolpesDaño : MonoBehaviour
 
     void Start()
     {
-       playerstatus = playerObj.gameObject.GetComponent<PlayerStatus>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerstatus = playerObj.gameObject.GetComponent<PlayerStatus>();
+        
     }
 
     // Update is called once per frame

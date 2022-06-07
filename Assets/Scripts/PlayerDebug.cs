@@ -43,7 +43,7 @@ public class PlayerDebug : MonoBehaviour
     {
         player = Player.GetComponent<Movement>();
         playerAttack = Player.GetComponent<PlayerAttack>();
-        sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
+        //sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
 
         speed = player.movSpeed;
         //jump = player.jumpForce;
