@@ -45,6 +45,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject estacaPrefab;
     public GameObject estacaPoint;
     public int comboNumber;
+    GameObject cabezaPlayer;
 
     public ProgressManager progress;
 
@@ -56,6 +57,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     void Start()
     {
+        cabezaPlayer = GameObject.Find("PlayerHead");
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         tiemposHabilidades = GetComponent<HabilidadesEquipadas>();
         anim = GetComponent<Animator>();
@@ -73,7 +75,12 @@ public class EnemiPequeñoControlador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerSingleton.Instance.playerFreezed == true)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("CaminarSonda"))
+        {
+            Quaternion rotTarget = Quaternion.LookRotation(cabezaPlayer.transform.position - this.transform.position);
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, 200 * Time.deltaTime);
+        }
+            if (PlayerSingleton.Instance.playerFreezed == true)
         {
             anim.SetBool("Congelado", true);
         }
