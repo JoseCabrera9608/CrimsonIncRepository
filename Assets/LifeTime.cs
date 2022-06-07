@@ -30,12 +30,12 @@ public class LifeTime : MonoBehaviour
 
             if (fireTrap.traptype == "Fire")
             {
-                PlayerSingleton.Instance.playerCurrentHP -= initialdmg;
+                PlayerStatus.damagePlayer?.Invoke(initialdmg);
             }
 
             if (fireTrap.traptype == "Ice")
             {
-                PlayerSingleton.Instance.playerCurrentHP = -11;              
+                PlayerStatus.damagePlayer?.Invoke(11);
                 playerStatus.Ice();
             }
 
@@ -46,7 +46,7 @@ public class LifeTime : MonoBehaviour
     {
         if (fireTrap.traptype == "Fire")
         {
-            PlayerSingleton.Instance.playerCurrentHP -= Time.deltaTime * dmgpersecond;
+            PlayerStatus.damagePlayer?.Invoke(Time.deltaTime * dmgpersecond);
         }
     }
 }

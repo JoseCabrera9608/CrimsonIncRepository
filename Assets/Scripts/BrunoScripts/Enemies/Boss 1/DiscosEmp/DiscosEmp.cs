@@ -95,7 +95,7 @@ public class DiscosEmp : MonoBehaviour
     {
         if (other.CompareTag("Player")||other.CompareTag("PlayerWeapon"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
             PlayerSingleton.Instance.playerCurrentStamina -= DefaultPlayerVars.defaultMaxStamina*staminaDamage;
             Destroy(gameObject);
         }

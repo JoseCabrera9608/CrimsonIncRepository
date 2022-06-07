@@ -32,7 +32,7 @@ public class Misiles : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
         }
     }
 }

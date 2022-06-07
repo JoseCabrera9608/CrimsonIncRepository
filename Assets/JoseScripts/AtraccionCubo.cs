@@ -40,7 +40,7 @@ public class AtraccionCubo : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
         }
 
     }

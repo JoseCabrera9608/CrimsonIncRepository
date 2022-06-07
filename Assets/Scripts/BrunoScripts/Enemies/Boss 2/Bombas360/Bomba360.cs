@@ -47,7 +47,7 @@ public class Bomba360 : MonoBehaviour
     }
     private void DamagePlayer()
     {
-        PlayerSingleton.Instance.playerCurrentHP -= damage;
+        PlayerStatus.damagePlayer?.Invoke(damage);
     }
     private void SetDamageDistances()
     {

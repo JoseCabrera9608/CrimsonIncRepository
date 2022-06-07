@@ -64,7 +64,7 @@ public class SueloCaliente : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
             PlayerSingleton.Instance.playerHitted = true;
             
         }

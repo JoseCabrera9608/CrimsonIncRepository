@@ -77,7 +77,7 @@ public class BombaNapalm : MonoBehaviour
     }
     private void DamagePlayer()
     {
-        if (playerInRange && exploded)PlayerSingleton.Instance.playerCurrentHP -= burnDamage*Time.deltaTime;       
+        if (playerInRange && exploded) PlayerStatus.damagePlayer?.Invoke(burnDamage * Time.deltaTime);       
     }
     private IEnumerator DeactivateTrigger()
     {
@@ -96,7 +96,7 @@ public class BombaNapalm : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (exploded) playerInRange = true;
-            else PlayerSingleton.Instance.playerCurrentHP -= explotionDamage;
+            else PlayerStatus.damagePlayer?.Invoke(explotionDamage);
         }
     }
     private void OnTriggerExit(Collider other)

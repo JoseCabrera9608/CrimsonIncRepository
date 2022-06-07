@@ -43,7 +43,7 @@ public class SueloElectrificado : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
             PlayerSingleton.Instance.playerHitted = true;
             Debug.Log("Daño por piso");
         }

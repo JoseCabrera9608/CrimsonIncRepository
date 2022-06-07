@@ -293,7 +293,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         {
             GameObject explosionParticula;
             explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
-            PlayerSingleton.Instance.playerCurrentHP -= 50;
+            PlayerStatus.damagePlayer?.Invoke(50);
             Destroy(this.gameObject);
         }
     }

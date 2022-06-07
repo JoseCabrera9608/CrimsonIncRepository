@@ -34,7 +34,7 @@ public class RayoEmp : MonoBehaviour
     {
         if (other.CompareTag("Player")||other.CompareTag("PlayerWeapon"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
             Debug.Log("Current hp= " + PlayerSingleton.Instance.playerCurrentHP);
             Destroy(gameObject);
         }

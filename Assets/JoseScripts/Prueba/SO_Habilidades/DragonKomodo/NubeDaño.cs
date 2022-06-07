@@ -10,8 +10,8 @@ public class NubeDaño : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= dañoPorSegundo;
-           
+            PlayerStatus.damagePlayer?.Invoke(dañoPorSegundo);
+
         }
 
     }
@@ -20,7 +20,7 @@ public class NubeDaño : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= dañoAlEntrar;
+            PlayerStatus.damagePlayer?.Invoke(dañoAlEntrar);
 
         }
     }

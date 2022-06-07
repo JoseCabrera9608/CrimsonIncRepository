@@ -31,7 +31,7 @@ public class ProyectilRecto : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= damage;
+            PlayerStatus.damagePlayer?.Invoke(damage);
             PlayerSingleton.Instance.playerHitted = true;
             Destroy(this.gameObject);
         }
