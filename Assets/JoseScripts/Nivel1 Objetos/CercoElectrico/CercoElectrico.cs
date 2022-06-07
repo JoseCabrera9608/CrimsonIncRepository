@@ -24,11 +24,12 @@ public class CercoElectrico : MonoBehaviour
     }
         
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerSingleton.Instance.playerCurrentHP -= 100;
+            Debug.Log("Detectado Gaa");
+            PlayerSingleton.Instance.playerCurrentHP -= 10000;
         }
     }
 
