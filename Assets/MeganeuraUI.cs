@@ -19,6 +19,7 @@ public class MeganeuraUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = Player.GetComponent<PlayerStatus>();
         Enemy = GameObject.FindGameObjectWithTag("Boss");
         enemy = Enemy.gameObject.GetComponent<MeganeuraStats>();
