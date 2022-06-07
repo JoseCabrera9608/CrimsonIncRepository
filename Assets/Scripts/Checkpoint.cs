@@ -151,10 +151,10 @@ public class Checkpoint : MonoBehaviour
 
             //ChangeScene();
         }
-        if ( Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha4))
         {
             progress.lastposition = new Vector3(57, 0, -196);
-            SceneManager.LoadScene("TinocoMirror");
+            SceneManager.LoadScene("Lvl1");
 
             //ChangeScene();
         }
