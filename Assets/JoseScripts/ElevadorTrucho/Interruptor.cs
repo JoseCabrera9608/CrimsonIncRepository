@@ -21,8 +21,9 @@ public class Interruptor : MonoBehaviour
         {
             _elevadorManyado.accionar = true;
             
-            FindObjectOfType<AudioManager>().Play("Elevador");
+            //FindObjectOfType<AudioManager>().Play("Elevador");
             colliding = false;
+            DesactivarCollider();
         }
     }
 

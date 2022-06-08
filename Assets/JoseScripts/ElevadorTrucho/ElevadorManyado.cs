@@ -14,6 +14,7 @@ public class ElevadorManyado : MonoBehaviour
     public Animator anim;
     public GameObject interruptor;
     Interruptor interruptorScript;
+    public float timer = 10;
 
     private void Start()
     {
@@ -65,14 +66,23 @@ public class ElevadorManyado : MonoBehaviour
 
     IEnumerator BajarElevador()
     {
-        anim.SetBool("Baranda", true);
-        transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
+        //anim.SetBool("Baranda", true);
+        //transform.Translate(Vector3.up * -velocidad * Time.deltaTime);
         yield return null;
         
     }
 
    public void SubirElevadorMetodo()
     {
+        timer += Time.deltaTime;
+        if (timer >= 10)
+        {
+            FindObjectOfType<AudioManager>().Play("Elevador");
+            timer = 0;
+        }
+
+        //FindObjectOfType<AudioManager>().Play("Elevador");
+
         StartCoroutine(SubirElevador());
     }
     public void DetenerElevador()
@@ -87,11 +97,7 @@ public class ElevadorManyado : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.parent = this.transform;
-            collision.gameObject.isStatic = true;
-        }
+
 
     }
     IEnumerator bajarBaranda()
@@ -113,6 +119,11 @@ public class ElevadorManyado : MonoBehaviour
             FindObjectOfType<AudioManager>().Stop("Elevador");
            
         }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.transform.parent = this.transform;
+            other.gameObject.isStatic = true;
+        }
         if (other.gameObject.CompareTag("Nube"))
         {
             
@@ -123,7 +134,7 @@ public class ElevadorManyado : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -132,5 +143,6 @@ public class ElevadorManyado : MonoBehaviour
         }
     }
 
-    
+
+
 }
