@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &744875520004370256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2465271142223676490}
+  m_Layer: 0
+  m_Name: PortalSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2465271142223676490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744875520004370256}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3553869, y: 0.097, z: 1.91}
+  m_LocalScale: {x: 0.4148689, y: 0.4148689, z: 0.4148689}
+  m_Children: []
+  m_Father: {fileID: 3459879476646344515}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3459879476646344514
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +60,7 @@ Transform:
   - {fileID: 3459879476682235759}
   - {fileID: 3459879477862602713}
   - {fileID: 3459879478524324357}
+  - {fileID: 2465271142223676490}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44,7 +75,8 @@ GameObject:
   - component: {fileID: 3459879476682235759}
   - component: {fileID: 3459879476682235746}
   - component: {fileID: 3459879476682235745}
-  - component: {fileID: 3459879476682235744}
+  - component: {fileID: 6893702198132630240}
+  - component: {fileID: 93447590305189453}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -115,20 +147,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3459879476682235744
-MeshCollider:
+--- !u!65 &6893702198132630240
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3459879476682235758}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.9999998, y: 0.9999998, z: 6.123232e-17}
+  m_Center: {x: 0.00000047683716, y: -0.000000029802322, z: 0}
+--- !u!114 &93447590305189453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459879476682235758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2964b84d3137d48a298fe2cd843465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPortal: {fileID: 0}
 --- !u!1 &3459879477862602712
 GameObject:
   m_ObjectHideFlags: 0
