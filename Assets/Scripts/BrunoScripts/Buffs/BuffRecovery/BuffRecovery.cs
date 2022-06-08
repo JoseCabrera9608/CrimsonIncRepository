@@ -11,19 +11,32 @@ public class BuffRecovery : MonoBehaviour
     public Vector3 safeSpot;
     [SerializeField] private float distance;
     [SerializeField] private GameObject recoveryObject;
+    [SerializeField] private GameObject existingRecoveryObject;
     private void OnEnable()
     {
         if(holder.spawnDataRecoveryObject) SpawnRecoveryObject();
+        
     }
+    
     void Start()
     {
         manager = GetComponent<BuffManager>();
         player = FindObjectOfType<PlayerStatus>().gameObject;
+
+        try
+        {
+            existingRecoveryObject = FindObjectOfType<RecoveryObject>().gameObject;
+        }
+        catch
+        {
+            existingRecoveryObject = null;
+        }
+        
     }
     void Update()
     {
-        DetectSafeGround();
-        //if (Input.GetMouseButton(1)) PlayerSingleton.Instance.playerCurrentHP -= 10;
+        if(existingRecoveryObject==null) DetectSafeGround();
+        if(Input.GetMouseButton(1)) PlayerSingleton.Instance.playerCurrentHP -= 10;
     }
     private void DetectSafeGround()
     {
@@ -39,9 +52,11 @@ public class BuffRecovery : MonoBehaviour
     }
     public void SpawnRecoveryObject()
     {
+               
         GameObject obj = Instantiate(recoveryObject);
         obj.transform.position = holder.lastSafeSpot;
-        holder.spawnDataRecoveryObject = false;
+        //holder.spawnDataRecoveryObject = false;
+        
     }
     private void OnDrawGizmos()
     {

@@ -10,6 +10,7 @@ public class Buff : ScriptableObject
     public string buffName;
     public string description;
     public bool picked;
+    public bool active;
     [HideInInspector]public float oppositeMultiplier=1;
 
     [Header("Single Buff Settings")]

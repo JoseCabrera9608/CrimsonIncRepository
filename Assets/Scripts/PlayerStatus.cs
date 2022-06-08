@@ -180,7 +180,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void Death()
     {
-        
+        onPlayerDeath?.Invoke();
 
         if (lvl == 0 || lvl == 3)
         {

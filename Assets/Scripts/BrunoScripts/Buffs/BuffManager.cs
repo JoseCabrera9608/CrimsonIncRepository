@@ -24,7 +24,16 @@ public class BuffManager : MonoBehaviour
     public bool sacrificeRing = false;
     //public float sacrificeRingCharges;
 
+    //Recover buffs
     [SerializeField]private GeneralDataHolder dataHolder;
+    private void OnEnable()
+    {
+        PlayerStatus.onPlayerDeath += HandleDeath;
+    }
+    private void OnDisable()
+    {
+        PlayerStatus.onPlayerDeath -= HandleDeath;
+    }
     private void Awake()
     {
         Instance = this;       
@@ -133,14 +142,14 @@ public class BuffManager : MonoBehaviour
     }
     public void HandleDeath()
     {
-        CheckSacrificeRing();
-        if (sacrificeRing == true&&PlayerPrefs.GetFloat("sacrificeCharges")>0)
-        {
-            PlayerPrefs.SetFloat("sacrificeCharges", PlayerPrefs.GetFloat("sacrificeCharges")-1);
-            Debug.Log("Sacrifice charges= " + PlayerPrefs.GetFloat("sacrificeCharges"));
-        }
-        else
-        {
+        //CheckSacrificeRing();
+        //if (sacrificeRing == true&&PlayerPrefs.GetFloat("sacrificeCharges")>0)
+        //{
+        //    PlayerPrefs.SetFloat("sacrificeCharges", PlayerPrefs.GetFloat("sacrificeCharges")-1);
+        //    Debug.Log("Sacrifice charges= " + PlayerPrefs.GetFloat("sacrificeCharges"));
+        //}
+        //else
+        //{
             if (equipedBuffs.Count > 0)
             {
                 if (buffOnGround == false)
@@ -148,26 +157,27 @@ public class BuffManager : MonoBehaviour
                     Debug.Log("Tus buffs estan en el lugar de tu muerte UwU");
                     foreach (Buff buff in equipedBuffs)
                     {
-                        buff.oppositeMultiplier = -1;
-                        buff.ApplyBuff();
-                        buff.oppositeMultiplier = 1;
+                    //buff.oppositeMultiplier = -1;
+                    //buff.ApplyBuff();
+                    //buff.oppositeMultiplier = 1;
+                    buff.active = false;
                     }
                     buffOnGround = true;
                     dataHolder.spawnDataRecoveryObject=true; 
                 }
-                else if (buffOnGround == true)
-                {
-                    Debug.Log("Oh no, perdiste tus buffs para siempre :(");
-                    foreach (Buff buff in equipedBuffs)
-                    {
-                        buff.picked = false;
-                        equipedBuffs = null;
-                    }
-                    buffOnGround = false;
-                }
+                //else if (buffOnGround == true)
+                //{
+                //    Debug.Log("Oh no, perdiste tus buffs para siempre :(");
+                //    foreach (Buff buff in equipedBuffs)
+                //    {
+                //        buff.picked = false;
+                //        equipedBuffs = null;
+                //    }
+                //    buffOnGround = false;
+                //}
 
             }
-        }
+        //}
         
     }
     public void RecoverBuffs()
@@ -175,6 +185,7 @@ public class BuffManager : MonoBehaviour
         Debug.Log("Recuperaste tus buffs :)");
         foreach (Buff buff in equipedBuffs)
         {
+            buff.active = true;
             buff.ApplyBuff();
         }
         buffOnGround = false;
@@ -196,7 +207,7 @@ public class BuffManager : MonoBehaviour
                 if (_buff.picked)
                 {
                     equipedBuffs.Add(_buff);
-                    _buff.ApplyBuff();
+                    if(_buff.active) _buff.ApplyBuff();
                 }
 
             }
@@ -269,6 +280,7 @@ public class BuffManager : MonoBehaviour
         foreach (Buff _buff in buff)
         {
             _buff.picked = false;
+            _buff.active = true;
             _buff.displayed = false;
         }
     }
