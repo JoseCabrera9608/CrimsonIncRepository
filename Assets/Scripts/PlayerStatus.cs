@@ -194,7 +194,6 @@ public class PlayerStatus : MonoBehaviour
             anim.SetTrigger("DeathUp");
             anim.SetBool("DeathBool", false);
             this.transform.position = progress.lastposition;
-            onPlayerDeath?.Invoke();
             PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
             PlayerSingleton.Instance.playerCurrentHealingCharges = PlayerSingleton.Instance.playerMaxHealingCharges;
             
