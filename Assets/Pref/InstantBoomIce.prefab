@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3504844477144443129}
   - component: {fileID: -6054433179674686324}
+  - component: {fileID: 5966821834567568089}
   m_Layer: 0
   m_Name: InstantBoomIce
   m_TagString: Untagged
@@ -52,6 +53,20 @@ MonoBehaviour:
   freezetime: 1
   particles: {fileID: 3557517182485363166, guid: fe12ac694916ffa4bb49e03387f133f2, type: 3}
   playerStatus: {fileID: 0}
+--- !u!114 &5966821834567568089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3504844477144443135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c06cdc411e6214b9adc9bdce57d021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  timeToDestroy: 3
 --- !u!1 &3504844477731129966
 GameObject:
   m_ObjectHideFlags: 0
