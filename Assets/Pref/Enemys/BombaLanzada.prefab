@@ -28,8 +28,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2393882666301345535}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 59.26, y: 1.14, z: -105.96}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2393882667165939092}
@@ -94,7 +94,7 @@ SphereCollider:
   m_GameObject: {fileID: 2393882666301345535}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -113,8 +113,12 @@ MonoBehaviour:
   bomba: {fileID: 3504844477144443135, guid: 6970112e0c33cd44ab398f361890f83b, type: 3}
   bombafirePoint: {fileID: 2393882667165939091}
   timer: 0
+  timer2: 0
   cd: 3.5
   bombafija: 0
+  parent: {fileID: 0}
+  col: {fileID: 0}
+  activecol: 1
 --- !u!54 &-6292874279184649005
 Rigidbody:
   m_ObjectHideFlags: 0

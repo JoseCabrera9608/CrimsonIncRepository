@@ -9,11 +9,16 @@ public class BombScript : MonoBehaviour
     public GameObject bomba;
     public GameObject bombafirePoint;
     public float timer;
+    public float timer2;
     public float cd;
     public bool bombafija;
+    [HideInInspector] public Transform parent;
+    public SphereCollider col;
+    public float activecol;
 
     void Start()
     {
+        col = GetComponent<SphereCollider>();
         timer = cd;
     }
 
@@ -21,6 +26,12 @@ public class BombScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        timer2 += Time.deltaTime;
+
+        if (timer2 > activecol)
+        {
+            col.enabled = true;
+        }
         
         if (bombafija == true)
         {

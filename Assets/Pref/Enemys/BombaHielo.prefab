@@ -94,7 +94,7 @@ SphereCollider:
   m_GameObject: {fileID: 2393882666301345535}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -113,8 +113,12 @@ MonoBehaviour:
   bomba: {fileID: 3504844477144443135, guid: 587d81d5a8710aa48a8c50566a3b2db5, type: 3}
   bombafirePoint: {fileID: 2393882667165939091}
   timer: 0
+  timer2: 0
   cd: 3.5
   bombafija: 0
+  parent: {fileID: 0}
+  col: {fileID: 0}
+  activecol: 0.3
 --- !u!54 &-6292874279184649005
 Rigidbody:
   m_ObjectHideFlags: 0
