@@ -59,6 +59,9 @@ public class BossCangrejo : MonoBehaviour
     public GameObject efectoLuces1;
     public GameObject efectoLuces2;
     public GameObject efectoFuego;
+    public GameObject efectoDañoSuelo;
+    public GameObject golpeSueloPointDerecho;
+    public GameObject golpeSUeloPointIzquierdo;
     void Start()
     {
         bossDoorScript = BossDoor.GetComponent<AnimationPlayer>();
@@ -469,5 +472,21 @@ public class BossCangrejo : MonoBehaviour
        
         EsferaMagnetica.SetActive(true);
         
+    }
+
+    public void InstanciarDañoSueloDerecho()
+    {
+         GameObject dañoSuelo;
+
+            dañoSuelo = Instantiate(efectoDañoSuelo, golpeSueloPointDerecho.transform.position, Quaternion.identity);
+        dañoSuelo.transform.localRotation = this.gameObject.transform.rotation;
+    }
+
+    public void InstanciarDañoSueloIzquierdo()
+    {
+        GameObject dañoSuelo;
+
+        dañoSuelo = Instantiate(efectoDañoSuelo, golpeSUeloPointIzquierdo.transform.position, Quaternion.identity);
+        dañoSuelo.transform.localRotation = this.gameObject.transform.rotation;
     }
 }
