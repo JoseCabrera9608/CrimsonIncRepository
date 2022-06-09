@@ -57,6 +57,6 @@ public class BoomIce : MonoBehaviour
         obj.transform.position = transform.position;
         obj.transform.localScale = transform.localScale;
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
