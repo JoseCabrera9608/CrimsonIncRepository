@@ -230,9 +230,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     IEnumerator Kamikaze()
     {
-        agente.speed = 6;
+        yield return new WaitForSeconds(2f);
+        agente.speed = 8;
         //anim.setTrigger("Kamikaze");
-        yield return null;
+        
     }
 
     IEnumerator LanzarBomba()
