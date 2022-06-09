@@ -4824,7 +4824,7 @@ GameObject:
   - component: {fileID: 8207790473033522821}
   - component: {fileID: 8115344251396629206}
   - component: {fileID: 3496543194441513642}
-  - component: {fileID: 8457697711498963621}
+  - component: {fileID: 76339139066591849}
   m_Layer: 0
   m_Name: IceHitArea
   m_TagString: Untagged
@@ -9619,7 +9619,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8457697711498963621
+--- !u!114 &76339139066591849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9628,8 +9628,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3557517182485363166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafbf01b6db3f8045b61ea335513c1dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 53c06cdc411e6214b9adc9bdce57d021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderHumo: {fileID: 0}
-  timerNitrogeno: 0
+  timer: 0
+  timeToDestroy: 2
