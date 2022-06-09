@@ -263,6 +263,8 @@ public class MeganeuraBoss : MonoBehaviour
         }
         else
         {
+            currentAction = Maction.idle;
+            stats.isAttacking = false;
             stats.canRotate = false;
             transform.DORotate(new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z),
                 stats.descendDuration*.6f,RotateMode.Fast);

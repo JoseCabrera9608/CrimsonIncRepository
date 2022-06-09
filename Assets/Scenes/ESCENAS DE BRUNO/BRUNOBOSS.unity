@@ -8330,9 +8330,11 @@ MonoBehaviour:
   sens: 0
   lvl: 0
   changing: 0
+  resetlvl: 0
   sensi: {fileID: 0}
   lastposition: {x: 0, y: 0, z: 0}
   hubpos: {x: 0, y: 0, z: 0}
+  enemysdeath: 0
 --- !u!4 &1167874190
 Transform:
   m_ObjectHideFlags: 0
@@ -8795,6 +8797,7 @@ MonoBehaviour:
   incheck: 0
   matNormal: {fileID: 2100000, guid: 64e1d292895d21143b837c92e313f02b, type: 2}
   matHitted: {fileID: 2100000, guid: 538b3e2d02104304e90ac9724c868dd1, type: 2}
+  iceMat: {fileID: 0}
   anim: {fileID: 1223034381}
   mesh: {fileID: 254589767}
   armaMesh: {fileID: 0}
@@ -8813,6 +8816,10 @@ MonoBehaviour:
   playerdeath: 0
   dying: 0
   lvl: 0
+  rb: {fileID: 0}
+  freezeParticles: {fileID: 0}
+  rigidbodyConstraints: 0
+  healingEffect: {fileID: 0}
 --- !u!114 &1223034377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8860,9 +8867,12 @@ MonoBehaviour:
   duraciondash: 0.5
   dashStartTime: 0
   timer: 0
+  dashcdtimer: 0
   staminaDash: 30
   staminaRun: 100
   staminaRunValue: 0
+  dashCD: 0
+  candash: 0
   recovery: 0
   onelevator: 0
   onramp: 0
@@ -8870,6 +8880,7 @@ MonoBehaviour:
   progress: {fileID: 0}
   playerAttack: {fileID: 0}
   playerStatus: {fileID: 0}
+  DashParticles: {fileID: 0}
   rotationSpeed: 10
   movSpeed: 10
   runSpeed: 15
@@ -14053,7 +14064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: onGroundTime
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 813730325673094469, guid: aa1cfef0133bb7e4a91c307fb5aa18a6, type: 3}
       propertyPath: startFlightDuration
