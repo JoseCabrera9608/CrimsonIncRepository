@@ -46,7 +46,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject estacaPoint;
     public int comboNumber;
     GameObject cabezaPlayer;
-    Vector3 startPosition;
+    public Vector3 startPosition;
 
     public ProgressManager progress;
 
@@ -314,23 +314,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         GameObject estaca = Instantiate(estacaPrefab, estacaPoint.transform.position, estacaPoint.transform.rotation);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            onChase = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            onChase = false;
-            agente.SetDestination(startPosition);
-
-        }
-    }
-
+   
 
 }
 
