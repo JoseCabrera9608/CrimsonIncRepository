@@ -46,6 +46,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject estacaPoint;
     public int comboNumber;
     GameObject cabezaPlayer;
+    Vector3 startPosition;
 
     public ProgressManager progress;
 
@@ -57,6 +58,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     void Start()
     {
+        startPosition = this.gameObject.transform.position;
         cabezaPlayer = GameObject.Find("PlayerHead");
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         tiemposHabilidades = GetComponent<HabilidadesEquipadas>();
@@ -295,6 +297,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
        // magneto.SetActive(false);
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -308,6 +312,23 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public void PonerEstaca()
     {
         GameObject estaca = Instantiate(estacaPrefab, estacaPoint.transform.position, estacaPoint.transform.rotation);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            onChase = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            onChase = false;
+            agente.SetDestination(startPosition);
+
+        }
     }
 
 
