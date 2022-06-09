@@ -13,8 +13,9 @@ public class BombaJaeger : MonoBehaviour
     public float speed;
     public float damage;
     public float timeToAct;
-    public float explotionRadius;
+    //public float explotionRadius;
     public float distanceTreshHold;
+    public float rotationSpeed;
 
      private bool onGround;
      private bool launched;
@@ -30,30 +31,42 @@ public class BombaJaeger : MonoBehaviour
 
     void Update()
     {
-        Explode();
+        Explode2();
+        TrackPlayer();
+        ApplyForwardForce();
     }
-    private void Explode()
+    private void Explode2()
     {
-        distanceToTarget = Vector3.Distance(target, transform.position);
+        Vector3 target = player.transform.position + Vector3.up * 1.6f;
+        distanceToTarget = Vector3.Distance(transform.position, target);
+
         if (distanceToTarget <= distanceTreshHold&&launched)
         {
             GameObject obj = Instantiate(particles);
             obj.transform.position = transform.position;
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceToPlayer <= distanceTreshHold)
-            {
-                //PlayerSingleton.Instance.playerCurrentHP -= damage;
-                PlayerStatus.damagePlayer?.Invoke(damage);
-            }
+            PlayerStatus.damagePlayer?.Invoke(damage);
 
             if (stats.fireBonus)
             {
                 GameObject fire = Instantiate(fireArea);
-                fire.transform.position = transform.position-new Vector3(0,transform.localScale.y/2,0);
-                fire.transform.localScale =new Vector3( transform.localScale.x*3,.3f,transform.localScale.z*3);
+                fire.transform.position = transform.position - new Vector3(0, transform.localScale.y / 2, 0);
+                fire.transform.localScale = new Vector3(transform.localScale.x * 3, .3f, transform.localScale.z * 3);
             }
             Destroy(gameObject);
         }
+
+       
+    }
+    private void TrackPlayer()
+    {
+        Vector3 directionPos = player.transform.position - transform.position;
+        directionPos += Vector3.up * 1.6f;
+        Quaternion direction = Quaternion.LookRotation(directionPos);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, direction, rotationSpeed * Time.deltaTime);
+    }
+    private void ApplyForwardForce()
+    {
+        if(launched)rb.velocity = transform.forward * speed;
     }
     private IEnumerator AutoDestroy()
     {
@@ -64,8 +77,6 @@ public class BombaJaeger : MonoBehaviour
     {
         target = player.transform.position;
         yield return new WaitForSeconds(timeToAct);
-        Vector3 direction = target- transform.position;
-        rb.AddForce(direction.normalized*speed, ForceMode.VelocityChange);
         launched = true;
     }
     private void OnCollisionEnter(Collision collision)
@@ -75,15 +86,9 @@ public class BombaJaeger : MonoBehaviour
             if (onGround == false)
             {
                 StartCoroutine(ApplyForce());
-                rb.AddForce(Vector3.up * 5,ForceMode.VelocityChange);
+                rb.AddForce(Vector3.up * 8,ForceMode.VelocityChange);
             }
             onGround = true;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, explotionRadius);
     }
 }
