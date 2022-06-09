@@ -69,7 +69,7 @@ public class PlayerStatus : MonoBehaviour
 
         timer = maxtimehealing;
 
-        transform.position = progress.lastposition;
+        //transform.position = progress.lastposition;
 
         if (lvl == 0)
         {
@@ -254,7 +254,7 @@ public class PlayerStatus : MonoBehaviour
     IEnumerator HealingEffectDuration()
     {
         healingEffect.SetActive(true);
-        yield return new WaitForSeconds(5.5f);
+        yield return new WaitForSeconds(2f);
         healingEffect.SetActive(false);
     }
     void AnimationStatus()
