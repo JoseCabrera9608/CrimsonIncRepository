@@ -18,7 +18,7 @@ public class EstacaSTUN : MonoBehaviour
 
     IEnumerator ExplotarEstaca()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
         areaStun.SetActive(true);
         yield return new WaitForSeconds(3.3f);
         Destroy(this.gameObject);
