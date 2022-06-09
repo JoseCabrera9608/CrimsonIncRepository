@@ -18,6 +18,12 @@ public enum Agtion
 public class AgniBoss : MonoBehaviour
 {
     [SerializeField] public Agtion currentAction;
+    public GameObject player;
+
+    public float closeDist;
+    public float mediumDist;
+    public float farDist;
+    public float dist;
 
     public GameObject bombaboom;
     public GameObject bombaIce;
@@ -32,10 +38,21 @@ public class AgniBoss : MonoBehaviour
 
     public bool modoNitrogeno;
 
+    
+    //Rasho Laser
+    [SerializeField] private GameObject vistaCazador;
+    public float t1;
+    public float cazadorLaserDuration;
+    public float cazadorAimTime;
+    public float laserRotationSpeed;
+    public float currentDamageValue;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        //Bombas();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -48,7 +65,33 @@ public class AgniBoss : MonoBehaviour
 
         if (bombList.Count == 0)
         {
-            Bombas();
+            //Bombas();
+            //HandleVistaCazador();
+        }
+    }
+    private void FixedUpdate()
+    {
+        Iddle();
+    }
+
+    public void Iddle()
+    {
+        dist = Vector3.Distance(player.transform.position, transform.position);
+
+        if (dist <= closeDist)
+        {
+            if (bombList.Count == 0)
+            {
+                Bombas();
+            }
+        }
+        if (dist <= mediumDist && dist > closeDist)
+        {
+            RayoPalma();
+        }
+        if (dist > mediumDist)
+        {
+
         }
     }
 
@@ -94,6 +137,37 @@ public class AgniBoss : MonoBehaviour
         //stats.onAir = true;
     }
 
+    private void RayoPalma()
+    {
+        t1 += Time.deltaTime;
+        //stats.isAttacking = true;
+        vistaCazador.SetActive(true);
+        //stats.canRotate = false;
+
+        MeganeuraLaser laser = vistaCazador.GetComponent<MeganeuraLaser>();
+        laser.damage = currentDamageValue;
+        laser.rotationSpeed = laserRotationSpeed;
+        laser.damagePerTick = false;
+
+        if (t1 > cazadorAimTime * 0.99f && t1 < cazadorAimTime)
+        {
+            laser.canRotate = false;
+        }
+        else if (t1 >= cazadorAimTime)
+        {
+            laser.isActive = true;
+        }
+
+        if (t1 >= cazadorAimTime + cazadorLaserDuration)
+        {
+            vistaCazador.SetActive(false);
+            //currentAction = Maction.idle;
+            //stats.isAttacking = false;
+            t1 = 0;
+            //stats.canRotate = true;
+        }
+    }
+
     public void BombasDivididas()
     {
 
@@ -112,4 +186,22 @@ public class AgniBoss : MonoBehaviour
         }
         //stats.onAir = true;
     }
+    void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, closeDist);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, mediumDist);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, farDist);
+
+
+
+    }
+
 }
+
+
