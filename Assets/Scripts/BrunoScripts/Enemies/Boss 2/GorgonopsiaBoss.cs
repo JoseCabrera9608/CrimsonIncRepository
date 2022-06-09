@@ -271,7 +271,7 @@ public class GorgonopsiaBoss : MonoBehaviour
             if (stats.attackSpeedBonus) script.speed = stats.bombaJaegerSpeed + (stats.bombaJaegerSpeed * stats.generalAttackSpeedBonus);
             else script.speed = stats.bombaJaegerSpeed;
             script.distanceTreshHold = stats.bombaJaegerDistanceTreshHold;
-            script.rotationSpeed = stats.bombaJaegerRotationSpeed;
+            script.explotionRadius = stats.bombaJaegerExplotionRadius;
             script.timeToAct = stats.bombaJaegerTimeToAct;
         }
 

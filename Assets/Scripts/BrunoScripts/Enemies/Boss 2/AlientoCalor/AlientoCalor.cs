@@ -4,51 +4,48 @@ using UnityEngine;
 using DG.Tweening;
 public class AlientoCalor : MonoBehaviour
 {
+    //[SerializeField]private LineRenderer lr;
     public float alientoCalorChargeTime;
     public float alientoCalorRotationDuration;
     public float alientoCalorRange;
     public float alientoCalorAngle;
     public float alientoCalorDamage;
     public bool alientoCalorFullyCharged;
+    //public bool alientoCalorFinished;
 
     public bool damageDealt;
     public GameObject fuego;
-    public GameObject player;
-    public GameObject parent;
-
-    public float oppositePlayerXAngle;
-    public float playerXAngle;
     private void OnEnable()
     {
-        if(player==null) player = FindObjectOfType<PlayerStatus>().gameObject;
-        StartCoroutine(ChargeAlientoCalor());     
+        StartCoroutine(ChargeAlientoCalor());
+        transform.localEulerAngles = new Vector3(0, alientoCalorAngle, 0);
+        //lr.enabled = false;
         damageDealt = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetLinePositions();
         DamagePlayer();
-
-        playerXAngle = GetPlayerXAngle();
-        oppositePlayerXAngle = GetPlayerXAngle() * -1;
-    }
-    private float GetPlayerXAngle()
-    {
-       Vector3 direction = player.transform.position - parent.transform.position;
-        if (direction.x < 0) return 1;
-        else return -1;
     }
     private IEnumerator ChargeAlientoCalor()
     {
         alientoCalorFullyCharged = false;
+        //lr.enabled = false;
         yield return new WaitForSeconds(alientoCalorChargeTime);
         alientoCalorFullyCharged = true;
-
-        transform.localEulerAngles = new Vector3(0, alientoCalorAngle * playerXAngle, 0);
-        //oppositePlayerXAngle = GetPlayerXAngle() * -1;
-
+        //lr.enabled = true;
         RotateAlientoCalor();
+    }
+    private void SetLinePositions()
+    {
+        if (alientoCalorFullyCharged)
+        {
+            //lr.SetPosition(0, transform.position);
+            Vector3 direction = transform.position + (transform.forward * alientoCalorRange);
+            //lr.SetPosition(1, direction);
+        }       
     }
     private void DamagePlayer()
     {
@@ -60,6 +57,7 @@ public class AlientoCalor : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<PlayerStatus>() != null&&damageDealt==false)
                 {
                     damageDealt = true;
+                    //PlayerSingleton.Instance.playerCurrentHP -= alientoCalorDamage;
                     PlayerStatus.damagePlayer?.Invoke(alientoCalorDamage);
                 }
             }
@@ -68,7 +66,7 @@ public class AlientoCalor : MonoBehaviour
     private void RotateAlientoCalor()
     {
         fuego.SetActive(true);
-        Vector3 direction = new Vector3(0, alientoCalorAngle * (oppositePlayerXAngle*2), 0);
+        Vector3 direction = new Vector3(0, alientoCalorAngle * -2, 0);
         transform.DORotate(direction, alientoCalorRotationDuration,RotateMode.LocalAxisAdd).SetEase(Ease.InExpo)
             .OnComplete(DeactivateObject);
     }

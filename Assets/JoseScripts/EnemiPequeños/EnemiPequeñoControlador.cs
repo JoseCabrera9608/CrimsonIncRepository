@@ -133,7 +133,6 @@ public class EnemiPequeñoControlador : MonoBehaviour
         {
             
             StartCoroutine(LanzarBomba());
-            lanzarBomba = false;
 
 
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
 
 public class Door : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class Door : MonoBehaviour
     public bool bossDoor;
     public BoxCollider triggerbox;
     public int enemysToOpen;
-    public TextMeshPro text;
 
     public ProgressManager progress;
     
@@ -19,21 +17,15 @@ public class Door : MonoBehaviour
     void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
-        text = GetComponentInChildren<TextMeshPro>();
-        text.text = "Enemigos derrotados: 0/"+ enemysToOpen;
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "Enemigos derrotados: "+ progress.enemysdeath +"/" + enemysToOpen;
-
-
         if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0)
         {
-            text.enabled = false;
             OpenDoor();
-            progress.enemysdeath = 0;
+            //progress.enemysdeath = 0;
         }
     }
 
