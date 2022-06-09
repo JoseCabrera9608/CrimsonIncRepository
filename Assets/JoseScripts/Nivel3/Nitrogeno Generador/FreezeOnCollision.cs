@@ -5,15 +5,17 @@ using UnityEngine;
 public class FreezeOnCollision : MonoBehaviour
 {
     public GameObject playerObject;
-    SkinnedMeshRenderer meshPlayer;
+    public SkinnedMeshRenderer meshPlayer;
     public Material frozenShader;
     float iceSliderMover;
+
     
 
     void Start()
     {
-        
-        meshPlayer = playerObject.GetComponent<SkinnedMeshRenderer>();
+
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        meshPlayer = playerObject.GetComponentInChildren<SkinnedMeshRenderer>();
         
     }
 
