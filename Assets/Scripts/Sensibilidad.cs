@@ -32,7 +32,7 @@ public class Sensibilidad : MonoBehaviour
     void Update()
     {
         //sensibilidad = slider.value;
-        sensitext.text = slider.value.ToString("F2");
+        if (sensitext != null)    sensitext.text = slider.value.ToString("F2");
         if (slider.value <= 0)
         {
             if (cinem != null)
