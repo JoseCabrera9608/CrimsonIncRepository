@@ -33,6 +33,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     #endregion
 
     public AudioSource audioSource;
+    public AudioSource music;
 
     #region variables de control
     [Header("===============CONTROL VARIABLES===============")]
@@ -558,6 +559,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         {
             stats.isActive = true;
             if (EnemyBar != null) EnemyBar.SetActive(true);
+            music.Play();
             col.enabled = false; 
         }
     }
