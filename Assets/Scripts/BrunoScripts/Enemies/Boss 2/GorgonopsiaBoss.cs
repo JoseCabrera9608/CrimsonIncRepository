@@ -32,6 +32,8 @@ public class GorgonopsiaBoss : MonoBehaviour
 
     #endregion
 
+    public AudioSource audioSource;
+
     #region variables de control
     [Header("===============CONTROL VARIABLES===============")]
     public bool isActing;
@@ -293,6 +295,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         transform.LookAt(lookPos);
         //transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
+        audioSource.Play();
         //Activar renderer de objetos 
         StartCoroutine(ResetRenderer(blinkTime));
     }
