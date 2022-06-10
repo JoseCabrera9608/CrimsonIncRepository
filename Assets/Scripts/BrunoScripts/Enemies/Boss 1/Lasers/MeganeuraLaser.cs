@@ -38,7 +38,7 @@ public class MeganeuraLaser : MonoBehaviour
 
         if(isActive) 
         {
-            FindObjectOfType<AudioManager>().Play("VistaDelCazadorActive");
+            
             DamagePlayer();
         }
        
