@@ -43,6 +43,7 @@ public class BombaFlash : MonoBehaviour
     }
     private void Flash()
     {
+        FindObjectOfType<AudioManager>().Play("FlashMeganeura");
         //flashPanel.SetActive(true);
         Sequence flash = DOTween.Sequence();
         flash.Append(flashPanel.GetComponent<CanvasGroup>().DOFade(1, .2f).SetEase(Ease.InQuint));

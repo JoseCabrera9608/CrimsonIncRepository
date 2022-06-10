@@ -14,10 +14,13 @@ public class MeganeuraLaser : MonoBehaviour
     public bool playerLockedOn;
     public bool damagePerTick;
     public bool damageDealt;
+   
     private void Awake()
     {
+       
         player = FindObjectOfType<PlayerStatus>().gameObject;
         lr = GetComponent<LineRenderer>();
+
     }
     private void OnEnable()
     {
@@ -33,13 +36,21 @@ public class MeganeuraLaser : MonoBehaviour
         if(canRotate)RotateToTarget();
         SetLineRendererPosition();
 
-        if(isActive) DamagePlayer();
-
+        if(isActive) 
+        {
+            FindObjectOfType<AudioManager>().Play("VistaDelCazadorActive");
+            DamagePlayer();
+        }
+       
+           
+        
     }
     private void DamagePlayer()
     {
+        
         lr.startWidth=1.2f;
         lr.endWidth=1.2f;
+        
         
         if (playerLockedOn)
         {
@@ -87,4 +98,5 @@ public class MeganeuraLaser : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.forward * 100,Color.red);
     }
+   
 }

@@ -12,8 +12,10 @@ public class LluviaLasers : MonoBehaviour
     public float damage;
     public float initialDistanceToGround;
     public float distanceToGround;
+    AudioSource sonidoChoqueConSuelo;
     void Start()
     {
+        sonidoChoqueConSuelo = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         player = FindObjectOfType<PlayerStatus>().gameObject;
         SpawnSpriteOnPlayer();
@@ -60,6 +62,7 @@ public class LluviaLasers : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        sonidoChoqueConSuelo.Play();
         col.enabled = true;
         GetComponent<MeshRenderer>().enabled = false;
         Destroy(spriteHolder);
