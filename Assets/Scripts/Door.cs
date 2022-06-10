@@ -20,18 +20,18 @@ public class Door : MonoBehaviour
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         text = GetComponentInChildren<TextMeshPro>();
-        text.text = "Enemigos derrotados: 0/"+ enemysToOpen;
+        if (text != null) text.text = "Enemigos derrotados: 0/"+ enemysToOpen;
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "Enemigos derrotados: "+ progress.enemysdeath +"/" + enemysToOpen;
+        if (text !=null)  text.text = "Enemigos derrotados: "+ progress.enemysdeath +"/" + enemysToOpen;
 
 
         if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0)
         {
-            text.enabled = false;
+            if (text != null) text.enabled = false;
             OpenDoor();
             progress.enemysdeath = 0;
         }
