@@ -28,11 +28,18 @@ public class AgniBoss : MonoBehaviour
 {
     [SerializeField] public Agtion currentAction;
     public GameObject player;
+    [SerializeField] public AgniProbabilities[] attackProbabilities;
 
     public float closeDist;
     public float mediumDist;
     public float farDist;
     public float dist;
+    private int range;
+    public float attackDelay;
+    public bool evaluatingAttack;
+    public bool attacked;
+
+    [Header("Bombitas Kboom")]
 
     public GameObject bombaboom;
     public GameObject bombaIce;
@@ -41,14 +48,18 @@ public class AgniBoss : MonoBehaviour
     public int bombNumber;
     public float bombspeed;
     public float bombRotationTime;
+    public int rangeAttackBomb;
 
     public Vector3 direction2;
     public GameObject bombSpawn;
 
     public bool modoNitrogeno;
 
-    
+
     //Rasho Laser
+
+    [Header("Rasho Laser")]
+
     [SerializeField] private GameObject vistaCazador;
     public MeganeuraLaser laser;
     
@@ -60,6 +71,8 @@ public class AgniBoss : MonoBehaviour
     public bool disparado;
     public bool rayoenrango;
 
+    public int rangeAttackLaser;
+
     //Estacas Stun
 
     [Header("Estacas Stun")]
@@ -70,6 +83,8 @@ public class AgniBoss : MonoBehaviour
     public float lluviaLasersHeight;
     private int container1 = 0;
     private bool bool1 = false;
+
+    public int rangeAttackStun;
 
 
 
@@ -93,10 +108,13 @@ public class AgniBoss : MonoBehaviour
             //Bombas();
             //HandleVistaCazador();
         }
+        //RotateToPlayer();
+        StateMachine();
     }
     private void FixedUpdate()
     {
         Iddle();
+        //dist = Vector3.Distance(player.transform.position, transform.position);
         RayoPalma();
 
     }
@@ -107,12 +125,13 @@ public class AgniBoss : MonoBehaviour
         
         if (dist <= closeDist)
         {
-            PreparacionBombas();
+            range = 1;
+            //PreparacionBombas();
         }
         if (dist <= mediumDist && dist > closeDist)
         {
-
-            PreparacionRayo();
+            range = 2;
+            //PreparacionRayo();
         }
         else
         {
@@ -122,7 +141,8 @@ public class AgniBoss : MonoBehaviour
         }
         if (dist > mediumDist)
         {
-            HandleLluviaDeLasers();
+            range = 3;
+            //EstacasStun();
         }
     }
 
@@ -135,21 +155,20 @@ public class AgniBoss : MonoBehaviour
         switch (currentAction)
         {
             case Agtion.idle:
-                if (evaluating == false /*arena*/&& dummy == false) StartCoroutine(EvaluateAttack());
-                else attackOnCooldown = false;
+                if (evaluatingAttack == false) StartCoroutine(AttackEvaluation());                
                 break;
 
             case Agtion.rayoPalma:
-                HandleRayoIon();
+                PreparacionRayo();       
                 //currentDamageValue = damages[Action.rayoIon];
                 break;
 
             case Agtion.bombardeo:
-                HandleBombardeoMisiles();
+                PreparacionBombas();              
                 break;
 
             case Agtion.estacasStun:
-                HandleRayosEmp();
+                if (dist > mediumDist) EstacasStun();
                 break;
 
             /*case Maction.bombaFlash:
@@ -172,17 +191,45 @@ public class AgniBoss : MonoBehaviour
 
     }
 
+    public IEnumerator AttackEvaluation()
+    {
+        evaluatingAttack = true;
+
+        yield return new WaitForSeconds(attackDelay);
+
+        int random = Random.Range(0, 101);
+
+        if (attacked == false)
+        {
+            for (int i = 0; i < attackProbabilities.Length; i++)
+            {
+                if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
+                {
+                    currentAction = attackProbabilities[i].nextAttack;
+                    //anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
+                    attacked = true;
+                    break;
+                }
+            }
+        }
+
+        evaluatingAttack = false;
+    }
+
     public void PreparacionBombas()
     {
-        if (bombList.Count == 0)
+        if (range == rangeAttackBomb)
         {
-            if (bombspeed > 20)
+            if (bombList.Count == 0)
             {
-                bombspeed = 10;
-            }
+                if (bombspeed > 20)
+                {
+                    bombspeed = 10;
+                }
 
-            Bombas();
-            bombspeed += 5;
+                Bombas();
+                bombspeed += 5;
+            }
         }
     }
 
@@ -227,7 +274,7 @@ public class AgniBoss : MonoBehaviour
         }
         //stats.onAir = true;
     }
-    private void HandleLluviaDeLasers()
+    private void EstacasStun()
     {
         t1 += Time.deltaTime;
         bool1 = true;
@@ -247,19 +294,25 @@ public class AgniBoss : MonoBehaviour
             t1 = 0;
             container1 = 0;
             //isAttacking = false;
-            //currentAction = Maction.idle;
+            currentAction = Agtion.idle;
         }
 
     }
 
     public void PreparacionRayo()
     {
-        disparado = false;
-        if (rayoenrango == false && disparado == true)
+        if(range == rangeAttackLaser)
         {
-            t1 = 0;
-            rayoenrango = true;
+            
+            if (rayoenrango == false && disparado == true)
+            {
+                t1 = 0;
+                rayoenrango = true;
+            }
+            disparado = false;
         }
+
+        // RayoPalma();
     }
 
     private void RayoPalma()
@@ -291,7 +344,8 @@ public class AgniBoss : MonoBehaviour
         {
             vistaCazador.SetActive(false);
             disparado = true;
-            //currentAction = Maction.idle;
+            attacked = false;
+            currentAction = Agtion.idle;
             //stats.isAttacking = false;
             t1 = 0;
             //stats.canRotate = true;

@@ -343,5 +343,10 @@ public class PlayerStatus : MonoBehaviour
         mesh.material.SetColor("_EmissionColor", Color.cyan);
         armaMesh.material.SetColor("_EmissionColor", Color.cyan);
     }
+    private void OnParticleCollision(GameObject other)
+    {
+        //Debug.Log("gaaaprrooooooooooooooooooooooooo");
+
+    }
 }
 

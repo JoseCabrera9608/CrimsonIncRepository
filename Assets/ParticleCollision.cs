@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ParticleCollision : MonoBehaviour
+{
+    public ParticleSystem part;
+    public bool colplayer;
+    public float timer;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        part = GetComponent<ParticleSystem>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (colplayer == true)
+        {
+            PlayerCollision();
+        }
+        timer += Time.deltaTime;
+
+
+    }
+
+    private void PlayerCollision()
+    {
+        if (timer >= 0.1f)
+        {
+            PlayerStatus.damagePlayer?.Invoke(3);
+            colplayer = false;
+            timer = 0;
+        }
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("gaaaprrooo");
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            colplayer = true;
+        }
+    }
+}
