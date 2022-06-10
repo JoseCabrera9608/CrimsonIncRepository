@@ -41,11 +41,15 @@ public class AgniBoss : MonoBehaviour
     
     //Rasho Laser
     [SerializeField] private GameObject vistaCazador;
+    public MeganeuraLaser laser;
+    
     public float t1;
     public float cazadorLaserDuration;
     public float cazadorAimTime;
     public float laserRotationSpeed;
     public float currentDamageValue;
+    public bool disparado;
+    public bool rayoenrango;
 
     
 
@@ -53,6 +57,7 @@ public class AgniBoss : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        laser = vistaCazador.GetComponent<MeganeuraLaser>();
     }
 
     // Update is called once per frame
@@ -72,26 +77,46 @@ public class AgniBoss : MonoBehaviour
     private void FixedUpdate()
     {
         Iddle();
+        RayoPalma();
+
     }
 
     public void Iddle()
     {
         dist = Vector3.Distance(player.transform.position, transform.position);
-
+        
         if (dist <= closeDist)
         {
-            if (bombList.Count == 0)
-            {
-                Bombas();
-            }
+            PreparacionBombas();
         }
         if (dist <= mediumDist && dist > closeDist)
         {
-            RayoPalma();
+
+            PreparacionRayo();
+        }
+        else
+        {
+            //laser.isActive = false;
+            rayoenrango = false;
+            vistaCazador.SetActive(false);
         }
         if (dist > mediumDist)
         {
+            
+        }
+    }
 
+    public void PreparacionBombas()
+    {
+        if (bombList.Count == 0)
+        {
+            if (bombspeed > 20)
+            {
+                bombspeed = 10;
+            }
+
+            Bombas();
+            bombspeed += 5;
         }
     }
 
@@ -113,7 +138,7 @@ public class AgniBoss : MonoBehaviour
                 bomb.transform.DORotate(new Vector3(180, bomb.transform.localEulerAngles.y, bomb.transform.localEulerAngles.z), bombRotationTime).SetEase(Ease.InQuint);
                 bomb.GetComponent<Rigidbody>().velocity = bomb.transform.up * bombspeed;
                 bomb.GetComponent<BombScript>().parent = transform;
-
+                
                 //_stake.transform.parent = transform;
                 bombList.Add(bomb);
             }
@@ -127,7 +152,7 @@ public class AgniBoss : MonoBehaviour
                 bomb.transform.DORotate(new Vector3(180, bomb.transform.localEulerAngles.y, bomb.transform.localEulerAngles.z), bombRotationTime).SetEase(Ease.InQuint);
                 bomb.GetComponent<Rigidbody>().velocity = bomb.transform.up * bombspeed;
                 bomb.GetComponent<BombScript>().parent = transform;
-
+                
                 //_stake.transform.parent = transform;
                 bombList.Add(bomb);
             }
@@ -137,14 +162,28 @@ public class AgniBoss : MonoBehaviour
         //stats.onAir = true;
     }
 
+    public void PreparacionRayo()
+    {
+        disparado = false;
+        if (rayoenrango == false && disparado == true)
+        {
+            t1 = 0;
+            rayoenrango = true;
+        }
+    }
+
     private void RayoPalma()
     {
         t1 += Time.deltaTime;
         //stats.isAttacking = true;
-        vistaCazador.SetActive(true);
+        if (disparado == false)
+        {
+            vistaCazador.SetActive(true);
+        }
+        //vistaCazador.SetActive(true);
         //stats.canRotate = false;
 
-        MeganeuraLaser laser = vistaCazador.GetComponent<MeganeuraLaser>();
+        //MeganeuraLaser laser = vistaCazador.GetComponent<MeganeuraLaser>();
         laser.damage = currentDamageValue;
         laser.rotationSpeed = laserRotationSpeed;
         laser.damagePerTick = false;
@@ -161,6 +200,7 @@ public class AgniBoss : MonoBehaviour
         if (t1 >= cazadorAimTime + cazadorLaserDuration)
         {
             vistaCazador.SetActive(false);
+            disparado = true;
             //currentAction = Maction.idle;
             //stats.isAttacking = false;
             t1 = 0;
