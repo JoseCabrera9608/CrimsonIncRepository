@@ -6,14 +6,23 @@ using DG.Tweening;
 public enum Agtion
 {
     idle,
-    rayoIon, //on air
-    bombardeoMisiles, // air grond
-    misilesEmp, //air ground
-    bombaFlash, //air ground
-    lluviaLasers, //on air
-    vistaCazador, // on air
-    discosEmp //on air
+    rayoPalma, //on air
+    bombardeo, // air grond
+    estacasStun //air ground
+    //bombaFlash, //air ground
+    //lluviaLasers, //on air
+    //vistaCazador, // on air
+    //discosEmp //on air
 };
+
+[System.Serializable]
+public class AgniProbabilities
+{
+    [SerializeField] public Agtion nextAttack;
+    public float minProbability;
+    public float maxProbability;
+    public string animationTriggerName;
+}
 
 public class AgniBoss : MonoBehaviour
 {
@@ -51,7 +60,18 @@ public class AgniBoss : MonoBehaviour
     public bool disparado;
     public bool rayoenrango;
 
-    
+    //Estacas Stun
+
+    [Header("Estacas Stun")]
+
+    [SerializeField] private GameObject lluviaDeLasers;
+    public int lluviaAmount;
+    public float lluviaDelay;
+    public float lluviaLasersHeight;
+    private int container1 = 0;
+    private bool bool1 = false;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -102,8 +122,54 @@ public class AgniBoss : MonoBehaviour
         }
         if (dist > mediumDist)
         {
-            
+            HandleLluviaDeLasers();
         }
+    }
+
+    private void StateMachine()
+    {
+        //if (currentAction == Action.idle)
+        //{
+        //    StartCoroutine(EvaluateAttack());
+        //}
+        switch (currentAction)
+        {
+            case Agtion.idle:
+                if (evaluating == false /*arena*/&& dummy == false) StartCoroutine(EvaluateAttack());
+                else attackOnCooldown = false;
+                break;
+
+            case Agtion.rayoPalma:
+                HandleRayoIon();
+                //currentDamageValue = damages[Action.rayoIon];
+                break;
+
+            case Agtion.bombardeo:
+                HandleBombardeoMisiles();
+                break;
+
+            case Agtion.estacasStun:
+                HandleRayosEmp();
+                break;
+
+            /*case Maction.bombaFlash:
+                HandleBombaFlash();
+                break;
+            case Maction.lluviaLasers:
+                HandleLluviaDeLasers();
+                break;
+
+            case Maction.vistaCazador:
+                HandleVistaCazador();
+                //currentDamageValue = damages[Action.vistaCazador];
+                break;
+
+            case Maction.discosEmp:
+                HandleDiscosEmp();
+                break;*/
+
+        }
+
     }
 
     public void PreparacionBombas()
@@ -160,6 +226,30 @@ public class AgniBoss : MonoBehaviour
            
         }
         //stats.onAir = true;
+    }
+    private void HandleLluviaDeLasers()
+    {
+        t1 += Time.deltaTime;
+        bool1 = true;
+        //isAttacking = true;
+
+        if (t1 > lluviaDelay && container1 < lluviaAmount)
+        {
+            container1++;
+            t1 = 0;
+            GameObject obj = Instantiate(lluviaDeLasers);
+            obj.transform.position = player.transform.position + new Vector3(0, lluviaLasersHeight, 0);
+            obj.GetComponent<LluviaLasers>().damage = 0;
+        }
+        else if (container1 >= lluviaAmount && bool1)
+        {
+            bool1 = false;
+            t1 = 0;
+            container1 = 0;
+            //isAttacking = false;
+            //currentAction = Maction.idle;
+        }
+
     }
 
     public void PreparacionRayo()
