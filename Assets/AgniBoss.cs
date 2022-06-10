@@ -8,9 +8,9 @@ public enum Agtion
     idle,
     rayoPalma, //on air
     bombardeo, // air grond
-    estacasStun //air ground
-    //bombaFlash, //air ground
-    //lluviaLasers, //on air
+    estacasStun, //air ground
+    llamas, //air ground
+    misilesExplosivos, //on air
     //vistaCazador, // on air
     //discosEmp //on air
 };
@@ -48,6 +48,9 @@ public class AgniBoss : MonoBehaviour
     public int bombNumber;
     public float bombspeed;
     public float bombRotationTime;
+
+    public float espaciadobombas;
+
     public int rangeAttackBomb;
 
     public Vector3 direction2;
@@ -86,7 +89,17 @@ public class AgniBoss : MonoBehaviour
 
     public int rangeAttackStun;
 
+    [Header("Llamas")]
 
+    public GameObject llamas;
+    public float llamasDuration;
+    public float llamastimer;
+
+    [Header("Misiles Explosivos")]
+    public GameObject explotion;
+    public float bmDelay;
+    public float bmAmount;
+    public float bmTimeToExplode;
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +128,7 @@ public class AgniBoss : MonoBehaviour
     {
         Iddle();
         //dist = Vector3.Distance(player.transform.position, transform.position);
-        RayoPalma();
+        //RayoPalma();
 
     }
 
@@ -136,8 +149,8 @@ public class AgniBoss : MonoBehaviour
         else
         {
             //laser.isActive = false;
-            rayoenrango = false;
-            vistaCazador.SetActive(false);
+            //rayoenrango = false;
+            //vistaCazador.SetActive(false);
         }
         if (dist > mediumDist)
         {
@@ -160,7 +173,7 @@ public class AgniBoss : MonoBehaviour
 
             case Agtion.rayoPalma:
                 PreparacionRayo();       
-                //currentDamageValue = damages[Action.rayoIon];
+                
                 break;
 
             case Agtion.bombardeo:
@@ -171,14 +184,14 @@ public class AgniBoss : MonoBehaviour
                 if (dist > mediumDist) EstacasStun();
                 break;
 
-            /*case Maction.bombaFlash:
-                HandleBombaFlash();
+            case Agtion.llamas:
+                Llamas();
                 break;
-            case Maction.lluviaLasers:
-                HandleLluviaDeLasers();
+            case Agtion.misilesExplosivos:
+                HandleBombardeoMisiles();
                 break;
 
-            case Maction.vistaCazador:
+            /* case Maction.vistaCazador:
                 HandleVistaCazador();
                 //currentDamageValue = damages[Action.vistaCazador];
                 break;
@@ -228,7 +241,7 @@ public class AgniBoss : MonoBehaviour
                 }
 
                 Bombas();
-                bombspeed += 5;
+                bombspeed += espaciadobombas;
             }
         }
     }
@@ -299,6 +312,47 @@ public class AgniBoss : MonoBehaviour
 
     }
 
+    public void Llamas()
+    {
+        llamastimer += Time.deltaTime;
+
+        if (llamastimer < llamasDuration)
+        {
+            llamas.SetActive(true);
+        }
+        else
+        {
+            llamas.SetActive(false);
+        }
+
+
+    }
+
+    private void HandleBombardeoMisiles()
+    {
+        t1 += Time.deltaTime;
+        bool1 = true;
+        //stats.isAttacking = true;
+
+        if (t1 > bmDelay && container1 < bmAmount)
+        {
+            container1++;
+            t1 = 0;
+            GameObject _explotion = Instantiate(explotion);
+            _explotion.transform.position = player.transform.position;
+            _explotion.GetComponent<Misiles>().damage = 20;
+            _explotion.GetComponent<Misiles>().timer = bmTimeToExplode;
+        }
+        else if (container1 >= bmAmount && bool1)
+        {
+            bool1 = false;
+            t1 = 0;
+            container1 = 0;
+            //stats.isAttacking = false;
+            currentAction = Agtion.idle;
+        }
+    }
+
     public void PreparacionRayo()
     {
         if(range == rangeAttackLaser)
@@ -312,7 +366,7 @@ public class AgniBoss : MonoBehaviour
             disparado = false;
         }
 
-        // RayoPalma();
+        RayoPalma();
     }
 
     private void RayoPalma()
@@ -321,10 +375,10 @@ public class AgniBoss : MonoBehaviour
         //stats.isAttacking = true;
         if (disparado == false)
         {
-            vistaCazador.SetActive(true);
+            //vistaCazador.SetActive(true);
         }
 
-        //vistaCazador.SetActive(true);
+        vistaCazador.SetActive(true);
         //stats.canRotate = false;
 
         //MeganeuraLaser laser = vistaCazador.GetComponent<MeganeuraLaser>();

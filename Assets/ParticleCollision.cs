@@ -23,7 +23,15 @@ public class ParticleCollision : MonoBehaviour
     {
         if (colplayer == true)
         {
-            PlayerCollision();
+            if (agniBoss.modoNitrogeno == true)
+            {
+                PlayerCollisionIce();
+            }
+            else
+            {
+                PlayerCollision();
+            }
+           
         }
         timer += Time.deltaTime;
 
@@ -39,6 +47,17 @@ public class ParticleCollision : MonoBehaviour
         if (timer >= 0.1f)
         {
             PlayerStatus.damagePlayer?.Invoke(3);
+            colplayer = false;
+            timer = 0;
+        }
+
+    }
+
+    private void PlayerCollisionIce()
+    {
+        if (timer >= 0.1f)
+        {
+            PlayerStatus.damagePlayer?.Invoke(30);
             colplayer = false;
             timer = 0;
         }
