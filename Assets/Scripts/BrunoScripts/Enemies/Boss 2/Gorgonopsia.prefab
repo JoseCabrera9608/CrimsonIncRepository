@@ -1609,7 +1609,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4227843550261168439}
-  m_LocalRotation: {x: -6.5369926e-13, y: -1, z: 0.0000001490116, w: -0.0000036805864}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.5, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1649,8 +1649,8 @@ MonoBehaviour:
   - {fileID: 4227843551103319972}
   - {fileID: 4227843551311260763}
   cargaCalor:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4924088257839136848}
+  - {fileID: 8532051009165544769}
   legParent: {fileID: 4227843551367288348}
   col: {fileID: 4227843550261168428}
   isActing: 0
@@ -1664,19 +1664,19 @@ MonoBehaviour:
   attackProbabilities:
   - nextAttack: 2
     minProbability: 0
-    maxProbability: 24
+    maxProbability: 0
     animationTrigger: embestidaFrenetica
   - nextAttack: 4
-    minProbability: 25
-    maxProbability: 49
+    minProbability: 0
+    maxProbability: 0
     animationTrigger: rugidoExplosivo
   - nextAttack: 5
-    minProbability: 50
-    maxProbability: 74
+    minProbability: 0
+    maxProbability: 100
     animationTrigger: bomba360
   - nextAttack: 6
-    minProbability: 75
-    maxProbability: 100
+    minProbability: 1
+    maxProbability: 0
     animationTrigger: alientoCalor
   bombaJaegerProbability:
   - nextAttack: 7
@@ -1724,10 +1724,10 @@ MonoBehaviour:
   alientoCalorFinished: 0
   rugidoExplosivoRadius: 23
   rugidoExplosivoChargeTime: 3
-  bombaJaegerSpeed: 100
+  bombaJaegerSpeed: 50
   bombaJaegerBurnDamage: 10
-  bombaJaegerTimeToAct: 0.5
-  bombaJaegerRotationSpeed: 0
+  bombaJaegerTimeToAct: 1
+  bombaJaegerRotationSpeed: 180
   bombaJaegerDistanceTreshHold: 1.5
   on50Health: 0
   bomba360DistanceTreshold: 10
