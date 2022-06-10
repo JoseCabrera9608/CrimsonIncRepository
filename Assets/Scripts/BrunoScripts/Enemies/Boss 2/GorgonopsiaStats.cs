@@ -49,7 +49,7 @@ public class GorgonopsiaStats : MonoBehaviour
     public float bombaJaegerSpeed;
     public float bombaJaegerBurnDamage;
     public float bombaJaegerTimeToAct;
-    public float bombaJaegerExplotionRadius;
+    public float bombaJaegerRotationSpeed;
     public float bombaJaegerDistanceTreshHold;
     public bool on50Health;
 
