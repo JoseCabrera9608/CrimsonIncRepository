@@ -40,7 +40,7 @@ public class Checkpoint : MonoBehaviour
 
         if (progress.lastposition != Vector3.zero)
         {
-           //Player.transform.position = progress.lastposition;
+           Player.transform.position = progress.lastposition;
         }
 
     }
