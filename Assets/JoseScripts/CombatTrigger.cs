@@ -14,10 +14,10 @@ public class CombatTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
-        //progress.lastCheckpointPos = transform.position;
-        BossGameEVent.current.StartCombatTriggerExit(id);
-        Destroy(this.gameObject);
+           BossGameEVent.current.StartCombatTriggerExit(id);
+            Destroy(this.gameObject);
+        
+        
 
     }
 }

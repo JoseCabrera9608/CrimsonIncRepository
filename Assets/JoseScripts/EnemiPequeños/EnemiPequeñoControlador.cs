@@ -232,6 +232,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     IEnumerator Kamikaze()
     {
+        anim.SetTrigger("Kamikaze");
         yield return new WaitForSeconds(2f);
         agente.speed = 8;
         //anim.setTrigger("Kamikaze");
@@ -301,7 +302,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")&&kamikaze == true)
         {
             GameObject explosionParticula;
             explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);

@@ -9,8 +9,12 @@ public class CercoElectrico : MonoBehaviour
     Animator anim;
     public int id;
     BoxCollider colliderElectrico;
+    public GameObject particulas;
+    AudioSource audioActivacion;
+  
     void Start()
     {
+        audioActivacion = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         colliderElectrico = GetComponent<BoxCollider>();
         //  BossGameEVent.current.combatTriggerExit += StartChase;
@@ -20,7 +24,7 @@ public class CercoElectrico : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+    
     }
         
 
@@ -37,6 +41,8 @@ public class CercoElectrico : MonoBehaviour
     {
         if (id == this.id)
         {
+            audioActivacion.Stop();
+            particulas.SetActive(true);
             anim.SetTrigger("Apagar");
             colliderElectrico.enabled = false;
         }
@@ -47,6 +53,10 @@ public class CercoElectrico : MonoBehaviour
             colliderElectrico.enabled = false;
 
         }*/
+    }
+    public void SonidoApagarCerco()
+    {
+        FindObjectOfType<AudioManager>().Play("CercoOff");
     }
 }
     
