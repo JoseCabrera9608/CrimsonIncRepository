@@ -48,9 +48,9 @@ public class BuffManager : MonoBehaviour
     private void Update()
     {
         //Testing
-        if (Input.GetKeyDown(KeyCode.P)) HandleDeath();
-        if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
-        if (Input.GetKeyDown(KeyCode.I)) ShowPanel();
+        //if (Input.GetKeyDown(KeyCode.P)) HandleDeath();
+        //if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
+        //if (Input.GetKeyDown(KeyCode.I)) ShowPanel();
 
         //LowHealthDamageBuff();
         

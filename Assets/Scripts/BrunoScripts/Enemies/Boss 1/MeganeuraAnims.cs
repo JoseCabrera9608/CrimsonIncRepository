@@ -10,8 +10,7 @@ public class MeganeuraAnims : MonoBehaviour
     private MeganeuraStats stat;
     
     private void Start()
-    {
-        animator = GetComponent<Animator>();
+    {       
         boss = GetComponent<MeganeuraBoss>();
         stat = GetComponent<MeganeuraStats>();
     }

@@ -69,9 +69,10 @@ public class GorgonopsiaBoss : MonoBehaviour
             StateMachine();
             RotateToPlayer();
             UpdateCargaCalorVisuals();
+            LegCheck();
         }
 
-        if (Input.GetKeyDown(KeyCode.Y)) PlayerStatus.damagePlayer?.Invoke(10);
+        
         //currentDamageValue = stats.gorgoDamages[currentAction];
     }
     private void StateMachine()
@@ -265,11 +266,12 @@ public class GorgonopsiaBoss : MonoBehaviour
                 obj.transform.position = bombaJaegerPosDerecha.position;
                 obj.transform.localEulerAngles = new Vector3(-45, -90, 0);
             }
-            obj.GetComponent<Rigidbody>().AddForce(transform.forward * 4, ForceMode.VelocityChange);
+            //obj.GetComponent<Rigidbody>().AddForce(transform.forward * 4, ForceMode.VelocityChange);
             BombaJaeger script = obj.GetComponent<BombaJaeger>();
             script.damage = stats.bombasJaegerDamage;
             if (stats.attackSpeedBonus) script.speed = stats.bombaJaegerSpeed + (stats.bombaJaegerSpeed * stats.generalAttackSpeedBonus);
             else script.speed = stats.bombaJaegerSpeed;
+
             script.distanceTreshHold = stats.bombaJaegerDistanceTreshHold;
             script.rotationSpeed = stats.bombaJaegerRotationSpeed;
             script.timeToAct = stats.bombaJaegerTimeToAct;
@@ -474,7 +476,18 @@ public class GorgonopsiaBoss : MonoBehaviour
                 break;
         }
     }
-
+    public void LegCheck()
+    {
+        if (currentAction == Gstates.cargaCalor&&isActing)
+        {
+            if (leftLegOn == false && rightLegOn == false)
+            {
+                currentAction = Gstates.idle;
+                isActing = false;
+                StopAllCoroutines();
+            }
+        }
+    }
     public void HandleDeath()
     {
         stats.isAlive = false;      

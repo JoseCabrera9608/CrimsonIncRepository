@@ -31,11 +31,11 @@ public class BombaJaeger : MonoBehaviour
 
     void Update()
     {
-        Explode2();
+        Explode();
         TrackPlayer();
         ApplyForwardForce();
     }
-    private void Explode2()
+    private void Explode()
     {
         Vector3 target = player.transform.position + Vector3.up * 1.6f;
         distanceToTarget = Vector3.Distance(transform.position, target);
@@ -83,6 +83,7 @@ public class BombaJaeger : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
+            if (launched) Explode();
             if (onGround == false)
             {
                 StartCoroutine(ApplyForce());
