@@ -8,10 +8,14 @@ public class ParticleCollision : MonoBehaviour
     public bool colplayer;
     public float timer;
 
+    public AgniBoss agniBoss;
+
     // Start is called before the first frame update
     void Start()
     {
         part = GetComponent<ParticleSystem>();
+        agniBoss = GetComponentInParent<AgniBoss>();
+
     }
 
     // Update is called once per frame
@@ -23,6 +27,10 @@ public class ParticleCollision : MonoBehaviour
         }
         timer += Time.deltaTime;
 
+        if (agniBoss.modoNitrogeno == true)
+        {
+            
+        }
 
     }
 

@@ -323,6 +323,7 @@ public class AgniBoss : MonoBehaviour
         {
             vistaCazador.SetActive(true);
         }
+
         //vistaCazador.SetActive(true);
         //stats.canRotate = false;
 
