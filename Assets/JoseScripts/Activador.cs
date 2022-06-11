@@ -10,6 +10,8 @@ public class Activador : MonoBehaviour
     public GameObject Player;
     public Transform consolepoint;
     public GameObject Puerta;
+    public MeshRenderer mesh;
+    //public Material matActivated;
     Animator puertaAnim;
     void Start()
     {
@@ -30,10 +32,17 @@ public class Activador : MonoBehaviour
 
             playerStatus.InteractualObject = consolepoint;
             playerStatus.Interacting();
+            StartCoroutine(ChangeColor());
             puertaAnim.SetTrigger("Activado");
             
         }
 
+    }
+
+    IEnumerator ChangeColor()
+    {
+        yield return new WaitForSeconds(1.5f);
+        mesh.material.SetColor("_EmissionColor", Color.cyan);
     }
 
     private void OnTriggerEnter(Collider other)
