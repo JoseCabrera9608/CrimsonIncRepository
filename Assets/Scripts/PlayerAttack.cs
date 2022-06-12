@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
         weaponCollider.enabled = false;
 
         damage = 5;
-
+        
     }
 
     // Update is called once per frame
