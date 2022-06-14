@@ -55,7 +55,10 @@ public class Checkpoint : MonoBehaviour
             timer += Time.deltaTime;
             //timer2 += Time.deltaTime;
 
-            if (timer < 2)
+            mesh.material.SetColor("_EmissionColor", Color.cyan *5);
+            lowmesh.material.SetColor("_EmissionColor", Color.cyan *5);
+
+            /*if (timer < 2)
             {
                 timer2 += 2 * Time.deltaTime;
                 mesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
@@ -72,7 +75,7 @@ public class Checkpoint : MonoBehaviour
             {
                 timer = 0;
             }
-
+            */
         }
         else
         {
