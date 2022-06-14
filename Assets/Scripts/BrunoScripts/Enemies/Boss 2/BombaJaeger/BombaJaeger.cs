@@ -79,15 +79,16 @@ public class BombaJaeger : MonoBehaviour
         yield return new WaitForSeconds(timeToAct);
         launched = true;
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (other.CompareTag("Ground"))
         {
             if (launched) Explode();
             if (onGround == false)
             {
                 StartCoroutine(ApplyForce());
-                rb.AddForce(Vector3.up * 8, ForceMode.VelocityChange);
+                rb.AddForce(Vector3.up * 20, ForceMode.VelocityChange); //esto era Vector3.up * 8 y no era en Trigger pero lo cambié ecsdi. Atte, Santi owo
             }
             onGround = true;
         }
