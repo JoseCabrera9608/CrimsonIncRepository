@@ -12,10 +12,16 @@ public class CombatTrigger : MonoBehaviour
         //progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-           BossGameEVent.current.StartCombatTriggerExit(id);
+        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            BossGameEVent.current.StartCombatTriggerExit(id);
             Destroy(this.gameObject);
+        }
+        
+
         
         
 
