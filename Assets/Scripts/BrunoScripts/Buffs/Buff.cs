@@ -137,8 +137,8 @@ public enum PlayerVars
 
 public enum UniqueID
 {
-    lowHealthMoreDamage,
+    amplificacionRiesgosa,
     revive,
-    sacrificeRing,
+    inhibidorDeNanobots,
     extraCard
 }

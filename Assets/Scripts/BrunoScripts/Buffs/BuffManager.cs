@@ -19,11 +19,11 @@ public class BuffManager : MonoBehaviour
     
     //Unique Buffs Vars====================================
     public bool hasExtraCardBuff=false;
-    public bool redTearstone=false;
-    private float extraDamage;
-    private float prevDamage;
-    public bool sacrificeRing = false;
-    //public float sacrificeRingCharges;
+
+    public bool amplificacionRiesgosa=false;
+    public float prevDamage;
+
+    public bool inhibidorDeNanobots = false;
 
     //ACTIONS=============================================
     public static Action onBossDefetead;
@@ -43,6 +43,21 @@ public class BuffManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) onBossDefetead?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerSingleton.Instance.playerCurrentHP -= 10;
+            Debug.LogWarning("-10 de salud por parte de " + gameObject.name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            PlayerSingleton.Instance.playerCurrentHP += 30;
+            Debug.LogWarning("+30 de salud por parte de " + gameObject.name);
+        }
+
+        HandleAmplificacionRiesgosa();
+        HandleInhibidorDeNanoBots();
     }
     private void Awake()
     {
@@ -50,8 +65,14 @@ public class BuffManager : MonoBehaviour
     }
     private void Start()
     {
+        amplificacionRiesgosa = false;
+        hasExtraCardBuff = false;
+        inhibidorDeNanobots = false;
+
         LoadSelectedBuffs(false, null);
-        buffPanel.SetActive(false);     
+        buffPanel.SetActive(false);
+
+        prevDamage = PlayerSingleton.Instance.playerDamage;
     }
   
     public void SpawnContainers()
@@ -141,35 +162,19 @@ public class BuffManager : MonoBehaviour
     }
     public void HandleDeath()
     {
-            if (equipedBuffs.Count > 0)
+        if (equipedBuffs.Count > 0)
+        {
+            if (buffOnGround == false)
             {
-                if (buffOnGround == false)
+                Debug.Log("Tus buffs estan en el lugar de tu muerte UwU");
+                foreach (Buff buff in equipedBuffs)
                 {
-                    Debug.Log("Tus buffs estan en el lugar de tu muerte UwU");
-                    foreach (Buff buff in equipedBuffs)
-                    {
-                    //buff.oppositeMultiplier = -1;
-                    //buff.ApplyBuff();
-                    //buff.oppositeMultiplier = 1;
                     buff.active = false;
-                    }
-                    buffOnGround = true;
-                    dataHolder.spawnDataRecoveryObject=true; 
                 }
-                //else if (buffOnGround == true)
-                //{
-                //    Debug.Log("Oh no, perdiste tus buffs para siempre :(");
-                //    foreach (Buff buff in equipedBuffs)
-                //    {
-                //        buff.picked = false;
-                //        equipedBuffs = null;
-                //    }
-                //    buffOnGround = false;
-                //}
-
+                buffOnGround = true;
+                dataHolder.spawnDataRecoveryObject=true; 
             }
-        //}
-        
+        }
     }
     public void RecoverBuffs()
     {
@@ -180,6 +185,7 @@ public class BuffManager : MonoBehaviour
             buff.ApplyBuff();
         }
         buffOnGround = false;
+        dataHolder.spawnDataRecoveryObject = false;
     }
     public void ResetBuffDisplay()
     {
@@ -209,60 +215,48 @@ public class BuffManager : MonoBehaviour
         }
         
     }
-    public void CheckSacrificeRing()
-    {
-        for(int i = 0; i < equipedBuffs.Count; i++)
-        {
-            if (equipedBuffs[i].uniqueID == UniqueID.sacrificeRing)
-            {
-                if(sacrificeRing&& PlayerPrefs.GetFloat("sacrificeCharges") == 0)
-                {
-                    equipedBuffs[i].picked = false;
-                    sacrificeRing = false;
-                    equipedBuffs.RemoveAt(i);
-                }
-            }
-        }
-       
-    }
+    
     public void UniqueBuffs(UniqueID id)
     {
         switch (id)
         {
             case UniqueID.extraCard:
-                hasExtraCardBuff = !hasExtraCardBuff;
+                hasExtraCardBuff = true;
                 if (hasExtraCardBuff) containersToDisplay = 4;
                 else containersToDisplay = 3;
                 break;
 
-            case UniqueID.lowHealthMoreDamage:
-                redTearstone = !redTearstone;
-                prevDamage = PlayerSingleton.Instance.playerDamage;
+            case UniqueID.amplificacionRiesgosa:
+                amplificacionRiesgosa = true;
+                
               break;
 
-            case UniqueID.sacrificeRing:
-                sacrificeRing =true;
-                if (PlayerPrefs.GetFloat("sacrificeCharges") == 0) PlayerPrefs.SetFloat("sacrificeCharges", 3);
+            case UniqueID.inhibidorDeNanobots:
+                inhibidorDeNanobots = true;
                 break;
         }
     }
-    public void LowHealthDamageBuff()
+    private void HandleAmplificacionRiesgosa()
     {
-        if (redTearstone)
+        if (amplificacionRiesgosa == false) return;
+
+        if (PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP * .2f)
         {
-            if (PlayerSingleton.Instance.playerCurrentHP <= PlayerSingleton.Instance.playerMaxHP * 0.2f)
-            {
-                extraDamage = DefaultPlayerVars.defaultDamage * 1.6f;
-            }
-            else extraDamage = 0;
-
+            PlayerSingleton.Instance.playerDamage = prevDamage + (DefaultPlayerVars.defaultDamage * 1.6f);
         }
-        else extraDamage = 0;
-     
-        PlayerSingleton.Instance.playerDamage = extraDamage+prevDamage;
+        else
+        {
+            PlayerSingleton.Instance.playerDamage = prevDamage;
+        }
+    }
+    private void HandleInhibidorDeNanoBots()
+    {
+        if (inhibidorDeNanobots == false) return;
 
-        //if (Input.GetMouseButtonDown(0)) PlayerSingleton.Instance.playerCurrentHP -= 80f;
-        //if (Input.GetMouseButtonDown(1)) PlayerSingleton.Instance.playerCurrentHP += 30f;
+        if (PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
+        {
+            PlayerSingleton.Instance.playerCurrentHP += .2f * Time.deltaTime;
+        }
 
     }
     [ContextMenu("ResetAll uses")]
