@@ -12,11 +12,12 @@ public class BuffContainer : MonoBehaviour
 
     public Buff assignedBuff;
 
-    public void ChangeText()
+    public void ChangeText(Color _color)
     {
         titleText.text = assignedBuff.buffName;
         descriptionText.text = assignedBuff.description;
         iconSprite.sprite = assignedBuff.icon;
+        GetComponent<Image>().color = _color;
     }
     public void PickBuff()
     {

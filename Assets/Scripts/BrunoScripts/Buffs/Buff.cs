@@ -8,6 +8,7 @@ public class Buff : ScriptableObject
 {
     [Header("General")]
     [SerializeField] public BuffType buffType;
+    [SerializeField] public BuffRarity rarity;
     public string buffName;
     public string description;
     public bool picked;
@@ -142,3 +143,10 @@ public enum UniqueID
     inhibidorDeNanobots,
     extraCard
 }
+public enum BuffRarity
+{
+    common,
+    rare,
+    unique
+}
+

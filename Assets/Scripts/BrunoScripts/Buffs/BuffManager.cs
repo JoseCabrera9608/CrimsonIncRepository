@@ -7,6 +7,7 @@ using DG.Tweening;
 public class BuffManager : MonoBehaviour
 {
     public float containersToDisplay;
+    public Color[] colors;
     [SerializeField] private GameObject buffPanel;
     [SerializeField] private GameObject[] buffContainer;
     [SerializeField] private GameObject containerParent;
@@ -155,10 +156,17 @@ public class BuffManager : MonoBehaviour
                     i = maxTries;
                     buff[randomIndex].displayed = true;
                     container.GetComponent<BuffContainer>().assignedBuff=buff[randomIndex];
-                    container.GetComponent<BuffContainer>().ChangeText();
+                    container.GetComponent<BuffContainer>().ChangeText(GetColor(buff[randomIndex].rarity));
                 }
             }          
         }
+    }
+    public Color GetColor(BuffRarity rarity)
+    {
+        if (rarity == BuffRarity.common) return colors[0];
+        else if (rarity == BuffRarity.rare) return colors[1];
+        else if (rarity == BuffRarity.unique) return colors[2];
+        else return colors[0];
     }
     public void HandleDeath()
     {
