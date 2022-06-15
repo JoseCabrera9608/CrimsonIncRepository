@@ -49,6 +49,8 @@ public class GorgonopsiaBoss : MonoBehaviour
 
     public bool attacked;
     private GorgonopsiaAnims anims;
+
+    [SerializeField] private bool onArena;
     #endregion
 
     #region probabilidades
@@ -75,15 +77,55 @@ public class GorgonopsiaBoss : MonoBehaviour
             LegCheck();
         }
 
-        
+        if (onArena == true) Arena();
         //currentDamageValue = stats.gorgoDamages[currentAction];
+    }
+
+    private void Arena()
+    {
+        if (isActing) return;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentAction = Gstates.cargaCalor;
+            anims.SetAnimationTrigger("cargaCalor");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentAction = Gstates.embestidaFrenetica;
+            anims.SetAnimationTrigger("embestidaFrenetica");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            HandleBlink(originalPos, 1);           
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentAction = Gstates.rugidoExplosivo;
+            anims.SetAnimationTrigger("rugidoExplosivo");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            currentAction = Gstates.bomba360;
+            anims.SetAnimationTrigger("bomba360");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            currentAction = Gstates.alientoCalor;
+            anims.SetAnimationTrigger("alientoCalor");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            HandleBombaJaeger();
+        }
+
     }
     private void StateMachine()
     {
         switch (currentAction)
         {
             case Gstates.idle:
-                if (evaluatingAttack == false) HandleIdle(false,Gstates.idle);
+                if (evaluatingAttack == false && onArena==false) HandleIdle(false,Gstates.idle);
                 break;
 
             case Gstates.cargaCalor:

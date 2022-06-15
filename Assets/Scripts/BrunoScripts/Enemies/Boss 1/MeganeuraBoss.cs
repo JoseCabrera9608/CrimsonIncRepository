@@ -561,7 +561,7 @@ public class MeganeuraBoss : MonoBehaviour
         }
         StopBobing();
         StopAllCoroutines();
-        BuffManager.Instance.ShowPanel();
+        BuffManager.onBossDefetead?.Invoke();
     }
 
     private void Arena()
