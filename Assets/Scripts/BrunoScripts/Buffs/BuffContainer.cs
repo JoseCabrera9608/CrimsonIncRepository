@@ -8,13 +8,15 @@ public class BuffContainer : MonoBehaviour
 {
     [SerializeField] private Text titleText;
     [SerializeField] private Text descriptionText;
+    [SerializeField] private Image iconSprite;
 
     public Buff assignedBuff;
 
     public void ChangeText()
     {
         titleText.text = assignedBuff.buffName;
-        descriptionText.text = assignedBuff.description;       
+        descriptionText.text = assignedBuff.description;
+        iconSprite.sprite = assignedBuff.icon;
     }
     public void PickBuff()
     {

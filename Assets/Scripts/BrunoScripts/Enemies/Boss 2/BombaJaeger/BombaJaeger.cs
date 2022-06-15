@@ -77,6 +77,7 @@ public class BombaJaeger : MonoBehaviour
     {
         target = player.transform.position;
         yield return new WaitForSeconds(timeToAct);
+        GorgonopsiaSFX.Instance.Play("bombaJaeger");
         launched = true;
     }
 

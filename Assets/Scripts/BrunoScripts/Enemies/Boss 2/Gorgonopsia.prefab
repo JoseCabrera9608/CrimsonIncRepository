@@ -1619,6 +1619,7 @@ Transform:
   - {fileID: 4227843550138537906}
   - {fileID: 4227843551423161248}
   - {fileID: 4227843551367288349}
+  - {fileID: 3718975478414729475}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 540, z: 0}
@@ -1655,6 +1656,7 @@ MonoBehaviour:
   legParent: {fileID: 4227843551367288348}
   col: {fileID: 4227843550261168428}
   audioSource: {fileID: 4651322809237155682}
+  music: {fileID: 0}
   isActing: 0
   evaluatingAttack: 0
   bombaJaegerPosIzquierda: {fileID: 4227843551913415009}
@@ -2725,6 +2727,104 @@ Transform:
   m_Father: {fileID: 7819722482606465600}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4838108030560160849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3718975478414729475}
+  - component: {fileID: 3605307614044465980}
+  m_Layer: 0
+  m_Name: SOUNDS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3718975478414729475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838108030560160849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4227843550261168432}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3605307614044465980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838108030560160849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d59ef84acfeda241941af9bdb5be2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list:
+  - clipName: girarPatas
+    clip: {fileID: 8300000, guid: 7b9f57e79cf867d4193084159054c4df, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: bombaJaeger
+    clip: {fileID: 8300000, guid: c85e2ead601b7b540af9acc96580bdee, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: embestida
+    clip: {fileID: 8300000, guid: 116c3d97add7e144f8242278b1bd102e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: blink
+    clip: {fileID: 8300000, guid: f0a8d4ccb0676c54da526d8958a63a66, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: rugidoExplosivo
+    clip: {fileID: 8300000, guid: 94582071b44e9b540aaf267dd66cee0c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: bomba360
+    clip: {fileID: 8300000, guid: 01453a85e95da9245acedc982190681d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: alientoCalor
+    clip: {fileID: 8300000, guid: 0c76f794a3fbf124aaad8b369d1aace8, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: cargaCalor
+    clip: {fileID: 8300000, guid: 0a2a17d5b8eef7a4ba70a34a35e83e3e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: cargaCalorCancel
+    clip: {fileID: 8300000, guid: 074d0f090d6d7b24bb3fc0cdff6b0b16, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &4845221159913709436
 GameObject:
   m_ObjectHideFlags: 0

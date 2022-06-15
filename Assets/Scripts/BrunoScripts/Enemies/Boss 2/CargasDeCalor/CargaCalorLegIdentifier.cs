@@ -24,12 +24,14 @@ public class CargaCalorLegIdentifier : MonoBehaviour
                         gameObject.SetActive(false);
                         boss.leftLegOn = false;
                         boss.currentHeatCharges--;
+                        GorgonopsiaSFX.Instance.Play("cargaCalorCancel");
                         break;
 
                     case LegType.right:
                         gameObject.SetActive(false);
                         boss.rightLegOn = false;
                         boss.currentHeatCharges--;
+                        GorgonopsiaSFX.Instance.Play("cargaCalorCancel");
                         break;
                 }
             }

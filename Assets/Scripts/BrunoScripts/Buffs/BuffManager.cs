@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,15 +25,24 @@ public class BuffManager : MonoBehaviour
     public bool sacrificeRing = false;
     //public float sacrificeRingCharges;
 
+    //ACTIONS=============================================
+    public static Action onBossDefetead;
+
     //Recover buffs
     [SerializeField]private GeneralDataHolder dataHolder;
     private void OnEnable()
     {
         PlayerStatus.onPlayerDeath += HandleDeath;
+        BuffManager.onBossDefetead += ShowPanel;
     }
     private void OnDisable()
     {
         PlayerStatus.onPlayerDeath -= HandleDeath;
+        BuffManager.onBossDefetead -= ShowPanel;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) onBossDefetead?.Invoke();
     }
     private void Awake()
     {
@@ -41,20 +51,9 @@ public class BuffManager : MonoBehaviour
     private void Start()
     {
         LoadSelectedBuffs(false, null);
-        buffPanel.SetActive(false);
-        //temp
-        //ShowPanel();       
+        buffPanel.SetActive(false);     
     }
-    private void Update()
-    {
-        //Testing
-        //if (Input.GetKeyDown(KeyCode.P)) HandleDeath();
-        //if (Input.GetKeyDown(KeyCode.O)) RecoverBuffs();
-        //if (Input.GetKeyDown(KeyCode.I)) ShowPanel();
-
-        //LowHealthDamageBuff();
-        
-    }
+  
     public void SpawnContainers()
     {
         buffContainer = new GameObject[(int)containersToDisplay];
@@ -69,8 +68,7 @@ public class BuffManager : MonoBehaviour
     {
         if (containerParent == null) Debug.LogError("Falta asignar el objeto padre de los contenedores");
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        UIManager.Instance.CursorController("unblock");
         SpawnContainers();
         ResetBuffDisplay();
         SetBuffInformation();
@@ -96,6 +94,7 @@ public class BuffManager : MonoBehaviour
     public void HideCards(GameObject selectedCard)
     {
         buffPanel.GetComponent<CanvasGroup>().interactable = false;
+        UIManager.Instance.CursorController("block");
         Sequence hidePanel = DOTween.Sequence();
         foreach(GameObject container in buffContainer)
         {
@@ -129,7 +128,7 @@ public class BuffManager : MonoBehaviour
 
             for(int i = 0; i < maxTries; i++)
             {
-                int randomIndex = (int)Random.Range(0, buff.Length);
+                int randomIndex = (int)UnityEngine.Random.Range(0, buff.Length);
                 if (buff[randomIndex].displayed == false)
                 {
                     i = maxTries;
@@ -142,14 +141,6 @@ public class BuffManager : MonoBehaviour
     }
     public void HandleDeath()
     {
-        //CheckSacrificeRing();
-        //if (sacrificeRing == true&&PlayerPrefs.GetFloat("sacrificeCharges")>0)
-        //{
-        //    PlayerPrefs.SetFloat("sacrificeCharges", PlayerPrefs.GetFloat("sacrificeCharges")-1);
-        //    Debug.Log("Sacrifice charges= " + PlayerPrefs.GetFloat("sacrificeCharges"));
-        //}
-        //else
-        //{
             if (equipedBuffs.Count > 0)
             {
                 if (buffOnGround == false)

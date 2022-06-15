@@ -40,6 +40,8 @@ public class Bomba360 : MonoBehaviour
         obj.transform.position = transform.position;
         float value = initialDistanceToPlayer * 2;
         obj.transform.localScale = new Vector3(value, value, value / 3);
+
+        GorgonopsiaSFX.Instance.Play("bomba360");
         //damage to player
         if (distanceToPlayer >= minDistanceToDamage && distanceToPlayer <= maxDistanceToDamage) DamagePlayer();
 

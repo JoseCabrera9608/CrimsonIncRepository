@@ -186,6 +186,8 @@ public class GorgonopsiaBoss : MonoBehaviour
             RugidoExplosivo script = obj.GetComponent<RugidoExplosivo>();
             script.damage = stats.rugidoExplosivoDamage;
             script.dimension = stats.rugidoExplosivoRadius;
+
+            GorgonopsiaSFX.Instance.Play("rugidoExplosivo");
             if (stats.attackSpeedBonus) script.chargeTime = stats.rugidoExplosivoChargeTime - (stats.rugidoExplosivoChargeTime * stats.generalAttackSpeedBonus);
             else script.chargeTime = stats.rugidoExplosivoChargeTime;
 
@@ -337,6 +339,7 @@ public class GorgonopsiaBoss : MonoBehaviour
             if (timer1 >= stats.embestidaFreneticaDelay+stats.blinkDefaultTime)
             {
                 anims.SetAnimationTrigger("embestidaFrenetica");
+                GorgonopsiaSFX.Instance.Play("embestida");
                 timer1 = 0;
                 bool1 = false;
                 embestidaFreneticaParent.SetActive(true);
@@ -417,6 +420,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (isActing == false)
         {
+            GorgonopsiaSFX.Instance.Play("cargaCalor");
             StartCoroutine(ResetActing(stats.cargaCalorChargeTime));
             StartCoroutine(DeactivateLegColliders(stats.cargaCalorChargeTime));
             legParent.SetActive(true);
@@ -559,7 +563,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         {
             stats.isActive = true;
             if (EnemyBar != null) EnemyBar.SetActive(true);
-            music.Play();
+            //music.Play();
             col.enabled = false; 
         }
     }

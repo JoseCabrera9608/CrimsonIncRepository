@@ -13,6 +13,7 @@ public class MagnetObject : MonoBehaviour
     [SerializeField] private bool showAtractionRadius;
     [SerializeField] private float atractionForce;
     [SerializeField] private float atractionRadius;
+     private float atractionHolder;
     [SerializeField] private float atractionDuration;
     [SerializeField] private float atractionDelay;
     [SerializeField] private bool isActive;
@@ -21,6 +22,7 @@ public class MagnetObject : MonoBehaviour
     void Start()
     {
         objectsToAtract = new List<Rigidbody>();
+        atractionHolder = atractionRadius;
         t = 0;
 
     }
@@ -31,6 +33,8 @@ public class MagnetObject : MonoBehaviour
         StartAtraction();
         PullPlayer();
         PullDebris();
+
+        atractionRadius = pullSphere.transform.localScale.x / 2;
     }
     private IEnumerator RestartAtraction()
     {
@@ -38,7 +42,6 @@ public class MagnetObject : MonoBehaviour
         isActive = false;
         t = 0;
         
-        //ExplotionAtEndUwu();
     }
     private void StartAtraction()
     {
@@ -48,11 +51,10 @@ public class MagnetObject : MonoBehaviour
             t += Time.deltaTime;
             if (t >= atractionDelay / 2 && pullSphere.transform.localScale == Vector3.zero)
             {
-                pullSphere.transform.DOScale(atractionRadius * 2, 1).SetEase(Ease.OutBack);
+                pullSphere.transform.DOScale(atractionHolder * 2, 1).SetEase(Ease.OutBack);
             }
             if (t >= atractionDelay)
             {
-                //Debug.Log("Iniciando");
                 isActive = true;
                 pullSphere.transform.DOScale(0, atractionDuration).SetEase(Ease.InCubic);
                 StartCoroutine(RestartAtraction());
@@ -82,13 +84,6 @@ public class MagnetObject : MonoBehaviour
             rb.AddForce(pullDirection * atractionForce * Time.fixedDeltaTime, ForceMode.Force);
         }
     }
-    private void ExplotionAtEndUwu()
-    {
-        foreach (Rigidbody rb in objectsToAtract)
-        {
-            rb.AddExplosionForce(1000, transform.position, 10);
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) player = other.gameObject;
@@ -99,6 +94,7 @@ public class MagnetObject : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        
         GetComponent<SphereCollider>().radius = atractionRadius;
         Gizmos.color = Color.red;
         

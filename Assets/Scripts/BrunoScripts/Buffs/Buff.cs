@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName ="New Buff",menuName ="Buff")]
 public class Buff : ScriptableObject
@@ -11,6 +12,7 @@ public class Buff : ScriptableObject
     public string description;
     public bool picked;
     public bool active;
+    public Sprite icon;
     [HideInInspector]public float oppositeMultiplier=1;
 
     [Header("Single Buff Settings")]

@@ -45,6 +45,7 @@ public class AlientoCalor : MonoBehaviour
         yield return new WaitForSeconds(alientoCalorChargeTime);
         alientoCalorFullyCharged = true;
 
+        GorgonopsiaSFX.Instance.Play("alientoCalor");
         transform.localEulerAngles = new Vector3(0, alientoCalorAngle * playerXAngle, 0);
         //oppositePlayerXAngle = GetPlayerXAngle() * -1;
 
