@@ -540,7 +540,8 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public void HandleDeath()
     {
-        stats.isAlive = false;      
+        stats.isAlive = false;
+        BuffManager.onBossDefetead?.Invoke();
     }
     //========================UTILITY METHODS========================
     private void RotateToPlayer()
