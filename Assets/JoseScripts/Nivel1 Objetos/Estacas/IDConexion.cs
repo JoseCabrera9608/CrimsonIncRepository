@@ -32,11 +32,7 @@ public class IDConexion : MonoBehaviour
             BossGameEVent.current.Conectar(id);
             
         }
-        if(destruido == true && playAudio == true)
-        {
-            sonidoApagarEstaca.Play();
-            playAudio = false;
-        }
+        
 
         
         
@@ -47,8 +43,10 @@ public class IDConexion : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerWeapon"))
         {
+            
             StartCoroutine(CambioColor());
             vida -= 10;
+            sonidoApagarEstaca.Play();
         }
     }
     IEnumerator CambioColor()
