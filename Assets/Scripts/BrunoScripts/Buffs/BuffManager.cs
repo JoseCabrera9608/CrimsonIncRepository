@@ -43,7 +43,11 @@ public class BuffManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) onBossDefetead?.Invoke();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Panel de buffos mostrado con la tecla P por " + gameObject.name);
+            onBossDefetead?.Invoke();
+        }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
