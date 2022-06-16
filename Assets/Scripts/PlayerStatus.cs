@@ -220,6 +220,7 @@ public class PlayerStatus : MonoBehaviour
         if (collision.gameObject.CompareTag("Acid"))
         {
             anim.SetTrigger("Acid");
+            FindObjectOfType<AudioManager>().Play("MuertePorAcido");
             dying = true;
         }
     }
