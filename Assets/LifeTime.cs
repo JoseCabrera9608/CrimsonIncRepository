@@ -11,10 +11,12 @@ public class LifeTime : MonoBehaviour
     public PlayerStatus playerStatus;
     public float dmgpersecond;
     public float initialdmg;
+    public AudioSource freezeSound;
 
 
     private void Start()
     {
+        freezeSound = GetComponent<AudioSource>();
         Player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = Player.GetComponent<PlayerStatus>();
         
@@ -35,6 +37,7 @@ public class LifeTime : MonoBehaviour
 
             if (fireTrap.traptype == "Ice")
             {
+                freezeSound.Play();
                 PlayerStatus.damagePlayer?.Invoke(11);
                 playerStatus.Ice();
             }

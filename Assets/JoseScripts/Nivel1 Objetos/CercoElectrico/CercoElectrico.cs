@@ -11,6 +11,7 @@ public class CercoElectrico : MonoBehaviour
     BoxCollider colliderElectrico;
     public GameObject particulas;
     AudioSource audioActivacion;
+    
   
     void Start()
     {

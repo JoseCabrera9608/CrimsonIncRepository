@@ -8,8 +8,11 @@ public class IDConexion : MonoBehaviour
     public bool destruido;
     public int vida;
     MeshRenderer meshEstaca;
+    public AudioSource sonidoApagarEstaca;
+    bool playAudio;
     void Start()
     {
+        sonidoApagarEstaca = this.gameObject.GetComponent<AudioSource>();
         meshEstaca = this.gameObject.GetComponent<MeshRenderer>();
     }
 
@@ -18,15 +21,24 @@ public class IDConexion : MonoBehaviour
     {
         if(vida <= 0)
         {
+            playAudio = true;
             destruido = true;
             Destroy(this.gameObject, 1f);
+            
         }
 
         if(destruido == true)
         {
             BossGameEVent.current.Conectar(id);
+            
+        }
+        if(destruido == true && playAudio == true)
+        {
+            sonidoApagarEstaca.Play();
+            playAudio = false;
         }
 
+        
         
         
     }
@@ -46,4 +58,5 @@ public class IDConexion : MonoBehaviour
         meshEstaca.material.color = Color.blue;
 
     }
+  
 }
