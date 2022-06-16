@@ -1,5 +1,109 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1157293311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157293314}
+  - component: {fileID: 1157293313}
+  - component: {fileID: 1157293312}
+  m_Layer: 0
+  m_Name: interuptor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1157293314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157293311}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 1.0130184, z: 0.38}
+  m_LocalScale: {x: 41.686, y: 41.686, z: 41.68601}
+  m_Children: []
+  m_Father: {fileID: 7847868147505211385}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1157293313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157293311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0976865, y: 0.0348061, z: 0.123823404}
+  m_Center: {x: 0.0011231913, y: 0.011434475, z: -0.026627757}
+--- !u!114 &1157293312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157293311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dde46794e761224c85f7d115ef37490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elevador: {fileID: 1017738839442765050}
+  colliding: 0
+  colliderTrigger: {fileID: 1157293313}
+--- !u!1 &2063154933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063154935}
+  - component: {fileID: 2063154934}
+  m_Layer: 0
+  m_Name: AntiSuicidas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 0
+--- !u!4 &2063154935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063154933}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -5.73, y: 1.0130184, z: -0.59}
+  m_LocalScale: {x: 0.41685998, y: 0.41685998, z: 0.41685998}
+  m_Children: []
+  m_Father: {fileID: 7847868147505211385}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &2063154934
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063154933}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.752045, y: 3.8951814, z: 1.498427}
+  m_Center: {x: 0.30253574, y: 0.4557319, z: 0.218772}
 --- !u!1 &1017738839442765050
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +113,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7847868147505211385}
+  - component: {fileID: 340245144}
+  - component: {fileID: 340245143}
   m_Layer: 0
   m_Name: Ascensores
   m_TagString: Untagged
@@ -29,9 +135,49 @@ Transform:
   m_Children:
   - {fileID: 1501258422176312984}
   - {fileID: 5686259001823246517}
+  - {fileID: 1157293314}
+  - {fileID: 2063154935}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &340245144
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017738839442765050}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &340245143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017738839442765050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23522ccc4aaa39047824e5e427138eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 15
+  puedeSubir: 1
+  puedeBajar: 0
+  accionar: 0
+  barrera: {fileID: 2063154933}
+  chocoLimite: 0
+  chocoLimiteAbajo: 0
+  anim: {fileID: 0}
+  interruptor: {fileID: 1157293311}
+  timer: 10
 --- !u!1 &4297842977591184617
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +189,7 @@ GameObject:
   - component: {fileID: 5686259001823246517}
   - component: {fileID: 8338216385372425348}
   - component: {fileID: 7903278567500568555}
+  - component: {fileID: 703825153}
   m_Layer: 0
   m_Name: Piezas_Low (1)
   m_TagString: Untagged
@@ -91,7 +238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: f839fbcc5d55a744f813365aa01a079d, type: 3}
+  - {fileID: 2100000, guid: deb6a32a991127e44a7075cb84340ba6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,6 +260,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &703825153
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297842977591184617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4554048877213740233, guid: f839fbcc5d55a744f813365aa01a079d, type: 3}
 --- !u!1 &7722072455657655047
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,9 +285,11 @@ GameObject:
   - component: {fileID: 1501258422176312984}
   - component: {fileID: 3663535653889346}
   - component: {fileID: 7348754553851851357}
+  - component: {fileID: 1412144122}
+  - component: {fileID: 1412144123}
   m_Layer: 0
   m_Name: Ascensor_piso
-  m_TagString: Untagged
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +335,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: f839fbcc5d55a744f813365aa01a079d, type: 3}
+  - {fileID: 2100000, guid: fd6d6e0eefaa1ac4799a1d7e46b9c526, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -194,3 +357,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1412144122
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722072455657655047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.000004, y: 2, z: 12.000003}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1412144123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722072455657655047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.000004, y: 2, z: 12.000003}
+  m_Center: {x: 0, y: 2.07, z: 0}

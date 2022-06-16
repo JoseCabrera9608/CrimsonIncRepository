@@ -18,7 +18,7 @@ public class ElevadorManyado : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         interruptorScript = interruptor.GetComponent<Interruptor>();
     }
 
@@ -57,7 +57,7 @@ public class ElevadorManyado : MonoBehaviour
     IEnumerator SubirElevador()
     {
         barrera.SetActive(true);
-        anim.SetBool("Baranda", true);
+        //anim.SetBool("Baranda", true);
         yield return new WaitForSeconds(1.1f);
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
         yield return null;
@@ -102,7 +102,7 @@ public class ElevadorManyado : MonoBehaviour
     }
     IEnumerator bajarBaranda()
     {
-        anim.SetBool("Baranda", false);
+        //anim.SetBool("Baranda", false);
         yield return new WaitForSeconds(2f);
         barrera.SetActive(false);
     }
