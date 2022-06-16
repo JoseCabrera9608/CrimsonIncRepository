@@ -109,11 +109,15 @@ public class Checkpoint : MonoBehaviour
         {
             //progress.checkpointIndex = checkpointIndex;
             //progress.lastposition = SpawnPoint.transform.position;
-            FindObjectOfType<AudioManager>().Play("Checkpoint");
+            
 
 
             playerStatus.InteractualObject = consolepoint;
-            playerStatus.Interacting();
+            if (playerStatus.interacting == false)
+            {
+                playerStatus.Interacting();
+                FindObjectOfType<AudioManager>().Play("Checkpoint");
+            }
             if (resetlvl == true)
             {
                 progress.resetlvl = true;
