@@ -37,6 +37,17 @@ public class AreaDeteccion : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            sondaScript.anim.SetTrigger("Comenzar");
+            
+
+        }
+        
+    }
+
     IEnumerator DelayDeRetroceso()
     {
         yield return new WaitForSeconds(3);
