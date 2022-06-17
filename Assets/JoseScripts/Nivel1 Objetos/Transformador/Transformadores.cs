@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Transformadores : MonoBehaviour
 {
-    public AudioSource sonidoIddle;
-    public AudioSource sonidoExplosionElectricidad;
+    //public AudioSource sonidoIddle;
+    //public AudioSource sonidoExplosionElectricidad;
     ParticleSystem esteSistema;
     public float emisionVariable;
     public float multiplicadorParticula;
@@ -19,8 +19,8 @@ public class Transformadores : MonoBehaviour
     {
         esteSistema = GetComponent<ParticleSystem>();
         BossGameEVent.current.Conexion += Desactivar;
-        sonidoExplosionElectricidad = GetComponent<AudioSource>();
-        sonidoIddle = GetComponent<AudioSource>();
+        /*sonidoExplosionElectricidad = GetComponent<AudioSource>();
+        sonidoIddle = GetComponent<AudioSource>();*/
 
 
         //var emision = esteSistema.emission;
@@ -44,7 +44,7 @@ public class Transformadores : MonoBehaviour
             {
                 colliderParedElectrica.SetActive(true);
                 
-                sonidoExplosionElectricidad.Play();
+               //sonidoExplosionElectricidad.Play();
 
             }
             if (tiempoDeDetonacion >= 10)

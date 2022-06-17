@@ -44,15 +44,11 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public GameObject explosion;
     public GameObject estacaPrefab;
     public GameObject estacaPoint;
-    public int comboNumber;
+   
     GameObject cabezaPlayer;
     public Vector3 startPosition;
 
     public ProgressManager progress;
-
-
-
-
 
     HabilidadesEquipadas _habilidadesEquipadas;
 
@@ -120,7 +116,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
             disparar = false;
         }
 
-        if(kamikaze == true)
+        if(kamikaze == true && explosion !=null)
         {
             StartCoroutine(Kamikaze());
             if(tiemposHabilidades.activeTime <= 0)
@@ -163,10 +159,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
     IEnumerator esperarEstaca()
     {
-        comboNumber = Random.Range(0, 2);
+        
         agente.speed = 0;
         anim.SetTrigger("ClavarEstaca");
-        anim.SetFloat("ElegirCombo", comboNumber);
+        
         yield return new WaitForSeconds(3);
         agente.speed = normalspeed;
         
