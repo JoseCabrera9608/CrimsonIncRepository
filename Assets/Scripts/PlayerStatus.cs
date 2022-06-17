@@ -18,6 +18,7 @@ public class PlayerStatus : MonoBehaviour
     public MeshRenderer armaMesh;
     public Material armaMatNormal;
     public Material armaMatHitted;
+    public Movement playermov;
 
     public ProgressManager progress;
     public Transform InteractualObject;
@@ -64,6 +65,7 @@ public class PlayerStatus : MonoBehaviour
         
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         playerAttack = this.GetComponent<PlayerAttack>();
+        playermov = this.GetComponent<Movement>();
         rb = this.GetComponent<Rigidbody>();
         rigidbodyConstraints = rb.constraints;
 
@@ -277,6 +279,7 @@ public class PlayerStatus : MonoBehaviour
        
         interacting = true;
         //anim.SetBool("Interact", true);
+        playermov.walkSpeed = 0;
         anim.SetTrigger("Interact");
         
         //transform.LookAt(InteractualObject);
@@ -292,6 +295,7 @@ public class PlayerStatus : MonoBehaviour
     {
         interacting = false;
         activeinteraction = false;
+        playermov.walkSpeed = 9;
         //anim.SetBool("Interact", false);
         //transform.LookAt(InteractualObject);
     }
