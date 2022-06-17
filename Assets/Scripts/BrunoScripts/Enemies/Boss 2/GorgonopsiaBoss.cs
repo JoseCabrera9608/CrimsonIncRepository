@@ -606,7 +606,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         {
             stats.isActive = true;
             if (EnemyBar != null) EnemyBar.SetActive(true);
-            //music.Play();
+            music.Play();
             col.enabled = false; 
         }
     }
