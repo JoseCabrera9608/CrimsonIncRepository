@@ -9,6 +9,7 @@ public class ScriptSonidosSonda : MonoBehaviour
     public AudioSource golpeMelee;
     public AudioSource magnetismo;
     public AudioSource dañoPorPlayer;
+    public AudioSource kamikazeContador;
 
    public void SonidoMuerte()
     {
@@ -32,5 +33,9 @@ public class ScriptSonidosSonda : MonoBehaviour
     public void DañoPorPlayer()
     {
         dañoPorPlayer.Play();
+    }
+    public void ContadorKamikaze()
+    {
+        kamikazeContador.Play();
     }
 }

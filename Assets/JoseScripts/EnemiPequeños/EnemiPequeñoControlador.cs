@@ -125,8 +125,10 @@ public class EnemiPequeñoControlador : MonoBehaviour
             {
                 GameObject explosionParticula;
                 explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
+                FindObjectOfType<AudioManager>().Play("ExplosionKamikase");
                 Destroy(this.gameObject);
             }
+           
         }
 
         if (lanzarBomba == true)
@@ -306,6 +308,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
             GameObject explosionParticula;
             explosionParticula = Instantiate(explosion, transform.position, Quaternion.identity);
             PlayerStatus.damagePlayer?.Invoke(50);
+            FindObjectOfType<AudioManager>().Play("ExplosionKamikase");
             Destroy(this.gameObject);
         }
     }
