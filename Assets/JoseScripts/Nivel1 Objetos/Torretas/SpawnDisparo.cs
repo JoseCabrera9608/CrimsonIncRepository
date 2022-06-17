@@ -17,8 +17,10 @@ public class SpawnDisparo : MonoBehaviour
     GameObject cabezaPlayer;
     public bool apuntar;
     public GameObject laser;
+    public AudioSource audioDisparo;
     void Start()
     {
+        audioDisparo = GetComponent<AudioSource>();
         cabezaPlayer = GameObject.Find("PlayerHead");
         target = cabezaPlayer.transform;
         disparo = tiposDisparo[tipoDeBala];
@@ -87,7 +89,7 @@ public class SpawnDisparo : MonoBehaviour
         GameObject tiposDisparo;
         if(firePoint != null)
         {
-            
+            audioDisparo.Play();
             tiposDisparo = Instantiate(disparo, firePoint.transform.position, Quaternion.identity);
             tiposDisparo.transform.localRotation = this.gameObject.transform.rotation;
         }
@@ -113,6 +115,7 @@ public class SpawnDisparo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            activado = true;
             apuntar = false;
         }
     }
@@ -120,7 +123,10 @@ public class SpawnDisparo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            activado = false;
             apuntar = true;
         }
     }
+
+   
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Transformadores : MonoBehaviour
 {
-
+    public AudioSource sonidoIddle;
+    public AudioSource sonidoExplosionElectricidad;
     ParticleSystem esteSistema;
     public float emisionVariable;
     public float multiplicadorParticula;
@@ -18,13 +19,14 @@ public class Transformadores : MonoBehaviour
     {
         esteSistema = GetComponent<ParticleSystem>();
         BossGameEVent.current.Conexion += Desactivar;
-
+        sonidoExplosionElectricidad = GetComponent<AudioSource>();
+        sonidoIddle = GetComponent<AudioSource>();
 
 
         //var emision = esteSistema.emission;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if(activado == true)
@@ -41,10 +43,13 @@ public class Transformadores : MonoBehaviour
             if (tiempoDeDetonacion >= 8 && tiempoDeDetonacion <= 9)
             {
                 colliderParedElectrica.SetActive(true);
+                
+                sonidoExplosionElectricidad.Play();
 
             }
             if (tiempoDeDetonacion >= 10)
             {
+                
                 emisionVariable = 3;
                 distanciaParticula = 3;
                 colliderParedElectrica.SetActive(false);
@@ -56,6 +61,8 @@ public class Transformadores : MonoBehaviour
         {
             return;
         }
+
+        
        
     }
 
