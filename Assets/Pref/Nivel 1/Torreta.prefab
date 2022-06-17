@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4892275422945817251}
-  - component: {fileID: 4892275422945817248}
   - component: {fileID: 3445900145586456691}
-  - component: {fileID: 8122686111665203569}
   m_Layer: 0
   m_Name: Torreta
   m_TagString: Untagged
@@ -28,37 +26,13 @@ Transform:
   m_GameObject: {fileID: 4892275422945817249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -44.923958, y: 1.433, z: 20.723341}
-  m_LocalScale: {x: 3.4989212, y: 3.4989212, z: 3.4989212}
+  m_LocalScale: {x: 5.8121715, y: 5.8121715, z: 5.8121715}
   m_Children:
   - {fileID: 4930988519360008017}
   - {fileID: 4892275424109981548}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4892275422945817248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892275422945817249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b434dff554ab97544bbd831c951854b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  firePoint: {fileID: 4892275424109981549}
-  tiposDisparo:
-  - {fileID: 5887115034480186155, guid: 811541fddd8d3414b8cc5cc365063872, type: 3}
-  - {fileID: 7570090730287171095, guid: c9c1cf7bed35c2a429a71db11762bd50, type: 3}
-  tipoDeBala: 0
-  fire: 0
-  activado: 0
-  tiempoEntreDisparo: 2
-  apuntar: 1
-  laser: {fileID: 5449364452491647253}
-  audioDisparo: {fileID: 8122686111665203569}
 --- !u!65 &3445900145586456691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,18 +46,73 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3502804, y: 1, z: 1.633064}
   m_Center: {x: 0.051528804, y: 0, z: 0.11179824}
---- !u!82 &8122686111665203569
+--- !u!1 &4892275424109981549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4892275424109981548}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4892275424109981548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4892275424109981549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.045, y: -0.13, z: 0.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5449364452491647248}
+  m_Father: {fileID: 4892275422945817251}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &278985421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703161600614847979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b434dff554ab97544bbd831c951854b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5
+  firePoint: {fileID: 4892275424109981549}
+  tiposDisparo:
+  - {fileID: 5887115034480186155, guid: 811541fddd8d3414b8cc5cc365063872, type: 3}
+  - {fileID: 7570090730287171095, guid: c9c1cf7bed35c2a429a71db11762bd50, type: 3}
+  tipoDeBala: 0
+  fire: 0
+  activado: 0
+  tiempoEntreDisparo: 2
+  apuntar: 1
+  laser: {fileID: 5449364452491647253}
+  audioDisparo: {fileID: 8122686111665203569, guid: 1395a70718b19c348b345971e0d3dc6a, type: 3}
+--- !u!82 &278985422
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892275422945817249}
+  m_GameObject: {fileID: 5703161600614847979}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 72605576e42649c4c82cdf02a0e71c52, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -168,37 +197,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &4892275424109981549
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4892275424109981548}
-  m_Layer: 0
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4892275424109981548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892275424109981549}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.045, y: -0.13, z: 0.29}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5449364452491647248}
-  m_Father: {fileID: 4892275422945817251}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4892275423100463290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,6 +274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b80364d0955a214fb6c9f84d483268b, type: 3}
+--- !u!1 &5703161600614847979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b80364d0955a214fb6c9f84d483268b, type: 3}
+  m_PrefabInstance: {fileID: 4892275423100463290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4930988519360008017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b80364d0955a214fb6c9f84d483268b, type: 3}

@@ -22,7 +22,9 @@ public class SpawnDisparo : MonoBehaviour
     {
         audioDisparo = GetComponent<AudioSource>();
         cabezaPlayer = GameObject.Find("PlayerHead");
+
         target = cabezaPlayer.transform;
+
         disparo = tiposDisparo[tipoDeBala];
         
         BossGameEVent.current.combatTriggerExit += Activar;
@@ -33,9 +35,12 @@ public class SpawnDisparo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Vector3 targetPosition = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        
         if(apuntar == true)
         {
-            gameObject.transform.LookAt(target);
+            gameObject.transform.LookAt(targetPosition);
         }
         
 
@@ -82,6 +87,7 @@ public class SpawnDisparo : MonoBehaviour
         if (id == this.id)
         {
             activado = false;
+            apuntar = false;
         }
     }
     void SpawnDeDisparo()
@@ -115,16 +121,16 @@ public class SpawnDisparo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            activado = true;
-            apuntar = false;
+            //activado = true;
+            //apuntar = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            activado = false;
-            apuntar = true;
+            //activado = false;
+            //apuntar = true;
         }
     }
 
