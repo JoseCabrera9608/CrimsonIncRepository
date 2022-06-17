@@ -230,6 +230,7 @@ public class PlayerStatus : MonoBehaviour
         playerlife -= 10;
     }
 
+
     public void Healing()
     {
         timer += Time.deltaTime;
