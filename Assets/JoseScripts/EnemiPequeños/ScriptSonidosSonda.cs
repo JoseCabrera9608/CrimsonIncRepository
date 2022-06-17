@@ -8,6 +8,7 @@ public class ScriptSonidosSonda : MonoBehaviour
     public AudioSource disparo;
     public AudioSource golpeMelee;
     public AudioSource magnetismo;
+    public AudioSource dañoPorPlayer;
 
    public void SonidoMuerte()
     {
@@ -26,5 +27,10 @@ public class ScriptSonidosSonda : MonoBehaviour
     public void SonidoMagnetismo()
     {
         magnetismo.Play();
+    }
+
+    public void DañoPorPlayer()
+    {
+        dañoPorPlayer.Play();
     }
 }

@@ -6,6 +6,7 @@ public class AtraccionPoder : MonoBehaviour
 {
     public float fuerza;
     List<Rigidbody> rigPlayer = new List<Rigidbody>();
+    List<Rigidbody> rigObjetos = new List<Rigidbody>();
     public SphereCollider colliderMag;
     Transform magnetPoint;
     // Start is called before the first frame update
@@ -23,22 +24,36 @@ public class AtraccionPoder : MonoBehaviour
         {
             rigPlay.AddForce((magnetPoint.position - rigPlay.position) * fuerza * Time.fixedDeltaTime);
         }
+
+        foreach (Rigidbody rigObj in rigObjetos)
+        {
+            rigObj.AddForce((magnetPoint.position - rigObj.position) * fuerza * Time.fixedDeltaTime);
+            Destroy(rigObj.gameObject, 3f);
+        }
+
+        
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
 
             rigPlayer.Add(other.GetComponent<Rigidbody>());
-        
+        }
+        if (other.CompareTag("Bounce"))
+        {
+            rigObjetos.Add(other.GetComponent<Rigidbody>());
+        }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
 
-        
+        if (other.CompareTag("Player") || other.CompareTag("Bounce"))
+        {
             rigPlayer.Remove(other.GetComponent<Rigidbody>());
-        
+        }
     }
 
     public void ActivarCollider()

@@ -51,6 +51,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     public ProgressManager progress;
 
     HabilidadesEquipadas _habilidadesEquipadas;
+    public AudioSource audioRecibirGolpe;
 
     void Start()
     {
@@ -64,6 +65,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         meshDelEnemigo = meshObject.GetComponent<SkinnedMeshRenderer>();
         _habilidadesEquipadas = this.gameObject.GetComponent<HabilidadesEquipadas>();
         colliderCuerpo = this.gameObject.GetComponent<SphereCollider>();
+        audioRecibirGolpe = this.gameObject.GetComponent<AudioSource>();
         
         
 
@@ -189,6 +191,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerWeapon"))
         {
+            audioRecibirGolpe.Play();
             healthEnemigo -= 40;
             hitted = true;
             StartCoroutine(CambioDeColor());
