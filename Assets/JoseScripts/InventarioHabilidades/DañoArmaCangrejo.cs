@@ -50,6 +50,7 @@ public class DañoArmaCangrejo : MonoBehaviour
 
         if (other.gameObject.CompareTag("CuerpoBoss"))
         {
+            cangrejoVida.sonidoRecibirGolpe.Play();
             cangrejoVida.vidaActual -= dañoDeArma;
             StartCoroutine(CambioColor());
             hitted = true;

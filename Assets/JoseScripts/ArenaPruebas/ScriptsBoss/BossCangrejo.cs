@@ -62,6 +62,7 @@ public class BossCangrejo : MonoBehaviour
     public GameObject efectoDañoSuelo;
     public GameObject golpeSueloPointDerecho;
     public GameObject golpeSUeloPointIzquierdo;
+    public AudioSource sonidoRecibirGolpe;
     void Start()
     {
         bossDoorScript = BossDoor.GetComponent<AnimationPlayer>();
@@ -77,6 +78,7 @@ public class BossCangrejo : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
         //transformPlayer = CabezaPlayer.GetComponent<Transform>();
+        sonidoRecibirGolpe = GetComponent<AudioSource>();
 
 
     }

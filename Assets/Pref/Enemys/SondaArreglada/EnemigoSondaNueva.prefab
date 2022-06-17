@@ -1318,7 +1318,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2.2
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1340,6 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability:
   - {fileID: 11400000, guid: 5f90be039ef1ad944aa2ebfc2f102947, type: 2}
+  - {fileID: 11400000, guid: da429df2aff11a24e909f3b4ad813d9e, type: 2}
   cooldownTime: 0
   activeTime: 0
   distance: 0
@@ -1412,9 +1413,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f91b05ab1c7a99647844e3db826115e7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2539771a71cd33d45a153772ef72610f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.684
+  m_Volume: 0.48
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1423,7 +1424,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 1.1
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
