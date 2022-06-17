@@ -9,6 +9,7 @@ public class ElevadorManyado : MonoBehaviour
     public bool puedeBajar;
     public bool accionar;
     public GameObject barrera;
+    public GameObject textoFlotante;
     public bool chocoLimite;
     public bool chocoLimiteAbajo;
     public Animator anim;
@@ -52,11 +53,14 @@ public class ElevadorManyado : MonoBehaviour
 
         }
 
+        
+
     }
 
     IEnumerator SubirElevador()
     {
         barrera.SetActive(true);
+        if (textoFlotante != null) textoFlotante.SetActive(false);
         //anim.SetBool("Baranda", true);
         yield return new WaitForSeconds(1.1f);
         transform.Translate(Vector3.up * velocidad * Time.deltaTime);
