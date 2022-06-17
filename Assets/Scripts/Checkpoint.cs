@@ -113,6 +113,7 @@ public class Checkpoint : MonoBehaviour
 
 
             playerStatus.InteractualObject = consolepoint;
+            Player.transform.position = consolepoint.transform.position;
             if (playerStatus.interacting == false)
             {
                 playerStatus.Interacting();
