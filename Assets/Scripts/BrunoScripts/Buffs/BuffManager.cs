@@ -77,6 +77,7 @@ public class BuffManager : MonoBehaviour
         LoadSelectedBuffs(false, null);
         buffPanel.SetActive(false);
 
+        PlayerSingleton.Instance.SetValuesToMax();
         prevDamage = PlayerSingleton.Instance.playerDamage;
     }
   

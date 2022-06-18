@@ -194,7 +194,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerWeapon"))
         {
             audioRecibirGolpe.Play();
-            healthEnemigo -= 40;
+            healthEnemigo -= PlayerSingleton.Instance.playerDamage*(40/7);
             hitted = true;
             StartCoroutine(CambioDeColor());
             

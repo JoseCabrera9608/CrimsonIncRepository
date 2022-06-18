@@ -47,7 +47,12 @@ public class PlayerSingleton : MonoBehaviour
         playerRecoveryTime = DefaultPlayerVars.defaultRecoveryTime;
         #endregion
     }
-
+    public void SetValuesToMax()
+    {
+        playerCurrentHP = playerMaxHP;
+        playerCurrentStamina = playerMaxStamina;
+        playerCurrentHealingCharges = playerMaxHealingCharges;
+    }
     //======HP values==================
     public float playerMaxHP { set; get; }
     public float playerCurrentHP { set; get; }
