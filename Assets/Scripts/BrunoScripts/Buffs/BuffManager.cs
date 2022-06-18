@@ -267,7 +267,7 @@ public class BuffManager : MonoBehaviour
 
         if (PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
         {
-            PlayerSingleton.Instance.playerCurrentHP += .2f * Time.deltaTime;
+            PlayerSingleton.Instance.playerCurrentHP += 1f * Time.deltaTime;
         }
 
     }

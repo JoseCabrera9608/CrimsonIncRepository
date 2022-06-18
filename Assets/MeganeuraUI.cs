@@ -50,7 +50,7 @@ public class MeganeuraUI : MonoBehaviour
         {
 
 
-            this.gameObject.SetActive(false);
+            EnemyHealthBar.SetActive(false);
 
         }
     }

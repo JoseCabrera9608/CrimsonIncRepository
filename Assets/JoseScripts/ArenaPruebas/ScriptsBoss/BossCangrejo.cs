@@ -173,26 +173,20 @@ public class BossCangrejo : MonoBehaviour
         }
 
 
-        if (vidaActual <= 0)
+        if (vidaActual <= 0&&bossDeath==false)
         {
 
             FindObjectOfType<AudioManager>().Play("MuerteBoss");
+
             BuffManager.onBossDefetead?.Invoke();
+
             StartCoroutine(MuerteCangrejo());
             EfectoSegundaFase.SetActive(false);
             efectoFuego.SetActive(false);
             efectoLuces2.SetActive(false);
 
-            if (bossDeath == false)
-            {
-                BuffManager.Instance.ShowPanel();
-            }
-
-
             bossDeath = true;
             bossDoorScript.PlayAnimation();
-
-
 
         }
 
