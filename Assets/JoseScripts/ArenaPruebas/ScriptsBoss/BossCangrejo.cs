@@ -273,6 +273,7 @@ public class BossCangrejo : MonoBehaviour
 
     IEnumerator ComenzarBoss()
     {
+        FindObjectOfType<AudioManager>().Stop("MusicaParteAcido");
         FindObjectOfType<AudioManager>().Play("BossMusic");
         animCangrejo.SetTrigger("Comienzo");
         BarraDeVida.SetActive(true);
