@@ -12,6 +12,7 @@ public class MeganeuraBoss : MonoBehaviour
     public GameObject EnemyBar;
 
     private ProgressManager progress;
+    public Movement playermov;
 
     public GameObject stake;
     public List<GameObject> stakeList;
@@ -84,6 +85,7 @@ public class MeganeuraBoss : MonoBehaviour
         //anims.GetComponent<MeganeuraAnims>();
         damages = stats.attacksDamage;
         player = FindObjectOfType<PlayerStatus>().gameObject;
+        playermov = player.GetComponent<Movement>();
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
         bobing.Pause();
         SetPos();
@@ -307,6 +309,7 @@ public class MeganeuraBoss : MonoBehaviour
     private IEnumerator Activate()
     {
         col.enabled = false;
+        playermov.enabled = false;
         //quitar luego
         if (dummy == false)
         {
@@ -314,6 +317,7 @@ public class MeganeuraBoss : MonoBehaviour
         }
         if (EnemyBar!=null)EnemyBar.SetActive(true);
         yield return new WaitForSeconds(timeToActivate);
+        playermov.enabled = true;
         isActive = true;
         
     }
