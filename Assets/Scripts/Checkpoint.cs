@@ -40,7 +40,7 @@ public class Checkpoint : MonoBehaviour
 
         if (progress.lastposition != Vector3.zero)
         {
-           //Player.transform.position = progress.lastposition;
+           Player.transform.position = progress.lastposition;
         }
 
     }
@@ -105,7 +105,7 @@ public class Checkpoint : MonoBehaviour
             //lowmesh.material.SetColor("_EmissionColor", Color.red *4);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && colliding ==true)
+        if (Input.GetButton("Interact") && colliding ==true)
         {
             //progress.checkpointIndex = checkpointIndex;
             //progress.lastposition = SpawnPoint.transform.position;

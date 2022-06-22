@@ -16,10 +16,14 @@ public class ElevadorManyado : MonoBehaviour
     public GameObject interruptor;
     Interruptor interruptorScript;
     public float timer = 10;
+    public float ylimit;
+
+    public float upsave;
 
     private void Start()
     {
         //anim = GetComponent<Animator>();
+        upsave = this.transform.position.y;
         interruptorScript = interruptor.GetComponent<Interruptor>();
     }
 
@@ -53,8 +57,23 @@ public class ElevadorManyado : MonoBehaviour
 
         }
 
+
+
         
 
+    }
+
+    private void Update()
+    {
+        if (this.transform.position.y >= ylimit)
+        {
+            accionar = false;
+            puedeSubir = false;
+            chocoLimite = true;
+            StartCoroutine(bajarBaranda());
+            FindObjectOfType<AudioManager>().Stop("Elevador");
+            this.transform.position = new Vector3(transform.position.x, ylimit, transform.position.z);
+        }
     }
 
     IEnumerator SubirElevador()

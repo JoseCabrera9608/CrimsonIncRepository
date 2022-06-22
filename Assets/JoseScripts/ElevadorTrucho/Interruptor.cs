@@ -17,7 +17,7 @@ public class Interruptor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E ) && colliding == true)
+        if (Input.GetButton("Interact") && colliding == true)
         {
             _elevadorManyado.accionar = true;
             
