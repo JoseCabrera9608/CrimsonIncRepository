@@ -45,12 +45,12 @@ public class PlayerAttack : MonoBehaviour
     {
 
         attacktimer += Time.deltaTime;
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Attack"))
         {
             attackinput = true;
             Debug.Log("APRETANDOOO BOTOOON");
         }
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Attack"))
         {
             attackinput = false;
             Debug.Log("APRETANDOOO BOTOOON");
