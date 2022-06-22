@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     public float timer;
     public float attacktimer;
     public bool attacking;
+    public bool attackinput;
     public GameObject Pause;
     public BoxCollider weaponCollider;
     public float damage;
@@ -44,6 +45,16 @@ public class PlayerAttack : MonoBehaviour
     {
 
         attacktimer += Time.deltaTime;
+        if (Input.GetButton("Fire1"))
+        {
+            attackinput = true;
+            Debug.Log("APRETANDOOO BOTOOON");
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            attackinput = false;
+            Debug.Log("APRETANDOOO BOTOOON");
+        }
 
         if (playerStatus.interacting == true)
         {
@@ -52,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
 
         //PauseController pause = Pause.GetComponent<PauseController>();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false  && PlayerSingleton.Instance.playerCurrentStamina >= 0.1f * playermov.staminaMax)
+        if (attackinput == true && attacking == false  && PlayerSingleton.Instance.playerCurrentStamina >= 0.1f * playermov.staminaMax)
         {
             attacking = true;
             //attackStatus = true;
@@ -67,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attacktimer >= 0.1f)
+        if (attackinput == true && attacktimer >= 0.1f)
         {
 
           //FindObjectOfType<AudioManager>().Play("Ataque");
@@ -82,7 +93,7 @@ public class PlayerAttack : MonoBehaviour
             
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (attackinput == false)
         {
 
             playeranim.SetBool("Attack", false);
@@ -90,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && combo == true)
+        if (attackinput == true && combo == true)
         {
             playeranim.SetBool("Combo", true);
             
