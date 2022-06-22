@@ -209,7 +209,7 @@ public class Movement : MonoBehaviour
             PlayerSingleton.Instance.playerCurrentStamina = 0;
         }
 
-        if (Input.GetKey(KeyCode.Space) && !isDashing && PlayerSingleton.Instance.playerCurrentStamina >= 0.3f * staminaMax && onelevator == false && playerStatus.dying == false && candash == true)
+        if (Input.GetButton("Dash") && !isDashing && PlayerSingleton.Instance.playerCurrentStamina >= 0.3f * staminaMax && onelevator == false && playerStatus.dying == false && candash == true)
         {
             if (dashAttempts <= 5000 && (rb.velocity != new Vector3(0,0,0)))  //Dashes maximos
             {
