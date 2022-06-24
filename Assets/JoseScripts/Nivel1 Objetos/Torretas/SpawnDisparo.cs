@@ -36,7 +36,7 @@ public class SpawnDisparo : MonoBehaviour
     void Update()
     {
 
-        Vector3 targetPosition = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        Vector3 targetPosition = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
         
         if(apuntar == true)
         {
