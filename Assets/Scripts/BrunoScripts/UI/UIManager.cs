@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
         prevHealingCharges = PlayerSingleton.Instance.playerCurrentHealingCharges;
         movement = FindObjectOfType<Movement>();
         gameIsPaused = false;
+        ResumeGame();
         CursorController("block");
     }
 
