@@ -156,6 +156,7 @@ public class PlayerStatus : MonoBehaviour
 
         if (playermov.isDashing==false)
         {
+            PlayerSingleton.Instance.playerHitted = true;
             PlayerSingleton.Instance.playerCurrentHP -= damage;
         }
         

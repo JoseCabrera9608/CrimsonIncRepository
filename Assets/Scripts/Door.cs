@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
     void Update()
     {
         if (text !=null)  text.text = "Enemigos derrotados: "+ progress.enemysdeath +"/" + enemysToOpen;
-        if (text2 != null) text.text = "Consolas Activadas: " + consolas + "/" + 1;
+        if (text2 != null) text2.text = "Consolas Activadas: " + consolas + "/" + 1;
 
 
         if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0 && consolas ==1)

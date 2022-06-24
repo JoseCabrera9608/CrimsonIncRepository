@@ -7,8 +7,8 @@ public class DañoArmaCangrejo : MonoBehaviour
     // Start is called before the first frame update
     public GameObject cangrejo;
     BossCangrejo cangrejoVida;
-    public int dañoDeArma;
-    public int dañoDeArmaPasiva;
+    public float dañoDeArma;
+    public float dañoDeArmaPasiva;
     SkinnedMeshRenderer mesh;
     GameObject cangrejoMesh;
     int index;
@@ -45,13 +45,13 @@ public class DañoArmaCangrejo : MonoBehaviour
         {
             Debug.Log("Colisionando con caparazon");
 
-            cangrejoVida.vidaActual -= dañoDeArmaPasiva;
+            cangrejoVida.vidaActual -= PlayerSingleton.Instance.playerDamage;
         }
 
         if (other.gameObject.CompareTag("CuerpoBoss"))
         {
             cangrejoVida.sonidoRecibirGolpe.Play();
-            cangrejoVida.vidaActual -= dañoDeArma;
+            cangrejoVida.vidaActual -= PlayerSingleton.Instance.playerDamage;
             StartCoroutine(CambioColor());
             hitted = true;
         }

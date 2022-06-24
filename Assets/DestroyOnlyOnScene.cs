@@ -8,9 +8,10 @@ public class DestroyOnlyOnScene : MonoBehaviour
     // Start is called before the first frame update
 
     public string sceneToDestroy;
+    public string sceneToDestroy2;
     public string actualScene;
     public string objecttag;
-
+    
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag(objecttag);
@@ -28,7 +29,7 @@ public class DestroyOnlyOnScene : MonoBehaviour
     {
         actualScene = SceneManager.GetActiveScene().name;
 
-        if (actualScene == sceneToDestroy)
+        if (actualScene == sceneToDestroy || actualScene == sceneToDestroy2)
         {
             Destroy(gameObject);
 

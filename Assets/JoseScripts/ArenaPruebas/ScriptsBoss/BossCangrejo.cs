@@ -43,7 +43,7 @@ public class BossCangrejo : MonoBehaviour
 
     //Variables Boss
     private GameObject cangrejo;
-    public int vidaActual;
+    public float vidaActual;
     public bool hitted;
     public bool bossDeath;
     //CanvaUI

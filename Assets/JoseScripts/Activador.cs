@@ -25,7 +25,7 @@ public class Activador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && colliding == true)
+        if (Input.GetButton("Interact") && colliding == true)
         {
             //progress.checkpointIndex = checkpointIndex;
             //progress.lastposition = SpawnPoint.transform.position;
