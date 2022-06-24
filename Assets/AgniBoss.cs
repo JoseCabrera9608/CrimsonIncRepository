@@ -187,7 +187,7 @@ public class AgniBoss : MonoBehaviour
                 break;
 
             case Agtion.llamas:
-                Llamas();
+                StartCoroutine(Llamas());
                 break;
             case Agtion.misilesExplosivos:
                 HandleBombardeoMisiles();
@@ -330,8 +330,13 @@ public class AgniBoss : MonoBehaviour
 
     }
 
-    public void Llamas()
+    public IEnumerator Llamas()
     {
+        
+
+        anim.SetTrigger("DJ");
+        yield return new WaitForSeconds(2);
+
         llamastimer += Time.deltaTime;
 
         if (llamastimer < llamasDuration)
@@ -341,6 +346,7 @@ public class AgniBoss : MonoBehaviour
         else
         {
             llamas.SetActive(false);
+            anim.SetTrigger("Iddle");
         }
 
 
