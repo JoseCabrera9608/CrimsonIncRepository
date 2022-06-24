@@ -10,7 +10,9 @@ public class Door : MonoBehaviour
     public bool bossDoor;
     public BoxCollider triggerbox;
     public int enemysToOpen;
+    public int consolas;
     public TextMeshPro text;
+    public TextMeshPro text2;
 
     public ProgressManager progress;
     
@@ -19,7 +21,7 @@ public class Door : MonoBehaviour
     void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
-        text = GetComponentInChildren<TextMeshPro>();
+        //text = GetComponentInChildren<TextMeshPro>();
         if (text != null) text.text = "Enemigos derrotados: 0/"+ enemysToOpen;
     }
 
@@ -27,6 +29,7 @@ public class Door : MonoBehaviour
     void Update()
     {
         if (text !=null)  text.text = "Enemigos derrotados: "+ progress.enemysdeath +"/" + enemysToOpen;
+        if (text2 != null) text.text = "Consolas Activadas: " + consolas + "/" + 1;
 
 
         if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0)

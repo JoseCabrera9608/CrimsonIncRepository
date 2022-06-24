@@ -10,6 +10,7 @@ public class Activador : MonoBehaviour
     public GameObject Player;
     public Transform consolepoint;
     public GameObject Puerta;
+    public Door doorscript;
     public MeshRenderer mesh;
     //public Material matActivated;
     Animator puertaAnim;
@@ -17,7 +18,8 @@ public class Activador : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = Player.GetComponent<PlayerStatus>();
-        puertaAnim = Puerta.GetComponent<Animator>();
+        doorscript = Puerta.GetComponent<Door>();
+        //puertaAnim = Puerta.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,12 +30,12 @@ public class Activador : MonoBehaviour
             //progress.checkpointIndex = checkpointIndex;
             //progress.lastposition = SpawnPoint.transform.position;
             FindObjectOfType<AudioManager>().Play("Checkpoint");
-
+            doorscript.consolas = 1;
 
             playerStatus.InteractualObject = consolepoint;
             playerStatus.Interacting();
             StartCoroutine(ChangeColor());
-            puertaAnim.SetTrigger("Activado");
+            //puertaAnim.SetTrigger("Activado");
             
         }
 
