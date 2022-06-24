@@ -20,6 +20,7 @@ public class BossCangrejo : MonoBehaviour
     public bool activarEmbestida = false;
     public bool activarMagneto = false;
     public bool activarPasiva = false;
+    public bool activarSenton = false;
     public GameObject EsferaMagnetica;
     public GameObject caparazonLuz;
     //Animator
@@ -62,6 +63,9 @@ public class BossCangrejo : MonoBehaviour
     public GameObject efectoDañoSuelo;
     public GameObject golpeSueloPointDerecho;
     public GameObject golpeSUeloPointIzquierdo;
+    public GameObject ColliderSenton;
+    private SphereCollider sphereColliderSenton;
+    public GameObject SentonVFX;
     public AudioSource sonidoRecibirGolpe;
     void Start()
     {
@@ -79,6 +83,8 @@ public class BossCangrejo : MonoBehaviour
         dañoPlayer = armaPlayer.GetComponent<DañoArmaCangrejo>();
         //transformPlayer = CabezaPlayer.GetComponent<Transform>();
         sonidoRecibirGolpe = GetComponent<AudioSource>();
+        sphereColliderSenton = ColliderSenton.GetComponent<SphereCollider>();
+
 
 
     }
@@ -155,6 +161,12 @@ public class BossCangrejo : MonoBehaviour
             activarGolpeSecuencia = false;
         }
 
+        if (activarSenton == true)
+        {
+           
+            StartCoroutine(HabilidadSenton());
+            activarSenton = false;
+        }
 
         if (activarEmbestida == true)
         {
@@ -296,6 +308,14 @@ public class BossCangrejo : MonoBehaviour
         agente.speed = 0;
         yield return new WaitForSeconds(4f);
         agente.speed = 5;
+    }
+
+    IEnumerator HabilidadSenton()
+    {
+        Debug.Log("HabilidadSenton");
+        agente.speed = 0;
+        yield return new WaitForSeconds(2.10f);
+        agente.speed = 4;
     }
 
     IEnumerator Embestida()
@@ -486,5 +506,22 @@ public class BossCangrejo : MonoBehaviour
 
         dañoSuelo = Instantiate(efectoDañoSuelo, golpeSUeloPointIzquierdo.transform.position, Quaternion.identity);
         dañoSuelo.transform.localRotation = this.gameObject.transform.rotation;
+    }
+
+    public void ActivarSentonEvent()
+    {
+        sphereColliderSenton.enabled = true;
+        SentonVFX.SetActive(true);
+        
+    }
+    public void DesactivarSentonEvent()
+    {
+        sphereColliderSenton.enabled = false;
+        
+    }
+
+    public void DesactivarSentonVFX()
+    {
+        SentonVFX.SetActive(false);
     }
 }
