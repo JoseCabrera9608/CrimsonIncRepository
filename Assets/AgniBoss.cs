@@ -11,7 +11,7 @@ public enum Agtion
     estacasStun, //air ground
     llamas, //air ground
     misilesExplosivos, //on air
-    //vistaCazador, // on air
+    golpeMelee, // on air
     //discosEmp //on air
 };
 
@@ -29,6 +29,7 @@ public class AgniBoss : MonoBehaviour
     [SerializeField] public Agtion currentAction;
     public GameObject player;
     [SerializeField] public AgniProbabilities[] attackProbabilities;
+    public Animator anim;
 
     public float closeDist;
     public float mediumDist;
@@ -106,6 +107,7 @@ public class AgniBoss : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         laser = vistaCazador.GetComponent<MeganeuraLaser>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -177,7 +179,7 @@ public class AgniBoss : MonoBehaviour
                 break;
 
             case Agtion.bombardeo:
-                PreparacionBombas();              
+                StartCoroutine(PreparacionBombas());              
                 break;
 
             case Agtion.estacasStun:
@@ -191,14 +193,18 @@ public class AgniBoss : MonoBehaviour
                 HandleBombardeoMisiles();
                 break;
 
-            /* case Maction.vistaCazador:
-                HandleVistaCazador();
-                //currentDamageValue = damages[Action.vistaCazador];
+            case Agtion.golpeMelee:
+                StartCoroutine(GolpeMelee());
                 break;
 
-            case Maction.discosEmp:
-                HandleDiscosEmp();
-                break;*/
+                /* case Maction.vistaCazador:
+                    GolpeMelee()
+                    //currentDamageValue = damages[Action.vistaCazador];
+                    break;
+
+                case Maction.discosEmp:
+                    HandleDiscosEmp();
+                    break;*/
 
         }
 
@@ -206,6 +212,8 @@ public class AgniBoss : MonoBehaviour
 
     public IEnumerator AttackEvaluation()
     {
+        
+        bombspeed = 10;
         evaluatingAttack = true;
 
         yield return new WaitForSeconds(attackDelay);
@@ -229,16 +237,24 @@ public class AgniBoss : MonoBehaviour
         evaluatingAttack = false;
     }
 
-    public void PreparacionBombas()
+    public IEnumerator PreparacionBombas()
     {
+        
+        anim.SetTrigger("DJ");
+        yield return new WaitForSeconds(2);
         if (range == rangeAttackBomb)
         {
             if (bombList.Count == 0)
             {
-                if (bombspeed > 20)
+                if (bombspeed > 13)
                 {
-                    bombspeed = 10;
+                    
+                    attacked = false;
+                    currentAction = Agtion.idle;
+                    anim.SetTrigger("Iddle");
+                    //bombspeed = 10;
                 }
+
 
                 Bombas();
                 bombspeed += espaciadobombas;
@@ -289,6 +305,7 @@ public class AgniBoss : MonoBehaviour
     }
     private void EstacasStun()
     {
+        anim.SetTrigger("DJ");
         t1 += Time.deltaTime;
         bool1 = true;
         //isAttacking = true;
@@ -308,6 +325,7 @@ public class AgniBoss : MonoBehaviour
             container1 = 0;
             //isAttacking = false;
             currentAction = Agtion.idle;
+            anim.SetTrigger("Iddle");
         }
 
     }
@@ -328,8 +346,50 @@ public class AgniBoss : MonoBehaviour
 
     }
 
+    private IEnumerator GolpeMelee()
+    {
+        //t1 += Time.deltaTime;
+        float xoffset = 3;
+        float zoffset = 3;
+
+        if (player.transform.position.x - transform.position.x > 0)
+        {
+            zoffset = 3;
+            xoffset = -3;
+        }
+        else 
+        {
+            zoffset = 3;
+            xoffset = 3;
+        }
+
+
+        if (player.transform.position.z - transform.position.z > 0) 
+        {   
+            zoffset = 3;
+            xoffset = -3;
+        } 
+        else 
+        {
+            zoffset = 3;
+            xoffset = 3;
+        }
+
+
+        Vector3 targetPosition = new Vector3(player.transform.position.x + xoffset, transform.position.y, player.transform.position.z + zoffset);
+        
+        //gameObject.transform.LookAt(targetPosition);
+        Quaternion rotTarget = Quaternion.LookRotation(targetPosition - this.transform.position);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, 200 * Time.deltaTime);
+        anim.SetTrigger("GolpeMelee");
+        yield return new WaitForSeconds(2);
+        attacked = false;
+        currentAction = Agtion.idle;
+    }
+
     private void HandleBombardeoMisiles()
     {
+        anim.SetTrigger("Misiles");
         t1 += Time.deltaTime;
         bool1 = true;
         //stats.isAttacking = true;
@@ -349,13 +409,16 @@ public class AgniBoss : MonoBehaviour
             t1 = 0;
             container1 = 0;
             //stats.isAttacking = false;
+            attacked = false;
             currentAction = Agtion.idle;
+            anim.SetTrigger("Iddle");
         }
     }
 
     public void PreparacionRayo()
     {
-        if(range == rangeAttackLaser)
+        anim.SetTrigger("Palma");
+        if (range == rangeAttackLaser)
         {
             
             if (rayoenrango == false && disparado == true)
@@ -373,6 +436,11 @@ public class AgniBoss : MonoBehaviour
     {
         t1 += Time.deltaTime;
         //stats.isAttacking = true;
+        Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        Quaternion rotTarget = Quaternion.LookRotation(targetPosition - this.transform.position);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, 200 * Time.deltaTime);
+
+        gameObject.transform.LookAt(targetPosition);
         if (disparado == false)
         {
             //vistaCazador.SetActive(true);
@@ -401,6 +469,7 @@ public class AgniBoss : MonoBehaviour
             disparado = true;
             attacked = false;
             currentAction = Agtion.idle;
+            anim.SetTrigger("Iddle");
             //stats.isAttacking = false;
             t1 = 0;
             //stats.canRotate = true;
