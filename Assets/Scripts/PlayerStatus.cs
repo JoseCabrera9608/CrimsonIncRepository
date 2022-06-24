@@ -71,7 +71,7 @@ public class PlayerStatus : MonoBehaviour
 
         timer = maxtimehealing;
 
-        transform.position = progress.lastposition;
+        //transform.position = progress.lastposition;
 
         if (lvl == 0)
         {
