@@ -4,69 +4,26 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    public GameObject point1;
-    public GameObject point2;
+    public GameObject[] wayPoints;
+    int current = 0;
     public float speed;
-    public bool changeTarget;
+    float WPradius = 1;
 
-    void Start()
-    {
-       // gameObject.transform.LookAt(point1.transform);
-
-    }
-
-    // Update is called once per frame
+   
     void Update()
     {
-        //transform.Translate(point1.transform.position* Time.deltaTime);
-        /*
-                if (transform.position == point1.transform.position)
-                {
-
-                    Debug.Log("LlegoALA POSICION");
-                    changeTarget = true;
-                }
-
-                if (transform.position == point2.transform.position)
-                {
-                    changeTarget = false;
-                }*/
-
-                switch (changeTarget)
-                {
-                    case false:
-                        gameObject.transform.LookAt(point1.transform);
-                        transform.Translate(0f, 0f, speed * Time.deltaTime);
-                        break;
-
-                    case true:
-                        gameObject.transform.LookAt(point2.transform);
-                        transform.Translate(0f, 0f, speed * Time.deltaTime);
-                        break;
-
-                }
-
-
+        if (Vector3.Distance(wayPoints[current].transform.position, transform.position) < WPradius)
+        {
+            current++;
+            if (current >= wayPoints.Length)
+            {
+                current = 0;
+            }
+        }
+        transform.position = Vector3.MoveTowards(transform.position, wayPoints[current].transform.position, Time.deltaTime * speed);
 
     }
 
  
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == point2)
-        {
-            
-            /* gameObject.transform.LookAt(point2.transform);
-             transform.Translate(0f, 0f, speed * Time.deltaTime);*/
-            changeTarget = false;
-        }
-
-        if (collision.gameObject == point1)
-        {
-            
-            /*gameObject.transform.LookAt(point1.transform);
-            transform.Translate(0f, 0f, speed * Time.deltaTime);*/
-            changeTarget = true;
-        }
+   
     }
-}
