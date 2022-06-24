@@ -32,9 +32,10 @@ public class Door : MonoBehaviour
         if (text2 != null) text.text = "Consolas Activadas: " + consolas + "/" + 1;
 
 
-        if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0)
+        if (progress.enemysdeath >= enemysToOpen && enemysToOpen != 0 && consolas ==1)
         {
             if (text != null) text.enabled = false;
+            if (text2 != null) text.enabled = false;
             OpenDoor();
             progress.enemysdeath = 0;
         }
