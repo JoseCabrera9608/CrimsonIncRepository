@@ -55,7 +55,7 @@ public class FireTrap : MonoBehaviour
         }
 
         if (firelifetime < timer)
-        {
+        {   
             colsize = 0;
             fire.SetActive(false);
         }
