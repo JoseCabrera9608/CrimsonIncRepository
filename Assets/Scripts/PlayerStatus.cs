@@ -176,6 +176,7 @@ public class PlayerStatus : MonoBehaviour
         anim.SetBool("DeathBool", true);
         anim.SetBool("Falling", false);
         playerdeath = true;
+        progress.enemysdeath = 0;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         GetComponent<Movement>().enabled = false;
 
