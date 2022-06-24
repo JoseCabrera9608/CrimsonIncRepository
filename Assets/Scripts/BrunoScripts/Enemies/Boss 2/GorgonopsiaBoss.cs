@@ -29,6 +29,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     [SerializeField] private GameObject[] cargaCalor;
     [SerializeField] private GameObject legParent;
     [SerializeField] private BoxCollider col;
+    [SerializeField] private GameObject embestidaFeedback;
 
     #endregion
 
@@ -126,6 +127,8 @@ public class GorgonopsiaBoss : MonoBehaviour
         {
             case Gstates.idle:
                 if (evaluatingAttack == false && onArena==false) HandleIdle(false,Gstates.idle);
+
+                DeactivateEmbestidaFeedback();
                 break;
 
             case Gstates.cargaCalor:
@@ -273,30 +276,20 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (isActing == false)
         {
-            alientoCalor.SetActive(true);
-
-            //if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
-            //else StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
+            isActing = true;
+            alientoCalor.SetActive(true);           
             StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration +1));
+            
+            Aliento2 script = alientoCalor.GetComponent<Aliento2>();
+
+            script.alientoCalorChargeTime = stats.alientoCalorChargeTime;
+            script.alientoCalorRange = stats.alientoCalorRange;
+            script.alientoCalorAngle = stats.alientoCalorAngle;
+            script.alientoCalorDamage = stats.alientoCalorDamage;
+            StartCoroutine(script.ChargeAliento());
         }
-        isActing = true;
-        AlientoCalor script = alientoCalor.GetComponent<AlientoCalor>();
-        script.alientoCalorChargeTime = stats.alientoCalorChargeTime;
-        if (stats.attackSpeedBonus) script.alientoCalorRotationDuration = stats.alientoCalorRotationDuration - (stats.alientoCalorRotationDuration * stats.generalAttackSpeedBonus);
-        else script.alientoCalorRotationDuration = stats.alientoCalorRotationDuration;
-        script.alientoCalorRange = stats.alientoCalorRange;
-        script.alientoCalorAngle = stats.alientoCalorAngle;
-        script.alientoCalorDamage = stats.alientoCalorDamage;
-
-        //if (isActing == false)
-        //{
-        //    StartCoroutine(ResetActing(stats.alientoCalorChargeTime +stats.alientoCalorRotationDuration + 1));
-        //    if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration + 1));
-        //}
-
-        //isActing = true;
-
-        //currentAction = Gstates.idle;
+       
+        
     }
     public void HandleBombaJaeger()
     {
@@ -350,11 +343,6 @@ public class GorgonopsiaBoss : MonoBehaviour
 
         if (isActing == false)
         {
-            //if (currentHeatCharges != 2) StartCoroutine(TryToChargeHeat((stats.embestidaFreneticaAnimationDuration
-            //+ stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
-            //else
-            //    StartCoroutine(ResetActing((stats.embestidaFreneticaAnimationDuration
-            //+ stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
             StartCoroutine(ResetActing((stats.embestidaFreneticaAnimationDuration
             + stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
         }
@@ -371,11 +359,18 @@ public class GorgonopsiaBoss : MonoBehaviour
         //===================MOVE BOSS FORWARD====================
         for(int i = 0; i < stats.embestidaFreneticaAmount; i++)
         {
+            
             //===============BLINK==============================
             if (bool2 == true)
             {
-                bool2 = false;                
+                bool2 = false;
+                
                 HandleBlink(TryGetEmbestidaPosition(), stats.blinkDefaultTime);
+               
+                Vector3 feedback = embestidaFeedback.transform.localScale;
+                float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
+                float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10;
+                embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght*2), feedbackDuration);              
             }
             //========================MOTION=================================
             if (timer1 >= stats.embestidaFreneticaDelay+stats.blinkDefaultTime)
@@ -395,7 +390,12 @@ public class GorgonopsiaBoss : MonoBehaviour
                 embestidaTween = transform.DOMove(transform.position+(transform.forward*distanceToPlayer),
                     duration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
                 embestidaTween.Play();
-            }           
+
+                
+                
+            }
+            embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
+                    embestidaFeedback.transform.localScale.y, 0);
         }
         
     }
@@ -455,9 +455,14 @@ public class GorgonopsiaBoss : MonoBehaviour
     public void ResetEmbestidaParentColliders()
     {
         embestidaFreneticaParent.SetActive(false);
+        embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
+                    embestidaFeedback.transform.localScale.y, 0);
         bool1 = true;
         bool2 = true;
+
     }
+    public void DeactivateEmbestidaFeedback() => embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
+                    embestidaFeedback.transform.localScale.y, 0);
     public void HandleCargasDeCalor()
     {
         if (isActing == false)
