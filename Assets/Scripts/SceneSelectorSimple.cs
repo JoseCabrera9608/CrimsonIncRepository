@@ -75,6 +75,7 @@ public class SceneSelectorSimple : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             progress.lastposition = hubpos;
+            progress.enemysdeath = 0;
             SceneManager.LoadScene(sceneName);
         }
     }

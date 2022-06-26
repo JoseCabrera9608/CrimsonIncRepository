@@ -1743,7 +1743,7 @@ MonoBehaviour:
   isGrounded: 1
   airTime: 0
   leapingVelocity: 50
-  fallSpeed: 1000
+  fallSpeed: 1500
   rayCastOffset: 0.1
   groundLayer:
     serializedVersion: 2
@@ -1764,6 +1764,7 @@ MonoBehaviour:
   timer: 0
   attacktimer: 0
   attacking: 0
+  attackinput: 0
   Pause: {fileID: 0}
   weaponCollider: {fileID: 0}
   damage: 0
@@ -1797,6 +1798,7 @@ MonoBehaviour:
   armaMesh: {fileID: 6979640614529145703}
   armaMatNormal: {fileID: 2100000, guid: d19e2f7628c38084fabd99a973cacf28, type: 2}
   armaMatHitted: {fileID: 2100000, guid: a5ec11005a0c3864f82e796a89123555, type: 2}
+  playermov: {fileID: 0}
   progress: {fileID: 0}
   InteractualObject: {fileID: 0}
   timer: 0
