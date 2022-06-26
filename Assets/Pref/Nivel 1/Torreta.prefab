@@ -77,30 +77,6 @@ Transform:
   m_Father: {fileID: 4892275422945817251}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &278985421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5703161600614847979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b434dff554ab97544bbd831c951854b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5
-  firePoint: {fileID: 4892275424109981549}
-  tiposDisparo:
-  - {fileID: 5887115034480186155, guid: 811541fddd8d3414b8cc5cc365063872, type: 3}
-  - {fileID: 7570090730287171095, guid: c9c1cf7bed35c2a429a71db11762bd50, type: 3}
-  tipoDeBala: 0
-  fire: 0
-  activado: 0
-  tiempoEntreDisparo: 2
-  apuntar: 1
-  laser: {fileID: 5449364452491647253}
-  audioDisparo: {fileID: 8122686111665203569, guid: 1395a70718b19c348b345971e0d3dc6a, type: 3}
 --- !u!82 &278985422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -197,6 +173,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &278985421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703161600614847979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b434dff554ab97544bbd831c951854b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5
+  firePoint: {fileID: 4892275424109981549}
+  tiposDisparo:
+  - {fileID: 5887115034480186155, guid: 811541fddd8d3414b8cc5cc365063872, type: 3}
+  - {fileID: 7570090730287171095, guid: c9c1cf7bed35c2a429a71db11762bd50, type: 3}
+  tipoDeBala: 0
+  fire: 0
+  activado: 0
+  tiempoEntreDisparo: 2
+  apuntar: 1
+  laser: {fileID: 5449364452491647253}
+  audioDisparo: {fileID: 8122686111665203569, guid: 1395a70718b19c348b345971e0d3dc6a, type: 3}
 --- !u!1001 &4892275423100463290
 PrefabInstance:
   m_ObjectHideFlags: 0
