@@ -69,14 +69,15 @@ public class PlayerStatus : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         rigidbodyConstraints = rb.constraints;
 
+        
+
         timer = maxtimehealing;
 
         transform.position = progress.lastposition;
 
-        if (lvl == 0)
+        if (lvl == 5)
         {
-            //progress.lastposition = new Vector3(80, 0, -110);
-            //progress.lastposition = new Vector3(57, 0, -200);
+            
         }
 
         if (lvl == 1)
