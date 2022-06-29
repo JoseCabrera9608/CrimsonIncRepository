@@ -46,13 +46,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506049049902513617}
   serializedVersion: 7
-  lengthInSec: 1.3
+  lengthInSec: 100000
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -4836,9 +4836,10 @@ GameObject:
   - component: {fileID: 7194075888019192007}
   - component: {fileID: 7194075888019192002}
   - component: {fileID: 7194075888019192006}
+  - component: {fileID: 2012314405508315889}
   m_Layer: 0
   m_Name: SueloElectrificado
-  m_TagString: Untagged
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4914,13 +4915,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7194075888019192009}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 897e3741f45cc6d40ab9be1054d5af16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderSuelo: {fileID: 7194075888019192006}
-  damage: 20
+  damage: 0
   desactivado: 0
   id: 0
   tiempoDeActivacionRayos: 3.27
@@ -4934,10 +4935,26 @@ BoxCollider:
   m_GameObject: {fileID: 7194075888019192009}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.999999, y: 0, z: 10}
-  m_Center: {x: 0, y: 1.110223e-16, z: 0}
+  m_Size: {x: 9.999999, y: 1.0398309, z: 10}
+  m_Center: {x: 0, y: 0.4963365, z: 0}
+--- !u!114 &2012314405508315889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7194075888019192009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bced31a85bf33fd47b04cd114ce044fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  slowspeed: 5
+  damagexsecond: 5
+  rayospart: {fileID: 1414992316664393171}
 --- !u!1001 &2523663115914281477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5007,7 +5024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: lengthInSec
@@ -5137,7 +5154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: lengthInSec
@@ -5267,7 +5284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: lengthInSec
@@ -5397,7 +5414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: lengthInSec
@@ -5527,7 +5544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4781057838970572365, guid: ac44d5ebc4fa6794480f269c94854687, type: 3}
       propertyPath: lengthInSec
