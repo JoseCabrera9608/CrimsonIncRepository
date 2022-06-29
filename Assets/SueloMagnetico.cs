@@ -11,13 +11,16 @@ public class SueloMagnetico : MonoBehaviour
     private PlayerStatus playerStatus;
     public float timer;
     public float slowspeed;
-    public float damage;
+    public float damagexsecond;
+    public ParticleSystem rayospart;
     
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerStatus = player.GetComponent<PlayerStatus>();
         playermov = player.GetComponent<Movement>();
+        rayospart.Play();
+        //timer = -1;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class SueloMagnetico : MonoBehaviour
             playermov.movSpeed = slowspeed;
             if (timer >= 1)
             {
-                PlayerStatus.damagePlayer?.Invoke(damage);
+                PlayerStatus.damagePlayer?.Invoke(damagexsecond);
                 timer = 0;
             }
         }
