@@ -43,11 +43,12 @@ public class Aliento2 : MonoBehaviour
     public IEnumerator ChargeAliento()
     {
         yield return new WaitForSeconds(alientoCalorChargeTime);
+
+
         GameObject obj = Instantiate(feedback);
         obj.transform.parent = alientoPos;
         obj.transform.position = alientoPos.position;
         obj.transform.localEulerAngles = alientoPos.localEulerAngles;
-
         //Damage
 
         if (playerOnAngle && playerOnRange) PlayerSingleton.Instance.playerCurrentHP -= alientoCalorDamage;

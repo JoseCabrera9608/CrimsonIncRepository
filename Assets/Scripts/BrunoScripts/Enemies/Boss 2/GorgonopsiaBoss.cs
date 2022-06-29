@@ -51,6 +51,8 @@ public class GorgonopsiaBoss : MonoBehaviour
     public bool attacked;
     private GorgonopsiaAnims anims;
 
+    [SerializeField] private List<SkinnedMeshRenderer> meshes;
+
     [SerializeField] private bool onArena;
     #endregion
 
@@ -322,7 +324,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     public void HandleBlink(Vector3 destination,float blinkTime)
     {
 
-        foreach (MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>())
+        foreach (SkinnedMeshRenderer renderer in meshes)
         {
             renderer.enabled = false;
         }
@@ -572,7 +574,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     public IEnumerator ResetRenderer(float time)
     {
         yield return new WaitForSeconds(time);
-        foreach (MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>())
+        foreach (SkinnedMeshRenderer renderer in meshes)
         {
             renderer.enabled = true;
         }
