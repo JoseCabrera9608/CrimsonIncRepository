@@ -373,8 +373,7 @@ public class GorgonopsiaBoss : MonoBehaviour
                 
                 
             }
-            embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
-                    embestidaFeedback.transform.localScale.y, 0);
+            
         }
         
     }
@@ -435,7 +434,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         embestidaFreneticaParent.SetActive(false);
         embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
-                    embestidaFeedback.transform.localScale.y, 0);
+                    embestidaFeedback.transform.localScale.y, 0.000001f);
         bool1 = true;
         bool2 = true;
 
