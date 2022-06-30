@@ -13,6 +13,7 @@ public class RugidoExplosivo : MonoBehaviour
     private GameObject player;
     [SerializeField] private GameObject particles;
     [SerializeField] private GameObject fireObject;
+    [SerializeField] private GameObject fireParticles;
 
     private GorgonopsiaStats stats;
     void Start()
@@ -42,6 +43,9 @@ public class RugidoExplosivo : MonoBehaviour
             GameObject fire = Instantiate(fireObject);
             fire.transform.position = transform.position;
             fire.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+
+            GameObject particles = Instantiate(fireParticles);
+            particles.transform.position = transform.position;
         }
         Destroy(gameObject);
     }

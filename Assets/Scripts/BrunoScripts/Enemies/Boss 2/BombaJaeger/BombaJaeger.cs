@@ -8,6 +8,7 @@ public class BombaJaeger : MonoBehaviour
     private GameObject player;
     [SerializeField] private GameObject particles;
     [SerializeField] private GameObject fireArea;
+    [SerializeField] private GameObject fireParticles;
     private GorgonopsiaStats stats;
     [Header("================CONTROL VARS=============")]
     public float speed;
@@ -21,6 +22,9 @@ public class BombaJaeger : MonoBehaviour
     private bool launched;
     private float distanceToTarget;
     private Vector3 target;
+
+    public float trackingWindow;
+    public bool pretrack;
     void Start()
     {
         player = FindObjectOfType<PlayerStatus>().gameObject;
@@ -51,6 +55,9 @@ public class BombaJaeger : MonoBehaviour
                 GameObject fire = Instantiate(fireArea);
                 fire.transform.position = transform.position - new Vector3(0, transform.localScale.y / 2, 0);
                 fire.transform.localScale = new Vector3(transform.localScale.x * 3, .3f, transform.localScale.z * 3);
+
+                GameObject particles = Instantiate(fireParticles);
+                particles.transform.position = transform.position - new Vector3(0, transform.localScale.y / 2, 0);
             }
             Destroy(gameObject);
         }
@@ -62,7 +69,16 @@ public class BombaJaeger : MonoBehaviour
         Vector3 directionPos = player.transform.position - transform.position;
         directionPos += Vector3.up * 1.6f;
         Quaternion direction = Quaternion.LookRotation(directionPos);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, direction, rotationSpeed * Time.deltaTime);
+
+        if (pretrack==true && launched == false)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, direction, 360 * Time.deltaTime);
+        }
+        else if (pretrack == false && launched == true)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, direction, rotationSpeed * Time.deltaTime);
+        }
+        
     }
     private void ApplyForwardForce()
     {
@@ -80,7 +96,11 @@ public class BombaJaeger : MonoBehaviour
         GorgonopsiaSFX.Instance.Play("bombaJaeger");
         launched = true;
     }
-
+    private IEnumerator SetPretrack()
+    {
+        yield return new WaitForSeconds(timeToAct - trackingWindow);
+        pretrack = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ground"))
@@ -88,10 +108,18 @@ public class BombaJaeger : MonoBehaviour
             if (launched) Explode();
             if (onGround == false)
             {
-                StartCoroutine(ApplyForce());
+                StartCoroutine(ApplyForce());              
+                StartCoroutine(SetPretrack());              
                 rb.AddForce(Vector3.up * 20, ForceMode.VelocityChange); //esto era Vector3.up * 8 y no era en Trigger pero lo cambié ecsdi. Atte, Santi owo
             }
             onGround = true;
+            pretrack = true;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * 10);
     }
 }

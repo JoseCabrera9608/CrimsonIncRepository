@@ -33,7 +33,7 @@ public class GorgonopsiaStats : MonoBehaviour
     [Header("")]
     [Header("================Aliento de Calor===========================")]
     public float alientoCalorChargeTime;
-    public float alientoCalorRotationDuration;
+    public float alientoCalorDamageTime;
     public float alientoCalorRange;
     public float alientoCalorAngle;
     public bool alientoCalorFullyCharged;
@@ -52,6 +52,8 @@ public class GorgonopsiaStats : MonoBehaviour
     public float bombaJaegerRotationSpeed;
     public float bombaJaegerDistanceTreshHold;
     public bool on50Health;
+    public float trackingWindow;
+
 
     [Header("")]
     [Header("================Bombas 360=================================")]
@@ -73,6 +75,7 @@ public class GorgonopsiaStats : MonoBehaviour
 
     [Header("")]
     [Header("==========================Cargas de Calor============================")]
+    public float[] heatTreshhold;
     public float cargaCalorChargeTime;
     //Hidden in inspector
     public Dictionary<Gstates,float> gorgoDamages = new Dictionary<Gstates,float>();

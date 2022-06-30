@@ -17,7 +17,7 @@ public class FireArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerOnRange) /*PlayerSingleton.Instance.playerCurrentHP -= damage * Time.deltaTime*/ PlayerStatus.damagePlayer?.Invoke(damage*Time.deltaTime);
+        if (playerOnRange)  PlayerStatus.damagePlayer?.Invoke(damage*Time.deltaTime);
     }
     private IEnumerator AutoDestroy(float time)
     {

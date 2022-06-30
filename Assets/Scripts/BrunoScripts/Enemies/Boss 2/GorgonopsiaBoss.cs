@@ -48,7 +48,6 @@ public class GorgonopsiaBoss : MonoBehaviour
     private Vector3 originalPos;
     public Tween embestidaTween;
 
-    public bool attacked;
     private GorgonopsiaAnims anims;
 
     [SerializeField] private List<SkinnedMeshRenderer> meshes;
@@ -133,16 +132,8 @@ public class GorgonopsiaBoss : MonoBehaviour
                 DeactivateEmbestidaFeedback();
                 break;
 
-            case Gstates.cargaCalor:
-                HandleCargasDeCalor();
-                break;
-
             case Gstates.embestidaFrenetica:
                 HandleEmbestidaFrenetica();
-                break;
-
-            case Gstates.blink:
-                //HandleBlink(stats.defaultPositionVector, 0.5f);
                 break;
 
             case Gstates.rugidoExplosivo:
@@ -194,33 +185,15 @@ public class GorgonopsiaBoss : MonoBehaviour
 
         int random = Random.Range(0, 101);
       
-        if (currentHeatCharges == 2||attacked==false)
+        for (int i = 0; i < attackProbabilities.Length; i++)
         {
-            for (int i = 0; i < attackProbabilities.Length; i++)
+            if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
             {
-                if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
-                {
-                    currentAction = attackProbabilities[i].nextAttack;
-                    anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
-                    attacked = true;
-                    break;
-                }
+                currentAction = attackProbabilities[i].nextAttack;
+                anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
+                break;
             }
         }
-        else if(currentHeatCharges!=2&&attacked==true)
-        {
-            currentAction = Gstates.cargaCalor;
-            attacked = false;
-        }
-        //for(int i = 0; i < attackProbabilities.Length; i++)
-        //{
-        //    if (random >= attackProbabilities[i].minProbability && random <= attackProbabilities[i].maxProbability)
-        //    {
-        //        currentAction = attackProbabilities[i].nextAttack;
-        //        anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
-        //        break;
-        //    }
-        //}
 
         evaluatingAttack = false;
     }
@@ -280,7 +253,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         {
             isActing = true;
             alientoCalor.SetActive(true);           
-            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorRotationDuration +1));
+            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorDamageTime +1));
             
             Aliento2 script = alientoCalor.GetComponent<Aliento2>();
 
@@ -288,7 +261,9 @@ public class GorgonopsiaBoss : MonoBehaviour
             script.alientoCalorRange = stats.alientoCalorRange;
             script.alientoCalorAngle = stats.alientoCalorAngle;
             script.alientoCalorDamage = stats.alientoCalorDamage;
+            script.alientoCalorDamageTime = stats.alientoCalorDamageTime;
             StartCoroutine(script.ChargeAliento());
+            
         }
        
         
@@ -317,6 +292,7 @@ public class GorgonopsiaBoss : MonoBehaviour
             script.distanceTreshHold = stats.bombaJaegerDistanceTreshHold;
             script.rotationSpeed = stats.bombaJaegerRotationSpeed;
             script.timeToAct = stats.bombaJaegerTimeToAct;
+            script.trackingWindow = stats.trackingWindow;
         }
 
         //currentAction = Gstates.idle;
@@ -372,6 +348,7 @@ public class GorgonopsiaBoss : MonoBehaviour
                 Vector3 feedback = embestidaFeedback.transform.localScale;
                 float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
                 float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10;
+
                 embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght*2), feedbackDuration);              
             }
             //========================MOTION=================================
@@ -465,30 +442,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public void DeactivateEmbestidaFeedback() => embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
                     embestidaFeedback.transform.localScale.y, 0);
-    public void HandleCargasDeCalor()
-    {
-        if (isActing == false)
-        {
-            GorgonopsiaSFX.Instance.Play("cargaCalor");
-            StartCoroutine(ResetActing(stats.cargaCalorChargeTime));
-            StartCoroutine(DeactivateLegColliders(stats.cargaCalorChargeTime));
-            legParent.SetActive(true);
-
-            anims.SetAnimationTrigger("cargaCalor");
-
-            leftLegOn = true;
-            rightLegOn = true;
-            legs[0].SetActive(true);
-            legs[1].SetActive(true);
-            currentHeatCharges=2;
-            foreach(GameObject obj in legs)
-            {
-                obj.GetComponent<CargaCalorLegIdentifier>().health = 2;
-            }
-
-        }
-        isActing = true;      
-    }
+   
     public IEnumerator DeactivateLegColliders(float time)
     {
         yield return new WaitForSeconds(time);
@@ -496,42 +450,46 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public void UpdateCargaCalorVisuals()
     {
-        if (leftLegOn)
-        {
-            cargaCalor[0].SetActive(true);
-        }
-        else
-        {
-            cargaCalor[0].SetActive(false);
-        }
-
-
-        if (rightLegOn)
-        {
-            cargaCalor[1].SetActive(true);
-        }
-        else
-        {
-            cargaCalor[1].SetActive(false);
-        }
 
         switch (currentHeatCharges)
         {
             case 1:
                 stats.fireBonus = true;
                 stats.attackSpeedBonus = false;
+                cargaCalor[0].SetActive(true);
                 break;
 
             case 2:
                 stats.fireBonus = true;
                 stats.attackSpeedBonus = true;
+                cargaCalor[1].SetActive(true);
                 break;
 
             default:
                 stats.fireBonus = false;
                 stats.attackSpeedBonus = false;
+                cargaCalor[0].SetActive(false);
+                cargaCalor[1].SetActive(false);
                 break;
         }
+        float currentHealth = stats.health / stats.maxHP;
+
+
+        if (currentHealth <= stats.heatTreshhold[0])
+        {
+            currentHeatCharges = 2;           
+            return;
+        }
+        else if (currentHealth <= stats.heatTreshhold[1])
+        {
+            currentHeatCharges = 1;            
+            return;
+        }
+        else
+        {
+            currentHeatCharges = 0;            
+            return;
+        }      
     }
     public void LegCheck()
     {
