@@ -5,23 +5,23 @@ using UnityEngine;
 public class ActivateTargetVfxScript : MonoBehaviour
 {
     public GameObject TargetVfx;
-    public GameObject bombaJaeger;
-    BombaJaeger bombaJaegerScript;
+    public GameObject Gorgonopsia;
+    GorgonopsiaBoss GorgoScript;
     void Start()
     {
-        bombaJaegerScript = bombaJaeger.GetComponent<BombaJaeger>();
+        GorgoScript = Gorgonopsia.GetComponent<GorgonopsiaBoss>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(bombaJaegerScript.activateTargetVfx == true)
+        if(GorgoScript.activateTargetVfx == true)
         {
             TargetVfx.SetActive(true);
         }
 
-        if (bombaJaegerScript.activateTargetVfx == false)
+        if (GorgoScript.activateTargetVfx == false)
         {
             TargetVfx.SetActive(false);
         }

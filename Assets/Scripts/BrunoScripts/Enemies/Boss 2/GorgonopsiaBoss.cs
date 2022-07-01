@@ -36,7 +36,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     public AudioSource audioSource;
     public AudioSource music;
     public AudioSource hitSound;
-    
+    public bool activateTargetVfx;
 
     #region variables de control
     [Header("===============CONTROL VARIABLES===============")]
@@ -120,6 +120,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
+            StartCoroutine(BombaJaegerVFXTimer());
             HandleBombaJaeger();
         }
 
@@ -151,6 +152,7 @@ public class GorgonopsiaBoss : MonoBehaviour
                 break;
 
             case Gstates.bombaJaeger:
+                
                 HandleBombaJaeger();
                 break;          
         }
@@ -198,6 +200,12 @@ public class GorgonopsiaBoss : MonoBehaviour
         }
 
         evaluatingAttack = false;
+    }
+    IEnumerator BombaJaegerVFXTimer()
+    {
+        activateTargetVfx = true;
+        yield return new WaitForSeconds(3.2f);
+        activateTargetVfx = false;
     }
     public void HandleRugidoExplosivo()
     {
@@ -272,7 +280,8 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public void HandleBombaJaeger()
     {
-        for(int i = 0; i < 2; i++)
+        StartCoroutine(BombaJaegerVFXTimer());
+        for (int i = 0; i < 2; i++)
         {
             GameObject obj = Instantiate(bombaJaeger);
             if (i == 0)
@@ -546,7 +555,8 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public bool SpawnJaegerBombs()
     {
-        int random = Random.Range(0, 101);
+        
+    int random = Random.Range(0, 101);
         if (random <= bombaJaegerProbability[0].maxProbability)
         {
             return true;
@@ -577,6 +587,8 @@ public class GorgonopsiaBoss : MonoBehaviour
             col.enabled = false; 
         }
     }
+
+    
 }
 
 

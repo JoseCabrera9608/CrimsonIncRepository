@@ -15,7 +15,7 @@ public class BombaJaeger : MonoBehaviour
     public float speed;
     public float damage;
     public float timeToAct;
-    public bool activateTargetVfx;
+    
     //public float explotionRadius;
     public float distanceTreshHold;
     public float rotationSpeed;
@@ -38,6 +38,7 @@ public class BombaJaeger : MonoBehaviour
 
     void Update()
     {
+       
         Explode();
         TrackPlayer();
         ApplyForwardForce();
@@ -69,7 +70,7 @@ public class BombaJaeger : MonoBehaviour
     }
     private void TrackPlayer()
     {
-        activateTargetVfx = true;
+        
         Vector3 directionPos = player.transform.position - transform.position;
         directionPos += Vector3.up * 1.6f;
         Quaternion direction = Quaternion.LookRotation(directionPos);
@@ -109,7 +110,7 @@ public class BombaJaeger : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
-            activateTargetVfx = false;
+           
             if (launched) Explode();
             if (onGround == false)
             {
