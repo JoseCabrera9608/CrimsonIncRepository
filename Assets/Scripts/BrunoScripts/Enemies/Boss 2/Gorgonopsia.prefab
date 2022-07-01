@@ -670,7 +670,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4227843551228128276}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &3083172144747832991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,15 +1737,15 @@ MonoBehaviour:
     animationTrigger: alientoCalor
   - nextAttack: 2
     minProbability: 0
-    maxProbability: 100
+    maxProbability: 0
     animationTrigger: embestidaFrenetica
   - nextAttack: 4
     minProbability: 0
-    maxProbability: 100
+    maxProbability: 0
     animationTrigger: rugidoExplosivo
   - nextAttack: 5
-    minProbability: 50
-    maxProbability: 74
+    minProbability: 0
+    maxProbability: 0
     animationTrigger: bomba360
   bombaJaegerProbability:
   - nextAttack: 7
@@ -1769,7 +1769,7 @@ MonoBehaviour:
   closeRangeRadius: 0
   rotationSpeed: 55
   farRangeRadius: 0
-  health: 100
+  health: 20
   fireDamage: 10
   fireDuration: 4
   generalAttackSpeedBonus: 0.5
@@ -1783,7 +1783,7 @@ MonoBehaviour:
   embestidaFreneticaDamage: 30
   rugidoExplosivoDamage: 50
   bombas360Damage: 50
-  alientoCalorDamage: 45
+  alientoCalorDamage: 10
   bombasJaegerDamage: 35
   alientoCalorChargeTime: 2
   alientoCalorDamageTime: 2
@@ -2149,7 +2149,7 @@ MonoBehaviour:
   alientoCharged: 0
   angle1: {fileID: 6404560828541896506}
   angle2: {fileID: 2992591194964838698}
-  angle: 16.576647
+  angle: 0.60748506
 --- !u!1 &4227843551311260763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,7 +2241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4227843551367288349
 Transform:
   m_ObjectHideFlags: 0
@@ -17846,7 +17846,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4227843551228128276}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0.2, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1 &6408099458479992876
 GameObject:
   m_ObjectHideFlags: 0
