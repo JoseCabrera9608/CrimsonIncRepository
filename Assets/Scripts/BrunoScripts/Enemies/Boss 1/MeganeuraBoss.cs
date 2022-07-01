@@ -11,7 +11,7 @@ public class MeganeuraBoss : MonoBehaviour
 
     public GameObject EnemyBar;
 
-    private ProgressManager progress;
+    public ProgressManager progress;
 
     public GameObject stake;
     public List<GameObject> stakeList;
@@ -113,7 +113,7 @@ public class MeganeuraBoss : MonoBehaviour
                 FindObjectOfType<AudioManager>().Stop("MusicaBoss");
             }
 
-            progress.enemysdeath = 100;
+            //progress.enemysdeath = 100;
             StopAllCoroutines();
             bobing.Kill();
         }
@@ -286,6 +286,7 @@ public class MeganeuraBoss : MonoBehaviour
         if (stats.health <= 0&&stats.isAlive)
         {
             stats.isAlive = false;
+            //progress.enemysdeath = 100;
             HandleDeath();
         }
     }
@@ -561,6 +562,7 @@ public class MeganeuraBoss : MonoBehaviour
         }
         StopBobing();
         StopAllCoroutines();
+        progress.enemysdeath = 100;
         BuffManager.onBossDefetead?.Invoke();
     }
 
