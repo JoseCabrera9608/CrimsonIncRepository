@@ -52,6 +52,7 @@ public class Sensibilidad : MonoBehaviour
 
         }
         progress.vol = volSlider.value;
+        progress.sens = slider.value;
     }
 
 
