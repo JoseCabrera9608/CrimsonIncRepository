@@ -343,7 +343,7 @@ public class PlayerStatus : MonoBehaviour
         //mesh.material = matHitted;
         mesh.material.SetColor("_EmissionColor", Color.red);
         armaMesh.material.SetColor("_EmissionColor", Color.red);
-        healingtime = 0;
+        //healingtime = 0;
 
         yield return new WaitForSeconds(0.5f);
 
