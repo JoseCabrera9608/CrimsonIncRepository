@@ -7,6 +7,7 @@ public class BossTrigger : MonoBehaviour
     public int id;
     public ProgressManager progress;
     public BoxCollider box;
+    public BoxCollider box2;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class BossTrigger : MonoBehaviour
         {
             BossGameEVent.current.StartCombatTriggerExit(id);
             if (box !=null) box.enabled = false;
+            if (box2 != null) box2.enabled = false;
             Destroy(this.gameObject);
         }
 
