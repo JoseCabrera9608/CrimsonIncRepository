@@ -77,7 +77,9 @@ public class EnemiPequeñoControlador : MonoBehaviour
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("CaminarSonda"))
         {
-            Quaternion rotTarget = Quaternion.LookRotation(cabezaPlayer.transform.position - this.transform.position);
+            Vector3 targetPosition = new Vector3(cabezaPlayer.transform.position.x, transform.position.y, cabezaPlayer.transform.position.z);
+            Quaternion rotTarget = Quaternion.LookRotation(targetPosition - this.transform.position);
+            //Quaternion rotTarget = Quaternion.LookRotation(cabezaPlayer.transform.position - this.transform.position);
             this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, 200 * Time.deltaTime);
         }
             if (PlayerSingleton.Instance.playerFreezed == true)
@@ -243,7 +245,8 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator LanzarBomba()
     {
         agente.speed = 1;
-        transform.LookAt(player.transform.position);
+        Vector3 targetPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        transform.LookAt(targetPosition);
         anim.SetTrigger("Bomba");
         yield return new WaitForSeconds(1.5f);
         
