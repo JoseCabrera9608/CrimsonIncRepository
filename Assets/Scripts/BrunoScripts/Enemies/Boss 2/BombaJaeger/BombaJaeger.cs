@@ -109,6 +109,7 @@ public class BombaJaeger : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
+            activateTargetVfx = false;
             if (launched) Explode();
             if (onGround == false)
             {
