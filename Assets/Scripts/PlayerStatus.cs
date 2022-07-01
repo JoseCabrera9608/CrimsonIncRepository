@@ -249,7 +249,7 @@ public class PlayerStatus : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Heal") && timer > healingtime && PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
+        if (Input.GetButton("Heal") && timer > healingtime && PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP -0.35f)
         {
             StartCoroutine(HealingEffectDuration());
             timer = 0;
