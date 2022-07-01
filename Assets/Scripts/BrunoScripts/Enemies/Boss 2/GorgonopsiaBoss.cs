@@ -35,6 +35,8 @@ public class GorgonopsiaBoss : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioSource music;
+    public AudioSource hitSound;
+    
 
     #region variables de control
     [Header("===============CONTROL VARIABLES===============")]
@@ -557,6 +559,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (other.CompareTag("PlayerWeapon")&&stats.isActive)
         {
+            hitSound.Play();
             if (stats.health <= PlayerSingleton.Instance.playerDamage&&stats.isAlive)
             {
                 stats.health -= PlayerSingleton.Instance.playerDamage;
