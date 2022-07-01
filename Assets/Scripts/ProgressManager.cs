@@ -14,6 +14,7 @@ public class ProgressManager : MonoBehaviour
     public int checkpointIndex;
 
     public float sens;
+    public float vol;
     public int lvl;
     public bool changing;
 
@@ -30,6 +31,7 @@ public class ProgressManager : MonoBehaviour
     private void Awake()
     {
         sens = 0.5f;
+        vol = 0.5f;
     }
 
     void Start()
@@ -40,6 +42,7 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AudioListener.volume = vol;
         //sensi = GameObject.FindGameObjectWithTag("SensController").GetComponent<Sensibilidad>();
         //sens = sensi.slider.value;
 

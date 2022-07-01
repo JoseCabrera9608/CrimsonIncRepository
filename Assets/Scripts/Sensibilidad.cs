@@ -26,6 +26,7 @@ public class Sensibilidad : MonoBehaviour
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
 
         slider.value = progress.sens;
+        volSlider.value = progress.vol;
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class Sensibilidad : MonoBehaviour
             }
 
         }
-        AudioListener.volume = volSlider.value;
+        progress.vol = volSlider.value;
     }
 
 
