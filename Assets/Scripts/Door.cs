@@ -37,7 +37,7 @@ public class Door : MonoBehaviour
             if (text != null) text.enabled = false;
             if (text2 != null) text.enabled = false;
             OpenDoor();
-            progress.enemysdeath = 0;
+            //progress.enemysdeath = 0;
         }
     }
 

@@ -117,6 +117,7 @@ public class Checkpoint : MonoBehaviour
             if (playerStatus.interacting == false)
             {
                 playerStatus.Interacting();
+                progress.enemysdeath = 0;
                 FindObjectOfType<AudioManager>().Play("Checkpoint");
             }
             if (resetlvl == true)
