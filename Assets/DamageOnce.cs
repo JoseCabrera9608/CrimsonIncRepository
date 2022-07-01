@@ -8,7 +8,7 @@ public class DamageOnce : MonoBehaviour
     public float damage;
     void Start()
     {
-        damage = 50;
+       
     }
 
     // Update is called once per frame
