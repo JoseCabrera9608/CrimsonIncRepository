@@ -5,9 +5,10 @@ using UnityEngine;
 public class DamageOnce : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float damage;
     void Start()
     {
-        
+        damage = 50;
     }
 
     // Update is called once per frame
@@ -20,7 +21,8 @@ public class DamageOnce : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerStatus.damagePlayer?.Invoke(50);
+            PlayerStatus.damagePlayer?.Invoke(damage);
+            damage = 0;
         }
     }
 }
