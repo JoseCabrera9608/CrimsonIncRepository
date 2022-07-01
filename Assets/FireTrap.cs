@@ -17,6 +17,7 @@ public class FireTrap : MonoBehaviour
     public float coltimer;
     public float colsize;
     public float maxcolsize;
+    public int fireID;
 
     public string traptype;
 
@@ -30,8 +31,17 @@ public class FireTrap : MonoBehaviour
     void Start()
     {
         colliderobj.transform.localScale = new Vector3(colliderobj.transform.localScale.x, colliderobj.transform.localScale.y, 0.1f);
-        timer = firelifetime + intervalo;
-        cd = firelifetime + intervalo;
+        if (fireID == 2)
+        {
+            timer = firelifetime + intervalo-3;
+            cd = firelifetime + intervalo;
+        }
+        else
+        {
+            timer = firelifetime + intervalo;
+            cd = firelifetime + intervalo;
+        }
+
     }
 
     // Update is called once per frame
