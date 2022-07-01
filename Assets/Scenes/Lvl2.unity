@@ -26345,7 +26345,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462600238}
-  m_LocalRotation: {x: 0.07325429, y: -0.7033021, z: 0.07325429, w: 0.7033021}
+  m_LocalRotation: {x: 0.0732543, y: -0.7033021, z: 0.0732543, w: 0.7033021}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -51538,7 +51538,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-229970
+  m_Name: pb_Mesh-18222
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -80570,6 +80570,14 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168433, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: alientoCalorChargeTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168433, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: alientoCalorDamageTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168433, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: embestidaFreneticaDelay
       value: 0.5
       objectReference: {fileID: 0}
@@ -80589,6 +80597,34 @@ PrefabInstance:
       propertyPath: EnemyBar
       value: 
       objectReference: {fileID: 1182379376}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[0].maxProbability
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[1].maxProbability
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[1].minProbability
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[2].maxProbability
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[2].minProbability
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[3].maxProbability
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[3].minProbability
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168435, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: m_Size.z
       value: 7.339142
