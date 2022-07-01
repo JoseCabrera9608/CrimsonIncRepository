@@ -153,6 +153,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
 
 
     }
+    
 
     private void StartChase(int id)
     {

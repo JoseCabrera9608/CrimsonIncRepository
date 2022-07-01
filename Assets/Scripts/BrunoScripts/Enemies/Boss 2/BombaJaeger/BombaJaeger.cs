@@ -9,11 +9,13 @@ public class BombaJaeger : MonoBehaviour
     [SerializeField] private GameObject particles;
     [SerializeField] private GameObject fireArea;
     [SerializeField] private GameObject fireParticles;
+    
     private GorgonopsiaStats stats;
     [Header("================CONTROL VARS=============")]
     public float speed;
     public float damage;
     public float timeToAct;
+    public bool activateTargetVfx;
     //public float explotionRadius;
     public float distanceTreshHold;
     public float rotationSpeed;
@@ -27,6 +29,7 @@ public class BombaJaeger : MonoBehaviour
     public bool pretrack;
     void Start()
     {
+        
         player = FindObjectOfType<PlayerStatus>().gameObject;
         stats = FindObjectOfType<GorgonopsiaStats>();
         rb = GetComponent<Rigidbody>();
@@ -66,6 +69,7 @@ public class BombaJaeger : MonoBehaviour
     }
     private void TrackPlayer()
     {
+        activateTargetVfx = true;
         Vector3 directionPos = player.transform.position - transform.position;
         directionPos += Vector3.up * 1.6f;
         Quaternion direction = Quaternion.LookRotation(directionPos);
