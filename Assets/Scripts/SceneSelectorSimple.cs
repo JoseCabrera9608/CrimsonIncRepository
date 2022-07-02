@@ -19,12 +19,6 @@ public class SceneSelectorSimple : MonoBehaviour
     void Update()
     {
 
-
-
-
-
-
-
     }
 
     public void ChangeScene()
