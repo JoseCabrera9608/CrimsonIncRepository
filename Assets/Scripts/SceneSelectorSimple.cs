@@ -20,42 +20,6 @@ public class SceneSelectorSimple : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-
-            sceneName = "VientreRudra";
-            //progress.lastposition = progress.hubpos;
-
-
-            //ChangeScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-
-            sceneName = "Almacenamiento";
-            //progress.lastposition = progress.hubpos;
-
-
-            //ChangeScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-
-            sceneName = "Fabrica";
-            //progress.lastposition = progress.hubpos;
-
-
-            //ChangeScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-
-            sceneName = "Dulscene";
-            //progress.lastposition = progress.hubpos;
-
-
-            //ChangeScene();
-        }
 
 
 
