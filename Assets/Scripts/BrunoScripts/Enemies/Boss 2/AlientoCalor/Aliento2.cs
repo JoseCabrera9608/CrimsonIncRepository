@@ -93,14 +93,19 @@ public class Aliento2 : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * alientoCalorRange);
 
-        Vector3 direction = playerForTest.transform.position-transform.position;
+        if (playerForTest != null)
+        {
+            Vector3 direction = playerForTest.transform.position - transform.position;
+            angle = Vector3.Angle(transform.forward, direction);
+            Gizmos.DrawLine(transform.position, playerForTest.transform.position);
+        }
         
-        angle = Vector3.Angle(transform.forward, direction);
+        
 
         if (angle < alientoCalorAngle) Gizmos.color = Color.red;
         else Gizmos.color = Color.green;
 
-        Gizmos.DrawLine(transform.position, playerForTest.transform.position);
+        //Gizmos.DrawLine(transform.position, playerForTest.transform.position);
         
         
 
