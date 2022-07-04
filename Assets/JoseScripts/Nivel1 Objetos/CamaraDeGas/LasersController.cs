@@ -9,6 +9,8 @@ public class LasersController : MonoBehaviour
     public GameObject puerta;
     public bool activar;
     public GameObject gas;
+    public GameObject advertenciaIncendio;
+    public GameObject advertenciaCalavera;
     void Start()
     {
         puertaAnimator = puerta.GetComponent<Animator>();
@@ -19,6 +21,8 @@ public class LasersController : MonoBehaviour
     {
         if(activar == true)
         {
+            advertenciaIncendio.SetActive(false);
+            advertenciaCalavera.SetActive(true);
             StartCoroutine(ActivarHumo());
             activar = false;
         }
