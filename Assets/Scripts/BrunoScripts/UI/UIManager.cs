@@ -60,20 +60,19 @@ public class UIManager : MonoBehaviour
     private void CheckPlayerHealth()
     {
         if (PlayerSingleton.Instance.playerCurrentHP != prevHealthAmmount) UpdateHealthBarFill();
+        healthscale = PlayerSingleton.Instance.playerMaxHP * 0.01f;
+        healthlenght = (PlayerSingleton.Instance.playerMaxHP * 0.01f * 88) - 726;
+        healthBarFill.transform.localScale = new Vector3(healthscale, 1, 1);
+        healthBarFill.transform.localPosition = new Vector3(healthlenght, 393, 1);
+
+        healthLimit.transform.localPosition = new Vector3((PlayerSingleton.Instance.playerMaxHP * 0.01f * +300) - 300, 1.1f, 0);
     }
   
     private void UpdateHealthBarFill()
     {
 
-        healthscale = PlayerSingleton.Instance.playerMaxHP * 0.01f;
-        healthlenght = (PlayerSingleton.Instance.playerMaxHP * 0.01f * 88) -726;
-
-        healthLimit.transform.localPosition = new Vector3((PlayerSingleton.Instance.playerMaxHP * 0.01f * +300) - 300, 1.1f, 0);
-
         healthBarFill.fillAmount = PlayerSingleton.Instance.playerCurrentHP / PlayerSingleton.Instance.playerMaxHP;
         prevHealthAmmount = PlayerSingleton.Instance.playerCurrentHP;
-        healthBarFill.transform.localScale = new Vector3(healthscale, 1, 1);
-        healthBarFill.transform.localPosition = new Vector3(healthlenght, 393, 1);
     }
 
     private void CheckPlayerHealing()
