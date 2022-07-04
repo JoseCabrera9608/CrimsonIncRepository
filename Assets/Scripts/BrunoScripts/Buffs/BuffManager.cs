@@ -35,11 +35,13 @@ public class BuffManager : MonoBehaviour
     {
         PlayerStatus.onPlayerDeath += HandleDeath;
         BuffManager.onBossDefetead += ShowPanel;
+        SceneSelectorSimple.onLoadLevel += RecoverBuffs;
     }
     private void OnDisable()
     {
         PlayerStatus.onPlayerDeath -= HandleDeath;
         BuffManager.onBossDefetead -= ShowPanel;
+        SceneSelectorSimple.onLoadLevel -= RecoverBuffs;
     }
     private void Update()
     {

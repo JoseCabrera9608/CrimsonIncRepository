@@ -1117,6 +1117,10 @@ MonoBehaviour:
   dashFill: {fileID: 1556778025}
   healing: {fileID: 556107828}
   staminaBarFill: {fileID: 0}
+  healthscale: 0
+  healthlenght: 0
+  healthLimit: {fileID: 0}
+  staminaLimit: {fileID: 0}
   movement: {fileID: 0}
   gameIsPaused: 0
   pausePanel: {fileID: 361546515}
@@ -5565,7 +5569,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-125718
+  m_Name: pb_Mesh-53270
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10957,6 +10961,7 @@ MonoBehaviour:
   level3: 0
   checkpointIndex: 0
   sens: 0
+  vol: 0
   lvl: 0
   changing: 0
   resetlvl: 1
@@ -35003,7 +35008,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628022106}
-  m_LocalRotation: {x: 0.085488416, y: 0.000000017671004, z: -0.0000000015162167, w: 0.9963392}
+  m_LocalRotation: {x: 0.085488416, y: -0.000000017671002, z: 0.0000000015162165, w: 0.9963392}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -45049,7 +45054,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133537277}
-  m_LocalRotation: {x: 0.085488416, y: 0.000000017879138, z: -0.0000000014982615, w: 0.9963392}
+  m_LocalRotation: {x: 0.085488416, y: -0.000000017879128, z: 0.0000000014982002, w: 0.9963392}
   m_LocalPosition: {x: 0, y: 2.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -45334,6 +45339,26 @@ PrefabInstance:
     - target: {fileID: 4227843550261168432, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[0].nextAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[1].nextAttack
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[1].maxProbability
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[0].animationTrigger
+      value: embestidaFrenetica
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[1].animationTrigger
+      value: alientoCalor
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168439, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: m_Name

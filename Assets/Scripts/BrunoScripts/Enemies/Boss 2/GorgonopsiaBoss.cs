@@ -358,7 +358,7 @@ public class GorgonopsiaBoss : MonoBehaviour
                
                 Vector3 feedback = embestidaFeedback.transform.localScale;
                 float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
-                float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10;
+                float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10 *2;
 
                 embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght*2), feedbackDuration);              
             }

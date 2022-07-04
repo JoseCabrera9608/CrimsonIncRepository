@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,7 @@ public class SceneSelectorSimple : MonoBehaviour
     public string sceneName;
     public Vector3 hubpos;
     public ProgressManager progress;
-
+    public static Action onLoadLevel;
     void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
@@ -22,8 +23,7 @@ public class SceneSelectorSimple : MonoBehaviour
     }
 
     public void ChangeScene()
-    {
-
+    {       
         progress.enemysdeath = 0;
         SceneManager.LoadScene(sceneName);
 
@@ -33,6 +33,7 @@ public class SceneSelectorSimple : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            onLoadLevel?.Invoke();
             progress.enemysdeath = 0;
             progress.lastposition = hubpos;
             progress.enemysdeath = 0;

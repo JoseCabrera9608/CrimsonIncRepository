@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BuffRecovery : MonoBehaviour
 {
-    private BuffManager manager;
     private GameObject player;
     public GeneralDataHolder holder;
 
@@ -20,7 +19,6 @@ public class BuffRecovery : MonoBehaviour
     
     void Start()
     {
-        manager = GetComponent<BuffManager>();
         player = FindObjectOfType<PlayerStatus>().gameObject;
 
         try
