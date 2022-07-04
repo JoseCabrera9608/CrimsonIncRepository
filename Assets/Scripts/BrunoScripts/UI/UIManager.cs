@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
 
     private float prevHealthAmmount;
     private float prevHealingCharges;
+
+    public float healthscale;
+    public float healthlenght;
     //=========TEMPORAL==========
     [SerializeField]private Movement movement;
     //=========TEMPORAL==========
@@ -58,8 +61,14 @@ public class UIManager : MonoBehaviour
   
     private void UpdateHealthBarFill()
     {
+
+        healthscale = PlayerSingleton.Instance.playerMaxHP * 0.01f;
+        healthlenght = (PlayerSingleton.Instance.playerMaxHP * 0.01f * 88) -726;
+
         healthBarFill.fillAmount = PlayerSingleton.Instance.playerCurrentHP / PlayerSingleton.Instance.playerMaxHP;
         prevHealthAmmount = PlayerSingleton.Instance.playerCurrentHP;
+        healthBarFill.transform.localScale = new Vector3(healthscale, 1, 1);
+        healthBarFill.transform.localPosition = new Vector3(healthlenght, 393, 1);
     }
 
     private void CheckPlayerHealing()

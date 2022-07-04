@@ -6,7 +6,7 @@ public static class DefaultPlayerVars
 {
    
     //======HP values==================
-    public static float defaultMaxHP { get { return 100; } }
+    public static float defaultMaxHP { get { return 200; } }
 
     //======Stamina values==================
     public static float defaultMaxStamina { get { return 3; } }
