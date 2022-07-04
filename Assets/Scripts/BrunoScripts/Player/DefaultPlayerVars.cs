@@ -9,7 +9,7 @@ public static class DefaultPlayerVars
     public static float defaultMaxHP { get { return 200; } }
 
     //======Stamina values==================
-    public static float defaultMaxStamina { get { return 3; } }
+    public static float defaultMaxStamina { get { return 6; } }
     public static float defaultStaminaRegen { get { return 1; } }
     public static float defaultRunStaminaCost { get { return 100; } }
 
