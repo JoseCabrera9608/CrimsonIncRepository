@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
 
     public float healthscale;
     public float healthlenght;
+
+    public Image healthLimit;
+    public Image staminaLimit;
     //=========TEMPORAL==========
     [SerializeField]private Movement movement;
     //=========TEMPORAL==========
@@ -65,6 +68,8 @@ public class UIManager : MonoBehaviour
         healthscale = PlayerSingleton.Instance.playerMaxHP * 0.01f;
         healthlenght = (PlayerSingleton.Instance.playerMaxHP * 0.01f * 88) -726;
 
+        healthLimit.transform.localPosition = new Vector3((PlayerSingleton.Instance.playerMaxHP * 0.01f * +300) - 300, 1.1f, 0);
+
         healthBarFill.fillAmount = PlayerSingleton.Instance.playerCurrentHP / PlayerSingleton.Instance.playerMaxHP;
         prevHealthAmmount = PlayerSingleton.Instance.playerCurrentHP;
         healthBarFill.transform.localScale = new Vector3(healthscale, 1, 1);
@@ -88,7 +93,15 @@ public class UIManager : MonoBehaviour
 
 
     //======DASH===================
-    private void UpdateDash()=> dashFill.fillAmount = PlayerSingleton.Instance.playerCurrentStamina / movement.staminaMax;
+    private void UpdateDash()
+    {
+
+        staminaLimit.transform.localPosition = new Vector3((PlayerSingleton.Instance.playerMaxStamina * 1/3 * +300) - 300, -27.1f, 0);
+
+        dashFill.fillAmount = PlayerSingleton.Instance.playerCurrentStamina / PlayerSingleton.Instance.playerMaxStamina;
+        dashFill.transform.localScale = new Vector3(PlayerSingleton.Instance.playerMaxStamina * 1/3, 1, 1);
+        dashFill.transform.localPosition = new Vector3((PlayerSingleton.Instance.playerMaxStamina * 1/3 * 88) - 726, 443.7f, 1);
+    }
 
     //======DASH===================
     #endregion
