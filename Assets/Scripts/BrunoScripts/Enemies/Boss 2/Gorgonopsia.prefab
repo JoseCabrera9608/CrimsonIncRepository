@@ -1720,6 +1720,9 @@ MonoBehaviour:
   embestidaFeedback: {fileID: 7570155986593020938}
   audioSource: {fileID: 4651322809237155682}
   music: {fileID: 0}
+  hitSound: {fileID: 0}
+  activateTargetVfx: 0
+  embestidaCounter: 0
   isActing: 0
   evaluatingAttack: 0
   bombaJaegerPosIzquierda: {fileID: 4227843551913415009}
@@ -1730,6 +1733,7 @@ MonoBehaviour:
   meshes:
   - {fileID: 5296955763200962476}
   onArena: 0
+  canRotate: 0
   attackProbabilities:
   - nextAttack: 6
     minProbability: 0
@@ -1767,7 +1771,8 @@ MonoBehaviour:
   isAlive: 1
   evaluationTime: 3
   closeRangeRadius: 0
-  rotationSpeed: 55
+  defaultRotationSpeed: 55
+  rotationSpeedAliento: 20
   farRangeRadius: 0
   health: 20
   fireDamage: 10

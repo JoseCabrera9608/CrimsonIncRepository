@@ -9,7 +9,8 @@ public class GorgonopsiaStats : MonoBehaviour
     public bool isAlive;
     public float evaluationTime;
     public float closeRangeRadius;
-    public float rotationSpeed;
+    public float defaultRotationSpeed;
+    public float rotationSpeedAliento;
     public float farRangeRadius;
     public float health;
     public float fireDamage;

@@ -56,6 +56,9 @@ public class GorgonopsiaBoss : MonoBehaviour
     [SerializeField] private List<SkinnedMeshRenderer> meshes;
 
     [SerializeField] private bool onArena;
+
+    public bool canRotate;
+    private float rotationSpeed;
     #endregion
 
     #region probabilidades
@@ -68,7 +71,9 @@ public class GorgonopsiaBoss : MonoBehaviour
         stats = GetComponent<GorgonopsiaStats>();
         player = FindObjectOfType<PlayerStatus>().gameObject;
         anims = GetComponent<GorgonopsiaAnims>();
+        canRotate = true;
         originalPos = transform.position;
+        rotationSpeed = stats.defaultRotationSpeed;
     }
 
     // Update is called once per frame
@@ -185,7 +190,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     {
         if (stats.on50Health && SpawnJaegerBombs()) HandleBombaJaeger(); 
         evaluatingAttack = true;
-
+        //canRotate = true;
         yield return new WaitForSeconds(stats.evaluationTime);
 
         int random = Random.Range(0, 101);
@@ -196,6 +201,7 @@ public class GorgonopsiaBoss : MonoBehaviour
             {
                 currentAction = attackProbabilities[i].nextAttack;
                 anims.SetAnimationTrigger(attackProbabilities[i].animationTrigger);
+                canRotate = false;
                 break;
             }
         }
@@ -263,6 +269,8 @@ public class GorgonopsiaBoss : MonoBehaviour
         if (isActing == false)
         {
             isActing = true;
+            canRotate = true;
+            rotationSpeed = stats.rotationSpeedAliento;
             alientoCalor.SetActive(true);           
             StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorDamageTime +1));
             
@@ -521,10 +529,10 @@ public class GorgonopsiaBoss : MonoBehaviour
         Quaternion direction = Quaternion.LookRotation(player.transform.position - transform.position);
         direction.x = 0;
 
-        if (isActing==false)
+        if (canRotate==true)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, direction,
-            stats.rotationSpeed * Time.deltaTime);
+            rotationSpeed * Time.deltaTime);
         }
 
     }
@@ -536,6 +544,8 @@ public class GorgonopsiaBoss : MonoBehaviour
         timer1 = 0;
         isActing = false;
         embestidaCounter = 0;
+        canRotate = true;
+        rotationSpeed = stats.defaultRotationSpeed;
     }
 
     public IEnumerator ResetRenderer(float time)
