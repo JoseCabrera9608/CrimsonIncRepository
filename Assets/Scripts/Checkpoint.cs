@@ -161,6 +161,15 @@ public class Checkpoint : MonoBehaviour
 
             //ChangeScene();
         }
+
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            progress.lastposition = new Vector3(57, 0, -204);
+            SceneManager.LoadScene("Lvl1");
+
+            //ChangeScene();
+        }
+
         if (Input.GetKeyDown(KeyCode.K))
         {
             PlayerSingleton.Instance.playerCurrentHP = -11;
