@@ -387,7 +387,7 @@ public class GorgonopsiaBoss : MonoBehaviour
 
                 
             embestidaTween = transform.DOMove(transform.position+(transform.forward*distanceToPlayer),
-                duration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
+                duration,false).SetEase(Ease.Linear).OnComplete(ResetEmbestidaParentColliders);
             embestidaTween.Play();
         }
     }
@@ -446,6 +446,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public void ResetEmbestidaParentColliders()
     {
+        anims.SetAnimationTrigger("embestidaEnd");
         embestidaFreneticaParent.SetActive(false);
         embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
                     embestidaFeedback.transform.localScale.y, 0.000001f);
