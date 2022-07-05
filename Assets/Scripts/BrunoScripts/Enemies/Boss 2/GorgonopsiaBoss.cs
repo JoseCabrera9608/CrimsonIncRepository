@@ -361,12 +361,8 @@ public class GorgonopsiaBoss : MonoBehaviour
         if (bool2 == true)
         {                
             HandleBlink(TryGetEmbestidaPosition(), stats.blinkDefaultTime);
-               
-            Vector3 feedback = embestidaFeedback.transform.localScale;
-            float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
-            float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10 *2;
 
-            embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght*2), feedbackDuration);
+            StartCoroutine(FeedbackEmbestida(stats.blinkDefaultTime));
             bool2 = false;
         }
         //========================MOTION=================================
@@ -390,6 +386,15 @@ public class GorgonopsiaBoss : MonoBehaviour
                 duration,false).SetEase(Ease.Linear).OnComplete(ResetEmbestidaParentColliders);
             embestidaTween.Play();
         }
+    }
+    public IEnumerator FeedbackEmbestida(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Vector3 feedback = embestidaFeedback.transform.localScale;
+        float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
+        float feedbackLenght = Vector3.Distance(transform.position, player.transform.position) / 10 * 2;
+
+        embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght * 2), feedbackDuration);
     }
     public Vector3 TryGetEmbestidaPosition()
     {
@@ -556,6 +561,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         {
             renderer.enabled = true;
         }
+        
     }
     public IEnumerator TryToChargeHeat(float time)
     {
