@@ -17,6 +17,7 @@ public class Checkpoint : MonoBehaviour
     public ProgressManager progress;
     public GameObject Player;
     public GameObject SpawnPoint;
+    public GameObject SpawnIcon;
     public PlayerStatus playerStatus;
 
     public Transform consolepoint;
@@ -26,6 +27,7 @@ public class Checkpoint : MonoBehaviour
     public bool limit1;
     public bool limit2;
     public bool resetlvl;
+    public bool resetEnemys;
 
     // Start is called before the first frame update
     void Start()
@@ -50,37 +52,21 @@ public class Checkpoint : MonoBehaviour
     {
         if (checkpointIndex == progress.checkpointIndex)
         {
-            //mesh.material = activeMat;
+
 
             timer += Time.deltaTime;
-            //timer2 += Time.deltaTime;
+
+            SpawnIcon.SetActive(true);
 
             mesh.material.SetColor("_EmissionColor", Color.cyan *5);
             lowmesh.material.SetColor("_EmissionColor", Color.cyan *5);
 
-            /*if (timer < 2)
-            {
-                timer2 += 2 * Time.deltaTime;
-                mesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
-                lowmesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
-            }
-            if (timer >= 2 && timer <= 4)
-            {
-                timer2 -= 2 * Time.deltaTime;
-                mesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
-                lowmesh.material.SetColor("_EmissionColor", Color.cyan * timer2 * 3);
-
-            }
-            if (timer > 4)
-            {
-                timer = 0;
-            }
-            */
         }
         else
         {
             timer += Time.deltaTime;
             //timer2 += Time.deltaTime;
+            SpawnIcon.SetActive(false);
 
             if (timer < 2)
             {
@@ -113,11 +99,12 @@ public class Checkpoint : MonoBehaviour
 
 
             playerStatus.InteractualObject = consolepoint;
-            Player.transform.position = consolepoint.transform.position;
+            //Player.transform.position = consolepoint.transform.position;
             if (playerStatus.interacting == false)
             {
                 playerStatus.Interacting();
-                progress.enemysdeath = 0;
+                Player.transform.position = consolepoint.transform.position;
+                //progress.enemysdeath = 0;
                 FindObjectOfType<AudioManager>().Play("Checkpoint");
             }
             if (resetlvl == true)
