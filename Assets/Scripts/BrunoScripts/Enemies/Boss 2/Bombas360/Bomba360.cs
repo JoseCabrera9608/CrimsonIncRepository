@@ -22,6 +22,8 @@ public class Bomba360 : MonoBehaviour
     {
         player = FindObjectOfType<PlayerStatus>().gameObject;
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        Debug.Log("Distancia del player" + distanceToPlayer);
+        //Debug.Break();
         initialDistanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         StartCoroutine(ChargeAttack());
         SetBorders();
@@ -54,9 +56,9 @@ public class Bomba360 : MonoBehaviour
 
         StartCoroutine(DestroyFeedback(donut));
         donut.transform.position = transform.position;
-        donut.transform.parent = transform;
-        //donut.transform.localScale = new Vector3(distanceToPlayer+(distanceTreshold/2)- 1.48685f, 1, distanceToPlayer + (distanceTreshold / 2)- 1.48685f);
-        donut.transform.localScale = new Vector3((distanceToPlayer * 2 + distanceTreshold / 1.5f) / 10, 1, (distanceToPlayer * 2 + distanceTreshold / 1.5f) / 10);
+
+        float feedbackDimension = distanceToPlayer + (distanceTreshold / 2);
+        donut.transform.localScale = new Vector3(feedbackDimension, feedbackDimension, feedbackDimension);
         donut.GetComponent<MeshRenderer>().material.DOFade(1, timeToDamage);
     }
     private IEnumerator DestroyFeedback(GameObject obj)

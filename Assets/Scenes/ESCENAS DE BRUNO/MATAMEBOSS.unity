@@ -1556,7 +1556,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56384014}
-  m_LocalRotation: {x: 0.103597164, y: 0.000000017640494, z: -0.0000000018373918, w: 0.99461937}
+  m_LocalRotation: {x: 0.103597164, y: 0.000000017640495, z: -0.0000000018373919, w: 0.99461937}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5569,7 +5569,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-118958
+  m_Name: pb_Mesh-197544
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15644,7 +15644,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738233352}
-  m_LocalRotation: {x: 0.06739931, y: -0.0000000042918136, z: 2.8992456e-10, w: 0.9977261}
+  m_LocalRotation: {x: 0.06739931, y: 0.0000000042918136, z: -2.8992456e-10, w: 0.9977261}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -35008,7 +35008,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628022106}
-  m_LocalRotation: {x: 0.085488416, y: 0.000000017671004, z: -0.0000000015162167, w: 0.9963392}
+  m_LocalRotation: {x: 0.085488416, y: 0.000000017671002, z: -0.0000000015162165, w: 0.9963392}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -45054,7 +45054,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133537277}
-  m_LocalRotation: {x: 0.085488416, y: 0.000000017879131, z: -0.0000000014982, w: 0.9963392}
+  m_LocalRotation: {x: 0.085488416, y: 0.000000017879135, z: -0.0000000014982614, w: 0.9963392}
   m_LocalPosition: {x: 0, y: 2.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -45346,23 +45346,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: attackProbabilities.Array.data[0].nextAttack
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: attackProbabilities.Array.data[1].nextAttack
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[2].nextAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[3].nextAttack
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: attackProbabilities.Array.data[1].maxProbability
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[2].maxProbability
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[3].maxProbability
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: attackProbabilities.Array.data[0].animationTrigger
-      value: embestidaFrenetica
+      value: alientoCalor
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: attackProbabilities.Array.data[1].animationTrigger
-      value: alientoCalor
+      value: bomba360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[2].animationTrigger
+      value: embestidaFrenetica
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227843550261168434, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: attackProbabilities.Array.data[3].animationTrigger
+      value: rugidoExplosivo
       objectReference: {fileID: 0}
     - target: {fileID: 4227843550261168439, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
       propertyPath: m_Name
@@ -45376,6 +45400,10 @@ PrefabInstance:
       propertyPath: playerForTest
       value: 
       objectReference: {fileID: 792342281}
+    - target: {fileID: 8312878714171686200, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
+      propertyPath: alientoCalorRange
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba849f469f0c43d4d9bfceab06c4f450, type: 3}
 --- !u!1001 &6538097304855765634

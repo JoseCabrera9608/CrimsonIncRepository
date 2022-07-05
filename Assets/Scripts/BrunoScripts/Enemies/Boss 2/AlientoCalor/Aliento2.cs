@@ -44,7 +44,7 @@ public class Aliento2 : MonoBehaviour
         anglePlayer = Vector3.Angle(transform.forward,  player.transform.position -transform.position);
         
 
-        if (distanceToPlayer <= alientoCalorRange) playerOnRange = true; else playerOnAngle = false;
+        if (distanceToPlayer <= alientoCalorRange) playerOnRange = true; else playerOnRange = false;
         if (anglePlayer <= alientoCalorAngle) playerOnAngle = true; else playerOnAngle = false;
 
         DamagePlayer();
