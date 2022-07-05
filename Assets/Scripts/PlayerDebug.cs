@@ -63,17 +63,25 @@ public class PlayerDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sensitext.text = sensislider.value.ToString();
+        
+        if (sensitext != null)
+        {
+            sensitext.text = sensislider.value.ToString();
+
+            if (sensislider.value <= 0)
+            {
+                sensislider.value = 0.1f;
+            }
+        }
+        
+        //sensitext.text = sensislider.value.ToString();
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (sensislider.value <= 0)
-        {
-            sensislider.value = 0.1f;
-        }
+
 
         //sensitext.text = sensislider.value.ToString("F2"); 
     }
