@@ -434,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813730324921230932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.31}
+  m_LocalPosition: {x: -0, y: -0, z: -1.38}
   m_LocalScale: {x: 3, y: 5, z: 18}
   m_Children: []
   m_Father: {fileID: 3343236287041187896}
@@ -545,7 +545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813730325566711559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.48, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 813730325673094471}
@@ -702,6 +702,7 @@ MonoBehaviour:
   currentAction: 0
   anims: {fileID: 3544451333248389635}
   EnemyBar: {fileID: 0}
+  progress: {fileID: 0}
   stake: {fileID: 9189620404138082271, guid: a2676550786e70f4bb61b74431bb36dc, type: 3}
   stakeList: []
   posTransform:
@@ -718,48 +719,48 @@ MonoBehaviour:
   rayoIon: {fileID: 2597684453256289108}
   vistaCazador: {fileID: 2597684452165211017}
   isActive: 0
-  timeToActivate: 5
+  timeToActivate: 1
   col: {fileID: 813730325673094457}
   airAttacks:
-  - nextAttack: 1
+  - nextAttack: 4
     minProbability: 0
-    maxProbability: 14
-    animationTriggerName: rayoIon
+    maxProbability: 5
+    animationTriggerName: flash
   - nextAttack: 2
-    minProbability: 15
-    maxProbability: 29
+    minProbability: 20
+    maxProbability: 50
     animationTriggerName: bombardeoMisiles
   - nextAttack: 3
-    minProbability: 30
-    maxProbability: 44
+    minProbability: 0
+    maxProbability: 0
     animationTriggerName: misilesEmp
-  - nextAttack: 4
-    minProbability: 45
-    maxProbability: 59
-    animationTriggerName: flash
+  - nextAttack: 1
+    minProbability: 0
+    maxProbability: 0
+    animationTriggerName: rayoIon
   - nextAttack: 5
-    minProbability: 60
-    maxProbability: 74
+    minProbability: 5
+    maxProbability: 20
     animationTriggerName: lluviaLasers
   - nextAttack: 6
-    minProbability: 75
-    maxProbability: 89
+    minProbability: 50
+    maxProbability: 70
     animationTriggerName: vistaCazador
   - nextAttack: 7
-    minProbability: 90
+    minProbability: 70
     maxProbability: 100
     animationTriggerName: discoEmp
   groundAttacks:
   - nextAttack: 2
     minProbability: 0
-    maxProbability: 33
+    maxProbability: 30
     animationTriggerName: bombardeoMisiles
   - nextAttack: 3
-    minProbability: 34
-    maxProbability: 67
+    minProbability: 31
+    maxProbability: 61
     animationTriggerName: misilesEmp
   - nextAttack: 4
-    minProbability: 68
+    minProbability: 62
     maxProbability: 100
     animationTriggerName: flash
   attackOnGround: 0
@@ -778,17 +779,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayoIonDamage: 15
-  bombardeoMisilesDamage: 20
+  bombardeoMisilesDamage: 30
   rayosEmpDamage: 10
-  vistaCazadorDamage: 90
-  lluviaDamage: 20
-  discosEmpDamage: 30
+  vistaCazadorDamage: 85
+  lluviaDamage: 25
+  discosEmpDamage: 35
   discosEmpStaminaLoss: 0.2
-  health: 10000
+  health: 400
   maxHealth: 0
-  onGroundTime: 13
-  rotationSpeed: 30
-  startFlightDuration: 7
+  onGroundTime: 7
+  rotationSpeed: 60
+  startFlightDuration: 3
   descendDuration: 1
   isAttacking: 0
   attackDelay: 3
@@ -798,28 +799,28 @@ MonoBehaviour:
   isAlive: 1
   stakeRotationDuration: 1.5
   stakeSpeed: 25
-  laserRotationSpeed: 10
+  laserRotationSpeed: 20
   laserAimTime: 3
   laserAttackTime: 4
-  bmAmount: 20
+  bmAmount: 15
   bmDelay: 0.3
-  bmTimeToExplode: 3
-  rempAmount: 5
-  rempSpeed: 10
-  rempRotationSpeed: 40
-  rempFollowTime: 15
-  rempLifeTime: 30
-  lluviaAmount: 10
-  lluviaDelay: 2
+  bmTimeToExplode: 0.5
+  rempAmount: 15
+  rempSpeed: 20
+  rempRotationSpeed: 50
+  rempFollowTime: 25
+  rempLifeTime: 35
+  lluviaAmount: 3
+  lluviaDelay: 4
   lluviaLasersHeight: 10
   flashDuration: 3
   flashDelay: 4
-  discMaxSpeed: 15
-  discRotationSpeed: 40
-  discAmount: 3
-  discDelay: 1
+  discMaxSpeed: 25
+  discRotationSpeed: 60
+  discAmount: 5
+  discDelay: 0.2
   empDiscExtraFollowTime: 1
-  cazadorAimTime: 3
+  cazadorAimTime: 1.3
   cazadorRotationSpeed: 360
   cazadorLaserDuration: 1
   nuera: {fileID: 813730325673094466}
@@ -865,8 +866,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 10.75, z: 2.45}
-  m_Center: {x: 0, y: 0, z: 41}
+  m_Size: {x: 80.41511, y: 18.01027, z: 24.493027}
+  m_Center: {x: 9.792446, y: -1.2563362, z: 14.073555}
 --- !u!1 &1066407119547605680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,6 +1114,102 @@ Transform:
   m_Father: {fileID: 2195946966985181587}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &389971735
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597684452165211017}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 75f6c26de04e19e4c80129c7ec7607a8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.391
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2630916334175056528
 GameObject:
   m_ObjectHideFlags: 0

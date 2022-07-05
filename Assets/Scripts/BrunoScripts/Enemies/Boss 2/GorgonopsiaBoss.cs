@@ -38,6 +38,7 @@ public class GorgonopsiaBoss : MonoBehaviour
     public AudioSource hitSound;
     public bool activateTargetVfx;
 
+    public int embestidaCounter;
     #region variables de control
     [Header("===============CONTROL VARIABLES===============")]
     public bool isActing;
@@ -328,13 +329,14 @@ public class GorgonopsiaBoss : MonoBehaviour
     }
     public void HandleEmbestidaFrenetica()
     {
-        if(bool1==true)timer1 += Time.deltaTime;
-
-        if (isActing == false)
+        if (embestidaCounter >= stats.embestidaFreneticaAmount)
         {
-            StartCoroutine(ResetActing((stats.embestidaFreneticaAnimationDuration
-            + stats.embestidaFreneticaDelay + stats.embestidaFreneticaDuration) * stats.embestidaFreneticaAmount));
+            StartCoroutine(ResetActing(0));
+            return;
         }
+      
+
+        if (bool1==true)timer1 += Time.deltaTime;
 
         isActing = true;
 
@@ -346,47 +348,40 @@ public class GorgonopsiaBoss : MonoBehaviour
         }
 
         //===================MOVE BOSS FORWARD====================
-        for(int i = 0; i < stats.embestidaFreneticaAmount; i++)
+        
+        //===============BLINK==============================
+        if (bool2 == true)
+        {                
+            HandleBlink(TryGetEmbestidaPosition(), stats.blinkDefaultTime);
+               
+            Vector3 feedback = embestidaFeedback.transform.localScale;
+            float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
+            float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10 *2;
+
+            embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght*2), feedbackDuration);
+            bool2 = false;
+        }
+        //========================MOTION=================================
+        if (timer1 >= stats.embestidaFreneticaDelay+stats.blinkDefaultTime)
         {
             
-            //===============BLINK==============================
-            if (bool2 == true)
-            {
-                bool2 = false;
-                
-                HandleBlink(TryGetEmbestidaPosition(), stats.blinkDefaultTime);
-               
-                Vector3 feedback = embestidaFeedback.transform.localScale;
-                float feedbackDuration = stats.embestidaFreneticaDelay + stats.blinkDefaultTime;
-                float feedbackLenght = Vector3.Distance(transform.position, player.transform.position)/10 *2;
 
-                embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght*2), feedbackDuration);              
-            }
-            //========================MOTION=================================
-            if (timer1 >= stats.embestidaFreneticaDelay+stats.blinkDefaultTime)
-            {
-                anims.SetAnimationTrigger("embestidaFrenetica");
-                GorgonopsiaSFX.Instance.Play("embestida");
-                timer1 = 0;
-                bool1 = false;
-                embestidaFreneticaParent.SetActive(true);
-                float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position) * 2;
-                //MOVE 
-                float duration;
-                if(stats.attackSpeedBonus) duration= stats.embestidaFreneticaDuration-(stats.embestidaFreneticaDuration*stats.generalAttackSpeedBonus);
-                else duration= stats.embestidaFreneticaDuration;
+            anims.SetAnimationTrigger("embestidaFrenetica");
+            GorgonopsiaSFX.Instance.Play("embestida");
+            timer1 = 0;
+            bool1 = false;
+            embestidaFreneticaParent.SetActive(true);
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position) * 2;
+            //MOVE 
+            float duration;
+            if(stats.attackSpeedBonus) duration= stats.embestidaFreneticaDuration-(stats.embestidaFreneticaDuration*stats.generalAttackSpeedBonus);
+            else duration= stats.embestidaFreneticaDuration;
 
                 
-                embestidaTween = transform.DOMove(transform.position+(transform.forward*distanceToPlayer),
-                    duration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
-                embestidaTween.Play();
-
-                
-                
-            }
-            
+            embestidaTween = transform.DOMove(transform.position+(transform.forward*distanceToPlayer),
+                duration,false).SetEase(Ease.InExpo).OnComplete(ResetEmbestidaParentColliders);
+            embestidaTween.Play();
         }
-        
     }
     public Vector3 TryGetEmbestidaPosition()
     {
@@ -448,6 +443,8 @@ public class GorgonopsiaBoss : MonoBehaviour
                     embestidaFeedback.transform.localScale.y, 0.000001f);
         bool1 = true;
         bool2 = true;
+        embestidaCounter++;
+        
 
     }
     public void DeactivateEmbestidaFeedback() => embestidaFeedback.transform.localScale = new Vector3(embestidaFeedback.transform.localScale.x,
@@ -538,7 +535,9 @@ public class GorgonopsiaBoss : MonoBehaviour
         currentAction = Gstates.idle;
         timer1 = 0;
         isActing = false;
+        embestidaCounter = 0;
     }
+
     public IEnumerator ResetRenderer(float time)
     {
         yield return new WaitForSeconds(time);
