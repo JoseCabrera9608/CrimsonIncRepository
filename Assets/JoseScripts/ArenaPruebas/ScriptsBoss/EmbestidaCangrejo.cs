@@ -8,9 +8,8 @@ public class EmbestidaCangrejo : Habilidad_SO
     public override void Activate(GameObject parent)
     {
         BossCangrejo _bossCangrejo = parent.GetComponent<BossCangrejo>();
-        Animator anim = parent.GetComponent<Animator>();
-        anim.SetTrigger("VaAtacar");
-        anim.SetTrigger("Embestida");
+        //Animator anim = parent.GetComponent<Animator>();
+        
         _bossCangrejo.activarEmbestida = true;
     }
 }

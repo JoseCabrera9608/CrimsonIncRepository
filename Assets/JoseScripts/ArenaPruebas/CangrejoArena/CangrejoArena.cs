@@ -241,15 +241,17 @@ public class CangrejoArena : MonoBehaviour
 
     IEnumerator Embestida()
     {
-        animCangrejo.SetTrigger("Embestida");
         agente.speed = 0;
-        yield return new WaitForSeconds(1.1f);
+        animCangrejo.SetTrigger("CargarEmbestida");
+        yield return new WaitForSeconds(2f);
+        //agente.speed = 0;
+        //yield return new WaitForSeconds(1.1f);
+        animCangrejo.SetTrigger("Embestir");
         agente.SetDestination(player.transform.position);
         agente.speed = 1000;
         agente.acceleration = 70;
         embestidaCollider.SetActive(true);
         yield return new WaitForSeconds(2.3f);
-        animCangrejo.SetTrigger("FinEmbestida");
         agente.speed = 0;
         agente.acceleration = 8;
         embestidaCollider.SetActive(false);

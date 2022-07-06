@@ -97,6 +97,11 @@ public class BossCangrejo : MonoBehaviour
             MirarAljugador();
         }
 
+        if (animCangrejo.GetCurrentAnimatorStateInfo(0).IsName("CargarEmbestida"))
+        {
+            MirarAljugador();
+        }
+
         if (vidaActual <= 100)
         {
             //segundaFase = true;
@@ -321,12 +326,10 @@ public class BossCangrejo : MonoBehaviour
     IEnumerator Embestida()
     {
         agente.speed = 0;
-        animCangrejo.SetTrigger("Embestida");
-     // agente.speed = 0;
-       // agente.stoppingDistance = 0;
+        animCangrejo.SetTrigger("CargarEmbestida");
+        yield return new WaitForSeconds(1);
+        //animCangrejo.SetTrigger("Embestida");
         abdomenCollider.isTrigger = true;
-      yield return new WaitForSeconds(3);
-        
         embestidaCollider.SetActive(true);
         agente.speed = 1000;
         agente.acceleration = 70;
@@ -414,7 +417,7 @@ public class BossCangrejo : MonoBehaviour
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, rotTarget, 200 * Time.deltaTime);
         //Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up * -0.1f*Time.deltaTime);
        // transform.rotation = rotation;
-        Debug.Log("Deberia GIRAAAAAAAR");
+        //Debug.Log("Deberia GIRAAAAAAAR");
     }
 
     public void ActivarColliderBrazoDerecho()
