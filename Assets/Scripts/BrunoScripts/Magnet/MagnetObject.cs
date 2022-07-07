@@ -8,7 +8,7 @@ public class MagnetObject : MonoBehaviour
     [SerializeField] private Transform pullPoint;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject pullSphere;
-
+    public bool playerOnRange;
     [Header("Settings")]
     [SerializeField] private bool showAtractionRadius;
     [SerializeField] private float atractionForce;
@@ -63,15 +63,22 @@ public class MagnetObject : MonoBehaviour
     }
     private void PullPlayer()
     {
-        if (player == null||isActive==false) return;
+        if (player == null || isActive == false)
+        {
+            playerOnRange = false;
+            return;
+        }
+        else
+        {
+            playerOnRange = true;
+            Vector3 pullDirection = pullPoint.position - player.transform.position;
+            Vector3 pullDirection2 = player.transform.position - pullPoint.position;
+            //pullDirection.y = player.transform.position.y;
+            Debug.DrawRay(transform.position, pullDirection2);
+            Rigidbody rb = player.GetComponent<Rigidbody>();
 
-        Vector3 pullDirection = pullPoint.position - player.transform.position;
-        Vector3 pullDirection2 = player.transform.position - pullPoint.position;
-        //pullDirection.y = player.transform.position.y;
-        Debug.DrawRay(transform.position,pullDirection2);
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-
-        rb.AddForce(pullDirection*atractionForce*Time.fixedDeltaTime, ForceMode.Force);
+            rb.AddForce(pullDirection * atractionForce * Time.fixedDeltaTime, ForceMode.Force);
+        }       
     }
     
     private void PullDebris()

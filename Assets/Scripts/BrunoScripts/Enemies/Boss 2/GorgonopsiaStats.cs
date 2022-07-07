@@ -39,6 +39,7 @@ public class GorgonopsiaStats : MonoBehaviour
     public float alientoCalorAngle;
     public bool alientoCalorFullyCharged;
     public bool alientoCalorFinished;
+    public float alientoBlinkDistance;
 
     [Header("")]
     [Header("================Rugido Explosivo===========================")]

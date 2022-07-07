@@ -280,8 +280,9 @@ public class GorgonopsiaBoss : MonoBehaviour
             isActing = true;
             canRotate = true;
             rotationSpeed = stats.rotationSpeedAliento;
+            HandleBlink(TryGetEmbestidaPosition(stats.alientoBlinkDistance), stats.blinkDefaultTime);
             alientoCalor.SetActive(true);           
-            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorDamageTime +1));
+            StartCoroutine(ResetActing(stats.alientoCalorChargeTime + stats.alientoCalorDamageTime));
             
             Aliento2 script = alientoCalor.GetComponent<Aliento2>();
 
@@ -369,7 +370,7 @@ public class GorgonopsiaBoss : MonoBehaviour
         //===============BLINK==============================
         if (bool2 == true)
         {                
-            HandleBlink(TryGetEmbestidaPosition(), stats.blinkDefaultTime);
+            HandleBlink(TryGetEmbestidaPosition(stats.embestidaFreneticaBlinkDistance), stats.blinkDefaultTime);
 
             StartCoroutine(FeedbackEmbestida(stats.blinkDefaultTime));
             bool2 = false;
@@ -405,7 +406,7 @@ public class GorgonopsiaBoss : MonoBehaviour
 
         embestidaFeedback.transform.DOScale(new Vector3(feedback.x, feedback.y, feedbackLenght * 2), feedbackDuration);
     }
-    public Vector3 TryGetEmbestidaPosition()
+    public Vector3 TryGetEmbestidaPosition(float distance)
     {
         Vector3 playerPos = player.transform.position;
 
@@ -440,8 +441,8 @@ public class GorgonopsiaBoss : MonoBehaviour
 
            
 
-            Vector3 desiredPosition = new Vector3(playerPos.x + (stats.embestidaFreneticaBlinkDistance * xRandom)
-            , transform.position.y, playerPos.z + (stats.embestidaFreneticaBlinkDistance * zRandom));
+            Vector3 desiredPosition = new Vector3(playerPos.x + (distance * xRandom)
+            , transform.position.y, playerPos.z + (distance * zRandom));
 
             RaycastHit hit;
             if(Physics.Raycast(desiredPosition+Vector3.up,Vector3.down,out hit, 10))
