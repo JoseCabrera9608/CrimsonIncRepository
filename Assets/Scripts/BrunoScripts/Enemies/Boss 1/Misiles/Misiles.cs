@@ -24,7 +24,7 @@ public class Misiles : MonoBehaviour
     private IEnumerator DestroyObject()
     {
         GameObject obj = Instantiate(particles);
-        particles.transform.position = transform.position+new Vector3(0,1,0);
+        obj.transform.position = transform.position+new Vector3(0,1,0);
 
         yield return new WaitForSeconds(explotionDuration);
         Destroy(gameObject);

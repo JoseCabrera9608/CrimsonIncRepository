@@ -253,13 +253,22 @@ public class GorgonopsiaBoss : MonoBehaviour
             if (timer1 >= stats.bomba360TimeToDamage)
             {
                 timer1 = 0;
+                //GameObject obj = Instantiate(bombas360);
+                //obj.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+                //Bomba360 script = obj.GetComponent<Bomba360>();
+                //script.damage = stats.bombas360Damage;
+                //if (stats.attackSpeedBonus) script.timeToDamage = stats.bomba360TimeToDamage - (stats.bomba360TimeToDamage * stats.generalAttackSpeedBonus);
+                //else script.timeToDamage = stats.bomba360TimeToDamage;
+                //script.distanceTreshold = stats.bomba360DistanceTreshold;
+
                 GameObject obj = Instantiate(bombas360);
-                obj.transform.position = transform.position + new Vector3(0, 0.1f, 0);
-                Bomba360 script = obj.GetComponent<Bomba360>();
+                obj.transform.position = transform.position+new Vector3(0,0.1f,0);
+                Bombas360Version3 script = obj.GetComponent<Bombas360Version3>();
                 script.damage = stats.bombas360Damage;
                 if (stats.attackSpeedBonus) script.timeToDamage = stats.bomba360TimeToDamage - (stats.bomba360TimeToDamage * stats.generalAttackSpeedBonus);
                 else script.timeToDamage = stats.bomba360TimeToDamage;
                 script.distanceTreshold = stats.bomba360DistanceTreshold;
+
             }
         }
         
