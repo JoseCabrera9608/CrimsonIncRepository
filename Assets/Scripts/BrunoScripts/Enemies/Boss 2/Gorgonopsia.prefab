@@ -1769,12 +1769,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
-  evaluationTime: 3
+  evaluationTime: 2
   closeRangeRadius: 0
   defaultRotationSpeed: 55
-  rotationSpeedAliento: 20
+  rotationSpeedAliento: 0
   farRangeRadius: 0
-  health: 20
+  health: 800
   fireDamage: 10
   fireDuration: 4
   generalAttackSpeedBonus: 0.5
@@ -1790,15 +1790,15 @@ MonoBehaviour:
   bombas360Damage: 50
   alientoCalorDamage: 10
   bombasJaegerDamage: 35
-  alientoCalorChargeTime: 2
-  alientoCalorDamageTime: 2
+  alientoCalorChargeTime: 0.5
+  alientoCalorDamageTime: 5
   alientoCalorRange: 30
   alientoCalorAngle: 45
   alientoCalorFullyCharged: 0
   alientoCalorFinished: 0
   alientoBlinkDistance: 15
   rugidoExplosivoRadius: 23
-  rugidoExplosivoChargeTime: 3
+  rugidoExplosivoChargeTime: 2.7
   bombaJaegerSpeed: 50
   bombaJaegerBurnDamage: 10
   bombaJaegerTimeToAct: 1
@@ -1811,7 +1811,7 @@ MonoBehaviour:
   bomba360Amount: 4
   embestidaFreneticaAnimationDuration: 1
   embestidaFreneticaAmount: 3
-  embestidaFreneticaDelay: 1.5
+  embestidaFreneticaDelay: 1
   embestidaFreneticaDuration: 1
   embestidaFreneticaBlinkDistance: 20
   blinkDefaultTime: 0.5
@@ -2798,6 +2798,12 @@ MonoBehaviour:
   - clipName: cargaCalorCancel
     clip: {fileID: 8300000, guid: 074d0f090d6d7b24bb3fc0cdff6b0b16, type: 3}
     volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clipName: bombaNapalm
+    clip: {fileID: 8300000, guid: d0cea9bbf43c2ac44b9b933efb7a70d3, type: 3}
+    volume: 0.785
     pitch: 1
     loop: 0
     source: {fileID: 0}

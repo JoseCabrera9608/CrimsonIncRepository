@@ -6,6 +6,7 @@ public class Bombas360Version3 : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject explotionObj;
+    public SphereCollider col;
     public float distanceToPlayer;
     public float bombsToSpawn;
     
@@ -23,7 +24,7 @@ public class Bombas360Version3 : MonoBehaviour
     public float explotionPerimeter;
     private void Start()
     {
-        player = FindObjectOfType<PlayerStatus>().gameObject;
+        player = FindObjectOfType<PlayerStatus>().gameObject;       
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         StartCoroutine(AutoDestoy(timeToDamage));
         SpawnBombs();
@@ -31,6 +32,7 @@ public class Bombas360Version3 : MonoBehaviour
     private IEnumerator AutoDestoy(float time)
     {
         yield return new WaitForSeconds(time);
+        GorgonopsiaSFX.Instance.Play("bombaNapalm");
         Destroy(gameObject);
     }
     private void SpawnBombs()
@@ -45,6 +47,7 @@ public class Bombas360Version3 : MonoBehaviour
             obj.transform.position = GetPos((distanceTreshold/perimeter)*(i*2));
 
             Bomba360Explotion script = obj.GetComponent<Bomba360Explotion>();
+            script.endScale = distanceTreshold;
             script.damage = damage;
             script.timeToDamage = timeToDamage;
         }
@@ -54,7 +57,7 @@ public class Bombas360Version3 : MonoBehaviour
         float x = distanceToPlayer * Mathf.Cos(2 * Mathf.PI * _t);
         float z = distanceToPlayer * Mathf.Sin(2 * Mathf.PI * _t);
 
-        return new Vector3(transform.position.x + x, 0.1f, transform.position.z + z);
+        return new Vector3(transform.position.x + x, transform.position.y+0.1f, transform.position.z + z);
     }
     private void OnDrawGizmos()
     {
