@@ -35,6 +35,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     SkinnedMeshRenderer meshDelEnemigo;
     public GameObject meshObject;
     public GameObject magneto;
+    public SkinnedMeshRenderer mesh;
 
     public GameObject disparo;
     public GameObject bomba;
@@ -237,6 +238,7 @@ public class EnemiPequeñoControlador : MonoBehaviour
     IEnumerator Kamikaze()
     {
         anim.SetTrigger("Kamikaze");
+        mesh.material.SetColor("_EmissionColor", Color.red * 3);
         yield return new WaitForSeconds(2f);
         agente.speed = 8;
         //anim.setTrigger("Kamikaze");

@@ -224,25 +224,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.0598707, y: 8.113507, z: 0.88}
   m_Center: {x: 0, y: 4.0567536, z: 0}
---- !u!114 &272432103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4781057837297894400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915067d35b911a14182c0652e5129dff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emisionVariable: 3
-  multiplicadorParticula: 50
-  distanciaParticula: 4
-  tiempoDeDetonacion: 0
-  colliderParedElectrica: {fileID: 401002194}
-  activado: 1
-  id: 2
 --- !u!1 &3547311959502606182
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +257,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272432103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4781057837297894400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915067d35b911a14182c0652e5129dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emisionVariable: 3
+  multiplicadorParticula: 50
+  distanciaParticula: 4
+  tiempoDeDetonacion: 0
+  colliderParedElectrica: {fileID: 401002194}
+  activado: 1
+  id: 2
+  mesh: {fileID: 8866772558698745310}
+  mesh2: {fileID: 1515944939}
 --- !u!1 &6921442025506352139
 GameObject:
   m_ObjectHideFlags: 0

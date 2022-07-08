@@ -15,13 +15,19 @@ public class Transformadores : MonoBehaviour
     public bool activado;
     public int id;
 
+    public Color color;
+
+    public MeshRenderer mesh;
+    public MeshRenderer mesh2;
+
     void Start()
     {
         esteSistema = GetComponent<ParticleSystem>();
         BossGameEVent.current.Conexion += Desactivar;
+        
         /*sonidoExplosionElectricidad = GetComponent<AudioSource>();
         sonidoIddle = GetComponent<AudioSource>();*/
-
+        color = mesh.material.GetColor("_EmissionColor");
 
         //var emision = esteSistema.emission;
     }
@@ -43,8 +49,24 @@ public class Transformadores : MonoBehaviour
             if (tiempoDeDetonacion >= 8 && tiempoDeDetonacion <= 9)
             {
                 colliderParedElectrica.SetActive(true);
-                
-               //sonidoExplosionElectricidad.Play();
+
+                //sonidoExplosionElectricidad.Play();
+
+            }
+            if (tiempoDeDetonacion >= 8 && tiempoDeDetonacion < 10)
+            {
+
+                if (mesh != null)
+                {
+                    mesh.material.SetColor("_EmissionColor", Color.red * 5);
+                }
+
+                if (mesh2 != null)
+                {
+                    mesh2.material.SetColor("_EmissionColor", Color.red * 5);
+                }
+
+                //sonidoExplosionElectricidad.Play();
 
             }
             if (tiempoDeDetonacion >= 10)
@@ -53,6 +75,14 @@ public class Transformadores : MonoBehaviour
                 emisionVariable = 3;
                 distanciaParticula = 3;
                 colliderParedElectrica.SetActive(false);
+                if (mesh != null)
+                {
+                    mesh.material.SetColor("_EmissionColor", color );
+                }
+                if (mesh2 != null)
+                {
+                    mesh2.material.SetColor("_EmissionColor", color );
+                }
                 tiempoDeDetonacion = 0;
                 esteSistema.Play();
             }
