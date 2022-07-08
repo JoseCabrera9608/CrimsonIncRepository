@@ -18,6 +18,8 @@ public class PauseController : MonoBehaviour
 
     public GameObject Video;
 
+    public Slider volSlider;
+
     //=========TEMPORAL==========
     [SerializeField] private Movement movement;
     //=========TEMPORAL==========
@@ -32,6 +34,8 @@ public class PauseController : MonoBehaviour
     void Start()
     {
         progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+
+        volSlider.value = progress.vol;
     }
 
     // Update is called once per frame
@@ -56,6 +60,8 @@ public class PauseController : MonoBehaviour
             Debug.Log("SE ACABOO");
             timer = 0; 
         }
+
+        progress.vol = volSlider.value;
         //videoPlayer.loopPointReached += EndReached;
     }
 
