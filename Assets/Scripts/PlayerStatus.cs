@@ -48,6 +48,9 @@ public class PlayerStatus : MonoBehaviour
 
     public static Action<float> damagePlayer;
 
+    bool playSound;
+    public GameObject fireCriticStateVfx;
+
     public GameObject healingEffect;
     // Start is called before the first frame update
     private void OnEnable()
@@ -146,8 +149,25 @@ public class PlayerStatus : MonoBehaviour
         {
             StartCoroutine(HittedCoroutine());
         }
+
+        if (playerlife <= 35 && playSound == false)
+        {
+            fireCriticStateVfx.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("VidaCritica");
+            playSound = true;
+            
+         
+        }
+
+        if(playerlife > 35)
+        {
+            fireCriticStateVfx.SetActive(false);
+            FindObjectOfType<AudioManager>().Stop("VidaCritica");
+            playSound = false;
+        }
     }
 
+    
     private void FixedUpdate()
     {
         if (interacting == true)
@@ -164,6 +184,8 @@ public class PlayerStatus : MonoBehaviour
         {
             PlayerSingleton.Instance.playerHitted = true;
             PlayerSingleton.Instance.playerCurrentHP -= damage;
+            FindObjectOfType<AudioManager>().Play("AliceDamaged");
+
         }
         
         
