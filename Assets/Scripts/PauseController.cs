@@ -12,7 +12,7 @@ public class PauseController : MonoBehaviour
     GameObject MenuSettings;
     public bool pause;
 
-
+    public ProgressManager progress;
 
     public float timer;
 
@@ -31,7 +31,7 @@ public class PauseController : MonoBehaviour
 
     void Start()
     {
-        
+        progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
     }
 
     // Update is called once per frame
@@ -51,6 +51,8 @@ public class PauseController : MonoBehaviour
 
         if (!videoPlayer.isPlaying && timer >3)
         {
+            progress.lastposition = new Vector3(57, -3, 6);
+            SceneManager.LoadScene("Lvl1");
             Debug.Log("SE ACABOO");
             timer = 0; 
         }
