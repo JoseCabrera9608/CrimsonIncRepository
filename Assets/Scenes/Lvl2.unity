@@ -7352,6 +7352,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3575254323757663310, guid: 4b90b16bad2d3ce40a764c98c138b691, type: 3}
   m_PrefabInstance: {fileID: 168570492}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &171774575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171774578}
+  - component: {fileID: 171774577}
+  - component: {fileID: 171774576}
+  m_Layer: 0
+  m_Name: CombatTrigger EnemigoChiquito (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &171774576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171774575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e0ed834191ad143bdcf907bd087cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5
+--- !u!65 &171774577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171774575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 62.908405, y: 0.9999999, z: 17.079527}
+  m_Center: {x: -94.103386, y: 0, z: 3.5397608}
+--- !u!4 &171774578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171774575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 85.81, y: 18.61, z: 231.51}
+  m_LocalScale: {x: 0.30059698, y: 0.60145855, z: 0.38167945}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 230
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &174041337
 GameObject:
   m_ObjectHideFlags: 0
@@ -9941,6 +9999,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5372775497517936931, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98c23d17e748d454da88cb80bfd31ac6, type: 2}
     - target: {fileID: 8476707720932102818, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
       propertyPath: m_Name
       value: EnemigoSondaNueva (12)
@@ -19103,6 +19165,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5372775497517936931, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98c23d17e748d454da88cb80bfd31ac6, type: 2}
     - target: {fileID: 6330277535748722090, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -7.59016
@@ -21235,6 +21301,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -43.73713
       objectReference: {fileID: 0}
+    - target: {fileID: 5372775497517936931, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98c23d17e748d454da88cb80bfd31ac6, type: 2}
     - target: {fileID: 6330277535748722090, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -7.59016
@@ -48906,7 +48976,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh353130
+  m_Name: pb_Mesh3146290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -60273,7 +60343,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1400934852
 Transform:
@@ -69549,6 +69619,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5372775497517936931, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98c23d17e748d454da88cb80bfd31ac6, type: 2}
     - target: {fileID: 6330277535748722090, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -7.59016
@@ -75766,7 +75840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9144700253852157976, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.51
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 9144700253852157976, guid: ce4de71789fdfaf4cb6400505710abbe, type: 3}
       propertyPath: m_LocalPosition.z
