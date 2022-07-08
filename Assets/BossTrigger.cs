@@ -25,9 +25,5 @@ public class BossTrigger : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-
-
-
-
     }
 }

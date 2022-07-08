@@ -128,6 +128,11 @@ public class PlayerStatus : MonoBehaviour
             lvl = 1;
         }
 
+        if (PlayerSingleton.Instance.playerCurrentHP > PlayerSingleton.Instance.playerMaxHP)
+        {
+            PlayerSingleton.Instance.playerCurrentHP = PlayerSingleton.Instance.playerMaxHP;
+        }
+
 
 
         playerlife = PlayerSingleton.Instance.playerCurrentHP;
