@@ -152,7 +152,13 @@ public class PlayerStatus : MonoBehaviour
 
         if (playerlife <= 35 && playSound == false)
         {
-            fireCriticStateVfx.SetActive(true);
+            
+            if (fireCriticStateVfx != null)
+            {
+                fireCriticStateVfx.SetActive(true);
+            }
+            
+            //fireCriticStateVfx.SetActive(true);
             FindObjectOfType<AudioManager>().Play("VidaCritica");
             playSound = true;
             
@@ -161,7 +167,13 @@ public class PlayerStatus : MonoBehaviour
 
         if(playerlife > 35)
         {
-            fireCriticStateVfx.SetActive(false);
+
+            if (fireCriticStateVfx != null)
+            {
+                fireCriticStateVfx.SetActive(false);
+            }
+
+            //fireCriticStateVfx.SetActive(false);
             FindObjectOfType<AudioManager>().Stop("VidaCritica");
             playSound = false;
         }
