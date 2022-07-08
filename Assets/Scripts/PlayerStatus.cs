@@ -299,7 +299,13 @@ public class PlayerStatus : MonoBehaviour
     }
     IEnumerator HealingEffectDuration()
     {
-        healingEffect.SetActive(true);
+        if (PlayerSingleton.Instance.playerCurrentHealingCharges > 0)
+        {
+            healingEffect.SetActive(true);
+        }
+
+        
+        
         yield return new WaitForSeconds(2f);
         healingEffect.SetActive(false);
     }
