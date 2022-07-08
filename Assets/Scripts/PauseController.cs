@@ -1,61 +1,98 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject MenuPausa;
-    public GameObject MenuSettings;
+    GameObject MenuPausa;
+    GameObject MenuSettings;
     public bool pause;
-    
-    
+
+
+
+    public float timer;
+
+    public GameObject Video;
+
+    //=========TEMPORAL==========
+    [SerializeField] private Movement movement;
+    //=========TEMPORAL==========
+
+    public bool gameIsPaused;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject playerPanel;
+    [SerializeField] private GameObject sondaPanel;
+
+
     void Start()
     {
-        Deactivate();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Activate();
-        }
 
+        timer += Time.deltaTime;
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Activate();
+            gameIsPaused = !gameIsPaused;
+            if (!gameIsPaused) ResumeGame();
+            if (gameIsPaused) PauseGame();
         }
+        var videoPlayer = Video.GetComponent<UnityEngine.Video.VideoPlayer>();
+        videoPlayer.playbackSpeed = Time.timeScale;
+
+        if (!videoPlayer.isPlaying && timer >3)
+        {
+            Debug.Log("SE ACABOO");
+            timer = 0; 
+        }
+        //videoPlayer.loopPointReached += EndReached;
     }
 
-    public void Activate()
+
+    public void PauseGame()
     {
-        pause = true;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        MenuPausa.SetActive(true);
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+        CursorController("unblock");
+
+    }
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        if (playerPanel != null) playerPanel.SetActive(false);
+        if (sondaPanel != null) sondaPanel.SetActive(false);
+        Time.timeScale = 1;
+        CursorController("block");
+        gameIsPaused = false;
     }
 
-    public void Deactivate()
+    public void CursorController(string action)
     {
+        switch (action)
+        {
+            case "block":
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                break;
+            case "unblock":
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                break;
 
-        pause = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        MenuPausa.SetActive(false);
-    }
-
-    public void YesSettings()
-    {
-        MenuPausa.SetActive(false);
-        MenuSettings.SetActive(true);
-    }
-
-    public void NoSettings()
-    {
-        MenuPausa.SetActive(true);
-        MenuSettings.SetActive(false);
+            default:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                break;
+        }
     }
 }
