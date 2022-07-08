@@ -135,7 +135,7 @@ public class Checkpoint : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.Alpha2))
         {
             progress.lastposition = new Vector3(57, -3, 6);
-            SceneManager.LoadScene("Lvl1");
+            SceneManager.LoadScene("Cinematica");
             //SceneManager.LoadScene("EnriqueTest2");
 
             //ChangeScene();
