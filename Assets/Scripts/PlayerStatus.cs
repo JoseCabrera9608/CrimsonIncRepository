@@ -279,7 +279,7 @@ public class PlayerStatus : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer <= healingtime && PlayerSingleton.Instance.playerCurrentHealingCharges > -1)
+        if (timer <= healingtime && PlayerSingleton.Instance.playerCurrentHealingCharges > -1 && PlayerSingleton.Instance.playerCurrentHP > 0)
         {
             //PlayerSingleton.Instance.playerCurrentHP += (healingAmount/healingtime)*Time.deltaTime;
             if (PlayerSingleton.Instance.playerCurrentHP < PlayerSingleton.Instance.playerMaxHP)
