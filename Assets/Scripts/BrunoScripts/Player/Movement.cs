@@ -126,9 +126,9 @@ public class Movement : MonoBehaviour
          //   FindObjectOfType<AudioManager>().Play("CaminarMetal");
             if (PlayerSingleton.Instance.playerCurrentStamina > 0)
             {
-                movSpeed = runSpeed;
-                playeranim.SetBool("Walk", false);
-                playeranim.SetBool("Run", true);
+                //movSpeed = runSpeed;
+                //playeranim.SetBool("Walk", false);
+                //playeranim.SetBool("Run", true);
             }
             else
             {

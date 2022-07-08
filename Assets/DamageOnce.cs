@@ -6,6 +6,7 @@ public class DamageOnce : MonoBehaviour
 {
     // Start is called before the first frame update
     public float damage;
+    public bool damaged;
     void Start()
     {
        
@@ -19,10 +20,11 @@ public class DamageOnce : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && damaged == false)
         {
             PlayerStatus.damagePlayer?.Invoke(damage);
             damage = 0;
+            damaged = true;
         }
     }
 }
