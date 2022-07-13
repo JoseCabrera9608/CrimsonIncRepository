@@ -18,6 +18,7 @@ public class MeganeuraBoss : MonoBehaviour
     public Transform[] posTransform;
     private Vector3[] pos = new Vector3[2];
     Tween bobing;
+    public AudioSource audioHit;
 
     private GameObject player;
     public PlayerStatus playerStatus;
@@ -294,6 +295,7 @@ public class MeganeuraBoss : MonoBehaviour
     {
         if (other.CompareTag("PlayerWeapon")&&isActive)
         {
+            audioHit.Play();
             stats.health -= PlayerSingleton.Instance.playerDamage;
             if(stats.isAlive)anims.DamageAnimation();
             CheckHealth();
