@@ -537,6 +537,8 @@ public class GorgonopsiaBoss : MonoBehaviour
     public void HandleDeath()
     {
         stats.isAlive = false;
+        ProgressManager progress = GameObject.FindGameObjectWithTag("Progress").GetComponent<ProgressManager>();
+        progress.enemysdeath = 1000;
         BuffManager.onBossDefetead?.Invoke();
     }
     //========================UTILITY METHODS========================
